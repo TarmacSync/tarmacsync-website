@@ -288,6 +288,156 @@
       line-height: 1.5;
     }
 
+    .product-proof {
+      margin: 1rem 0 7rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 28px 75px rgba(10, 10, 13, 0.08);
+    }
+
+    .proof-main {
+      padding: 2rem;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .proof-topbar,
+    .proof-row,
+    .source-row,
+    .founder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .proof-topbar {
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid #f0c8ad;
+      border-radius: 999px;
+      background: #fff8f3;
+      color: #9d450a;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-chip::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--aviation-orange);
+    }
+
+    .proof-question {
+      margin-bottom: 1.5rem;
+    }
+
+    .proof-question h3 {
+      max-width: 650px;
+      margin: 0.55rem 0 0.45rem;
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    .proof-question p {
+      color: var(--asphalt-gray);
+      font-size: 0.9rem;
+    }
+
+    .path-options {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .path-option {
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--light-gray);
+    }
+
+    .path-option.primary {
+      border-left: 3px solid var(--aviation-orange);
+      background: #fffaf6;
+    }
+
+    .path-option strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .path-option p {
+      color: var(--asphalt-gray);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .proof-sidebar {
+      padding: 2rem 1.5rem;
+      background: var(--light-gray);
+    }
+
+    .proof-sidebar h4 {
+      margin: 0.5rem 0 1.25rem;
+      font-size: 1rem;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .source-row {
+      align-items: flex-start;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--asphalt-gray);
+      font-size: 0.76rem;
+      line-height: 1.4;
+    }
+
+    .source-state {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #256c43;
+      text-transform: uppercase;
+    }
+
+    .source-state.review {
+      color: #9d450a;
+    }
+
+    .proof-note {
+      margin-top: 1.25rem;
+      padding: 0.9rem;
+      border: 1px dashed #d4d4dc;
+      border-radius: 5px;
+      background: #fff;
+      color: var(--asphalt-gray);
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
     .hero-proof::before {
       content: '';
       width: 18px;
@@ -424,6 +574,185 @@
       opacity: 1;
     }
 
+    .feature-item {
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(10, 10, 13, 0.07);
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      margin: 0 0 3rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .workflow-step {
+      position: relative;
+      padding: 1.25rem 1rem;
+      border-right: 1px solid var(--border-color);
+      background: #fff;
+    }
+
+    .workflow-step:last-child {
+      border-right: 0;
+    }
+
+    .workflow-step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--aviation-orange);
+      transition: width 0.35s ease;
+    }
+
+    .workflow-step:hover::before {
+      width: 100%;
+    }
+
+    .workflow-step span {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--aviation-orange);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .workflow-step strong {
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .outcomes-section,
+    .founder-section {
+      padding: 6rem 0;
+    }
+
+    .outcomes-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+
+    .outcomes-header h2,
+    .founder-copy h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .outcomes-header p,
+    .founder-copy p {
+      color: var(--asphalt-gray);
+    }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .outcome {
+      min-height: 230px;
+      padding: 1.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #fff;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .outcome:hover {
+      transform: translateY(-4px);
+      border-color: #cfcfd7;
+      box-shadow: 0 16px 36px rgba(10, 10, 13, 0.07);
+    }
+
+    .outcome span {
+      display: block;
+      margin-bottom: 1.5rem;
+      color: var(--aviation-orange);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .outcome h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .outcome p {
+      color: var(--asphalt-gray);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .outcome-detail {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--asphalt-gray);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .founder-panel {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 4rem;
+      padding: 3rem;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--aviation-orange);
+      border-radius: 6px;
+      background: var(--light-gray);
+    }
+
+    .founder-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .founder-copy h2 {
+      margin-bottom: 1.2rem;
+    }
+
+    .founder-meta {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .founder-meta span {
+      padding: 0.35rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      background: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
     .feature-item h3 {
       font-size: 1.2rem;
       font-weight: 700;
@@ -522,6 +851,99 @@
       color: var(--asphalt-gray);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
+    }
+
+    .waitlist-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--tarmac);
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 0.85rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--aviation-orange);
+      box-shadow: 0 0 0 3px rgba(230, 106, 22, 0.1);
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .form-note {
+      color: var(--asphalt-gray);
+      font-size: 0.72rem;
+    }
+
+    .form-status {
+      grid-column: 1 / -1;
+      min-height: 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .form-status.success {
+      color: #256c43;
+    }
+
+    .form-status.error {
+      color: #a33b22;
+    }
+
+    .waitlist-form[aria-busy="true"] button {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .spam-trap {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
     }
 
     /* Inverted CTA Section */
@@ -707,6 +1129,41 @@
       .contact-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+      }
+      .product-proof,
+      .outcomes-header,
+      .founder-panel {
+        grid-template-columns: 1fr;
+      }
+      .proof-main {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+      .workflow-step {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .outcomes-grid {
+        grid-template-columns: 1fr;
+      }
+      .outcome,
+      .outcome:nth-child(3n),
+      .outcome:nth-child(n+4) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .outcome:last-child {
+        border-bottom: 0;
+      }
+      .founder-panel {
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+      }
+      .waitlist-form {
+        grid-template-columns: 1fr;
       }
       .contact-card {
         padding: 1.5rem;
@@ -970,7 +1427,7 @@
 <div class="container">
 <header>
 <a aria-label="TarmacSync Home" class="logo-container" href="/">
-<span class="logo-mark"><img src="tarmacsync-logo-web.png" alt="TarmacSync" width="512" height="170"></span>
+<span class="logo-mark"><img src="tarmacsync-logo-updated.png" alt="TarmacSync" width="2172" height="724"></span>
 </a>
 <nav aria-label="Primary Navigation">
 <a href="#why">Why it matters</a>
@@ -988,12 +1445,50 @@
 <span class="coordinate-label">EARLY ACCESS WAITLIST OPEN</span>
 </div>
 <h1>Airport projects are complex. <span class="hero-highlight">The next move shouldn’t be.</span></h1>
-<p>TarmacSync gives airport leaders one clear path from project need to procurement, funding, and grant follow-through. Move faster without losing sight of deadlines, required checks, or funding opportunities.</p>
+<p>TarmacSync helps airport teams compare procurement routes, surface funding candidates, and see what must be validated next—grounded in FAA sources, airport policy, and project context.</p>
 <div class="hero-ctas">
 <a class="btn btn-primary" href="#contact">Join the airport waitlist</a>
 <a class="btn btn-secondary" href="#platform">See how it works</a>
 </div>
 <p class="hero-proof">Grounded in FAA sources, airport policy, capital plans, and procurement context.</p>
+</section>
+<section class="product-proof" aria-label="Pathfinder product preview">
+<div class="proof-main">
+<div class="proof-topbar">
+<span class="coordinate-label">PATHFINDER // PROJECT 024</span>
+<span class="status-chip">Analysis in progress</span>
+</div>
+<div class="proof-question">
+<span class="coordinate-label">PROJECT NEED</span>
+<h3>Replace a runway sweeper before the next winter operations cycle.</h3>
+<p>Estimated value: $485,000 · AIP eligibility not yet confirmed · Local policy loaded</p>
+</div>
+<div class="path-options">
+<div class="path-option primary">
+<strong>Cooperative contract — candidate route</strong>
+<p>Potentially faster, subject to cooperative authority, contract scope, pricing validation, and grant concurrence.</p>
+</div>
+<div class="path-option">
+<strong>Formal competitive solicitation — viable route</strong>
+<p>Likely available if the cooperative contract does not meet local or funding requirements.</p>
+</div>
+<div class="path-option">
+<strong>What changes the analysis</strong>
+<p>Final funding mix, useful-life justification, approved specification, and airport purchasing threshold.</p>
+</div>
+</div>
+</div>
+<aside class="proof-sidebar">
+<span class="coordinate-label">EVIDENCE RECORD</span>
+<h4>Sources and open checks</h4>
+<div class="source-list">
+<div class="source-row"><span>Airport procurement policy</span><span class="source-state">Found</span></div>
+<div class="source-row"><span>Cooperative contract scope</span><span class="source-state">Found</span></div>
+<div class="source-row"><span>FAA funding eligibility</span><span class="source-state review">Validate</span></div>
+<div class="source-row"><span>Local board authority</span><span class="source-state review">Validate</span></div>
+</div>
+<div class="proof-note"><strong>Next best action:</strong> confirm the proposed funding source before comparing the cooperative route against a formal solicitation.</div>
+</aside>
 </section>
 <!-- Section Divider -->
 <div class="section-divider">
@@ -1042,6 +1537,13 @@
 <h2>One workspace from purchase need to grant reporting.</h2>
 <p>Start with the decision your team needs to make today. TarmacSync connects that decision to the funding, airport context, supporting evidence, and follow-through it may require.</p>
 </div>
+<div class="workflow" aria-label="TarmacSync workflow">
+<div class="workflow-step"><span>01</span><strong>Project need</strong></div>
+<div class="workflow-step"><span>02</span><strong>Viable paths</strong></div>
+<div class="workflow-step"><span>03</span><strong>Funding candidates</strong></div>
+<div class="workflow-step"><span>04</span><strong>Readiness checks</strong></div>
+<div class="workflow-step"><span>05</span><strong>Follow-through</strong></div>
+</div>
 <div class="features-grid">
 <div class="feature-item">
 <h3>Pathfinder: start with the need</h3>
@@ -1057,9 +1559,55 @@
 </div>
 </div>
 </section>
+<div class="section-divider">
+<span class="coordinate-label">[ 02 // DECISION-READY OUTPUTS ]</span>
+<span class="coordinate-label">CLEAR · TRACEABLE · ACTIONABLE</span>
+</div>
+<section class="outcomes-section">
+<div class="outcomes-header">
+<h2>See the decision—not just an answer.</h2>
+<p>TarmacSync organizes the routes that appear viable, the evidence behind them, and the questions that still matter—so your team can review the reasoning and decide what to do next.</p>
+</div>
+<div class="outcomes-grid">
+<article class="outcome">
+<span>01 // Compare</span>
+<h3>Understand the viable routes.</h3>
+<p>See which procurement approaches may fit the need, how they differ, and what could rule each one in or out.</p>
+<div class="outcome-detail">Candidate paths · Tradeoffs · Validation points</div>
+</article>
+<article class="outcome">
+<span>02 // Ground</span>
+<h3>See why each option surfaced.</h3>
+<p>Connect the analysis to airport policy, contract scope, funding guidance, and project context—not unsupported AI certainty.</p>
+<div class="outcome-detail">Sources · Funding fit · Evidence trail</div>
+</article>
+<article class="outcome">
+<span>03 // Advance</span>
+<h3>Know what to resolve next.</h3>
+<p>Turn open questions into a practical sequence of checks, owners, deadlines, and actions your team can move forward.</p>
+<div class="outcome-detail">Missing inputs · Next actions · Follow-through</div>
+</article>
+</div>
+</section>
+<div class="section-divider">
+<span class="coordinate-label">[ 03 // BUILT FROM AIRPORT EXPERIENCE ]</span>
+<span class="coordinate-label">OPERATIONS · PROCUREMENT · GRANTS</span>
+</div>
+<section class="founder-section">
+<div class="founder-panel">
+<div class="founder-label">Built from inside the airport industry</div>
+<div class="founder-copy">
+<h2>Built by an airport executive who knows the work.</h2>
+<p>TarmacSync is shaped by more than a decade of firsthand experience across U.S. commercial airport management, operations, procurement, grants, contracts, capital projects, security, and maintenance.</p>
+<div class="founder-meta">
+<span>AAAE Accredited Airport Executive (A.A.E.)</span>
+</div>
+</div>
+</div>
+</section>
 <!-- Section Divider -->
 <div class="section-divider">
-<span class="coordinate-label">[ 02 // EARLY ACCESS ]</span>
+<span class="coordinate-label">[ 04 // EARLY ACCESS ]</span>
 <span class="coordinate-label">COMMERCIAL SERVICE · RELIEVER · PUBLIC-USE GA</span>
 </div>
 <!-- FAQ Section -->
@@ -1102,10 +1650,36 @@
 <p>Tell us where your team gets stuck — choosing a buying path, finding funding, preparing grant requirements, tracking FAA updates, or meeting reporting deadlines. Your input will directly shape early access.</p>
 </div>
 <div class="contact-card">
-<span class="coordinate-label">[ DIRECT CONTACT ]</span>
+<span class="coordinate-label">[ EARLY ACCESS INTAKE ]</span>
 <h3>Join the waitlist</h3>
-<p>Tell us your airport and what you want to improve. We’ll follow up when early access is ready.</p>
-<a class="btn btn-primary" href="mailto:contact@tarmacsync.com?subject=TarmacSync%20Waitlist%20Request">Email us</a>
+<p>Tell us your airport and the workflow you want to improve. We’ll follow up personally when early access is ready.</p>
+<form class="waitlist-form" id="waitlist-form">
+<div class="spam-trap" aria-hidden="true">
+<label for="website">Website</label>
+<input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+</div>
+<div class="field">
+<label for="work-email">Work email</label>
+<input id="work-email" name="email" type="email" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="organization">Airport / organization</label>
+<input id="organization" name="organization" type="text" autocomplete="organization" required>
+</div>
+<div class="field full">
+<label for="role">Role</label>
+<input id="role" name="role" type="text" autocomplete="organization-title" required>
+</div>
+<div class="field full">
+<label for="challenge">Biggest project or procurement challenge</label>
+<textarea id="challenge" name="challenge" required></textarea>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary" type="submit">Join the waitlist</button>
+<span class="form-note">No commitment. No sales pressure.</span>
+</div>
+<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+</form>
 </div>
 </div>
 </div>
@@ -1228,7 +1802,7 @@
 <div class="container">
 <footer id="footer">
 <a aria-label="TarmacSync Home" class="logo-container" href="/">
-<span class="logo-mark"><img src="tarmacsync-logo-web.png" alt="TarmacSync" width="512" height="170"></span>
+<span class="logo-mark"><img src="tarmacsync-logo-updated.png" alt="TarmacSync" width="2172" height="724"></span>
 </a>
 <div class="footer-links">
 <a href="#privacy-policy">Privacy Policy</a>
@@ -1240,5 +1814,59 @@
       </div>
 </footer>
 </div>
+<script>
+  const waitlistForm = document.getElementById('waitlist-form');
+  const formStatus = document.getElementById('form-status');
+  const submitButton = waitlistForm.querySelector('button[type="submit"]');
+
+  waitlistForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    if (!waitlistForm.reportValidity()) return;
+
+    const data = new FormData(waitlistForm);
+    const payload = Object.fromEntries(data.entries());
+
+    waitlistForm.setAttribute('aria-busy', 'true');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Joining…';
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'We could not send your submission. Please try again.');
+      }
+
+      waitlistForm.reset();
+      formStatus.className = 'form-status success';
+      formStatus.textContent = 'You’re on the waitlist. We’ll follow up when early access is ready.';
+      submitButton.textContent = 'Joined';
+    } catch (error) {
+      formStatus.className = 'form-status error';
+      formStatus.textContent = error.message || 'We could not send your submission. Please try again.';
+      submitButton.disabled = false;
+      submitButton.textContent = 'Join the waitlist';
+    } finally {
+      waitlistForm.removeAttribute('aria-busy');
+      if (formStatus.classList.contains('success')) {
+        submitButton.disabled = true;
+      }
+    }
+  });
+</script>
 </body>
 </html>
