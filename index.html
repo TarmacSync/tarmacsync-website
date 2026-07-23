@@ -661,39 +661,57 @@
     .outcomes-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      overflow: hidden;
+      gap: 1rem;
     }
 
     .outcome {
-      min-height: 150px;
-      padding: 1.5rem;
-      border-right: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
-      background: var(--light-gray);
+      min-height: 230px;
+      padding: 1.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: #fff;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
 
-    .outcome:nth-child(3n) {
-      border-right: 0;
-    }
-
-    .outcome:nth-child(n+4) {
-      border-bottom: 0;
+    .outcome:hover {
+      transform: translateY(-4px);
+      border-color: #cfcfd7;
+      box-shadow: 0 16px 36px rgba(10, 10, 13, 0.07);
     }
 
     .outcome span {
       display: block;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       color: var(--aviation-orange);
       font-family: var(--font-mono);
       font-size: 0.7rem;
       font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .outcome h3 {
-      font-size: 1rem;
-      line-height: 1.4;
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .outcome p {
+      color: var(--asphalt-gray);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .outcome-detail {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--asphalt-gray);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      line-height: 1.5;
+      text-transform: uppercase;
     }
 
     .founder-panel {
@@ -1515,16 +1533,28 @@
 </div>
 <section class="outcomes-section">
 <div class="outcomes-header">
-<h2>Leave with work your team can actually use.</h2>
-<p>Every analysis is designed to turn scattered context into practical, reviewable artifacts—not a black-box answer.</p>
+<h2>See the decision—not just an answer.</h2>
+<p>TarmacSync organizes the routes that appear viable, the evidence behind them, and the questions that still matter—so your team can review the reasoning and decide what to do next.</p>
 </div>
 <div class="outcomes-grid">
-<article class="outcome"><span>OUT // 01</span><h3>Procurement Path Snapshot</h3></article>
-<article class="outcome"><span>OUT // 02</span><h3>Funding Candidate Brief</h3></article>
-<article class="outcome"><span>OUT // 03</span><h3>Missing Information Checklist</h3></article>
-<article class="outcome"><span>OUT // 04</span><h3>Source and Evidence Record</h3></article>
-<article class="outcome"><span>OUT // 05</span><h3>Grant Readiness Plan</h3></article>
-<article class="outcome"><span>OUT // 06</span><h3>Deadline and Reporting Tracker</h3></article>
+<article class="outcome">
+<span>01 // Compare</span>
+<h3>Understand the viable routes.</h3>
+<p>See which procurement approaches may fit the need, how they differ, and what could rule each one in or out.</p>
+<div class="outcome-detail">Candidate paths · Tradeoffs · Validation points</div>
+</article>
+<article class="outcome">
+<span>02 // Ground</span>
+<h3>See why each option surfaced.</h3>
+<p>Connect the analysis to airport policy, contract scope, funding guidance, and project context—not unsupported AI certainty.</p>
+<div class="outcome-detail">Sources · Funding fit · Evidence trail</div>
+</article>
+<article class="outcome">
+<span>03 // Advance</span>
+<h3>Know what to resolve next.</h3>
+<p>Turn open questions into a practical sequence of checks, owners, deadlines, and actions your team can move forward.</p>
+<div class="outcome-detail">Missing inputs · Next actions · Follow-through</div>
+</article>
 </div>
 </section>
 <div class="section-divider">
@@ -1533,12 +1563,12 @@
 </div>
 <section class="founder-section">
 <div class="founder-panel">
-<div class="founder-label">Built by an airport practitioner</div>
+<div class="founder-label">Built from inside the airport industry</div>
 <div class="founder-copy">
-<h2>Designed from inside the work.</h2>
-<p>TarmacSync is built from more than 10 years across U.S. airport management, operations, procurement, grants, contracts, capital projects, security, and maintenance—not from a generic procurement template.</p>
+<h2>Built by an airport executive who knows the work.</h2>
+<p>TarmacSync is shaped by more than a decade of firsthand experience across U.S. commercial airport management, operations, procurement, grants, contracts, capital projects, security, and maintenance.</p>
 <div class="founder-meta">
-<span>A.A.E.</span><span>C.A.E.</span><span>MBA · Airport Management</span><span>Private Pilot</span>
+<span>AAAE Accredited Airport Executive (A.A.E.)</span>
 </div>
 </div>
 </div>
