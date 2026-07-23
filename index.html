@@ -914,6 +914,38 @@
       font-size: 0.72rem;
     }
 
+    .form-status {
+      grid-column: 1 / -1;
+      min-height: 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .form-status.success {
+      color: #256c43;
+    }
+
+    .form-status.error {
+      color: #a33b22;
+    }
+
+    .waitlist-form[aria-busy="true"] button {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .spam-trap {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
     /* Inverted CTA Section */
     .cta-section {
       background-color: var(--tarmac);
@@ -1622,6 +1654,10 @@
 <h3>Join the waitlist</h3>
 <p>Tell us your airport and the workflow you want to improve. We’ll follow up personally when early access is ready.</p>
 <form class="waitlist-form" id="waitlist-form">
+<div class="spam-trap" aria-hidden="true">
+<label for="website">Website</label>
+<input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+</div>
 <div class="field">
 <label for="work-email">Work email</label>
 <input id="work-email" name="email" type="email" autocomplete="email" required>
@@ -1639,9 +1675,10 @@
 <textarea id="challenge" name="challenge" required></textarea>
 </div>
 <div class="form-actions">
-<button class="btn btn-primary" type="submit">Request early access</button>
+<button class="btn btn-primary" type="submit">Join the waitlist</button>
 <span class="form-note">No commitment. No sales pressure.</span>
 </div>
+<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 </form>
 </div>
 </div>
@@ -1778,17 +1815,57 @@
 </footer>
 </div>
 <script>
-  document.getElementById('waitlist-form').addEventListener('submit', function (event) {
+  const waitlistForm = document.getElementById('waitlist-form');
+  const formStatus = document.getElementById('form-status');
+  const submitButton = waitlistForm.querySelector('button[type="submit"]');
+
+  waitlistForm.addEventListener('submit', async function (event) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent('TarmacSync Early Access — ' + data.get('organization'));
-    const body = encodeURIComponent(
-      'Work email: ' + data.get('email') + '\n' +
-      'Airport / organization: ' + data.get('organization') + '\n' +
-      'Role: ' + data.get('role') + '\n\n' +
-      'Biggest project or procurement challenge:\n' + data.get('challenge')
-    );
-    window.location.href = 'mailto:contact@tarmacsync.com?subject=' + subject + '&body=' + body;
+
+    if (!waitlistForm.reportValidity()) return;
+
+    const data = new FormData(waitlistForm);
+    const payload = Object.fromEntries(data.entries());
+
+    waitlistForm.setAttribute('aria-busy', 'true');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Joining…';
+    formStatus.className = 'form-status';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'We could not send your submission. Please try again.');
+      }
+
+      waitlistForm.reset();
+      formStatus.className = 'form-status success';
+      formStatus.textContent = 'You’re on the waitlist. We’ll follow up when early access is ready.';
+      submitButton.textContent = 'Joined';
+    } catch (error) {
+      formStatus.className = 'form-status error';
+      formStatus.textContent = error.message || 'We could not send your submission. Please try again.';
+      submitButton.disabled = false;
+      submitButton.textContent = 'Join the waitlist';
+    } finally {
+      waitlistForm.removeAttribute('aria-busy');
+      if (formStatus.classList.contains('success')) {
+        submitButton.disabled = true;
+      }
+    }
   });
 </script>
 </body>
