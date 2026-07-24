@@ -1,0 +1,227 @@
+name: Apply founder update
+
+on:
+  push:
+    branches:
+      - update-founder-story
+
+permissions:
+  contents: write
+
+jobs:
+  apply-founder-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: update-founder-story
+          fetch-depth: 0
+
+      - name: Wait for all image chunks
+        id: chunks
+        shell: bash
+        run: |
+          missing=0
+          for i in 00 01 02 03 04 05 06 07; do
+            test -f ".founder-image/chunk${i}.txt" || missing=1
+          done
+          if [ "$missing" -eq 1 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build founder image and update homepage
+        if: steps.chunks.outputs.ready == 'true'
+        shell: bash
+        run: |
+          cat .founder-image/chunk*.txt | base64 --decode > omar-daaboul-founder.jpg
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text()
+
+          old_css = '''    .founder-panel {
+              display: grid;
+              grid-template-columns: 0.7fr 1.3fr;
+              gap: 4rem;
+              padding: 3rem;
+              border: 1px solid var(--border-color);
+              border-left: 4px solid var(--aviation-orange);
+              border-radius: 6px;
+              background: var(--light-gray);
+            }
+
+            .founder-label {
+              font-family: var(--font-mono);
+              font-size: 0.75rem;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+            }
+
+            .founder-copy h2 {
+              margin-bottom: 1.2rem;
+            }
+
+            .founder-meta {
+              justify-content: flex-start;
+              flex-wrap: wrap;
+              margin-top: 1.5rem;
+            }
+
+            .founder-meta span {
+              padding: 0.35rem 0.6rem;
+              border: 1px solid var(--border-color);
+              border-radius: 3px;
+              background: #fff;
+              font-family: var(--font-mono);
+              font-size: 0.68rem;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+          '''
+
+          new_css = '''    .founder-panel {
+              display: grid;
+              grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+              gap: 3.5rem;
+              align-items: center;
+              padding: 3rem;
+              border: 1px solid var(--border-color);
+              border-left: 4px solid var(--aviation-orange);
+              border-radius: 8px;
+              background: var(--light-gray);
+            }
+
+            .founder-portrait {
+              position: relative;
+              overflow: hidden;
+              aspect-ratio: 1 / 1;
+              border: 1px solid var(--border-color);
+              border-radius: 8px;
+              background: #fff;
+              box-shadow: 0 18px 45px rgba(10, 10, 13, 0.1);
+            }
+
+            .founder-portrait::after {
+              content: '';
+              position: absolute;
+              inset: 0;
+              border: 1px solid rgba(255, 255, 255, 0.45);
+              border-radius: inherit;
+              pointer-events: none;
+            }
+
+            .founder-portrait img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: 50% 42%;
+            }
+
+            .founder-label {
+              margin-bottom: 0.8rem;
+              color: var(--aviation-orange);
+              font-family: var(--font-mono);
+              font-size: 0.72rem;
+              font-weight: 700;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+            }
+
+            .founder-copy h2 {
+              margin-bottom: 1.35rem;
+            }
+
+            .founder-quote {
+              margin: 0 0 1.35rem;
+              color: var(--tarmac);
+              font-size: 1.15rem;
+              font-weight: 600;
+              line-height: 1.55;
+            }
+
+            .founder-story {
+              max-width: 650px;
+              line-height: 1.7;
+            }
+
+            .founder-signature {
+              margin-top: 1.6rem;
+              padding-top: 1.25rem;
+              border-top: 1px solid var(--border-color);
+            }
+
+            .founder-signature strong {
+              display: block;
+              font-size: 0.95rem;
+            }
+
+            .founder-signature span {
+              display: block;
+              margin-top: 0.2rem;
+              color: var(--asphalt-gray);
+              font-family: var(--font-mono);
+              font-size: 0.68rem;
+              font-weight: 600;
+              letter-spacing: 0.04em;
+              text-transform: uppercase;
+            }
+          '''
+
+          old_html = '''<section class="founder-section">
+          <div class="founder-panel">
+          <div class="founder-label">Built from inside the airport industry</div>
+          <div class="founder-copy">
+          <h2>Built by an airport executive who knows the work.</h2>
+          <p>TarmacSync is shaped by more than a decade of firsthand experience across U.S. commercial airport management, operations, procurement, grants, contracts, capital projects, security, and maintenance.</p>
+          <div class="founder-meta">
+          <span>AAAE Accredited Airport Executive (A.A.E.)</span>
+          </div>
+          </div>
+          </div>
+          </section>'''
+
+          new_html = '''<section class="founder-section">
+          <div class="founder-panel">
+          <div class="founder-portrait">
+          <img src="omar-daaboul-founder.jpg" alt="Omar Daaboul, founder of TarmacSync" width="800" height="800" loading="lazy" decoding="async">
+          </div>
+          <div class="founder-copy">
+          <div class="founder-label">Built from inside the airport industry</div>
+          <h2>Built by someone who has done the work.</h2>
+          <p class="founder-quote">“After years of working inside U.S. airports, I kept seeing the same problem: buying the right thing wasn’t the hard part—figuring out the right way to buy it was.”</p>
+          <p class="founder-story">I’ve spent more than a decade working across airport management, operations, procurement, contracts, grants, capital projects, security, and maintenance. I built TarmacSync because airport teams deserve a clearer way to evaluate their options before the procurement process begins.</p>
+          <div class="founder-signature">
+          <strong>Omar Daaboul, A.A.E.</strong>
+          <span>Founder, TarmacSync</span>
+          </div>
+          </div>
+          </div>
+          </section>'''
+
+          if old_css not in text:
+              raise SystemExit('Expected founder CSS block was not found.')
+          if old_html not in text:
+              raise SystemExit('Expected founder HTML block was not found.')
+
+          text = text.replace(old_css, new_css, 1)
+          text = text.replace(old_html, new_html, 1)
+          path.write_text(text)
+          PY
+          rm -rf .founder-image
+
+      - name: Commit completed founder section
+        if: steps.chunks.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html omar-daaboul-founder.jpg .founder-image
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Add founder photo and personal story"
+          git push origin HEAD:update-founder-story
