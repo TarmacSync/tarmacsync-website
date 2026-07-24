@@ -17,25 +17,21 @@ jobs:
           ref: update-founder-story
           fetch-depth: 0
 
-      - name: Wait for all image chunks
+      - name: Wait for founder image
         id: chunks
         shell: bash
         run: |
-          missing=0
-          for i in 00 01 02; do
-            test -f ".founder-image/chunk${i}.txt" || missing=1
-          done
-          if [ "$missing" -eq 1 ]; then
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-          else
+          if test -f ".founder-image/chunk00.txt"; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build founder image and update homepage
         if: steps.chunks.outputs.ready == 'true'
         shell: bash
         run: |
-          cat .founder-image/chunk*.txt | base64 --decode > omar-daaboul-founder.jpg
+          cat .founder-image/chunk00.txt | base64 --decode > omar-daaboul-founder.jpg
           python - <<'PY'
           from pathlib import Path
 
@@ -187,7 +183,7 @@ jobs:
           new_html = '''<section class="founder-section">
           <div class="founder-panel">
           <div class="founder-portrait">
-          <img src="omar-daaboul-founder.jpg" alt="Omar Daaboul, founder of TarmacSync" width="480" height="480" loading="lazy" decoding="async">
+          <img src="omar-daaboul-founder.jpg" alt="Omar Daaboul, founder of TarmacSync" width="320" height="320" loading="lazy" decoding="async">
           </div>
           <div class="founder-copy">
           <div class="founder-label">Built from inside the airport industry</div>
