@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TarmacSync | Airport Procurement Intelligence — AIP, FAA & Cooperative Purchasing</title>
+  <meta name="description" content="TarmacSync turns a plain-English purchase description into the most defensible procurement path for your airport — buying routes, AIP/FAA compliance overlays, 650+ cooperative contracts, and a fully documented procurement file. Join the early-access waitlist.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.tarmacsync.com/">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <meta name="author" content="TarmacSync">
+  <meta name="application-name" content="TarmacSync">
+  <meta name="keywords" content="airport procurement software, airport purchasing, FAA procurement compliance, AIP grant compliance, cooperative purchasing airports, grant assurances, 2 CFR 200, airport procurement intelligence">
+  <link rel="alternate" hreflang="en-us" href="https://www.tarmacsync.com/">
+  <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <meta property="og:title" content="TarmacSync | The Most Defensible Path for Every Airport Purchase">
+  <meta property="og:description" content="Describe the purchase in plain English. Get the likely buying route, the funding and FAA compliance stack, and a documented file that shows the work — before the process starts.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="TarmacSync">
+  <meta property="og:url" content="https://www.tarmacsync.com/">
+  <meta property="og:image" content="assets/tarmacsync-logo.png">
+  <meta property="og:image:alt" content="TarmacSync — Airport Procurement Intelligence">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TarmacSync | Airport Procurement Intelligence">
+  <meta name="twitter:description" content="The likely buying path, the compliance stack, and the documented procurement file — from one plain-English description of the purchase.">
+  <meta name="twitter:image" content="assets/tarmacsync-logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.tarmacsync.com/#organization",
+        "name": "TarmacSync",
+        "url": "https://www.tarmacsync.com/",
+        "logo": "https://www.tarmacsync.com/tarmacsync-apple-touch-icon.png",
+        "description": "Airport procurement intelligence for U.S. airport operators.",
+        "email": "contact@tarmacsync.com",
+        "founder": { "@id": "https://www.tarmacsync.com/#founder" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.tarmacsync.com/#website",
+        "url": "https://www.tarmacsync.com/",
+        "name": "TarmacSync",
+        "publisher": { "@id": "https://www.tarmacsync.com/#organization" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.tarmacsync.com/#founder",
+        "name": "Omar Daaboul",
+        "honorificSuffix": "A.A.E.",
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://www.tarmacsync.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://www.tarmacsync.com/#software",
+        "name": "TarmacSync",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Airport procurement intelligence: plain-English purchase intake, defensible buying-path analysis, AIP/FAA compliance overlays, cooperative contract screening, and fully documented procurement files.",
+        "publisher": { "@id": "https://www.tarmacsync.com/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free early-access waitlist for U.S. airport operators."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fff;
+      --ink: #0a0a0d;
+      --muted: #4a4a52;
+      --orange: #e66a16;
+      --line: #e5e5eb;
+      --soft: #f9f9fb;
+      --green: #256c43;
+      --amber: #9d450a;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: rgba(230, 106, 22, .22); }
+    img { max-width: 100%; }
+
+    .container { width: min(1100px, calc(100% - 4rem)); margin: 0 auto; }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--ink); color: #fff; padding: .6rem 1rem; z-index: 100;
+    }
+    .skip-link:focus { left: 0; }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 82px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 2rem;
+      width: min(1100px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+    .header-inner nav { justify-self: center; }
+    .header-inner > a:first-child { justify-self: start; }
+    .header-inner > .btn { justify-self: end; }
+
+    /* Header-only rendering treatment. The logo image file remains unchanged. */
+    header .logo {
+      display: block;
+      width: 190px;
+      height: 46px;
+      object-fit: contain;
+      object-position: left center;
+      opacity: .82;
+      mix-blend-mode: multiply;
+      transition: opacity .2s ease;
+    }
+    header a:hover .logo,
+    header a:focus-visible .logo { opacity: .92; }
+
+    /* Footer logo remains fully opaque. */
+    footer .logo {
+      display: block;
+      width: 190px;
+      height: 46px;
+      object-fit: contain;
+      object-position: left center;
+      opacity: 1;
+    }
+
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-family: var(--mono); font-size: .72rem;
+      letter-spacing: .05em; text-transform: uppercase;
+    }
+    nav a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: .72rem 1.15rem;
+      border-radius: 4px; border: 1px solid var(--ink);
+      font-family: var(--mono); font-size: .74rem; font-weight: 700;
+      letter-spacing: .04em; text-decoration: none; text-transform: uppercase;
+      cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: #2d2d35; border-color: #2d2d35; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    .btn-secondary:hover { border-color: var(--ink); background: var(--soft); }
+    .btn-orange { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .btn-orange:hover { background: #cf5c10; border-color: #cf5c10; }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .hero { padding: 7.5rem 0 3.5rem; max-width: 900px; }
+    .hero-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .badge {
+      display: inline-flex; padding: .35rem .7rem;
+      border: 1px solid var(--line); border-left: 3px solid var(--orange);
+      border-radius: 3px; background: var(--soft);
+      font-family: var(--mono); font-size: .68rem; font-weight: 700; text-transform: uppercase;
+    }
+    .badge-live {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-family: var(--mono); font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; color: var(--green);
+    }
+    .badge-live::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #3f9b62; box-shadow: 0 0 0 5px rgba(63,155,98,.12);
+    }
+
+    h1 {
+      max-width: 920px; margin-bottom: 1.8rem;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 1.05; letter-spacing: -.045em; font-weight: 800;
+    }
+    .accent { color: var(--orange); }
+
+    .hero > p {
+      max-width: 760px; margin-bottom: 2.2rem;
+      color: var(--muted); font-size: 1.2rem;
+    }
+    .hero > p strong { color: var(--ink); }
+
+    .hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; align-items: center; }
+    .hero-microcopy {
+      margin-top: 1rem; display: flex; gap: 1.2rem; flex-wrap: wrap;
+      color: var(--muted); font-family: var(--mono); font-size: .66rem;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .hero-microcopy span::before { content: '✓ '; color: var(--green); font-weight: 700; }
+
+    /* ── Intelligence library strip ────────────────── */
+    .library { margin: 0 0 5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+    .library > .mono { display: block; margin-bottom: 1.6rem; }
+    .library-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem 2.2rem; }
+    .library-item { border-left: 3px solid var(--orange); padding-left: .95rem; }
+    .library-item strong {
+      display: block; font-size: 2.3rem; font-weight: 800;
+      letter-spacing: -.04em; line-height: 1; color: var(--ink);
+    }
+    .library-item strong em { font-style: normal; color: var(--orange); }
+    .library-item p { margin-top: .5rem; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+
+    /* ── Product proof strip ───────────────────────── */
+    .proof-strip {
+      display: grid; grid-template-columns: 1.4fr .6fr;
+      margin-bottom: 6rem;
+      border: 1px solid var(--line); border-radius: 10px;
+      overflow: hidden; box-shadow: 0 28px 75px rgba(10,10,13,.08);
+    }
+    .proof-main { padding: 2rem; border-right: 1px solid var(--line); }
+    .proof-side { padding: 2rem 1.5rem; background: var(--soft); }
+    .proof-top {
+      display: flex; justify-content: space-between; gap: 1rem;
+      padding-bottom: 1.2rem; margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .status {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .35rem .6rem; border: 1px solid #f0c8ad; border-radius: 999px;
+      background: #fff8f3; color: var(--amber);
+      font: 700 .64rem var(--mono); text-transform: uppercase;
+    }
+    .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
+    .proof-question h2 {
+      margin: .45rem 0 .5rem;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      line-height: 1.25; letter-spacing: -.025em;
+    }
+    .proof-question p { color: var(--muted); font-size: .9rem; }
+
+    .paths { display: grid; gap: .75rem; margin-top: 1.5rem; }
+    .path { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); }
+    .path.primary { border-left: 3px solid var(--orange); background: #fffaf6; }
+    .path strong { display: block; margin-bottom: .25rem; font-size: .92rem; }
+    .path p { color: var(--muted); font-size: .8rem; }
+
+    .source-list { display: grid; gap: .8rem; margin-top: 1.1rem; }
+    .source-row {
+      display: flex; justify-content: space-between; gap: 1rem;
+      padding-bottom: .75rem; border-bottom: 1px solid var(--line);
+      color: var(--muted); font-size: .76rem;
+    }
+    .source-state { color: var(--green); font: 700 .62rem var(--mono); text-transform: uppercase; }
+    .source-state.review { color: var(--amber); }
+
+    .proof-note {
+      margin-top: 1.2rem; padding: .9rem;
+      border: 1px dashed #d4d4dc; border-radius: 5px;
+      background: #fff; color: var(--muted); font-size: .75rem;
+    }
+
+    .divider {
+      display: flex; justify-content: space-between; gap: 1rem;
+      padding: 1.4rem 0; border-top: 1px solid var(--line);
+    }
+
+    section.block { padding: 5.5rem 0; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1.45fr; gap: 4rem; }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      line-height: 1.18; letter-spacing: -.035em;
+    }
+
+    .stack { display: grid; gap: 2.6rem; }
+    .why-item { display: flex; gap: 1.4rem; }
+    .number {
+      display: grid; place-items: center; flex: 0 0 36px; height: 36px;
+      border: 1px solid var(--line); border-radius: 3px; background: var(--soft);
+      box-shadow: inset 0 2px 0 var(--orange);
+      font: 500 .85rem var(--mono); color: var(--muted);
+    }
+    .why-item h3 { margin-bottom: .4rem; font-size: 1.15rem; }
+    .why-item p { color: var(--muted); font-size: .95rem; }
+
+    .intro { max-width: 760px; margin-bottom: 3.5rem; }
+    .intro p { margin-top: 1rem; color: var(--muted); font-size: 1.08rem; }
+
+    /* ── Workflow ──────────────────────────────────── */
+    .workflow-shell {
+      margin-bottom: 2.75rem;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: linear-gradient(180deg, #fff 0%, #fbfbfd 100%);
+      box-shadow: 0 18px 45px rgba(10,10,13,.05); overflow: hidden;
+    }
+    .workflow {
+      position: relative; display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      padding: 1.25rem 1.25rem .75rem;
+    }
+    .workflow::before {
+      content: ''; position: absolute; top: 47px; left: 11%; right: 11%; height: 1px;
+      background: linear-gradient(90deg, rgba(230,106,22,.18), rgba(230,106,22,.68), rgba(230,106,22,.18));
+    }
+    .workflow-step {
+      position: relative; z-index: 1; padding: .35rem .65rem 1rem;
+      border: 0; background: transparent; color: var(--ink);
+      font-family: var(--sans); text-align: center; cursor: pointer;
+    }
+    .workflow-number {
+      display: grid; place-items: center; width: 44px; height: 44px;
+      margin: 0 auto .85rem; border: 1px solid #efc7aa; border-radius: 50%;
+      background: #fff8f3; color: var(--orange);
+      font: 700 .72rem var(--mono); box-shadow: 0 0 0 7px #fff;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .workflow-step strong { display: block; font-size: .86rem; line-height: 1.3; }
+    .workflow-step:hover .workflow-number,
+    .workflow-step:focus-visible .workflow-number { transform: translateY(-3px); }
+    .workflow-step[aria-selected="true"] .workflow-number { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .workflow-step[aria-selected="true"] strong { color: var(--orange); }
+
+    .workflow-detail {
+      display: grid; grid-template-columns: 165px 1fr auto;
+      gap: 1.5rem; align-items: center; min-height: 150px;
+      padding: 1.6rem 1.75rem; border-top: 1px solid var(--line); background: #fff;
+    }
+    .workflow-detail-label {
+      color: var(--orange); font: 700 .68rem var(--mono);
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .workflow-detail h3 { margin-bottom: .35rem; font-size: 1.15rem; }
+    .workflow-detail p { color: var(--muted); font-size: .88rem; }
+    .workflow-detail-chip {
+      padding: .4rem .65rem; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--soft); color: var(--muted);
+      font: 700 .62rem var(--mono); text-transform: uppercase; white-space: nowrap;
+    }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card { padding: 2rem; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); }
+    .card h3 { margin-bottom: .8rem; font-size: 1.18rem; }
+    .card p { color: var(--muted); font-size: .92rem; }
+
+    .outcomes-head {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 2.5rem;
+    }
+    .outcomes-head p { color: var(--muted); }
+
+    .outcome { min-height: 230px; padding: 1.75rem; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+    .outcome > span { display: block; margin-bottom: 1.4rem; color: var(--orange); font: 700 .68rem var(--mono); text-transform: uppercase; }
+    .outcome h3 { margin-bottom: .7rem; font-size: 1.12rem; }
+    .outcome p { color: var(--muted); font-size: .88rem; }
+    .outcome-detail {
+      margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--line);
+      color: var(--muted); font: .64rem/1.5 var(--mono); text-transform: uppercase;
+    }
+
+    /* ── Trust section: AI that shows its work ─────── */
+    .trust-wrap {
+      border: 1px solid var(--line); border-left: 4px solid var(--orange);
+      border-radius: 12px; background: var(--soft);
+      padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    }
+    .trust-copy h2 { margin: .6rem 0 1rem; }
+    .trust-copy > p { color: var(--muted); font-size: 1rem; }
+    .trust-points { display: grid; gap: 1.4rem; }
+    .trust-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .trust-icon {
+      display: grid; place-items: center; flex: 0 0 34px; width: 34px; height: 34px;
+      border: 1px solid #efc7aa; border-radius: 8px; background: #fff8f3;
+      color: var(--orange); font: 700 .8rem var(--mono);
+    }
+    .trust-point strong { display: block; margin-bottom: .25rem; font-size: .98rem; }
+    .trust-point p { color: var(--muted); font-size: .88rem; }
+
+    /* ── Vision hero + grid (kept, tightened) ──────── */
+    .vision-wrap { display: grid; gap: 1.25rem; }
+    .vision-hero {
+      position: relative; overflow: hidden; display: grid;
+      grid-template-columns: 1.02fr .98fr; gap: 2.5rem; align-items: center;
+      padding: 3rem; border: 1px solid var(--line); border-radius: 18px;
+      background:
+        radial-gradient(circle at 86% 8%, rgba(230,106,22,.18), transparent 27%),
+        radial-gradient(circle at 5% 95%, rgba(10,10,13,.04), transparent 25%),
+        linear-gradient(145deg, #fff 0%, #fbfbfd 60%, #fff8f3 100%);
+      box-shadow: 0 30px 80px rgba(10,10,13,.08);
+    }
+    .vision-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(10,10,13,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,10,13,.025) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .vision-copy, .vision-dashboard { position: relative; z-index: 1; }
+    .vision-eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      color: var(--orange); font: 700 .68rem var(--mono);
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .vision-eyebrow::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange); box-shadow: 0 0 0 6px rgba(230,106,22,.10);
+    }
+    .vision-copy h2 {
+      max-width: 680px; margin: 1rem 0 1.15rem;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.04; letter-spacing: -.05em;
+    }
+    .vision-copy > p { max-width: 650px; color: var(--muted); font-size: 1.02rem; }
+    .vision-points { display: grid; gap: .8rem; margin-top: 1.55rem; }
+    .vision-point { display: flex; gap: .75rem; align-items: flex-start; color: var(--muted); font-size: .88rem; }
+    .vision-check {
+      display: grid; place-items: center; flex: 0 0 24px; width: 24px; height: 24px;
+      border-radius: 50%; background: #fff8f3; color: var(--orange);
+      font: 700 .7rem var(--mono); border: 1px solid #efc7aa;
+    }
+
+    .vision-dashboard {
+      display: grid; gap: .8rem; padding: 1rem;
+      border: 1px solid rgba(229,229,235,.95); border-radius: 14px;
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 22px 55px rgba(10,10,13,.10);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      transform: rotate(1deg); transition: transform .25s ease;
+    }
+    .vision-dashboard:hover { transform: rotate(0deg) translateY(-4px); }
+    .dash-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: .35rem .35rem .75rem; border-bottom: 1px solid var(--line);
+    }
+    .dash-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .dash-live {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--green); font: 700 .58rem var(--mono); text-transform: uppercase;
+    }
+    .dash-live::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #3f9b62; box-shadow: 0 0 0 5px rgba(63,155,98,.10);
+    }
+    .dash-project { padding: 1rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .dash-project-top { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; }
+    .dash-project h3 { font-size: 1rem; line-height: 1.35; }
+    .dash-chip {
+      align-self: flex-start; padding: .28rem .5rem; border-radius: 999px;
+      background: #fff8f3; color: var(--amber); border: 1px solid #efc7aa;
+      font: 700 .56rem var(--mono); text-transform: uppercase; white-space: nowrap;
+    }
+    .dash-meta { color: var(--muted); font: .64rem var(--mono); }
+    .dash-route {
+      display: grid; grid-template-columns: 42px 1fr auto; gap: .8rem; align-items: center;
+      padding: .85rem; border: 1px solid var(--line); border-radius: 9px; background: #fff;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .dash-route:hover { transform: translateX(4px); border-color: #d4d4dc; }
+    .dash-route.primary { border-left: 3px solid var(--orange); background: #fffaf6; }
+    .dash-icon {
+      display: grid; place-items: center; width: 42px; height: 42px;
+      border-radius: 9px; background: var(--soft); color: var(--orange);
+    }
+    .dash-icon svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .dash-route strong { display: block; margin-bottom: .12rem; font-size: .82rem; }
+    .dash-route span { color: var(--muted); font-size: .7rem; }
+    .dash-state { color: var(--green); font: 700 .56rem var(--mono); text-transform: uppercase; white-space: nowrap; }
+
+    .vision-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+    .vision-card {
+      position: relative; overflow: hidden; min-height: 285px; padding: 1.75rem;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line); border-radius: 12px; background: #fff;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .vision-card:hover { transform: translateY(-6px); border-color: #d5d5dd; box-shadow: 0 22px 55px rgba(10,10,13,.08); }
+    .vision-card::after {
+      content: attr(data-number); position: absolute; right: .8rem; bottom: -.55rem;
+      color: rgba(10,10,13,.035); font: 800 5.5rem var(--mono); line-height: 1; pointer-events: none;
+    }
+    .vision-icon {
+      display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 1.25rem;
+      border: 1px solid #efc7aa; border-radius: 11px; background: #fff8f3; color: var(--orange);
+    }
+    .vision-icon svg { width: 23px; height: 23px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .vision-card .label {
+      display: block; margin-bottom: .45rem; color: var(--orange);
+      font: 700 .63rem var(--mono); letter-spacing: .06em; text-transform: uppercase;
+    }
+    .vision-card h3 { margin-bottom: .65rem; font-size: 1.15rem; line-height: 1.3; }
+    .vision-card p { color: var(--muted); font-size: .87rem; }
+    .vision-card-footer {
+      margin-top: auto; padding-top: 1.4rem; align-self: flex-start;
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--ink); font: 700 .62rem var(--mono); text-transform: uppercase;
+    }
+    .vision-card-footer::after { content: '→'; color: var(--orange); transition: transform .2s ease; }
+    .vision-card:hover .vision-card-footer::after { transform: translateX(4px); }
+
+    .vision-bottom { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1rem; }
+    .vision-callout, .vision-metrics { padding: 2rem; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+    .vision-callout h3 { margin: .6rem 0 .8rem; font-size: 1.55rem; line-height: 1.25; }
+    .vision-callout p { color: var(--muted); font-size: .9rem; }
+    .vision-metrics {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: .8rem;
+      background: var(--ink); color: #fff;
+    }
+    .vision-metric {
+      display: grid; align-content: center; min-height: 135px; padding: 1rem;
+      border: 1px solid rgba(255,255,255,.13); border-radius: 9px;
+    }
+    .vision-metric strong { display: block; color: #fff; font-size: 1.55rem; letter-spacing: -.03em; }
+    .vision-metric span { color: #cfcfd5; font: .61rem/1.45 var(--mono); text-transform: uppercase; }
+
+    /* ── Founder ───────────────────────────────────── */
+    .founder-panel {
+      display: grid; grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
+      gap: 3.5rem; align-items: center; padding: 3rem;
+      border: 1px solid var(--line); border-left: 4px solid var(--orange);
+      border-radius: 8px; background: var(--soft);
+    }
+    .founder-portrait {
+      width: 100%; max-width: 235px; justify-self: center; overflow: hidden;
+      aspect-ratio: 1 / 1; border: 1px solid var(--line); border-radius: 8px;
+      background: #fff; box-shadow: 0 18px 45px rgba(10,10,13,.10);
+    }
+    .founder-portrait img {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 40%;
+    }
+    .founder-label {
+      margin-bottom: .8rem; color: var(--orange);
+      font: 700 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .founder-copy h2 {
+      margin-bottom: 1.3rem; font-size: clamp(2rem, 4vw, 2.55rem);
+      line-height: 1.15; letter-spacing: -.035em;
+    }
+    .founder-quote { margin-bottom: 1.35rem; color: var(--ink); font-size: 1.13rem; font-weight: 600; line-height: 1.55; }
+    .founder-story { color: var(--muted); line-height: 1.7; }
+    .founder-signature { margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .founder-signature strong { display: block; font-size: .95rem; }
+    .founder-signature span {
+      display: block; margin-top: .2rem; color: var(--muted);
+      font: 600 .67rem var(--mono); letter-spacing: .04em; text-transform: uppercase;
+    }
+
+    /* ── FAQ ───────────────────────────────────────── */
+    .faq { max-width: 880px; display: grid; gap: .8rem; }
+    .faq details {
+      border: 1px solid var(--line); border-radius: 7px; background: #fff;
+      overflow: hidden; transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    .faq details:hover { border-color: #d2d2da; }
+    .faq details[open] { border-color: #d2d2da; box-shadow: 0 12px 30px rgba(10,10,13,.05); }
+    .faq summary {
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      padding: 1.2rem 1.3rem; list-style: none; cursor: pointer;
+      font-size: 1rem; font-weight: 700;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; flex: 0 0 auto; color: var(--orange); font: 700 1.25rem var(--mono); }
+    .faq details[open] summary { border-bottom: 1px solid var(--line); background: var(--soft); }
+    .faq details[open] summary::after { content: '−'; }
+    .faq-answer { padding: 1.1rem 1.3rem 1.3rem; color: var(--muted); font-size: .94rem; }
+    .faq-answer p + p { margin-top: .8rem; }
+
+    /* ── Contact ───────────────────────────────────── */
+    .contact-section { padding: 5.5rem 0; border-top: 1px solid var(--line); }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 5rem; align-items: start; }
+    .contact-copy h2 { margin: 1rem 0 1.2rem; }
+    .contact-copy p { color: var(--muted); }
+    .contact-benefits { margin-top: 1.6rem; display: grid; gap: .7rem; }
+    .contact-benefits li {
+      list-style: none; display: flex; gap: .6rem; align-items: flex-start;
+      color: var(--muted); font-size: .92rem;
+    }
+    .contact-benefits li::before { content: '✓'; color: var(--green); font-weight: 800; }
+
+    .contact-card {
+      padding: 2rem; border: 1px solid var(--line);
+      border-top: 3px solid var(--orange); border-radius: 6px; background: var(--soft);
+    }
+    .contact-card h3 { margin: .8rem 0 .6rem; font-size: 1.35rem; }
+    .contact-card > p { margin-bottom: 1.4rem; color: var(--muted); font-size: .94rem; }
+
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field { display: grid; gap: .4rem; }
+    .field.full { grid-column: 1 / -1; }
+    label { font: 700 .66rem var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    input, textarea {
+      width: 100%; padding: .75rem .85rem;
+      border: 1px solid var(--line); border-radius: 4px;
+      background: #fff; color: var(--ink);
+      font: inherit; font-size: .9rem; outline: none;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input:focus, textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(230,106,22,.10); }
+    .form-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .form-note { color: var(--muted); font-size: .72rem; }
+    .form-status { grid-column: 1 / -1; min-height: 1.3rem; font-size: .82rem; font-weight: 600; }
+    .form-status.success { color: var(--green); }
+    .form-status.error { color: #a33b22; }
+    .spam-trap { position: absolute; left: -9999px; }
+
+    .cta { padding: 6.5rem 0; background: var(--ink); color: #fff; text-align: center; }
+    .cta-inner { max-width: 720px; margin: 0 auto; }
+    .cta h2 { margin-bottom: 1.2rem; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.035em; }
+    .cta p { margin-bottom: 2.3rem; color: var(--line); font-size: 1.08rem; }
+    .cta .btn { background: #fff; color: var(--ink); border-color: #fff; }
+    .cta .btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+    footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+      padding: 3.5rem 0 5rem; border-top: 1px solid var(--line);
+    }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .84rem; }
+    .copyright { color: var(--muted); font: .78rem var(--mono); }
+
+    /* ── Mobile sticky CTA ─────────────────────────── */
+    .sticky-cta {
+      display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+      background: rgba(255,255,255,.96);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line);
+    }
+    .sticky-cta .btn { width: 100%; }
+
+    /* ── Responsive ────────────────────────────────── */
+    @media (max-width: 820px) {
+      .container { width: min(100% - 2.5rem, 1100px); }
+      .header-inner {
+        grid-template-columns: auto auto;
+        gap: 1rem;
+        width: calc(100% - 2.5rem);
+      }
+      nav { display: none; }
+      header .logo, footer .logo { width:158px; height:40px; }
+      .hero { padding: 4.5rem 0 2.5rem; }
+      .hero-meta { align-items: flex-start; flex-direction: column; gap: .6rem; }
+      .library { margin-bottom: 3.5rem; }
+      .library-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1.6rem; }
+      .proof-strip, .two-col, .outcomes-head, .founder-panel, .contact-grid, .trust-wrap { grid-template-columns: 1fr; }
+      .trust-wrap { padding: 1.6rem; gap: 2rem; }
+      .proof-main { border-right: 0; border-bottom: 1px solid var(--line); }
+      .workflow { grid-template-columns: 1fr; padding: .65rem; }
+      .workflow::before { display: none; }
+      .workflow-step {
+        display: grid; grid-template-columns: 44px 1fr; align-items: center;
+        gap: .8rem; padding: .55rem .65rem; text-align: left; border-radius: 6px;
+      }
+      .workflow-step[aria-selected="true"] { background: var(--soft); }
+      .workflow-number { margin: 0; box-shadow: none; }
+      .workflow-detail { grid-template-columns: 1fr; gap: .65rem; min-height: auto; }
+      .workflow-detail-chip { justify-self: start; }
+      .cards { grid-template-columns: 1fr; }
+      .vision-hero, .vision-grid, .vision-bottom { grid-template-columns: 1fr; }
+      .vision-hero { padding: 1.5rem; }
+      .vision-dashboard { transform: none; }
+      .vision-metrics { grid-template-columns: 1fr; }
+      .dash-route { grid-template-columns: 42px 1fr; }
+      .dash-state { grid-column: 2; }
+      .founder-panel { gap: 1.8rem; padding: 1.5rem; }
+      .founder-portrait { max-width: 230px; margin-inline: auto; }
+      form { grid-template-columns: 1fr; }
+      .field.full, .form-actions, .form-status { grid-column: auto; }
+      footer { align-items: flex-start; flex-direction: column; padding-bottom: 7rem; }
+      .sticky-cta { display: block; }
+    }
+    @media (max-width: 520px) {
+      header { min-height: 72px; }
+      header .btn { padding: .55rem .7rem; font-size: .62rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .divider { flex-direction: column; gap: .3rem; }
+      section.block { padding: 4rem 0; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is TarmacSync for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TarmacSync is designed for U.S. airport operators and sponsors, including commercial-service, reliever, and public-use general aviation airports — airport management, procurement, finance, operations, engineering, grants, and capital-program staff."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TarmacSync replacing our procurement system or ERP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TarmacSync is the intelligence layer that sits above existing ERP, procurement, contract, and grant-management systems. It helps teams evaluate the path before a requisition, purchase order, solicitation, or contract workflow begins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TarmacSync make the final procurement decision?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It organizes the facts, surfaces candidate paths, explains tradeoffs, and identifies what still needs validation. Final decisions remain with authorized airport staff and any required legal, governing-body, or grant-agency reviewers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can TarmacSync account for local airport procurement policy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TarmacSync evaluates purchases using the airport's own thresholds, delegated authority, board requirements, solicitation rules, and other local procedures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can TarmacSync help identify cooperative contracts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TarmacSync indexes 650+ cooperative and government purchasing vehicles and helps evaluate scope, authority, funding compatibility, pricing, and documentation — always as candidate pathways to validate before award."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header>
+    <div class="container header-inner">
+      <a href="/" aria-label="TarmacSync home">
+        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="#why">Why it matters</a>
+        <a href="#platform">Platform</a>
+        <a href="#trust">Why trust it</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn btn-primary" href="#contact">Request early access</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+
+      <!-- ── HERO ─────────────────────────────────────── -->
+      <section class="hero">
+        <div class="hero-meta">
+          <span class="badge">Airport Procurement Intelligence</span>
+          <span class="badge-live">Early-access cohort now forming</span>
+        </div>
+
+        <h1>Airport purchases are complex. <span class="accent">The right path shouldn't be.</span></h1>
+
+        <p>Describe the purchase in plain English. <strong>Pathfinder</strong> — TarmacSync's agentic AI advisor — investigates like your sharpest analyst: it searches your airport's own policy, 650+ cooperative contracts, and cited federal sources, then maps the likely buying route, the compliance stack, and the <strong>procurement file</strong> that documents every decision.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Request early access</a>
+          <a class="btn btn-secondary" href="#platform">See how it works</a>
+        </div>
+
+        <div class="hero-microcopy">
+          <span>Free to join</span>
+          <span>No commitment</span>
+          <span>Founding airports shape the roadmap</span>
+        </div>
+      </section>
+
+      <!-- ── INTELLIGENCE LIBRARY (real, verifiable numbers) ──── -->
+      <section class="library" aria-label="The intelligence library behind every answer">
+        <span class="mono">The intelligence library behind every answer</span>
+        <div class="library-grid">
+          <div class="library-item"><strong>650<em>+</em></strong><p>cooperative contracts, screened for AIP eligibility</p></div>
+          <div class="library-item"><strong>37</strong><p>FAA Advisory Circulars with verified excerpts</p></div>
+          <div class="library-item"><strong>40</strong><p>Grant Assurances mapped to purchase types</p></div>
+          <div class="library-item"><strong>35</strong><p>purchase playbooks, ARFF trucks to concessions</p></div>
+          <div class="library-item"><strong>420</strong><p>routing scenarios verified before every release</p></div>
+        </div>
+      </section>
+
+      <!-- ── PRODUCT PROOF STRIP ─────────────────────── -->
+      <section class="proof-strip" aria-label="Pathfinder product preview">
+        <div class="proof-main">
+          <div class="proof-top">
+            <span class="mono">Pathfinder // Project 024</span>
+            <span class="status">Analysis in progress</span>
+          </div>
+
+          <div class="proof-question">
+            <span class="mono">Project need</span>
+            <h2>Replace a runway sweeper before the next winter operations cycle.</h2>
+            <p>Estimated value: $485,000 · AIP eligibility not yet confirmed · Local policy loaded</p>
+          </div>
+
+          <div class="paths">
+            <div class="path primary">
+              <strong>Cooperative contract — candidate route</strong>
+              <p>Potentially faster, subject to cooperative authority, contract scope, pricing validation, and grant concurrence.</p>
+            </div>
+            <div class="path">
+              <strong>Formal competitive solicitation — viable route</strong>
+              <p>Likely available if the cooperative contract does not meet local or funding requirements.</p>
+            </div>
+            <div class="path">
+              <strong>What changes the analysis</strong>
+              <p>Final funding mix, useful-life justification, approved specification, and airport purchasing threshold.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="proof-side">
+          <span class="mono">Evidence record</span>
+          <h3 style="margin:.5rem 0 1rem">Sources and open checks</h3>
+
+          <div class="source-list">
+            <div class="source-row"><span>Airport procurement policy</span><span class="source-state">Found</span></div>
+            <div class="source-row"><span>Cooperative contract scope</span><span class="source-state">Found</span></div>
+            <div class="source-row"><span>FAA funding eligibility</span><span class="source-state review">Validate</span></div>
+            <div class="source-row"><span>Local board authority</span><span class="source-state review">Validate</span></div>
+          </div>
+
+          <div class="proof-note"><strong>Next best action:</strong> confirm the proposed funding source before comparing the cooperative route against a formal solicitation.</div>
+        </aside>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ TarmacSync // Early access ]</span>
+        <span class="mono">Status: Cohort forming</span>
+      </div>
+
+      <!-- ── WHY ─────────────────────────────────────── -->
+      <section class="block" id="why">
+        <div class="two-col">
+          <div>
+            <h2 class="section-title">The question is never <em>what</em> to buy. It's <em>how</em>.</h2>
+          </div>
+
+          <div class="stack">
+            <article class="why-item">
+              <span class="number">01</span>
+              <div>
+                <h3>Know the path before you commit</h3>
+                <p>Weigh informal quotes, formal bids, cooperative vehicles, and existing agreements against your own thresholds and authority — before a requisition exists, not after a protest does.</p>
+              </div>
+            </article>
+
+            <article class="why-item">
+              <span class="number">02</span>
+              <div>
+                <h3>See the money side clearly</h3>
+                <p>AIP, BIL, PFC, state, and local funding each carry a different compliance stack. TarmacSync surfaces what each funding source triggers — 2 CFR Part 200, Buy American, DBE, Davis-Bacon — and why.</p>
+              </div>
+            </article>
+
+            <article class="why-item">
+              <span class="number">03</span>
+              <div>
+                <h3>Walk into the audit with the file already built</h3>
+                <p>Every decision, source, assumption, and open validation is captured as you go — then exported as one complete, source-cited procurement file your board and auditor can follow.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ 01 // Airport intelligence ]</span>
+        <span class="mono">Purchase · Funding · Grants · Reporting</span>
+      </div>
+
+      <!-- ── PLATFORM ────────────────────────────────── -->
+      <section class="block" id="platform">
+        <div class="intro">
+          <h2 class="section-title">One workspace from purchase need to grant reporting.</h2>
+          <p>Start with the decision your team needs to make today. TarmacSync connects that decision to the funding, airport context, supporting evidence, and follow-through it requires.</p>
+        </div>
+
+        <div class="workflow-shell">
+          <div class="workflow" role="tablist" aria-label="TarmacSync workflow">
+            <button class="workflow-step" type="button" role="tab" aria-selected="true" data-step="0">
+              <span class="workflow-number">01</span>
+              <strong>Project need</strong>
+            </button>
+            <button class="workflow-step" type="button" role="tab" aria-selected="false" data-step="1">
+              <span class="workflow-number">02</span>
+              <strong>Viable paths</strong>
+            </button>
+            <button class="workflow-step" type="button" role="tab" aria-selected="false" data-step="2">
+              <span class="workflow-number">03</span>
+              <strong>Funding candidates</strong>
+            </button>
+            <button class="workflow-step" type="button" role="tab" aria-selected="false" data-step="3">
+              <span class="workflow-number">04</span>
+              <strong>Readiness checks</strong>
+            </button>
+            <button class="workflow-step" type="button" role="tab" aria-selected="false" data-step="4">
+              <span class="workflow-number">05</span>
+              <strong>Follow-through</strong>
+            </button>
+          </div>
+
+          <div class="workflow-detail" id="workflow-detail" role="tabpanel" aria-live="polite">
+            <div class="workflow-detail-label" id="workflow-detail-label">Step 01</div>
+            <div>
+              <h3 id="workflow-detail-title">Start with the purchase — not a form.</h3>
+              <p id="workflow-detail-copy">Describe the need in plain English. Pathfinder asks only the questions that materially change the route — usually three to five — and never re-asks what it already knows.</p>
+            </div>
+            <span class="workflow-detail-chip" id="workflow-detail-chip">Plain-English intake</span>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Pathfinder: start with the need</h3>
+            <p>Describe the purchase in plain English. Pathfinder maps likely buying paths across 35 purchase-type playbooks — ARFF trucks to terminal construction — with missing facts and the next best action.</p>
+          </article>
+
+          <article class="card">
+            <h3>Contract intelligence: 650+ vehicles screened</h3>
+            <p>Candidate cooperative and government purchasing vehicles across the major consortiums, each screened for AIP eligibility and matched against the actual need and funding context.</p>
+          </article>
+
+          <article class="card">
+            <h3>Grant readiness: the file builds itself</h3>
+            <p>A project-specific checklist of likely FAA forms, certifications, policy evidence, and open inputs — tracked with owners and due dates, exported as one complete procurement file.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ 02 // Decision-ready outputs ]</span>
+        <span class="mono">Clear · Traceable · Actionable</span>
+      </div>
+
+      <!-- ── OUTCOMES ────────────────────────────────── -->
+      <section class="block">
+        <div class="outcomes-head">
+          <h2 class="section-title">See the decision — not just an answer.</h2>
+          <p>TarmacSync organizes the routes that appear viable, the evidence behind them, and the questions that still matter — so your team can review the reasoning and decide with confidence.</p>
+        </div>
+
+        <div class="cards">
+          <article class="outcome">
+            <span>01 // Compare</span>
+            <h3>Understand the viable routes.</h3>
+            <p>See which procurement approaches fit the need, ranked with supporting and contrary evidence — and what could rule each one in or out.</p>
+            <div class="outcome-detail">Candidate paths · Tradeoffs · Validation points</div>
+          </article>
+
+          <article class="outcome">
+            <span>02 // Ground</span>
+            <h3>See why each option surfaced.</h3>
+            <p>Every route ties back to airport policy, contract scope, funding guidance, and project context — with the citation, not unsupported AI certainty.</p>
+            <div class="outcome-detail">Sources · Funding fit · Evidence trail</div>
+          </article>
+
+          <article class="outcome">
+            <span>03 // Advance</span>
+            <h3>Know what to resolve next.</h3>
+            <p>Open questions become a practical sequence of checks, owners, deadlines, and actions — one primary next step at a time.</p>
+            <div class="outcome-detail">Missing inputs · Next actions · Follow-through</div>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ 03 // Built different ]</span>
+        <span class="mono">Agentic AI · Cited sources · Honest language</span>
+      </div>
+
+      <!-- ── TRUST: AI THAT SHOWS ITS WORK ───────────── -->
+      <section class="block" id="trust">
+        <div class="trust-wrap">
+          <div class="trust-copy">
+            <span class="mono">Why airport teams can trust the answer</span>
+            <h2 class="section-title">AI that shows its work.</h2>
+            <p>Generic AI gives you confident-sounding text. Airport procurement demands something better: answers you can defend to your board, your auditor, and your ADO. TarmacSync was engineered around that standard.</p>
+          </div>
+
+          <div class="trust-points">
+            <div class="trust-point">
+              <span class="trust-icon">01</span>
+              <div>
+                <strong>An AI agent that investigates — not one that guesses.</strong>
+                <p>Pathfinder works like an analyst: it decides what to look up, then searches your airport's own documents, the federal knowledge base, the contract library, and live FAA sources before it answers. Its routing conclusions are cross-checked against a verification engine tested on 420 compliance scenarios every release.</p>
+              </div>
+            </div>
+            <div class="trust-point">
+              <span class="trust-icon">02</span>
+              <div>
+                <strong>Every regulatory claim carries its citation.</strong>
+                <p>The AC number, the CFR section, the Grant Assurance — retrieved from governed sources, never invented. If TarmacSync doesn't have a source, it says so honestly.</p>
+              </div>
+            </div>
+            <div class="trust-point">
+              <span class="trust-icon">03</span>
+              <div>
+                <strong>You will never see the word "compliant."</strong>
+                <p>Candidate paths, with the exact validation steps named — because the final determination belongs to your team, your counsel, and your FAA/ADO. That restraint is a feature, not a limitation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── VISION / FEATURE GRID ───────────────────── -->
+      <section class="block" id="features" style="padding-top: 0;">
+        <div class="vision-wrap">
+          <div class="vision-hero">
+            <div class="vision-copy">
+              <span class="vision-eyebrow">What you get</span>
+              <h2>The procurement intelligence your existing systems are missing.</h2>
+              <p>Not another ERP. Not another contract repository. TarmacSync brings policy, funding, contracts, compliance, and project context together before the buying process begins.</p>
+
+              <div class="vision-points">
+                <div class="vision-point">
+                  <span class="vision-check">→</span>
+                  <span>Compare multiple viable paths instead of forcing one rigid answer.</span>
+                </div>
+                <div class="vision-point">
+                  <span class="vision-check">→</span>
+                  <span>See the evidence, assumptions, and unresolved questions behind every recommendation.</span>
+                </div>
+                <div class="vision-point">
+                  <span class="vision-check">→</span>
+                  <span>Carry the same project context from the first question through approvals and reporting.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vision-dashboard" aria-label="Visual preview of TarmacSync Pathfinder">
+              <div class="dash-head">
+                <span class="dash-title">Pathfinder case view</span>
+                <span class="dash-live">Evidence linked</span>
+              </div>
+
+              <div class="dash-project">
+                <div class="dash-project-top">
+                  <h3>Airfield snow removal equipment replacement</h3>
+                  <span class="dash-chip">4 open checks</span>
+                </div>
+                <div class="dash-meta">$485,000 · Federal funding possible · Policy loaded</div>
+              </div>
+
+              <div class="dash-route primary">
+                <div class="dash-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="12" r="2"/><circle cx="15" cy="18" r="2"/></svg>
+                </div>
+                <div>
+                  <strong>Cooperative contract route</strong>
+                  <span>Candidate path with scope and funding checks</span>
+                </div>
+                <div class="dash-state">Compare</div>
+              </div>
+
+              <div class="dash-route">
+                <div class="dash-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14v18H5z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+                </div>
+                <div>
+                  <strong>Formal solicitation route</strong>
+                  <span>Available if cooperative requirements are not met</span>
+                </div>
+                <div class="dash-state">Viable</div>
+              </div>
+
+              <div class="dash-route">
+                <div class="dash-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 8h14M7 16h10"/><circle cx="12" cy="8" r="2"/></svg>
+                </div>
+                <div>
+                  <strong>Funding and compliance record</strong>
+                  <span>FAA eligibility and local authority still to validate</span>
+                </div>
+                <div class="dash-state">Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-grid">
+            <article class="vision-card" data-number="01">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M7 19v2M17 19v2"/></svg>
+              </div>
+              <span class="label">Pathfinder</span>
+              <h3>Guided procurement investigation</h3>
+              <p>Plain-English intake that asks only what materially changes the analysis, retains the full case context, and compares plausible routes side by side.</p>
+              <span class="vision-card-footer">Case intelligence</span>
+            </article>
+
+            <article class="vision-card" data-number="02">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M6 4h12v16H6z"/><path d="M9 11h6M9 15h4"/></svg>
+              </div>
+              <span class="label">Contract intelligence</span>
+              <h3>Find the vehicles that actually fit</h3>
+              <p>650+ cooperative and government purchasing vehicles, screened for AIP eligibility and matched on scope, authority, funding, and policy context.</p>
+              <span class="vision-card-footer">Vehicle matching</span>
+            </article>
+
+            <article class="vision-card" data-number="03">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+              </div>
+              <span class="label">Policy intelligence</span>
+              <h3>Your airport's rules — not generic thresholds</h3>
+              <p>Import your procurement policy once. Purchasing limits, delegated authority, board approvals, and competition rules become live decision context.</p>
+              <span class="vision-card-footer">Local policy applied</span>
+            </article>
+
+            <article class="vision-card" data-number="04">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9"/><path d="M15 6h6v6"/></svg>
+              </div>
+              <span class="label">Funding intelligence</span>
+              <h3>See which programs may fit the project</h3>
+              <p>Connect project characteristics to candidate AIP, BIL, PFC, and state funding — with the reason each surfaced and what still requires confirmation.</p>
+              <span class="vision-card-footer">Funding candidates</span>
+            </article>
+
+            <article class="vision-card" data-number="05">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7z"/><path d="M8.5 12l2.2 2.2 4.8-5"/></svg>
+              </div>
+              <span class="label">Compliance readiness</span>
+              <h3>Requirements before they become delays</h3>
+              <p>Buy American, DBE, 2 CFR Part 200, Davis-Bacon, and Grant Assurance obligations surfaced early — each tied to the funding source that triggers it.</p>
+              <span class="vision-card-footer">Readiness checks</span>
+            </article>
+
+            <article class="vision-card" data-number="06">
+              <div class="vision-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5z"/><path d="M14 3v5h5M8 12h8M8 16h6"/></svg>
+              </div>
+              <span class="label">Decision outputs</span>
+              <h3>Work your board and auditor can use</h3>
+              <p>Procurement path reviews, board-ready decision summaries, cooperative validation checklists, and an exportable procurement file with every source attached.</p>
+              <span class="vision-card-footer">Reviewable artifacts</span>
+            </article>
+          </div>
+
+          <div class="vision-bottom">
+            <div class="vision-callout">
+              <span class="mono">The difference</span>
+              <h3>TarmacSync doesn't just answer the question. It preserves the reasoning behind the decision.</h3>
+              <p>Every case keeps the project facts, policy rules, funding assumptions, contract candidates, evidence, unresolved issues, and next actions together — so the decision remains explainable months later, when the auditor asks.</p>
+            </div>
+
+            <div class="vision-metrics" aria-label="TarmacSync by the numbers">
+              <div class="vision-metric">
+                <strong>420</strong>
+                <span>Compliance scenarios verified on every release</span>
+              </div>
+              <div class="vision-metric">
+                <strong>650+</strong>
+                <span>Cooperative vehicles indexed with AIP screening</span>
+              </div>
+              <div class="vision-metric">
+                <strong>1 file</strong>
+                <span>Every decision and source documented, intake to closeout</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ 04 // Built from airport experience ]</span>
+        <span class="mono">Operations · Procurement · Grants</span>
+      </div>
+
+      <!-- ── FOUNDER ─────────────────────────────────── -->
+      <section class="block">
+        <div class="founder-panel">
+          <div class="founder-portrait">
+            <img src="assets/omar-daaboul-founder.jpg" alt="Omar Daaboul, A.A.E. — founder of TarmacSync" width="800" height="800" loading="lazy" decoding="async">
+          </div>
+
+          <div class="founder-copy">
+            <div class="founder-label">From the founder</div>
+            <h2>I didn't research this problem. I lived it.</h2>
+
+            <p class="founder-quote">"The question was never what to buy. It was always how to buy it."</p>
+
+            <p class="founder-story">Over the years I watched airport teams spend hours — sometimes weeks — searching procurement policies, FAA guidance, existing contracts, grant requirements, and cooperative purchasing options before they could even begin the purchasing process.</p>
+
+            <p class="founder-story" style="margin-top: 1rem;">I built TarmacSync to bring those pieces together, so teams can spend less time searching and more time delivering projects.</p>
+
+            <div class="founder-signature">
+              <strong>Omar Daaboul, A.A.E.</strong>
+              <span>Accredited Airport Executive · Founder, TarmacSync</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider">
+        <span class="mono">[ 05 // Early access ]</span>
+        <span class="mono">Commercial service · Reliever · Public-use GA</span>
+      </div>
+
+      <!-- ── FAQ ─────────────────────────────────────── -->
+      <section class="block" id="faq">
+        <div class="intro">
+          <h2 class="section-title">Built for the teams responsible for moving airport projects.</h2>
+        </div>
+
+        <div class="faq">
+          <details open>
+            <summary>Who is TarmacSync for?</summary>
+            <div class="faq-answer">
+              <p>TarmacSync is designed for U.S. airport operators and sponsors, including commercial-service, reliever, and public-use general aviation airports. Typical users include airport management, procurement, finance, operations, engineering, grants, and capital-program staff.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Is TarmacSync replacing our procurement system or ERP?</summary>
+            <div class="faq-answer">
+              <p>No. TarmacSync is the intelligence layer that sits above the systems your airport already uses. It helps teams evaluate the path before a requisition, purchase order, solicitation, or contract workflow begins.</p>
+              <p>Your existing ERP, procurement platform, contract repository, and grant-management tools remain in place.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What kinds of purchasing decisions can it help with?</summary>
+            <div class="faq-answer">
+              <p>TarmacSync helps teams compare routes such as informal quotes, formal bids, cooperative contracts, existing agreements, negotiated professional services, emergency procurement, and other policy-authorized methods — across 35 purchase-type playbooks from ARFF vehicles and snow removal equipment to terminal construction and concessions.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Does TarmacSync make the final procurement decision?</summary>
+            <div class="faq-answer">
+              <p>No — deliberately. It organizes the facts, surfaces candidate paths, explains tradeoffs, and identifies what still needs validation. Final decisions remain with authorized airport staff and any required legal, governing-body, or grant-agency reviewers. TarmacSync never uses words like "compliant" or "approved."</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>How does it use FAA and federal requirements?</summary>
+            <div class="faq-answer">
+              <p>TarmacSync connects project and purchase decisions with relevant FAA guidance, Grant Assurances, 2 CFR Part 200 considerations, Buy American requirements, DBE obligations, and other applicable program rules — with citations retrieved from governed sources, never generated from thin air.</p>
+              <p>It does not replace formal FAA concurrence or legal review.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Can it account for our airport's local procurement policy?</summary>
+            <div class="faq-answer">
+              <p>Yes — this is core to the product. Import your procurement policy and TarmacSync evaluates each purchase against your own thresholds, delegated authority, board requirements, solicitation rules, emergency provisions, and other local procedures.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Can TarmacSync help identify cooperative contracts?</summary>
+            <div class="faq-answer">
+              <p>Yes. TarmacSync indexes 650+ cooperative and government purchasing vehicles across the major consortiums, each screened for AIP eligibility. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What information would our airport need to provide?</summary>
+            <div class="faq-answer">
+              <p>Early access typically begins with selected non-sensitive materials such as procurement policies, purchasing thresholds, representative templates, relevant contract information, and one or two real-world workflows. Setup takes minutes, not weeks.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Is airport information used to train public AI models?</summary>
+            <div class="faq-answer">
+              <p>No. TarmacSync is designed for controlled enterprise use, not as a public-data training pipeline. Specific data handling, retention, and model-provider terms are documented before any airport is asked to provide production information.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Why not just use a general AI assistant?</summary>
+            <div class="faq-answer">
+              <p>A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, 650+ cooperative contracts, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context — policies, thresholds, projects, funding signals, contract candidates, evidence — carries through the entire purchase.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What happens after I join the waitlist?</summary>
+            <div class="faq-answer">
+              <p>We confirm your role, airport type, and the workflows you want to improve — then follow up personally. Selected teams are invited to early product conversations or design-partner evaluations, where founding airports directly shape the roadmap.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Is there a cost to join?</summary>
+            <div class="faq-answer">
+              <p>No. Joining the waitlist is free and creates no commitment. Any future paid early-access scope and pricing would be discussed transparently before participation.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── CONTACT / WAITLIST ────────────────────────── -->
+    <section class="contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <span class="mono">[ Contact // Early access ]</span>
+          <h2 class="section-title">What would make your next airport project easier?</h2>
+          <p>Tell us where your team gets stuck — choosing a buying path, finding funding, preparing grant requirements, reviewing contract options, or tracking deadlines. Founding airports directly shape what we build next.</p>
+
+          <ul class="contact-benefits">
+            <li>Priority access when your workflow is ready</li>
+            <li>Direct line to the founder — an A.A.E., not a sales team</li>
+            <li>Your input shapes the early-access roadmap</li>
+            <li>Free to join, zero commitment</li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <span class="mono">[ ~30 seconds ]</span>
+          <h3>Request early access</h3>
+          <p>Tell us your airport and the workflow you want to improve. We follow up personally — no drip campaigns, no sales pressure.</p>
+
+          <form id="waitlist-form">
+            <div class="spam-trap" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="field">
+              <label for="work-email">Work email</label>
+              <input id="work-email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="field">
+              <label for="organization">Airport / organization</label>
+              <input id="organization" name="organization" type="text" autocomplete="organization" required>
+            </div>
+
+            <div class="field full">
+              <label for="role">Role</label>
+              <input id="role" name="role" type="text" autocomplete="organization-title" required>
+            </div>
+
+            <div class="field full">
+              <label for="challenge">Biggest project or procurement challenge</label>
+              <textarea id="challenge" name="challenge" required placeholder="e.g., We spend weeks confirming whether a cooperative contract is actually usable with AIP funds…"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-orange" type="submit">Request early access</button>
+              <span class="form-note">Free · No commitment · We reply personally</span>
+            </div>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA ─────────────────────────────────── -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>Be one of the founding airports shaping TarmacSync.</h2>
+        <p>The early-access cohort is deliberately small — every founding airport gets a direct voice in what we build next. Tell us which workflow you'd put in front of us first.</p>
+        <a class="btn" href="#contact">Request early access</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="container">
+    <footer>
+      <a href="/" aria-label="TarmacSync home">
+        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
+      </a>
+
+      <div class="footer-links">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="copyright">© 2026 TARMACSYNC.</div>
+    </footer>
+  </div>
+
+  <!-- Mobile sticky CTA -->
+  <div class="sticky-cta" aria-hidden="false">
+    <a class="btn btn-orange" href="#contact">Request early access — free</a>
+  </div>
+
+  <script>
+    // ── Waitlist form ──────────────────────────────────
+    const form = document.getElementById('waitlist-form');
+    const status = document.getElementById('form-status');
+    const button = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const payload = Object.fromEntries(new FormData(form).entries());
+      form.setAttribute('aria-busy', 'true');
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || 'We could not send your submission. Please try again.');
+        }
+
+        form.reset();
+        status.className = 'form-status success';
+        status.textContent = "You're on the list. We'll follow up personally when early access is ready.";
+        button.textContent = 'Request received ✓';
+      } catch (error) {
+        status.className = 'form-status error';
+        status.textContent = error.message || 'We could not send your submission. Please try again.';
+        button.disabled = false;
+        button.textContent = 'Request early access';
+      } finally {
+        form.removeAttribute('aria-busy');
+      }
+    });
+
+    // ── Workflow tabs ──────────────────────────────────
+    const workflowData = [
+      {
+        label: 'Step 01',
+        title: 'Start with the purchase — not a form.',
+        copy: 'Describe the need in plain English. Pathfinder asks only the questions that materially change the route — usually three to five — and never re-asks what it already knows.',
+        chip: 'Plain-English intake'
+      },
+      {
+        label: 'Step 02',
+        title: 'Compare the routes that appear viable.',
+        copy: 'Review procurement methods, existing agreements, cooperative vehicles, and competition requirements — with the supporting and contrary evidence that could make one path more defensible than another.',
+        chip: 'Path comparison'
+      },
+      {
+        label: 'Step 03',
+        title: 'Surface funding possibilities without overstating certainty.',
+        copy: 'Connect the project to candidate AIP, BIL, PFC, or state funding programs, understand why each possibility surfaced, and see the eligibility questions that still need confirmation.',
+        chip: 'Funding signals'
+      },
+      {
+        label: 'Step 04',
+        title: 'See what must be resolved before moving forward.',
+        copy: 'Missing facts, likely approvals, policy checks, certifications, documentation, and agency questions — organized into a practical readiness view with one primary next action.',
+        chip: 'Gap analysis'
+      },
+      {
+        label: 'Step 05',
+        title: 'Turn the analysis into accountable follow-through.',
+        copy: 'Track next actions, responsible owners, key dates, supporting evidence, and reporting obligations — then export the complete procurement file that shows the work.',
+        chip: 'The procurement file'
+      }
+    ];
+
+    const workflowTabs = document.querySelectorAll('.workflow-step');
+    const workflowLabel = document.getElementById('workflow-detail-label');
+    const workflowTitle = document.getElementById('workflow-detail-title');
+    const workflowCopy = document.getElementById('workflow-detail-copy');
+    const workflowChip = document.getElementById('workflow-detail-chip');
+
+    workflowTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const data = workflowData[Number(tab.dataset.step)];
+        workflowTabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
+        tab.setAttribute('aria-selected', 'true');
+        workflowLabel.textContent = data.label;
+        workflowTitle.textContent = data.title;
+        workflowCopy.textContent = data.copy;
+        workflowChip.textContent = data.chip;
+      });
+    });
+
+    // ── FAQ: one open at a time ────────────────────────
+    document.querySelectorAll('.faq details').forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        document.querySelectorAll('.faq details').forEach((other) => {
+          if (other !== item) other.removeAttribute('open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
