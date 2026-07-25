@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TarmacSync</title>
+  <title>TarmacSync | Airport Procurement Intelligence</title>
   <meta name="description" content="TarmacSync turns a plain-English purchase description into the most defensible procurement path for your airport — buying routes, AIP/FAA compliance overlays, 800+ cooperative contracts, and a fully documented procurement file. Join the early-access waitlist.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.tarmacsync.com/">
@@ -13,6 +13,7 @@
   <meta name="application-name" content="TarmacSync">
   <meta name="keywords" content="airport procurement software, airport purchasing, FAA procurement compliance, AIP grant compliance, cooperative purchasing airports, grant assurances, 2 CFR 200, airport procurement intelligence">
   <link rel="alternate" hreflang="en-us" href="https://www.tarmacsync.com/">
+  <link rel="icon" href="assets/tarmacsync-favicon-v2.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
@@ -23,11 +24,14 @@
   <meta property="og:site_name" content="TarmacSync">
   <meta property="og:url" content="https://www.tarmacsync.com/">
   <meta property="og:image" content="https://www.tarmacsync.com/assets/tarmacsync-logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="276">
   <meta property="og:image:alt" content="TarmacSync — Airport Procurement Intelligence">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TarmacSync | Airport Procurement Intelligence">
   <meta name="twitter:description" content="The likely buying path, the compliance stack, and the documented procurement file — from one plain-English description of the purchase.">
   <meta name="twitter:image" content="https://www.tarmacsync.com/assets/tarmacsync-logo.png">
+  <meta name="twitter:image:alt" content="TarmacSync — Airport Procurement Intelligence">
 
   <script type="application/ld+json">
   {
@@ -198,7 +202,7 @@
     .btn-orange:hover { background: #cf5c10; border-color: #cf5c10; }
 
     /* ── Hero ─────────────────────────────────────── */
-    .hero { padding: 7.5rem 0 3.5rem; max-width: 900px; }
+    .hero { padding: 7.5rem 0 3.5rem; }
     .hero-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
     .badge {
       display: inline-flex; padding: .35rem .7rem;
@@ -270,9 +274,12 @@
       font: 700 .64rem var(--mono); text-transform: uppercase;
     }
     .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
-    .proof-question h2 {
+    /* Decorative product-mockup label, styled like a heading but kept out of the
+       document's real heading outline (it's UI-preview copy, not a page section). */
+    .proof-question .mockup-title {
       margin: .45rem 0 .5rem;
       font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
       line-height: 1.25; letter-spacing: -.025em;
     }
     .proof-question p { color: var(--muted); font-size: .9rem; }
@@ -484,7 +491,8 @@
     }
     .dash-project { padding: 1rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
     .dash-project-top { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; }
-    .dash-project h3 { font-size: 1rem; line-height: 1.35; }
+    /* Decorative mockup label — not a real page heading. */
+    .dash-project .mockup-title { font-size: 1rem; font-weight: 700; line-height: 1.35; }
     .dash-chip {
       align-self: flex-start; padding: .28rem .5rem; border-radius: 999px;
       background: #fff8f3; color: var(--amber); border: 1px solid #efc7aa;
@@ -672,7 +680,7 @@
     /* ── Responsive ────────────────────────────────── */
     /* ── Minimalist breathing ───────────────────────── */
     body { line-height: 1.7; }
-    .hero { padding: 10rem 0 4rem; max-width: 900px; }
+    .hero { padding: 10rem 0 4rem; }
     section.block { padding: 7rem 0; }
     .two-col { gap: 5rem; }
     .stack { gap: 3rem; }
@@ -687,6 +695,87 @@
     .intro { margin-bottom: 4rem; }
     .library-disclosure { margin: 0 0 2.5rem; }
     footer { padding: 4rem 0 6rem; }
+
+    /* ── Hero shell: copy + compact in-hero product mockup ─────── */
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-copy { min-width: 0; }
+    .hero-mockup {
+      display: grid; gap: .75rem; padding: 1.15rem;
+      border: 1px solid var(--line); border-radius: 14px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 24px 60px rgba(10,10,13,.09);
+    }
+    .hero-mockup-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: .6rem; border-bottom: 1px solid var(--line);
+    }
+    .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    .hero-chat { display: grid; gap: .5rem; }
+    .hero-msg {
+      padding: .62rem .85rem; border-radius: 11px;
+      font-size: .82rem; line-height: 1.45; max-width: 92%;
+    }
+    .hero-msg.user {
+      justify-self: end; background: var(--ink); color: #fff;
+      border-bottom-right-radius: 3px;
+    }
+    .hero-msg.agent {
+      justify-self: start; background: var(--soft); color: var(--ink);
+      border-bottom-left-radius: 3px;
+    }
+    .hero-typing {
+      justify-self: start; display: inline-flex; gap: .3rem;
+      padding: .62rem .85rem; border-radius: 11px;
+      background: var(--soft); border-bottom-left-radius: 3px;
+    }
+    .hero-typing span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--muted); opacity: .5;
+    }
+    .hero-review-card {
+      border: 1px solid var(--line); border-left: 3px solid var(--orange);
+      border-radius: 8px; background: #fffaf6;
+      padding: .85rem .95rem; display: grid; gap: .45rem;
+    }
+    .hero-review-title {
+      font: 700 .66rem var(--mono); letter-spacing: .06em;
+      text-transform: uppercase; color: var(--orange);
+    }
+    .hero-review-row {
+      display: flex; justify-content: space-between; gap: .6rem;
+      font-size: .78rem; color: var(--muted);
+    }
+    .hero-review-row strong { color: var(--ink); font-weight: 600; }
+    .hero-review-actions { display: flex; gap: .5rem; margin-top: .15rem; }
+    .hero-review-actions a {
+      font: 700 .62rem var(--mono); text-transform: uppercase; letter-spacing: .04em;
+      padding: .4rem .6rem; border-radius: 4px; border: 1px solid var(--line);
+      color: var(--ink); text-decoration: none; transition: .18s ease;
+    }
+    .hero-review-actions a:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* Restrained motion — purely additive: base state above is already the
+       fully-rendered, final appearance, so this only ever ENHANCES first paint.
+       Nothing is ever hidden waiting on these keyframes to run. */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-typing span { animation: heroTypingBounce 1.2s ease-in-out infinite; }
+      .hero-typing span:nth-child(2) { animation-delay: .15s; }
+      .hero-typing span:nth-child(3) { animation-delay: .3s; }
+      @keyframes heroTypingBounce {
+        0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+        30% { transform: translateY(-3px); opacity: 1; }
+      }
+      .hero-review-card { animation: heroReviewIn .6s ease-out .35s both; }
+      @keyframes heroReviewIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
 
     /* ── Site disclosures (progressive disclosure) ───── */
     .site-disclosure {
@@ -770,6 +859,7 @@
       .hero-meta { align-items: flex-start; flex-direction: column; gap: .6rem; }
       .library { margin-bottom: 3.5rem; }
       .library-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1.6rem; }
+      .hero-shell { grid-template-columns: 1fr; gap: 2rem; }
       .proof-strip, .two-col, .outcomes-head, .founder-panel, .contact-grid, .trust-wrap { grid-template-columns: 1fr; }
       .trust-wrap { padding: 1.6rem; gap: 2rem; }
       .proof-main { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -816,7 +906,7 @@
         "name": "Who is TarmacSync for?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TarmacSync is designed for U.S. airport operators and sponsors, including commercial-service, reliever, and public-use general aviation airports — airport management, procurement, finance, operations, engineering, grants, and capital-program staff."
+          "text": "TarmacSync is designed for U.S. airport operators and sponsors, including commercial-service, reliever, and public-use general aviation airports. Typical users include airport management, procurement, finance, operations, engineering, grants, and capital-program staff."
         }
       },
       {
@@ -824,7 +914,15 @@
         "name": "Is TarmacSync replacing our procurement system or ERP?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. TarmacSync is the intelligence layer that sits above existing ERP, procurement, contract, and grant-management systems. It helps teams evaluate the path before a requisition, purchase order, solicitation, or contract workflow begins."
+          "text": "No. TarmacSync is the intelligence layer that sits above the systems your airport already uses. It helps teams evaluate the path before a requisition, purchase order, solicitation, or contract workflow begins. Your existing ERP, procurement platform, contract repository, and grant-management tools remain in place."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What kinds of purchasing decisions can it help with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TarmacSync helps teams compare routes such as informal quotes, formal bids, cooperative contracts, existing agreements, negotiated professional services, emergency procurement, and other policy-authorized methods — across 50 airport procurement categories from ARFF vehicles and snow removal equipment to terminal construction and concessions."
         }
       },
       {
@@ -832,15 +930,23 @@
         "name": "Does TarmacSync make the final procurement decision?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. It organizes the facts, surfaces candidate paths, explains tradeoffs, and identifies what still needs validation. Final decisions remain with authorized airport staff and any required legal, governing-body, or grant-agency reviewers."
+          "text": "No — deliberately. It organizes the facts, surfaces candidate paths, explains tradeoffs, and identifies what still needs validation. Final decisions remain with authorized airport staff and any required legal, governing-body, or grant-agency reviewers. TarmacSync never uses words like \"compliant\" or \"approved.\""
         }
       },
       {
         "@type": "Question",
-        "name": "Can TarmacSync account for local airport procurement policy?",
+        "name": "How does it use FAA and federal requirements?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. TarmacSync evaluates purchases using the airport's own thresholds, delegated authority, board requirements, solicitation rules, and other local procedures."
+          "text": "TarmacSync connects project and purchase decisions with relevant FAA guidance, Grant Assurances, 2 CFR Part 200 considerations, Buy American requirements, DBE obligations, and other applicable program rules — with citations retrieved from governed sources, never generated from thin air. It does not replace formal FAA concurrence or legal review."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can it account for our airport's local procurement policy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — this is core to the product. Import your procurement policy and TarmacSync evaluates each purchase against your own thresholds, delegated authority, board requirements, solicitation rules, emergency provisions, and other local procedures."
         }
       },
       {
@@ -848,7 +954,47 @@
         "name": "Can TarmacSync help identify cooperative contracts?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. TarmacSync indexes 800+ cooperative and government purchasing vehicles and helps evaluate scope, authority, funding compatibility, pricing, and documentation — always as candidate pathways to validate before award."
+          "text": "Yes. TarmacSync indexes 800+ cooperative and government purchasing vehicles across the major consortiums, each indexed with federal guidance. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What information would our airport need to provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Early access typically begins with selected non-sensitive materials such as procurement policies, purchasing thresholds, representative templates, relevant contract information, and one or two real-world workflows. Setup takes minutes, not weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is airport information used to train public AI models?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TarmacSync is designed for controlled enterprise use, not as a public-data training pipeline. Specific data handling, retention, and model-provider terms are documented before any airport is asked to provide production information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why not just use a general AI assistant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, 800+ cooperative contracts, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context carries through the entire purchase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after I join the waitlist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We confirm your role, airport type, and the workflows you want to improve — then follow up personally. Selected teams are invited to early product conversations or design-partner evaluations, where founding airports directly shape the roadmap."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a cost to join?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Joining the waitlist is free and creates no commitment. Any future paid early-access scope and pricing would be discussed transparently before participation."
         }
       }
     ]
@@ -873,7 +1019,7 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <a class="btn btn-primary" href="#contact">Request early access</a>
+      <a class="btn btn-primary" href="#contact">Get early access</a>
     </div>
   </header>
 
@@ -882,24 +1028,50 @@
 
       <!-- ── HERO ─────────────────────────────────────── -->
       <section class="hero">
-        <div class="hero-meta">
-          <span class="badge">Airport Procurement Intelligence</span>
-          <span class="badge-live">Early-access cohort now forming</span>
-        </div>
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <div class="hero-meta">
+              <span class="badge">Airport Procurement Intelligence</span>
+              <span class="badge-live">Early-access cohort now forming</span>
+            </div>
 
-        <h1>Airport purchases are complex. <span class="accent">The right path shouldn't be.</span></h1>
+            <h1>Airport purchases are complex. <span class="accent">The right path shouldn't be.</span></h1>
 
-        <p>Describe the purchase in plain English. <strong>Pathfinder</strong> — TarmacSync's agentic AI advisor — investigates like your sharpest analyst: it searches your airport's own policy, 800+ cooperative contracts, and cited federal sources, then maps the likely buying route, the compliance stack, and the <strong>procurement file</strong> that documents every decision.</p>
+            <p>Describe the purchase in plain English. <strong>Pathfinder</strong> — TarmacSync's agentic AI advisor — investigates like your sharpest analyst: it searches your airport's own policy, 800+ cooperative contracts, and cited federal sources, then maps the likely buying route, the compliance stack, and the <strong>procurement file</strong> that documents every decision.</p>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Request early access</a>
-          <a class="btn btn-secondary" href="#platform">See how it works</a>
-        </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">Get early access</a>
+              <a class="btn btn-secondary" href="#platform">See how it works</a>
+            </div>
 
-        <div class="hero-microcopy">
-          <span>Free to join</span>
-          <span>No commitment</span>
-          <span>Founding airports shape the roadmap</span>
+            <div class="hero-microcopy">
+              <span>Free to join</span>
+              <span>No commitment</span>
+              <span>Founding airports shape the roadmap</span>
+            </div>
+          </div>
+
+          <div class="hero-mockup" aria-label="Example Pathfinder conversation and initial path review">
+            <div class="hero-mockup-head">
+              <span class="hero-mockup-title">Pathfinder</span>
+              <span class="status">Analysis in progress</span>
+            </div>
+            <div class="hero-chat">
+              <div class="hero-msg user">Replace a runway sweeper before next winter.</div>
+              <div class="hero-msg agent">Got it. Is this replacing an existing grant-funded unit, or adding capacity?</div>
+              <div class="hero-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+            <div class="hero-review-card">
+              <span class="hero-review-title">Initial path review</span>
+              <div class="hero-review-row"><span>Funding overlay</span><strong>AIP + local match</strong></div>
+              <div class="hero-review-row"><span>Open questions</span><strong>3</strong></div>
+              <div class="hero-review-row"><span>Candidate contract</span><strong>Available</strong></div>
+              <div class="hero-review-actions">
+                <a href="#contact">Continue review</a>
+                <a href="#platform">Preview details</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -925,7 +1097,7 @@
 
           <div class="proof-question">
             <span class="mono">Project need</span>
-            <h2>Replace a runway sweeper before the next winter operations cycle.</h2>
+            <p class="mockup-title">Replace a runway sweeper before the next winter operations cycle.</p>
             <p>Estimated value: $485,000 · AIP eligibility not yet confirmed · Local policy loaded</p>
           </div>
 
@@ -947,7 +1119,7 @@
 
         <aside class="proof-side">
           <span class="mono">Evidence record</span>
-          <h3 style="margin:.5rem 0 1rem">Sources and open checks</h3>
+          <p style="margin:.5rem 0 1rem; font-size:1.17em; font-weight:700;">Sources and open checks</p>
 
           <div class="source-list">
             <div class="source-row"><span>Airport procurement policy</span><span class="source-state">Found</span></div>
@@ -1176,7 +1348,7 @@
 
               <div class="dash-project">
                 <div class="dash-project-top">
-                  <h3>Airfield snow removal equipment replacement</h3>
+                  <p class="mockup-title">Airfield snow removal equipment replacement</p>
                   <span class="dash-chip">4 open checks</span>
                 </div>
                 <div class="dash-meta">$485,000 · Federal funding possible · Policy loaded</div>
@@ -1276,7 +1448,9 @@
               </div>
               <span class="label">Decision outputs</span>
               <h3>Work your board and auditor can use</h3>
-              <p>Procurement path reviews, board-ready decision summaries, cooperative validation checklists, and an exportable procurement file with every source attached.</p>
+              <div class="hero-review-row"><span>Known</span><strong>Runway sweeper · AIP + local match</strong></div>
+              <div class="hero-review-row"><span>Open</span><strong>3 questions</strong></div>
+              <div class="hero-review-row"><span>Next</span><strong>Build validation checklist</strong></div>
               <span class="vision-card-footer">Reviewable artifacts</span>
             </article>
           </div>
@@ -1454,7 +1628,7 @@
 
         <div class="contact-card">
           <span class="mono">[ ~30 seconds ]</span>
-          <h3>Request early access</h3>
+          <h3>Get early access</h3>
           <p>Interested? Drop us a note — we'd love to hear from you.</p>
 
           <form id="waitlist-form">
@@ -1484,7 +1658,7 @@
             </div>
 
             <div class="form-actions">
-              <button class="btn btn-orange" type="submit">Request early access</button>
+              <button class="btn btn-orange" type="submit">Get early access</button>
               <span class="form-note">Free · No commitment · We reply personally</span>
             </div>
 
@@ -1499,7 +1673,7 @@
       <div class="container cta-inner">
         <h2>Be one of the founding airports shaping TarmacSync.</h2>
         <p>The early-access cohort is deliberately small — every founding airport gets a direct voice in what we build next. Tell us which workflow you'd put in front of us first.</p>
-        <a class="btn" href="#contact">Request early access</a>
+        <a class="btn" href="#contact">Get early access</a>
       </div>
     </section>
   </main>
@@ -1522,7 +1696,7 @@
 
   <!-- Mobile sticky CTA -->
   <div class="sticky-cta" aria-hidden="false">
-    <a class="btn btn-orange" href="#contact">Request early access — free</a>
+    <a class="btn btn-orange" href="#contact">Get early access — free</a>
   </div>
 
   <script>
@@ -1563,7 +1737,7 @@
         status.className = 'form-status error';
         status.textContent = error.message || 'We could not send your submission. Please try again.';
         button.disabled = false;
-        button.textContent = 'Request early access';
+        button.textContent = 'Get early access';
       } finally {
         form.removeAttribute('aria-busy');
       }
