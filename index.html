@@ -717,7 +717,11 @@
       padding-bottom: .6rem; border-bottom: 1px solid var(--line);
     }
     .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .hero-chat { display: grid; gap: .5rem; }
+    .hero-chat { display: grid; gap: .5rem; max-height: 260px; overflow-y: auto; padding-right: 2px; }
+    /* subtle scrollbar for the chat window */
+    .hero-chat::-webkit-scrollbar { width: 4px; }
+    .hero-chat::-webkit-scrollbar-track { background: transparent; }
+    .hero-chat::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
     .hero-msg {
       padding: .65rem .85rem; border-radius: 11px;
       font-size: .82rem; line-height: 1.45; max-width: 92%;
@@ -750,17 +754,18 @@
     .hero-review-card {
       border: 1px solid var(--line); border-left: 3px solid var(--orange);
       border-radius: 8px; background: #fffaf6;
-      padding: .9rem; display: grid; gap: .5rem;
+      padding: .9rem; display: grid; gap: .55rem;
     }
     .hero-review-title {
       font: 700 .66rem var(--mono); letter-spacing: .06em;
       text-transform: uppercase; color: var(--orange);
     }
     .hero-review-row {
-      display: flex; justify-content: space-between; gap: .6rem;
-      font-size: .78rem; color: var(--muted);
+      display: grid; grid-template-columns: 82px 1fr; gap: .5rem;
+      font-size: .76rem; color: var(--muted);
     }
-    .hero-review-row strong { color: var(--ink); font-weight: 600; }
+    .hero-review-row span { color: var(--muted); }
+    .hero-review-row strong { color: var(--ink); font-weight: 600; font-size: .76rem; line-height: 1.4; }
     .hero-review-actions { display: flex; gap: .5rem; margin-top: .15rem; }
     .hero-review-actions a {
       font: 700 .62rem var(--mono); text-transform: uppercase; letter-spacing: .04em;
@@ -1071,10 +1076,11 @@
             </div>
             <div class="hero-review-card" id="hero-review-card">
               <span class="hero-review-title">Initial path review</span>
-              <div class="hero-review-row"><span>Likely path</span><strong>Cooperative or formal IFB</strong></div>
-              <div class="hero-review-row"><span>Federal triggers</span><strong>2 CFR 200 · Buy American</strong></div>
-              <div class="hero-review-row"><span>Open questions</span><strong>Useful-life justification · ADO concurrence</strong></div>
-              <div class="hero-review-row"><span>Candidate contracts</span><strong>4 available</strong></div>
+              <div class="hero-review-row"><span>Likely route</span><strong>Cooperative contract or formal IFB</strong></div>
+              <div class="hero-review-row"><span>Why</span><strong>$485K exceeds small purchase threshold · AIP triggers competitive procurement per 2 CFR § 200.320</strong></div>
+              <div class="hero-review-row"><span>Compliance</span><strong>Buy American · Grant Assurances 11, 37 · DBE goal review</strong></div>
+              <div class="hero-review-row"><span>Candidates</span><strong>4 cooperative vehicles match — OMNIA, Sourcewell, NASPO</strong></div>
+              <div class="hero-review-row"><span>Next step</span><strong>Confirm useful-life justification with ADO</strong></div>
               <div class="hero-review-actions">
                 <a href="#contact">Continue review</a>
                 <a href="#platform">Preview details</a>
