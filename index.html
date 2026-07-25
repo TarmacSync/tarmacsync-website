@@ -274,21 +274,9 @@
       font: 700 .64rem var(--mono); text-transform: uppercase;
     }
     .status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); }
-    /* Decorative product-mockup label, styled like a heading but kept out of the
-       document's real heading outline (it's UI-preview copy, not a page section). */
-    .proof-question .mockup-title {
-      margin: .45rem 0 .5rem;
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700;
-      line-height: 1.25; letter-spacing: -.025em;
-    }
-    .proof-question p { color: var(--muted); font-size: .9rem; }
-
-    .paths { display: grid; gap: .75rem; margin-top: 1.5rem; }
-    .path { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); }
-    .path.primary { border-left: 3px solid var(--orange); background: #fffaf6; }
-    .path strong { display: block; margin-bottom: .25rem; font-size: .92rem; }
-    .path p { color: var(--muted); font-size: .8rem; }
+    /* Chat area inside proof strip — scrollable message list */
+    .proof-chat { margin-top: .25rem; }
+    .proof-main .hero-review-card { margin-top: .6rem; }
 
     .source-list { display: grid; gap: .8rem; margin-top: 1.1rem; }
     .source-row {
@@ -696,34 +684,13 @@
     .library-disclosure { margin: 0 0 2.5rem; }
     footer { padding: 4rem 0 6rem; }
 
-    /* ── Hero shell: copy + compact in-hero product mockup ─────── */
-    .hero-shell {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 3.5rem;
-      align-items: center;
-      max-width: 1100px;
-    }
-    .hero-copy { min-width: 0; }
-    .hero-mockup {
-      display: grid;       gap: .85rem; padding: 1.3rem;
-      border: 1px solid var(--line); border-radius: 14px;
-      background: rgba(255,255,255,.9);
-      box-shadow: 0 24px 60px rgba(10,10,13,.09);
-      min-width: 0;
-    }
-    .hero-mockup-head {
-      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-      padding-bottom: .6rem; border-bottom: 1px solid var(--line);
-    }
-    .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .hero-chat {
+    .hero-chat, .proof-chat {
       display: flex; flex-direction: column; gap: .5rem;
       max-height: 260px; overflow-y: auto; padding-right: 4px;
     }
-    .hero-chat::-webkit-scrollbar { width: 4px; }
-    .hero-chat::-webkit-scrollbar-track { background: transparent; }
-    .hero-chat::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+    .hero-chat::-webkit-scrollbar, .proof-chat::-webkit-scrollbar { width: 4px; }
+    .hero-chat::-webkit-scrollbar-track, .proof-chat::-webkit-scrollbar-track { background: transparent; }
+    .hero-chat::-webkit-scrollbar-thumb, .proof-chat::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
     .hero-msg {
       padding: .65rem .85rem; border-radius: 11px;
       font-size: .82rem; line-height: 1.45; max-width: 92%;
@@ -868,7 +835,6 @@
       .hero-meta { align-items: flex-start; flex-direction: column; gap: .6rem; }
       .library { margin-bottom: 3.5rem; }
       .library-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1.6rem; }
-      .hero-shell { grid-template-columns: 1fr; gap: 2rem; }
       .proof-strip, .two-col, .outcomes-head, .founder-panel, .contact-grid, .trust-wrap { grid-template-columns: 1fr; }
       .trust-wrap { padding: 1.6rem; gap: 2rem; }
       .proof-main { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -1037,8 +1003,6 @@
 
       <!-- ── HERO ─────────────────────────────────────── -->
       <section class="hero">
-        <div class="hero-shell">
-          <div class="hero-copy">
             <div class="hero-meta">
               <span class="badge">Airport Procurement Intelligence</span>
               <span class="badge-live">Early-access cohort now forming</span>
@@ -1058,40 +1022,6 @@
               <span>No commitment</span>
               <span>Founding airports shape the roadmap</span>
             </div>
-          </div>
-
-          <div class="hero-mockup" aria-label="Example Pathfinder conversation and initial path review">
-            <div class="hero-mockup-head">
-              <span class="hero-mockup-title">Pathfinder</span>
-              <span class="status">Analysis in progress</span>
-            </div>
-            <div class="hero-chat" id="hero-chat">
-              <div class="hero-msg user" data-text="Need to replace a runway sweeper before next winter."></div>
-              <div class="hero-typing hero-typing-1"><span></span><span></span><span></span></div>
-              <div class="hero-msg agent" data-text="You're at a Part 139 airport with active AIP grants — this sits in federal overlay territory. Let me narrow the route with a few quick questions."></div>
-              <div class="hero-msg agent" data-text="Comparable sweeper replacements run about $485K. Is that in the ballpark?"></div>
-              <div class="hero-msg user" data-text="Yes, around that."></div>
-              <div class="hero-typing hero-typing-2"><span></span><span></span><span></span></div>
-              <div class="hero-msg agent" data-text="This is AIP + local match, correct? That triggers 2 CFR Part 200, Buy American, and likely Davis-Bacon if any site work is involved."></div>
-              <div class="hero-msg user" data-text="Yes, AIP with local match."></div>
-              <div class="hero-msg user" data-text="No site work — equipment only."></div>
-              <div class="hero-typing hero-typing-3"><span></span><span></span><span></span></div>
-              <div class="hero-msg agent" data-text="Straight AIP-funded equipment replacement at end of useful life. That's a cooperative contract or formal IFB route — not sole source. Here's the initial read."></div>
-            </div>
-            <div class="hero-review-card" id="hero-review-card">
-              <span class="hero-review-title">Initial path review</span>
-              <div class="hero-review-row"><span>Likely route</span><strong>Cooperative contract or formal IFB</strong></div>
-              <div class="hero-review-row"><span>Why</span><strong>$485K exceeds small purchase threshold · AIP triggers competitive procurement per 2 CFR § 200.320</strong></div>
-              <div class="hero-review-row"><span>Compliance</span><strong>Buy American · Grant Assurances 11, 37 · DBE goal review</strong></div>
-              <div class="hero-review-row"><span>Candidates</span><strong>4 cooperative vehicles match — OMNIA, Sourcewell, NASPO</strong></div>
-              <div class="hero-review-row"><span>Next step</span><strong>Confirm useful-life justification with ADO</strong></div>
-              <div class="hero-review-actions">
-                <a href="#contact">Continue review</a>
-                <a href="#platform">Preview details</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- ── INTELLIGENCE LIBRARY (real, verifiable numbers) ──── -->
@@ -1114,24 +1044,29 @@
             <span class="status">Analysis in progress</span>
           </div>
 
-          <div class="proof-question">
-            <span class="mono">Project need</span>
-            <p class="mockup-title">Replace a runway sweeper before the next winter operations cycle.</p>
-            <p>Estimated value: $485,000 · AIP eligibility not yet confirmed · Local policy loaded</p>
+          <div class="proof-chat" id="proof-chat">
+            <div class="hero-msg user" data-text="Need to replace a runway sweeper before next winter."></div>
+            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-msg agent" data-text="You're at a Part 139 airport with active AIP grants — this puts federal procurement rules in play. Let me narrow the route."></div>
+            <div class="hero-msg agent" data-text="Comparable sweeper replacements run about $485K. Is that in the ballpark?"></div>
+            <div class="hero-msg user" data-text="Yes, around that."></div>
+            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-msg agent" data-text="AIP + local match, correct? That triggers 2 CFR Part 200, Buy American, and likely Davis-Bacon if any site work is involved."></div>
+            <div class="hero-msg user" data-text="Yes — AIP with local match. Equipment only, no site work."></div>
+            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-msg agent" data-text="Straight AIP-funded equipment replacement at end of useful life. Cooperative contract or formal IFB — not sole source. Here's the initial read."></div>
           </div>
 
-          <div class="paths">
-            <div class="path primary">
-              <strong>Cooperative contract — candidate route</strong>
-              <p>Potentially faster, subject to cooperative authority, contract scope, pricing validation, and grant concurrence.</p>
-            </div>
-            <div class="path">
-              <strong>Formal competitive solicitation — viable route</strong>
-              <p>Likely available if the cooperative contract does not meet local or funding requirements.</p>
-            </div>
-            <div class="path">
-              <strong>What changes the analysis</strong>
-              <p>Final funding mix, useful-life justification, approved specification, and airport purchasing threshold.</p>
+          <div class="hero-review-card" id="proof-review-card">
+            <span class="hero-review-title">Initial path review</span>
+            <div class="hero-review-row"><span>Likely route</span><strong>Cooperative contract or formal IFB</strong></div>
+            <div class="hero-review-row"><span>Why</span><strong>$485K exceeds small purchase threshold · AIP triggers competitive procurement per 2 CFR § 200.320</strong></div>
+            <div class="hero-review-row"><span>Compliance</span><strong>Buy American · Grant Assurances 11, 37 · DBE goal review</strong></div>
+            <div class="hero-review-row"><span>Candidates</span><strong>4 cooperative vehicles match — OMNIA, Sourcewell, NASPO</strong></div>
+            <div class="hero-review-row"><span>Next step</span><strong>Confirm useful-life justification with ADO</strong></div>
+            <div class="hero-review-actions">
+              <a href="#contact">Continue review</a>
+              <a href="#platform">Preview details</a>
             </div>
           </div>
         </div>
@@ -1824,16 +1759,15 @@
       });
     });
 
-    // ── Hero chat typing animation ──────────────────────
+    // ── Proof strip chat typing animation ──────────────
     (function () {
-      const container = document.getElementById('hero-chat');
+      const container = document.getElementById('proof-chat');
       if (!container) return;
       const children = container.children;
-      const card = document.getElementById('hero-review-card');
-      const speed = 36; // ms per character
+      const card = document.getElementById('proof-review-card');
+      const speed = 36;
       const dotDuration = 800;
 
-      // Show everything immediately if reduced motion
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         for (const el of children) {
           if (el.classList.contains('hero-msg')) { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); }
