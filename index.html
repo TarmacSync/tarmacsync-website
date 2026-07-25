@@ -728,8 +728,12 @@
       justify-self: start; background: var(--soft); color: var(--ink);
       border-bottom-left-radius: 3px;
     }
+    /* Hidden by default: reduced-motion / no-animation visitors go straight to
+       the resolved final state (user message → agent reply → review card),
+       never see a "still thinking" indicator that has nothing to resolve into. */
     .hero-typing {
-      justify-self: start; display: inline-flex; gap: .3rem;
+      display: none;
+      justify-self: start; gap: .3rem;
       padding: .62rem .85rem; border-radius: 11px;
       background: var(--soft); border-bottom-left-radius: 3px;
     }
@@ -759,18 +763,30 @@
     }
     .hero-review-actions a:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* Restrained motion — purely additive: base state above is already the
-       fully-rendered, final appearance, so this only ever ENHANCES first paint.
-       Nothing is ever hidden waiting on these keyframes to run. */
+    /* Restrained motion — a single one-shot beat, not a loop that never
+       resolves: dots bounce briefly, fade out, and the review card settles in
+       right after. Base state above (typing hidden, card fully visible) is
+       always the correct end state, so this only ever enhances first paint —
+       nothing is ever stuck waiting on these keyframes. Total runtime ~1.2s. */
     @media (prefers-reduced-motion: no-preference) {
-      .hero-typing span { animation: heroTypingBounce 1.2s ease-in-out infinite; }
-      .hero-typing span:nth-child(2) { animation-delay: .15s; }
-      .hero-typing span:nth-child(3) { animation-delay: .3s; }
-      @keyframes heroTypingBounce {
-        0%, 60%, 100% { transform: translateY(0); opacity: .5; }
-        30% { transform: translateY(-3px); opacity: 1; }
+      .hero-typing {
+        display: inline-flex;
+        animation: heroTypingFadeOut .25s ease-in .85s forwards;
       }
-      .hero-review-card { animation: heroReviewIn .6s ease-out .35s both; }
+      .hero-typing span { animation: heroTypingBounce .45s ease-in-out 2; }
+      .hero-typing span:nth-child(2) { animation-delay: .1s; }
+      .hero-typing span:nth-child(3) { animation-delay: .2s; }
+      @keyframes heroTypingBounce {
+        0%, 100% { transform: translateY(0); opacity: .5; }
+        50% { transform: translateY(-3px); opacity: 1; }
+      }
+      @keyframes heroTypingFadeOut {
+        to { opacity: 0; }
+      }
+      .hero-review-card {
+        opacity: 0;
+        animation: heroReviewIn .4s ease-out .8s forwards;
+      }
       @keyframes heroReviewIn {
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: translateY(0); }
