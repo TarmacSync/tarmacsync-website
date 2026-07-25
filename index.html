@@ -730,6 +730,23 @@
       justify-self: start; background: var(--soft); color: var(--ink);
       border-bottom-left-radius: 3px;
     }
+    .hero-typing {
+      justify-self: start; display: none; gap: .3rem;
+      padding: .65rem .85rem; border-radius: 11px;
+      background: var(--soft); border-bottom-left-radius: 3px;
+    }
+    .hero-typing span {
+      display: block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--muted); opacity: .5;
+      animation: typingDot .6s ease-in-out infinite;
+    }
+    .hero-typing span:nth-child(2) { animation-delay: .15s; }
+    .hero-typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typingDot {
+      0%, 100% { transform: translateY(0); opacity: .4; }
+      50% { transform: translateY(-4px); opacity: 1; }
+    }
+    .hero-msg { min-height: 1.2em; }
     .hero-review-card {
       border: 1px solid var(--line); border-left: 3px solid var(--orange);
       border-radius: 8px; background: #fffaf6;
@@ -753,19 +770,11 @@
     .hero-review-actions a:hover { border-color: var(--orange); color: var(--orange); }
 
     /* ── iMessage-style sequential reveal ───────────── */
-    @media (prefers-reduced-motion: no-preference) {
-      .hero-msg, .hero-review-card {
-        opacity: 0;
-        animation: heroMsgIn .5s ease-out forwards;
-      }
-      .hero-msg.user    { animation-delay: .3s; }
-      .hero-msg.agent   { animation-delay: 1s; }
-      .hero-review-card { animation-delay: 1.8s; }
-
-      @keyframes heroMsgIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
+    .hero-msg, .hero-review-card {
+      opacity: 0;
+    }
+    .hero-msg.visible, .hero-review-card.visible {
+      opacity: 1;
     }
 
     /* ── Site disclosures (progressive disclosure) ───── */
@@ -1047,11 +1056,12 @@
               <span class="hero-mockup-title">Pathfinder</span>
               <span class="status">Analysis in progress</span>
             </div>
-            <div class="hero-chat">
-              <div class="hero-msg user">Replace a runway sweeper before next winter.</div>
-              <div class="hero-msg agent">Got it. Is this replacing an existing grant-funded unit, or adding capacity?</div>
+            <div class="hero-chat" id="hero-chat">
+              <div class="hero-msg user" data-text="Replace a runway sweeper before next winter."></div>
+              <div class="hero-typing" id="hero-typing"><span></span><span></span><span></span></div>
+              <div class="hero-msg agent" data-text="Got it. Is this replacing an existing grant-funded unit, or adding capacity?"></div>
             </div>
-            <div class="hero-review-card">
+            <div class="hero-review-card" id="hero-review-card">
               <span class="hero-review-title">Initial path review</span>
               <div class="hero-review-row"><span>Funding overlay</span><strong>AIP + local match</strong></div>
               <div class="hero-review-row"><span>Open questions</span><strong>3</strong></div>
@@ -1794,6 +1804,50 @@
         });
       });
     });
+
+    // ── Hero chat typing animation ──────────────────────
+    (function () {
+      const container = document.getElementById('hero-chat');
+      if (!container) return;
+      const msgs = container.querySelectorAll('.hero-msg');
+      const typing = document.getElementById('hero-typing');
+      const card = document.getElementById('hero-review-card');
+
+      let queue = Promise.resolve();
+      const speed = 38;
+
+      function typeMessage(el) {
+        return new Promise((resolve) => {
+          const text = el.getAttribute('data-text') || '';
+          el.style.display = '';
+          el.classList.add('visible');
+          let i = 0;
+          const iv = setInterval(() => {
+            el.textContent += text[i];
+            i++;
+            if (i >= text.length) { clearInterval(iv); resolve(); }
+          }, speed);
+        });
+      }
+
+      function showTyping(duration) {
+        return new Promise((resolve) => {
+          typing.style.display = 'inline-flex';
+          setTimeout(() => { typing.style.display = 'none'; resolve(); }, duration);
+        });
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        msgs.forEach((el) => { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); });
+        card.classList.add('visible');
+        return;
+      }
+
+      typeMessage(msgs[0])
+        .then(() => showTyping(900))
+        .then(() => typeMessage(msgs[1]))
+        .then(() => card.classList.add('visible'));
+    })();
   </script>
 </body>
 </html>
