@@ -689,7 +689,7 @@
     }
     .hero-msg {
       padding: .65rem .85rem; border-radius: 11px;
-      font-size: .82rem; line-height: 1.45; max-width: 92%;
+      font-size: .9rem; line-height: 1.45; max-width: 92%;
       min-height: 1.2em; word-break: break-word;
       visibility: hidden;
     }
@@ -703,9 +703,14 @@
       border-bottom-left-radius: 3px;
     }
     .hero-typing {
-      align-self: flex-start; display: flex; gap: .3rem; visibility: hidden;
-      padding: .65rem .85rem; border-radius: 11px;
+      align-self: flex-start; display: flex; align-items: center; gap: .3rem; visibility: hidden;
+      padding: .5rem .85rem; border-radius: 11px;
       background: var(--soft); border-bottom-left-radius: 3px;
+      font-size: .72rem; color: var(--muted);
+    }
+    .hero-typing em {
+      font-style: normal; font-size: .65rem; color: var(--muted);
+      margin-left: .3rem;
     }
     .hero-typing span {
       display: block; width: 6px; height: 6px; border-radius: 50%;
@@ -1041,15 +1046,16 @@
           </div>
 
           <div class="proof-chat" id="proof-chat">
+            <div class="hero-msg agent" data-text="Hello! How can I help with your airport procurement today?"></div>
             <div class="hero-msg user" data-text="Need to replace a runway sweeper before next winter."></div>
-            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-typing"><span></span><span></span><span></span><em>Pathfinder</em></div>
             <div class="hero-msg agent" data-text="You're at a Part 139 airport with active AIP grants — this puts federal procurement rules in play. Let me narrow the route."></div>
             <div class="hero-msg agent" data-text="Comparable sweeper replacements run about $485K. Is that in the ballpark?"></div>
             <div class="hero-msg user" data-text="Yes, around that."></div>
-            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-typing"><span></span><span></span><span></span><em>Pathfinder</em></div>
             <div class="hero-msg agent" data-text="AIP + local match, correct? That triggers 2 CFR Part 200, Buy American, and likely Davis-Bacon if any site work is involved."></div>
             <div class="hero-msg user" data-text="Yes — AIP with local match. Equipment only, no site work."></div>
-            <div class="hero-typing"><span></span><span></span><span></span></div>
+            <div class="hero-typing"><span></span><span></span><span></span><em>Pathfinder</em></div>
             <div class="hero-msg agent" data-text="Straight AIP-funded equipment replacement at end of useful life. Cooperative contract or formal IFB — not sole source. Here's the initial read."></div>
           </div>
 
