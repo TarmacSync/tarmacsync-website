@@ -1774,6 +1774,7 @@
           if (el.classList.contains('hero-msg')) { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); }
         }
         card.style.display = 'grid';
+        card.classList.add('visible');
         return;
       }
 
@@ -1821,6 +1822,7 @@
         }
         await new Promise(r => setTimeout(r, 400));
         card.style.display = 'grid';
+        card.classList.add('visible');
       }
 
       run();
