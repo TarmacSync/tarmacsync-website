@@ -52,7 +52,7 @@ module.exports = async function waitlist(request, response) {
   const role = clean(payload.role, 120);
   const challenge = clean(payload.challenge, 2000);
 
-  if (!isEmail(email) || !organization || !role || !challenge) {
+  if (!isEmail(email) || !organization || !role) {
     return sendJson(response, 400, {
       ok: false,
       error: "Please complete every field with a valid work email.",
@@ -74,9 +74,7 @@ module.exports = async function waitlist(request, response) {
     `Work email: ${email}`,
     `Airport / organization: ${organization}`,
     `Role: ${role}`,
-    "",
-    "Biggest project or procurement challenge:",
-    challenge,
+    ...(challenge ? ["", "Anything else:", challenge] : []),
   ].join("\n");
 
   try {
