@@ -686,7 +686,12 @@
 
     .hero-chat, .proof-chat {
       display: flex; flex-direction: column; gap: .5rem;
+      max-height: 310px; overflow-y: auto; padding-right: 6px;
     }
+    /* subtle scrollbar */
+    .proof-chat::-webkit-scrollbar { width: 4px; }
+    .proof-chat::-webkit-scrollbar-track { background: transparent; }
+    .proof-chat::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
     .hero-msg {
       padding: .65rem .85rem; border-radius: 11px;
       font-size: .9rem; line-height: 1.45; max-width: 92%;
