@@ -1057,7 +1057,7 @@
             <div class="hero-msg agent" data-text="Straight AIP-funded equipment replacement at end of useful life. Cooperative contract or formal IFB — not sole source. Here's the initial read."></div>
           </div>
 
-          <div class="hero-review-card" id="proof-review-card">
+          <div class="hero-review-card" id="proof-review-card" style="display:none">
             <span class="hero-review-title">Initial path review</span>
             <div class="hero-review-row"><span>Likely route</span><strong>Cooperative contract or formal IFB</strong></div>
             <div class="hero-review-row"><span>Why</span><strong>$485K exceeds small purchase threshold · AIP triggers competitive procurement per 2 CFR § 200.320</strong></div>
@@ -1772,7 +1772,7 @@
         for (const el of children) {
           if (el.classList.contains('hero-msg')) { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); }
         }
-        card.classList.add('visible');
+        card.style.display = 'grid';
         return;
       }
 
@@ -1819,7 +1819,7 @@
           }
         }
         await new Promise(r => setTimeout(r, 400));
-        card.classList.add('visible');
+        card.style.display = 'grid';
       }
 
       run();
