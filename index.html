@@ -719,7 +719,7 @@
     .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
     .hero-chat { display: grid; gap: .5rem; }
     .hero-msg {
-      padding: .62rem .85rem; border-radius: 11px;
+      padding: .65rem .85rem; border-radius: 11px;
       font-size: .82rem; line-height: 1.45; max-width: 92%;
     }
     .hero-msg.user {
@@ -733,7 +733,7 @@
     .hero-review-card {
       border: 1px solid var(--line); border-left: 3px solid var(--orange);
       border-radius: 8px; background: #fffaf6;
-      padding: .85rem .95rem; display: grid; gap: .45rem;
+      padding: .9rem; display: grid; gap: .5rem;
     }
     .hero-review-title {
       font: 700 .66rem var(--mono); letter-spacing: .06em;
@@ -752,15 +752,19 @@
     }
     .hero-review-actions a:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* Review card fades in once — stays visible permanently as the resolved state. */
+    /* ── iMessage-style sequential reveal ───────────── */
     @media (prefers-reduced-motion: no-preference) {
-      .hero-review-card {
+      .hero-msg, .hero-review-card {
         opacity: 0;
-        animation: heroReviewIn .4s ease-out .8s forwards;
+        animation: heroMsgIn .5s ease-out forwards;
       }
-      @keyframes heroReviewIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
+      .hero-msg.user    { animation-delay: .3s; }
+      .hero-msg.agent   { animation-delay: 1s; }
+      .hero-review-card { animation-delay: 1.8s; }
+
+      @keyframes heroMsgIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
     }
 
