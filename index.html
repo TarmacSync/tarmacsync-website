@@ -706,19 +706,14 @@
     }
     .hero-copy { min-width: 0; }
     .hero-mockup {
-      display: grid; gap: .75rem; padding: 1.15rem;
+      display: grid;       gap: .85rem; padding: 1.3rem;
       border: 1px solid var(--line); border-radius: 14px;
       background: rgba(255,255,255,.9);
       box-shadow: 0 24px 60px rgba(10,10,13,.09);
       min-width: 0;
     }
-      display: grid; gap: .75rem; padding: 1.15rem;
-      border: 1px solid var(--line); border-radius: 14px;
-      background: rgba(255,255,255,.9);
-      box-shadow: 0 24px 60px rgba(10,10,13,.09);
-    }
     .hero-mockup-head {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
       padding-bottom: .6rem; border-bottom: 1px solid var(--line);
     }
     .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
@@ -734,19 +729,6 @@
     .hero-msg.agent {
       justify-self: start; background: var(--soft); color: var(--ink);
       border-bottom-left-radius: 3px;
-    }
-    /* Invisible by default: reduced-motion / no-animation visitors go straight
-       to the resolved final state (user message → agent reply → review card),
-       never see a "still thinking" indicator that has nothing to resolve into. */
-    .hero-typing {
-      opacity: 0;
-      justify-self: start; display: inline-flex; gap: .3rem;
-      padding: .62rem .85rem; border-radius: 11px;
-      background: var(--soft); border-bottom-left-radius: 3px;
-    }
-    .hero-typing span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--muted); opacity: .5;
     }
     .hero-review-card {
       border: 1px solid var(--line); border-left: 3px solid var(--orange);
@@ -770,34 +752,8 @@
     }
     .hero-review-actions a:hover { border-color: var(--orange); color: var(--orange); }
 
-    /* Restrained motion. Two independent, deliberate beats — not a loop that
-       never resolves, and not a one-shot a visitor's eyes can easily miss
-       while still reading the headline:
-       1. The review card fades in once, ~0.8s after load, and then stays
-          fully visible forever — it's the settled, permanent result.
-       2. The typing indicator recurs on its own ~6s cycle (visible for a
-          generous ~3s stretch each time) so that whenever a visitor's gaze
-          actually reaches the mockup — a second after load or ten seconds
-          later — there's a good chance of catching a live "still
-          investigating" beat, without ever looking stuck mid-thought.
-       Base state above (typing invisible, card fully visible) is always the
-       correct fallback, so both of these only ever enhance first paint. */
+    /* Review card fades in once — stays visible permanently as the resolved state. */
     @media (prefers-reduced-motion: no-preference) {
-      .hero-typing {
-        animation: heroTypingCycle 6s ease-in-out infinite;
-      }
-      @keyframes heroTypingCycle {
-        0%, 8% { opacity: 0; }
-        18%, 65% { opacity: 1; }
-        75%, 100% { opacity: 0; }
-      }
-      .hero-typing span { animation: heroTypingBounce .6s ease-in-out infinite; }
-      .hero-typing span:nth-child(2) { animation-delay: .15s; }
-      .hero-typing span:nth-child(3) { animation-delay: .3s; }
-      @keyframes heroTypingBounce {
-        0%, 100% { transform: translateY(0); opacity: .5; }
-        50% { transform: translateY(-3px); opacity: 1; }
-      }
       .hero-review-card {
         opacity: 0;
         animation: heroReviewIn .4s ease-out .8s forwards;
@@ -1090,7 +1046,6 @@
             <div class="hero-chat">
               <div class="hero-msg user">Replace a runway sweeper before next winter.</div>
               <div class="hero-msg agent">Got it. Is this replacing an existing grant-funded unit, or adding capacity?</div>
-              <div class="hero-typing" aria-hidden="true"><span></span><span></span><span></span></div>
             </div>
             <div class="hero-review-card">
               <span class="hero-review-title">Initial path review</span>
