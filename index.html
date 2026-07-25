@@ -717,25 +717,28 @@
       padding-bottom: .6rem; border-bottom: 1px solid var(--line);
     }
     .hero-mockup-title { font: 700 .68rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-    .hero-chat { display: grid; gap: .5rem; max-height: 260px; overflow-y: auto; padding-right: 2px; }
-    /* subtle scrollbar for the chat window */
+    .hero-chat {
+      display: flex; flex-direction: column; gap: .5rem;
+      max-height: 260px; overflow-y: auto; padding-right: 4px;
+    }
     .hero-chat::-webkit-scrollbar { width: 4px; }
     .hero-chat::-webkit-scrollbar-track { background: transparent; }
     .hero-chat::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
     .hero-msg {
       padding: .65rem .85rem; border-radius: 11px;
       font-size: .82rem; line-height: 1.45; max-width: 92%;
+      min-height: 1.2em; word-break: break-word;
     }
     .hero-msg.user {
-      justify-self: end; background: var(--ink); color: #fff;
+      align-self: flex-end; background: var(--ink); color: #fff;
       border-bottom-right-radius: 3px;
     }
     .hero-msg.agent {
-      justify-self: start; background: var(--soft); color: var(--ink);
+      align-self: flex-start; background: var(--soft); color: var(--ink);
       border-bottom-left-radius: 3px;
     }
     .hero-typing {
-      justify-self: start; display: none; gap: .3rem;
+      align-self: flex-start; display: none; gap: .3rem;
       padding: .65rem .85rem; border-radius: 11px;
       background: var(--soft); border-bottom-left-radius: 3px;
     }
@@ -750,7 +753,6 @@
       0%, 100% { transform: translateY(0); opacity: .4; }
       50% { transform: translateY(-4px); opacity: 1; }
     }
-    .hero-msg { min-height: 1.2em; }
     .hero-review-card {
       border: 1px solid var(--line); border-left: 3px solid var(--orange);
       border-radius: 8px; background: #fffaf6;
@@ -1846,6 +1848,7 @@
           const iv = setInterval(() => {
             el.textContent += text[i];
             i++;
+            container.scrollTop = container.scrollHeight;
             if (i >= text.length) { clearInterval(iv); resolve(); }
           }, speed);
         });
@@ -1854,6 +1857,7 @@
       function showInstant(el) {
         el.textContent = el.getAttribute('data-text') || '';
         el.classList.add('visible');
+        container.scrollTop = container.scrollHeight;
       }
 
       function showDots(el) {
