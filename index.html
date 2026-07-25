@@ -1057,15 +1057,24 @@
               <span class="status">Analysis in progress</span>
             </div>
             <div class="hero-chat" id="hero-chat">
-              <div class="hero-msg user" data-text="Replace a runway sweeper before next winter."></div>
-              <div class="hero-typing" id="hero-typing"><span></span><span></span><span></span></div>
-              <div class="hero-msg agent" data-text="Got it. Is this replacing an existing grant-funded unit, or adding capacity?"></div>
+              <div class="hero-msg user" data-text="Need to replace a runway sweeper before next winter."></div>
+              <div class="hero-typing hero-typing-1"><span></span><span></span><span></span></div>
+              <div class="hero-msg agent" data-text="You're at a Part 139 airport with active AIP grants — this sits in federal overlay territory. Let me narrow the route with a few quick questions."></div>
+              <div class="hero-msg agent" data-text="Comparable sweeper replacements run about $485K. Is that in the ballpark?"></div>
+              <div class="hero-msg user" data-text="Yes, around that."></div>
+              <div class="hero-typing hero-typing-2"><span></span><span></span><span></span></div>
+              <div class="hero-msg agent" data-text="This is AIP + local match, correct? That triggers 2 CFR Part 200, Buy American, and likely Davis-Bacon if any site work is involved."></div>
+              <div class="hero-msg user" data-text="Yes, AIP with local match."></div>
+              <div class="hero-msg user" data-text="No site work — equipment only."></div>
+              <div class="hero-typing hero-typing-3"><span></span><span></span><span></span></div>
+              <div class="hero-msg agent" data-text="Straight AIP-funded equipment replacement at end of useful life. That's a cooperative contract or formal IFB route — not sole source. Here's the initial read."></div>
             </div>
             <div class="hero-review-card" id="hero-review-card">
               <span class="hero-review-title">Initial path review</span>
-              <div class="hero-review-row"><span>Funding overlay</span><strong>AIP + local match</strong></div>
-              <div class="hero-review-row"><span>Open questions</span><strong>3</strong></div>
-              <div class="hero-review-row"><span>Candidate contract</span><strong>Available</strong></div>
+              <div class="hero-review-row"><span>Likely path</span><strong>Cooperative or formal IFB</strong></div>
+              <div class="hero-review-row"><span>Federal triggers</span><strong>2 CFR 200 · Buy American</strong></div>
+              <div class="hero-review-row"><span>Open questions</span><strong>Useful-life justification · ADO concurrence</strong></div>
+              <div class="hero-review-row"><span>Candidate contracts</span><strong>4 available</strong></div>
               <div class="hero-review-actions">
                 <a href="#contact">Continue review</a>
                 <a href="#platform">Preview details</a>
@@ -1809,17 +1818,23 @@
     (function () {
       const container = document.getElementById('hero-chat');
       if (!container) return;
-      const msgs = container.querySelectorAll('.hero-msg');
-      const typing = document.getElementById('hero-typing');
+      const children = container.children;
       const card = document.getElementById('hero-review-card');
+      const speed = 36; // ms per character
+      const dotDuration = 800;
 
-      let queue = Promise.resolve();
-      const speed = 38;
+      // Show everything immediately if reduced motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        for (const el of children) {
+          if (el.classList.contains('hero-msg')) { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); }
+        }
+        card.classList.add('visible');
+        return;
+      }
 
       function typeMessage(el) {
         return new Promise((resolve) => {
           const text = el.getAttribute('data-text') || '';
-          el.style.display = '';
           el.classList.add('visible');
           let i = 0;
           const iv = setInterval(() => {
@@ -1830,23 +1845,38 @@
         });
       }
 
-      function showTyping(duration) {
+      function showInstant(el) {
+        el.textContent = el.getAttribute('data-text') || '';
+        el.classList.add('visible');
+      }
+
+      function showDots(el) {
         return new Promise((resolve) => {
-          typing.style.display = 'inline-flex';
-          setTimeout(() => { typing.style.display = 'none'; resolve(); }, duration);
+          el.style.display = 'inline-flex';
+          setTimeout(() => { el.style.display = 'none'; resolve(); }, dotDuration);
         });
       }
 
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        msgs.forEach((el) => { el.textContent = el.getAttribute('data-text') || ''; el.classList.add('visible'); });
+      async function run() {
+        let firstUser = true;
+        for (const el of children) {
+          if (el.classList.contains('hero-typing')) {
+            await showDots(el);
+          } else if (el.classList.contains('hero-msg')) {
+            if (el.classList.contains('user')) {
+              await new Promise(r => setTimeout(r, firstUser ? 400 : 100));
+              if (firstUser) { await typeMessage(el); firstUser = false; }
+              else showInstant(el);
+            } else {
+              await typeMessage(el);
+            }
+          }
+        }
+        await new Promise(r => setTimeout(r, 400));
         card.classList.add('visible');
-        return;
       }
 
-      typeMessage(msgs[0])
-        .then(() => showTyping(900))
-        .then(() => typeMessage(msgs[1]))
-        .then(() => card.classList.add('visible'));
+      run();
     })();
   </script>
 </body>
