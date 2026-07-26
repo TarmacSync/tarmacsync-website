@@ -1800,9 +1800,9 @@
       const proofMain = document.querySelector('.proof-main');
       const children = container.children;
       const card = document.getElementById('proof-review-card');
-      const tick = 24;          // ms per animation frame — fixed cadence, readable at any message length
-      const msgDuration = 650;  // ms budget per typed message, regardless of character count
-      const dotDuration = 450;  // ms the typing indicator holds before the next message
+      const tick = 40;          // ms per animation frame
+      const msgDuration = 1200;  // ms budget per typed message
+      const dotDuration = 800;   // ms the typing indicator holds
 
       function showEverythingInstantly() {
         for (const el of children) {
