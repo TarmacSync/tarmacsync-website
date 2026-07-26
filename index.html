@@ -421,6 +421,18 @@
     }
     .trust-point strong { display: block; margin-bottom: .35rem; font-size: 1rem; }
     .trust-point p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+    .trust-point.reveal-ready {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .trust-point.reveal-initial {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .trust-point:nth-child(1).reveal-ready { transition-delay: .08s; }
+    .trust-point:nth-child(2).reveal-ready { transition-delay: .2s; }
+    .trust-point:nth-child(3).reveal-ready { transition-delay: .32s; }
 
     /* ── Vision hero + grid (kept, tightened) ──────── */
     .vision-wrap { display: grid; gap: 1.25rem; }
@@ -1855,11 +1867,11 @@
       }
     })();
 
-    // ── Scroll-reveal: why section ─────────────────────
+    // ── Scroll-reveal: why + trust sections ────────────
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const items = document.querySelectorAll('.why-item');
+      const items = document.querySelectorAll('.why-item, .trust-point');
       if (!items.length) return;
 
       items.forEach((el) => {
