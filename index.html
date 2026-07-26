@@ -185,6 +185,7 @@
       letter-spacing: .05em; text-transform: uppercase;
     }
     nav a:hover { color: var(--ink); }
+    nav a.active { color: var(--ink); }
 
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -579,6 +580,15 @@
       border: 1px solid var(--line); border-left: 4px solid var(--orange);
       border-radius: 8px; background: var(--soft);
     }
+    .founder-panel.reveal-ready {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .founder-panel.reveal-initial {
+      opacity: 0;
+      transform: translateY(32px);
+    }
     .founder-portrait {
       width: 100%; max-width: 235px; justify-self: center; overflow: hidden;
       aspect-ratio: 1 / 1; border: 1px solid var(--line); border-radius: 8px;
@@ -901,6 +911,23 @@
       .divider { flex-direction: column; gap: .3rem; }
       section.block { padding: 4rem 0; }
     }
+
+    /* ── Back-to-top ────────────────────────────────── */
+    .back-to-top {
+      position: fixed; right: 1.5rem; bottom: 5.5rem; z-index: 25;
+      display: grid; place-items: center; width: 40px; height: 40px;
+      border: 1px solid var(--line); border-radius: 50%; background: rgba(255,255,255,.94);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      color: var(--muted); cursor: pointer;
+      opacity: 0; transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease, border-color .2s ease;
+    }
+    .back-to-top.visible {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+    .back-to-top:hover { border-color: var(--orange); color: var(--orange); }
+    .back-to-top svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
   </style>
 
   <script type="application/ld+json">
@@ -1649,6 +1676,11 @@
     <a class="btn btn-orange" href="#contact">Get early access — free</a>
   </div>
 
+  <!-- Back-to-top -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
   <script>
     // ── Waitlist form ──────────────────────────────────
     const form = document.getElementById('waitlist-form');
@@ -1867,11 +1899,11 @@
       }
     })();
 
-    // ── Scroll-reveal: why + trust sections ────────────
+    // ── Scroll-reveal: why + trust + founder sections ────
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const items = document.querySelectorAll('.why-item, .trust-point');
+      const items = document.querySelectorAll('.why-item, .trust-point, .founder-panel');
       if (!items.length) return;
 
       items.forEach((el) => {
@@ -1888,6 +1920,51 @@
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
       items.forEach((el) => observer.observe(el));
+    })();
+
+    // ── Nav scroll-spy ──────────────────────────────────
+    (function () {
+      const links = document.querySelectorAll('nav a[href^="#"]');
+      const sections = [...links].map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if (!sections.length) return;
+
+      links.forEach((a) => {
+        if (!a.classList.contains('active')) return;
+        a.classList.remove('active');
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            links.forEach((a) => {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { threshold: 0, rootMargin: '-15% 0px -75% 0px' });
+
+      sections.forEach((s) => observer.observe(s));
+    })();
+
+    // ── Back-to-top ─────────────────────────────────────
+    (function () {
+      const btn = document.querySelector('.back-to-top');
+      if (!btn) return;
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          btn.classList.toggle('visible', window.scrollY > 500);
+          ticking = false;
+        });
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   </script>
 </body>
