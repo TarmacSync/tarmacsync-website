@@ -1801,7 +1801,8 @@
       const children = container.children;
       const card = document.getElementById('proof-review-card');
       const tick = 40;          // ms per animation frame
-      const msgDuration = 1200;  // ms budget per typed message
+      const msgDuration = 1200;  // ms budget per agent message
+      const userMsgDuration = 500;  // ms budget per user message — faster but still typed
       const dotDuration = 800;   // ms the typing indicator holds
 
       function showEverythingInstantly() {
@@ -1832,11 +1833,11 @@
         showEverythingInstantly();
       });
 
-      function typeMessage(el) {
+      function typeMessage(el, duration = msgDuration) {
         return new Promise((resolve) => {
           const text = el.getAttribute('data-text') || '';
           el.classList.add('visible');
-          const totalTicks = Math.max(1, Math.round(msgDuration / tick));
+          const totalTicks = Math.max(1, Math.round(duration / tick));
           const charsPerTick = Math.max(1, Math.ceil(text.length / totalTicks));
           let i = 0;
           state.activeInterval = setInterval(() => {
@@ -1869,9 +1870,9 @@
             await showDots(el);
           } else if (el.classList.contains('hero-msg')) {
             if (el.classList.contains('user')) {
-              await new Promise(r => setTimeout(r, firstUser ? 300 : 80));
-              if (firstUser) { await typeMessage(el); firstUser = false; }
-              else showInstant(el);
+              await new Promise(r => setTimeout(r, firstUser ? 500 : 300));
+              await typeMessage(el, userMsgDuration);
+              if (firstUser) firstUser = false;
             } else {
               await typeMessage(el);
             }
