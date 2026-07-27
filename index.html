@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TarmacSync</title>
-  <meta name="description" content="TarmacSync turns a plain-English purchase description into the most defensible procurement path for your airport — buying routes, AIP/FAA compliance overlays, cooperative contracts across all major consortiums, and a fully documented procurement file. Join the early-access waitlist.">
+  <meta name="description" content="TarmacSync turns a plain-English purchase description into the most defensible procurement path for your airport — buying routes, AIP/FAA compliance overlays, 7,900+ cooperative contracts, and a fully documented procurement file. Join the early-access waitlist.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.tarmacsync.com/">
   <meta name="theme-color" content="#FFFFFF">
@@ -400,6 +400,18 @@
 
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .card { padding: 2rem; border: 1px solid var(--line); border-radius: 6px; background: var(--soft); }
+    .card.reveal-ready {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .card.reveal-initial {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .card:nth-child(1).reveal-ready { transition-delay: .1s; }
+    .card:nth-child(2).reveal-ready { transition-delay: .25s; }
+    .card:nth-child(3).reveal-ready { transition-delay: .4s; }
     .card h3 { margin-bottom: .8rem; font-size: 1.18rem; }
     .card p { color: var(--muted); font-size: .92rem; }
 
@@ -988,7 +1000,7 @@
         "name": "Can TarmacSync help identify cooperative contracts?",
         "acceptedAnswer": {
           "@type": "Answer",
-           "text": "Yes. TarmacSync indexes cooperative and government purchasing vehicles across the major consortiums — OMNIA Partners, Sourcewell, NASPO ValuePoint, GSA — each cross-referenced with federal guidance. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award."
+            "text": "Yes. TarmacSync indexes 7,900+ cooperative and government purchasing vehicles across the major consortiums — OMNIA Partners, Sourcewell, NASPO ValuePoint, TIPS-USA — each indexed with federal guidance. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award."
         }
       },
       {
@@ -1012,7 +1024,7 @@
         "name": "Why not just use a general AI assistant?",
         "acceptedAnswer": {
           "@type": "Answer",
-           "text": "A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, cooperative contracts across all major consortiums, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context carries through the entire purchase."
+           "text": "A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, 7,900+ cooperative contracts, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context carries through the entire purchase."
         }
       },
       {
@@ -1087,7 +1099,7 @@
       <details class="site-disclosure library-disclosure" aria-label="The intelligence library behind every answer" open>
         <summary><span class="mono">The intelligence library behind every answer</span></summary>
         <div class="library-grid">
-            <div class="library-item"><strong>800<em>+</em></strong><p>cooperative contracts, screened for airport applicability</p></div>
+            <div class="library-item"><strong>7,900<em>+</em></strong><p>cooperative contracts, screened for airport applicability</p></div>
           <div class="library-item"><strong>47</strong><p>FAA Advisory Circulars with verified excerpts</p></div>
           <div class="library-item"><strong>40</strong><p>Grant Assurances mapped to purchase types</p></div>
           <div class="library-item"><strong>50</strong><p>airport procurement categories covered</p></div>
@@ -1377,7 +1389,7 @@
               </div>
               <span class="label">Contract intelligence</span>
               <h3>Find the vehicles that actually fit</h3>
-               <p>Cooperative and government purchasing vehicles across all major consortiums, screened for airport applicability and matched on scope, authority, funding, and policy context.</p>
+               <p>7,900+ cooperative and government purchasing vehicles, screened for airport applicability and matched on scope, authority, funding, and policy context.</p>
               <span class="vision-card-footer">Vehicle matching</span>
             </article>
 
@@ -1437,7 +1449,7 @@
                 <span>Compliance scenarios verified on every release</span>
               </div>
               <div class="vision-metric">
-                <strong>800+</strong>
+                <strong>7,900+</strong>
                 <span>Cooperative vehicles screened for airport use</span>
               </div>
               <div class="vision-metric">
@@ -1538,7 +1550,7 @@
           <details>
             <summary>Can TarmacSync help identify cooperative contracts?</summary>
             <div class="faq-answer">
-              <p>Yes. TarmacSync indexes cooperative and government purchasing vehicles across the major consortiums — OMNIA Partners, Sourcewell, NASPO ValuePoint, GSA — each cross-referenced with federal guidance. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award.</p>
+              <p>Yes. TarmacSync indexes 7,900+ cooperative and government purchasing vehicles across the major consortiums — OMNIA Partners, Sourcewell, NASPO ValuePoint, TIPS-USA — each indexed with federal guidance. It helps the team evaluate scope, pricing, authority, funding compatibility, and documentation — always framed as candidate pathways to validate before award.</p>
             </div>
           </details>
 
@@ -1559,7 +1571,7 @@
           <details>
             <summary>Why not just use a general AI assistant?</summary>
             <div class="faq-answer">
-              <p>A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, cooperative contracts across all major consortiums, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context — policies, thresholds, projects, funding signals, contract candidates, evidence — carries through the entire purchase.</p>
+              <p>A general AI assistant can summarize a document or answer a one-time question — and will confidently invent a regulation when it doesn't know one. Pathfinder is an agentic system built for this domain: it actively searches your airport's own policies, the federal knowledge base, 7,900+ cooperative contracts, and live FAA sources before answering; every regulatory claim cites its retrieved source; and the airport's persistent working context — policies, thresholds, projects, funding signals, contract candidates, evidence — carries through the entire purchase.</p>
             </div>
           </details>
 
@@ -1896,7 +1908,7 @@
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const items = document.querySelectorAll('.why-item, .trust-point, .founder-panel');
+      const items = document.querySelectorAll('.why-item, .trust-point, .founder-panel, .card');
       if (!items.length) return;
 
       items.forEach((el) => {
