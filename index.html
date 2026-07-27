@@ -1793,9 +1793,9 @@
       const children = container.children;
       const card = document.getElementById('proof-review-card');
       const tick = 40;          // ms per animation frame
-      const msgDuration = 1200;  // ms budget per agent message
-      const userMsgDuration = 500;  // ms budget per user message — faster but still typed
-      const dotDuration = 800;   // ms the typing indicator holds
+      const msgDuration = 2000;  // ms budget per agent message
+      const userMsgDuration = 800;  // ms budget per user message
+      const dotDuration = 1200;   // ms the typing indicator holds
 
       function showEverythingInstantly() {
         for (const el of children) {
@@ -1862,7 +1862,7 @@
             await showDots(el);
           } else if (el.classList.contains('hero-msg')) {
             if (el.classList.contains('user')) {
-              await new Promise(r => setTimeout(r, firstUser ? 500 : 300));
+              await new Promise(r => setTimeout(r, firstUser ? 700 : 500));
               await typeMessage(el, userMsgDuration);
               if (firstUser) firstUser = false;
             } else {
@@ -1871,7 +1871,7 @@
           }
         }
         if (state.skipped) return;
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 500));
         card.style.display = 'grid';
         card.classList.add('visible');
         proofMain.classList.add('done');
