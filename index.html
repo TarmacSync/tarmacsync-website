@@ -654,6 +654,8 @@
     }
     .contact-card h3 { margin: .8rem 0 .6rem; font-size: 1.35rem; }
     .contact-card > p { margin-bottom: 1.4rem; color: var(--muted); font-size: .94rem; }
+    .contact-reveal-trigger { width: 100%; margin-top: .2rem; }
+    .contact-reveal form { margin-top: 1.25rem; }
 
     form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .field { display: grid; gap: .4rem; }
@@ -1591,7 +1593,7 @@
 
           <ul class="contact-benefits">
             <li>Free to join, zero commitment</li>
-            <li>Your input shapes what we build</li>
+            <li>Custom solution based on our industry expertise</li>
             <li>Priority access for founding airports</li>
           </ul>
         </div>
@@ -1601,7 +1603,10 @@
           <h3>Get early access</h3>
           <p>Tell us your airport and the workflow you want to improve. We follow up personally — no drip campaigns, no sales pressure.</p>
 
-          <form id="waitlist-form">
+          <div class="contact-reveal">
+            <button class="btn btn-orange contact-reveal-trigger" type="button">Start the conversation</button>
+
+            <form id="waitlist-form" style="display:none">
             <div class="spam-trap" aria-hidden="true">
               <label for="website">Website</label>
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
@@ -1634,6 +1639,7 @@
 
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1641,7 +1647,7 @@
     <!-- ── FINAL CTA ─────────────────────────────────── -->
     <section class="cta">
       <div class="container cta-inner">
-        <h2>Bring us the problem. Help build the solution.</h2>
+        <h2>Bring us the problem. Together, we build the solution.</h2>
         <p>We're building TarmacSync alongside a small group of founding airports. Tell us which workflow slows your team down most&mdash;we'll start there.</p>
         <a class="btn" href="#contact">Get early access</a>
       </div>
@@ -1675,6 +1681,20 @@
   </button>
 
   <script>
+    // ── Contact form reveal ─────────────────────────────
+    (function () {
+      const trigger = document.querySelector('.contact-reveal-trigger');
+      const form = document.getElementById('waitlist-form');
+      if (!trigger || !form) return;
+
+      trigger.addEventListener('click', () => {
+        form.style.display = 'grid';
+        trigger.style.display = 'none';
+        const firstInput = form.querySelector('input[id]');
+        if (firstInput) firstInput.focus();
+      });
+    })();
+
     // ── Waitlist form ──────────────────────────────────
     const form = document.getElementById('waitlist-form');
     const status = document.getElementById('form-status');
