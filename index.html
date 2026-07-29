@@ -90,7 +90,7 @@
       --bg: #fff;
       --ink: #0a0a0d;
       --muted: #4a4a52;
-      --orange: #e66a16;
+      --orange: #b94e08;
       --line: #e5e5eb;
       --soft: #f9f9fb;
       --green: #256c43;
@@ -193,7 +193,7 @@
     .btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
     .btn-secondary:hover { border-color: var(--ink); background: var(--soft); }
     .btn-orange { background: var(--orange); border-color: var(--orange); color: #fff; }
-    .btn-orange:hover { background: #cf5c10; border-color: #cf5c10; }
+    .btn-orange:hover { background: #9a3e04; border-color: #9a3e04; }
 
     /* ── Hero ─────────────────────────────────────── */
     .hero { padding: 7.5rem 0 3.5rem; }
@@ -322,8 +322,7 @@
       transition: opacity .9s ease, transform .9s ease;
     }
     .why-item.reveal-initial {
-      opacity: 0;
-      transform: translateY(28px);
+      opacity: 1;
     }
     .why-item:nth-child(1).reveal-ready { transition-delay: .15s; }
     .why-item:nth-child(2).reveal-ready { transition-delay: .35s; }
@@ -399,8 +398,7 @@
       transition: opacity .9s ease, transform .9s ease;
     }
     .card.reveal-initial {
-      opacity: 0;
-      transform: translateY(28px);
+      opacity: 1;
     }
     .card:nth-child(1).reveal-ready { transition-delay: .1s; }
     .card:nth-child(2).reveal-ready { transition-delay: .25s; }
@@ -433,8 +431,7 @@
       transition: opacity .9s ease, transform .9s ease;
     }
     .trust-point.reveal-initial {
-      opacity: 0;
-      transform: translateY(28px);
+      opacity: 1;
     }
     .trust-point:nth-child(1).reveal-ready { transition-delay: .15s; }
     .trust-point:nth-child(2).reveal-ready { transition-delay: .35s; }
@@ -580,8 +577,7 @@
       transition: opacity .9s ease, transform .9s ease;
     }
     .founder-panel.reveal-initial {
-      opacity: 0;
-      transform: translateY(32px);
+      opacity: 1;
     }
     .founder-portrait {
       width: 100%; max-width: 235px; justify-self: center; overflow: hidden;
@@ -1219,6 +1215,15 @@
               <li>Participation may remain private. No testimonials or logos required.</li>
             </ul>
 
+            <span class="mono" style="margin-top:2rem;display:block;">What your airport receives</span>
+            <ul class="contact-benefits" style="margin-top:.8rem;">
+              <li>A configured airport procurement profile.</li>
+              <li>Two reviewed Pathfinder project records.</li>
+              <li>Identified policy and information gaps.</li>
+              <li>A procurement-path and workflow improvement summary.</li>
+              <li>Direct influence over the product roadmap.</li>
+            </ul>
+
             <span class="mono" style="margin-top:2rem;display:block;">Who we're looking for</span>
             <ul class="contact-benefits" style="margin-top:.8rem;">
               <li>U.S. public-use airport or sponsor.</li>
@@ -1260,21 +1265,21 @@
               </div>
 
               <div class="field">
-                <label for="airport-type">Airport type</label>
-                <select id="airport-type" name="airport_type" required style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
+                <label for="airport-type">Airport type <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+                <select id="airport-type" name="airport_type" style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
                   <option value="">Select...</option>
-                  <option>Commercial service</option>
+                  <option>Nonprimary general aviation</option>
                   <option>Reliever</option>
-                  <option>General aviation</option>
-                  <option>Non-hub primary</option>
-                  <option>Small-hub primary</option>
-                  <option>Other</option>
+                  <option>Commercial service — non-hub</option>
+                  <option>Small hub</option>
+                  <option>Medium or large hub</option>
+                  <option>Sponsor / agency / other</option>
                 </select>
               </div>
 
               <div class="field">
-                <label for="state">State</label>
-                <select id="state" name="state" required style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
+                <label for="state">State <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+                <select id="state" name="state" style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
                   <option value="">Select...</option>
                   <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
                 </select>
@@ -1286,8 +1291,8 @@
               </div>
 
               <div class="field full">
-                <label for="timing">Timing</label>
-                <select id="timing" name="timing" required style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
+                <label for="timing">Timing <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+                <select id="timing" name="timing" style="width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;">
                   <option value="">Select...</option>
                   <option>Now</option>
                   <option>Next 90 days</option>
@@ -1313,7 +1318,7 @@
               <p style="font-size:.94rem;line-height:1.6;">Thank you. We'll respond personally within two business days. The next step is a short fit conversation — no sales pitch.</p>
             </div>
 
-            <p style="margin-top:1rem;font-size:.72rem;color:var(--muted);">By applying, you agree to our <a href="/privacy.html">Privacy Policy</a>. Airport project details are not shared with third parties.</p>
+            <p style="margin-top:1rem;font-size:.72rem;color:var(--muted);">We use your information only to evaluate your application and operate the co-founding program, as described in our <a href="/privacy.html">Privacy Policy</a>. We do not sell your information.</p>
           </div>
         </div>
       </section>
@@ -1347,7 +1352,7 @@
           </details>
           <details>
             <summary>Is airport information used to train public AI models?</summary>
-            <div class="faq-answer"><p>No. TarmacSync is designed for controlled enterprise use. Specific data handling and model-provider terms are documented before any airport provides production information.</p></div>
+            <div class="faq-answer"><p>TarmacSync does not use airport information to train public AI models. Approved service providers may process information to operate the service under disclosed data-handling terms.</p></div>
           </details>
         </div>
       </section>
@@ -1370,9 +1375,13 @@
       </a>
 
       <div class="footer-links">
+        <a href="/founding-airports.html">Co-Founding Program</a>
+        <a href="/airport-procurement-intelligence.html">Procurement Intelligence</a>
+        <a href="/aip-procurement.html">AIP Procurement</a>
+        <a href="/cooperative-contracts-airports.html">Cooperative Contracts</a>
+        <a href="/resources.html">Resources</a>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
-        <a href="#apply">Apply</a>
       </div>
 
       <div class="copyright">© 2026 TARMACSYNC.</div>

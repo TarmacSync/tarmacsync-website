@@ -67,6 +67,14 @@ module.exports = async function waitlist(request, response) {
     });
   }
 
+  // Rate limiting: block rapid resubmissions (in-memory, per-function-instance)
+  const submissionKey = `${email}:${organization}`.toLowerCase();
+  if (global._submissionCache && global._submissionCache[submissionKey] && Date.now() - global._submissionCache[submissionKey] < 60000) {
+    return sendJson(response, 429, { ok: false, error: "Please wait before submitting again." });
+  }
+  if (!global._submissionCache) global._submissionCache = {};
+  global._submissionCache[submissionKey] = Date.now();
+
   const { RESEND_API_KEY, WAITLIST_FROM_EMAIL, WAITLIST_TO_EMAIL } = process.env;
   if (!RESEND_API_KEY || !WAITLIST_FROM_EMAIL || !WAITLIST_TO_EMAIL) {
     console.error("Waitlist email environment variables are not configured.");
@@ -180,29 +188,34 @@ module.exports = async function waitlist(request, response) {
   }
 
   // Zoho CRM: Web-to-Lead form (best-effort, non-blocking)
-  try {
-    const zohoDesc = [project, challenge].filter(Boolean).join("\n\n");
-    const zohoRes = await fetch("https://crm.zoho.eu/crm/WebToLeadForm", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        xnQsjsdp: "e091d8eaa0fe1b69c3e1a5547d81fdcd9b47d9ef45267c13221333de0d367284",
-        xmIwtLD: "3bd3e83dfe1622648148e810de9c67746d4db06b5b00c06e0d9d161be017effe1e87e615f6b759107f07f027e7ad60b8",
-        actionType: "TGVhZHM=",
-        returnURL: "null",
-        Email: email,
-        "Last Name": fullName,
-        Company: organization,
-        Designation: role,
-        Description: zohoDesc || "",
-      }),
-    });
+  const ZOHO_XNQSJSDP = process.env.ZOHO_XNQSJSDP || "";
+  const ZOHO_XMIWTLD = process.env.ZOHO_XMIWTLD || "";
 
-    if (!zohoRes.ok) {
-      console.error("Zoho Web-to-Lead failed:", await zohoRes.text());
+  if (ZOHO_XNQSJSDP && ZOHO_XMIWTLD) {
+    try {
+      const zohoDesc = [project, challenge].filter(Boolean).join("\n\n");
+      const zohoRes = await fetch("https://crm.zoho.eu/crm/WebToLeadForm", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          xnQsjsdp: ZOHO_XNQSJSDP,
+          xmIwtLD: ZOHO_XMIWTLD,
+          actionType: "TGVhZHM=",
+          returnURL: "null",
+          Email: email,
+          "Last Name": fullName,
+          Company: organization,
+          Designation: role,
+          Description: zohoDesc || "",
+        }),
+      });
+
+      if (!zohoRes.ok) {
+        console.error("Zoho Web-to-Lead failed:", await zohoRes.text());
+      }
+    } catch (error) {
+      console.error("Zoho Web-to-Lead error:", error);
     }
-  } catch (error) {
-    console.error("Zoho Web-to-Lead error:", error);
   }
 
   return sendJson(response, 200, { ok: true });
