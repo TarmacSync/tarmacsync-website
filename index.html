@@ -666,6 +666,21 @@
     .form-status { grid-column: 1 / -1; min-height: 1.3rem; font-size: .82rem; font-weight: 600; }
     .form-status.success { color: var(--green); }
     .form-status.error { color: #a33b22; }
+
+    .contact-success { text-align: center; padding: 1rem 0; }
+    .contact-success-check {
+      display: grid; place-items: center; width: 48px; height: 48px;
+      margin: 0 auto 1rem;
+      border-radius: 50%; background: var(--green); color: #fff;
+      font-size: 1.3rem; font-weight: 700;
+    }
+    .contact-success h3 { margin-bottom: .8rem; font-size: 1.3rem; }
+    .contact-next-steps { text-align: left; margin-top: 1.5rem; display: grid; gap: .75rem; }
+    .contact-next-step {
+      padding: .6rem .8rem; border: 1px solid var(--line); border-radius: 6px;
+      font-size: .84rem; color: var(--muted); line-height: 1.45;
+    }
+    .contact-next-step strong { display: block; margin-bottom: .15rem; color: var(--ink); font-size: .68rem; font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; }
     .spam-trap { position: absolute; left: -9999px; }
 
     .cta { padding: 6.5rem 0; background: var(--ink); color: #fff; text-align: center; }
@@ -1590,10 +1605,10 @@
           </ul>
         </div>
 
-        <div class="contact-card">
-          <span class="mono">[ ~30 seconds ]</span>
-          <h3>Get started</h3>
-          <p>Tell us what you need to buy and which workflow slows your team down. We follow up personally — no drip campaigns, no sales pressure.</p>
+        <div class="contact-card" id="contact-card">
+          <span class="mono contact-pre-submit">[ ~30 seconds ]</span>
+          <h3 class="contact-pre-submit">Get started</h3>
+          <p class="contact-pre-submit">Tell us what you need to buy and which workflow slows your team down. We follow up personally — no drip campaigns, no sales pressure.</p>
 
           <form id="waitlist-form">
             <div class="spam-trap" aria-hidden="true">
@@ -1628,6 +1643,17 @@
 
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
+
+          <div class="contact-success" id="contact-success" style="display:none">
+            <div class="contact-success-check">&#10003;</div>
+            <h3>You're on the list.</h3>
+            <p style="font-size:.94rem; line-height:1.6;">We reply personally to every submission — usually within 48 hours. You'll hear from someone who understands airport procurement, not a sales rep.</p>
+            <div class="contact-next-steps">
+              <div class="contact-next-step"><strong>First</strong> We'll confirm your airport and the workflows that matter most.</div>
+              <div class="contact-next-step"><strong>Then</strong> You'll get early access to Pathfinder before the public launch.</div>
+              <div class="contact-next-step"><strong>Ongoing</strong> Your feedback directly shapes what we build — founding airports drive the roadmap.</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1700,14 +1726,16 @@
 
         form.reset();
         status.className = 'form-status success';
-        status.textContent = "You're on the list. We'll follow up personally.";
-        form.querySelectorAll('.field, .form-actions').forEach(el => el.style.display = 'none');
-        button.style.display = 'none';
+        status.textContent = '';
+        form.style.display = 'none';
+        document.querySelectorAll('.contact-pre-submit').forEach(el => el.style.display = 'none');
+        document.getElementById('contact-success').style.display = 'block';
       } catch (error) {
         status.className = 'form-status error';
         status.textContent = error.message || 'We could not send your submission. Please try again.';
-        form.querySelectorAll('.field, .form-actions').forEach(el => el.style.display = '');
-        button.style.display = '';
+        form.style.display = '';
+        document.querySelectorAll('.contact-pre-submit').forEach(el => el.style.display = '');
+        document.getElementById('contact-success').style.display = 'none';
         button.disabled = false;
         button.textContent = 'Get started';
       } finally {
