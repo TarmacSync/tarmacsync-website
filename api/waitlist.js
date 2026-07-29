@@ -68,14 +68,64 @@ module.exports = async function waitlist(request, response) {
     });
   }
 
-  const message = [
+  const text = [
     "New TarmacSync waitlist submission",
     "",
     `Work email: ${email}`,
     `Airport / organization: ${organization}`,
     `Role: ${role}`,
-    ...(challenge ? ["", "Anything else:", challenge] : []),
+    ...(challenge ? ["", "Challenge:", challenge] : []),
   ].join("\n");
+
+  const html = `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:40px 0;">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);">
+  <tr>
+    <td style="padding:32px 36px 20px;border-bottom:1px solid #eee;">
+      <img src="https://www.tarmacsync.com/assets/tarmacsync-logo.png" alt="TarmacSync" width="160" height="36" style="display:block;border:0;">
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:28px 36px 12px;">
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">New waitlist submission</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:6px 36px 28px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;width:90px;">Email</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;"><a href="mailto:${email}" style="color:#0a0a0d;text-decoration:none;">${email}</a></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Airport</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;">${organization}</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Role</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;">${role}</td>
+        </tr>${challenge ? `
+        <tr>
+          <td style="padding:10px 0;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Challenge</td>
+          <td style="padding:10px 0;font-size:15px;color:#0a0a0d;line-height:1.5;">${challenge.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
+        </tr>` : ""}
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:20px 36px 32px;border-top:1px solid #eee;">
+      <p style="margin:0;font-size:13px;color:#999;line-height:1.5;">Reply directly to this email to respond to ${email.split("@")[0]}.</p>
+    </td>
+  </tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
 
   try {
     const resendResponse = await fetch("https://api.resend.com/emails", {
@@ -89,7 +139,8 @@ module.exports = async function waitlist(request, response) {
         to: [WAITLIST_TO_EMAIL],
         reply_to: email,
         subject: `TarmacSync waitlist — ${organization}`,
-        text: message,
+        text,
+        html,
       }),
     });
 
