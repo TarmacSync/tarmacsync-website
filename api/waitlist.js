@@ -159,42 +159,30 @@ module.exports = async function waitlist(request, response) {
     });
   }
 
-  // Zoho CRM: create lead via MCP (best-effort, non-blocking)
-  const ZOHO_MCP_URL = process.env.ZOHO_MCP_URL;
+  // Zoho CRM: Web-to-Lead form (best-effort, non-blocking)
+  try {
+    const name = email.split("@")[0];
+    const zohoRes = await fetch("https://crm.zoho.eu/crm/WebToLeadForm", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        xnQsjsdp: "e091d8eaa0fe1b69c3e1a5547d81fdcd9b47d9ef45267c13221333de0d367284",
+        xmIwtLD: "3bd3e83dfe1622648148e810de9c67746d4db06b5b00c06e0d9d161be017effe1e87e615f6b759107f07f027e7ad60b8",
+        actionType: "TGVhZHM=",
+        returnURL: "null",
+        Email: email,
+        "Last Name": name,
+        Company: organization,
+        Designation: role,
+        Description: challenge || "",
+      }),
+    });
 
-  if (ZOHO_MCP_URL) {
-    try {
-      const name = email.split("@")[0];
-      const mcpRes = await fetch(ZOHO_MCP_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          method: "tools/call",
-          params: {
-            name: "create_record",
-            arguments: {
-              module: "Leads",
-              data: {
-                Email: email,
-                Last_Name: name,
-                Company: organization,
-                Title: role,
-                Description: challenge || "",
-                Lead_Source: "TarmacSync Website",
-              },
-            },
-          },
-          id: 1,
-        }),
-      });
-
-      if (!mcpRes.ok) {
-        console.error("Zoho MCP create lead failed:", await mcpRes.text());
-      }
-    } catch (error) {
-      console.error("Zoho MCP integration error:", error);
+    if (!zohoRes.ok) {
+      console.error("Zoho Web-to-Lead failed:", await zohoRes.text());
     }
+  } catch (error) {
+    console.error("Zoho Web-to-Lead error:", error);
   }
 
   return sendJson(response, 200, { ok: true });
