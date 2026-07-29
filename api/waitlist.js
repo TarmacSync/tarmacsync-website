@@ -48,14 +48,22 @@ module.exports = async function waitlist(request, response) {
   }
 
   const email = clean(payload.email, 254);
+  const fullName = clean(payload.full_name, 160);
   const organization = clean(payload.organization, 160);
   const role = clean(payload.role, 120);
+  const airportType = clean(payload.airport_type, 100);
+  const state = clean(payload.state, 2);
+  const project = clean(payload.project, 2000);
+  const timing = clean(payload.timing, 50);
   const challenge = clean(payload.challenge, 2000);
+  const utmSource = clean(payload.utm_source, 200);
+  const utmMedium = clean(payload.utm_medium, 200);
+  const utmCampaign = clean(payload.utm_campaign, 200);
 
-  if (!isEmail(email) || !organization || !role) {
+  if (!isEmail(email) || !fullName || !organization || !role) {
     return sendJson(response, 400, {
       ok: false,
-      error: "Please complete every field with a valid work email.",
+      error: "Please complete every required field with a valid work email.",
     });
   }
 
@@ -69,13 +77,36 @@ module.exports = async function waitlist(request, response) {
   }
 
   const text = [
-    "New TarmacSync waitlist submission",
+    "New Co-Founding Airport Program application",
     "",
+    `Name: ${fullName}`,
     `Work email: ${email}`,
     `Airport / organization: ${organization}`,
     `Role: ${role}`,
-    ...(challenge ? ["", "Challenge:", challenge] : []),
+    ...(airportType ? [`Airport type: ${airportType}`] : []),
+    ...(state ? [`State: ${state}`] : []),
+    ...(timing ? [`Timing: ${timing}`] : []),
+    ...(utmSource ? [`UTM source: ${utmSource}`] : []),
+    ...(utmMedium ? [`UTM medium: ${utmMedium}`] : []),
+    ...(utmCampaign ? [`UTM campaign: ${utmCampaign}`] : []),
+    ...(project ? ["", "Project:", project] : []),
+    ...(challenge ? ["", "Additional:", challenge] : []),
   ].join("\n");
+
+  const htmlRows = [
+    { label: "Name", value: fullName },
+    { label: "Email", value: `<a href="mailto:${email}" style="color:#0a0a0d;text-decoration:none;">${email}</a>` },
+    { label: "Airport", value: organization },
+    { label: "Role", value: role },
+    ...(airportType ? [{ label: "Airport type", value: airportType }] : []),
+    ...(state ? [{ label: "State", value: state }] : []),
+    ...(timing ? [{ label: "Timing", value: timing }] : []),
+    ...(utmSource ? [{ label: "UTM source", value: utmSource }] : []),
+    ...(utmMedium ? [{ label: "UTM medium", value: utmMedium }] : []),
+    ...(utmCampaign ? [{ label: "UTM campaign", value: utmCampaign }] : []),
+    ...(project ? [{ label: "Project", value: project }] : []),
+    ...(challenge ? [{ label: "Additional", value: challenge }] : []),
+  ];
 
   const html = `<!DOCTYPE html>
 <html>
@@ -91,34 +122,23 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:28px 36px 12px;">
-      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">New waitlist submission</p>
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Co-Founding Airport Program application</p>
     </td>
   </tr>
   <tr>
     <td style="padding:6px 36px 28px;">
       <table width="100%" cellpadding="0" cellspacing="0">
+        ${htmlRows.map(r => `
         <tr>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;width:90px;">Email</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;"><a href="mailto:${email}" style="color:#0a0a0d;text-decoration:none;">${email}</a></td>
-        </tr>
-        <tr>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Airport</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;">${organization}</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Role</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;">${role}</td>
-        </tr>${challenge ? `
-        <tr>
-          <td style="padding:10px 0;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;">Challenge</td>
-          <td style="padding:10px 0;font-size:15px;color:#0a0a0d;line-height:1.5;">${challenge.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
-        </tr>` : ""}
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;width:100px;">${r.label}</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;line-height:1.5;">${String(r.value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
+        </tr>`).join("")}
       </table>
     </td>
   </tr>
   <tr>
     <td style="padding:20px 36px 32px;border-top:1px solid #eee;">
-      <p style="margin:0;font-size:13px;color:#999;line-height:1.5;">Reply directly to this email to respond to ${email.split("@")[0]}.</p>
+      <p style="margin:0;font-size:13px;color:#999;line-height:1.5;">Reply directly to this email to respond to ${fullName}.</p>
     </td>
   </tr>
 </table>
@@ -138,7 +158,7 @@ module.exports = async function waitlist(request, response) {
         from: WAITLIST_FROM_EMAIL,
         to: [WAITLIST_TO_EMAIL],
         reply_to: email,
-        subject: `TarmacSync waitlist — ${organization}`,
+        subject: `Co-Founding Airport Program — ${organization}`,
         text,
         html,
       }),
@@ -161,7 +181,7 @@ module.exports = async function waitlist(request, response) {
 
   // Zoho CRM: Web-to-Lead form (best-effort, non-blocking)
   try {
-    const name = email.split("@")[0];
+    const zohoDesc = [project, challenge].filter(Boolean).join("\n\n");
     const zohoRes = await fetch("https://crm.zoho.eu/crm/WebToLeadForm", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -171,10 +191,10 @@ module.exports = async function waitlist(request, response) {
         actionType: "TGVhZHM=",
         returnURL: "null",
         Email: email,
-        "Last Name": name,
+        "Last Name": fullName,
         Company: organization,
         Designation: role,
-        Description: challenge || "",
+        Description: zohoDesc || "",
       }),
     });
 
