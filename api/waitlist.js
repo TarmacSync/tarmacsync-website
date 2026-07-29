@@ -108,54 +108,41 @@ module.exports = async function waitlist(request, response) {
     });
   }
 
-  // Zoho CRM: create or update lead (best-effort, non-blocking)
-  const { ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET, ZOHO_REFRESH_TOKEN } = process.env;
-  const ZOHO_DOMAIN = process.env.ZOHO_CRM_DOMAIN || "zohoapis.com";
+  // Zoho CRM: create lead via MCP (best-effort, non-blocking)
+  const ZOHO_MCP_URL = process.env.ZOHO_MCP_URL;
 
-  if (ZOHO_CLIENT_ID && ZOHO_CLIENT_SECRET && ZOHO_REFRESH_TOKEN) {
+  if (ZOHO_MCP_URL) {
     try {
-      const tokenRes = await fetch(`https://accounts.zoho.${ZOHO_DOMAIN === "zohoapis.com" ? "com" : ZOHO_DOMAIN.replace("zohoapis.", "")}/oauth/v2/token`, {
+      const name = email.split("@")[0];
+      const mcpRes = await fetch(ZOHO_MCP_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          refresh_token: ZOHO_REFRESH_TOKEN,
-          client_id: ZOHO_CLIENT_ID,
-          client_secret: ZOHO_CLIENT_SECRET,
-          grant_type: "refresh_token",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "tools/call",
+          params: {
+            name: "create_record",
+            arguments: {
+              module: "Leads",
+              data: {
+                Email: email,
+                Last_Name: name,
+                Company: organization,
+                Title: role,
+                Description: challenge || "",
+                Lead_Source: "TarmacSync Website",
+              },
+            },
+          },
+          id: 1,
         }),
       });
 
-      if (!tokenRes.ok) {
-        console.error("Zoho OAuth token request failed:", await tokenRes.text());
-      } else {
-        const { access_token } = await tokenRes.json();
-
-        const name = email.split("@")[0];
-        const upsertRes = await fetch(`https://www.${ZOHO_DOMAIN}/crm/v7/Leads/upsert`, {
-          method: "POST",
-          headers: {
-            Authorization: `Zoho-oauthtoken ${access_token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data: [{
-              Email: email,
-              Last_Name: name,
-              Company: organization,
-              Title: role,
-              Description: challenge || "",
-              Lead_Source: "TarmacSync Website",
-            }],
-            duplicate_check_fields: ["Email"],
-          }),
-        });
-
-        if (!upsertRes.ok) {
-          console.error("Zoho CRM upsert failed:", await upsertRes.text());
-        }
+      if (!mcpRes.ok) {
+        console.error("Zoho MCP create lead failed:", await mcpRes.text());
       }
     } catch (error) {
-      console.error("Zoho CRM integration error:", error);
+      console.error("Zoho MCP integration error:", error);
     }
   }
 
