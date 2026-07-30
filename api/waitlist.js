@@ -280,6 +280,7 @@ module.exports = async function waitlist(request, response) {
       body: JSON.stringify({
         from: CONFIRMATION_FROM_EMAIL,
         to: [email],
+        reply_to: "contact@tarmacsync.com",
         subject: "Welcome to TarmacSync",
         text: confirmationText,
         html: confirmationHtml,
