@@ -15,14 +15,13 @@ Set these in Vercel for Preview and Production:
 
 - `RESEND_API_KEY`
 - `WAITLIST_FROM_EMAIL`
-- `WAITLIST_TO_EMAIL`
+- `WAITLIST_TO_EMAIL` (should be `hello@tarmacsync.com` or your internal notification address)
 
-Optional — the waitlist still works without them, but CRM integration won't activate:
+Optional — the waitlist still works without them, but extra integrations won't activate:
 
-- `ZOHO_CLIENT_ID`
-- `ZOHO_CLIENT_SECRET`
-- `ZOHO_REFRESH_TOKEN`
-- `ZOHO_CRM_DOMAIN` (defaults to `zohoapis.com`; use `zohoapis.eu`, `zohoapis.in`, etc. for non-US datacenters)
+- `CONFIRMATION_FROM_EMAIL` (defaults to `hello@tarmacsync.com`; used as the From address for the applicant confirmation email)
+- `ZOHO_XNQSJSDP` — Zoho Web-to-Lead form parameter 1
+- `ZOHO_XMIWTLD` — Zoho Web-to-Lead form parameter 2
 
 Expected behavior:
 
