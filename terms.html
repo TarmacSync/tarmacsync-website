@@ -35,6 +35,15 @@
     .footer-links { display:flex; gap:1.25rem; flex-wrap:wrap; }
     .footer-links a, .copyright { color:var(--asphalt-gray); text-decoration:none; font-size:.85rem; }
     @media (max-width:768px) { header, footer { align-items:flex-start; flex-direction:column; } .legal-page-main { padding:3rem 0 1rem; } }
+
+    footer { padding: 4.5rem 0 3.5rem; border-top: 1px solid var(--border-color); margin-top: 4rem; }
+    .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
+    footer .logo { width: 150px; height: 36px; object-fit: contain; object-position: left center; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: .7rem 2rem; }
+    .footer-links a { font-size: .85rem; color: var(--asphalt-gray); text-decoration: none; }
+    .footer-links a:hover { color: var(--tarmac); }
+    .footer-bottom { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--border-color); font-size: .78rem; color: var(--asphalt-gray); }
+
   </style>
 </head>
 <body>
@@ -167,14 +176,19 @@
       </section>
     </main>
 
-    <footer style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-      <span class="copyright">&copy; 2026 TarmacSync</span>
-      <div class="footer-links">
-        <a href="/resources.html">Resources</a>
-        <a href="mailto:contact@tarmacsync.com">Contact</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
+    <footer>
+      <div class="footer-top">
+        <a href="/" aria-label="TarmacSync home">
+          <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
+        </a>
+        <div class="footer-links">
+          <a href="/resources.html">Resources</a>
+          <a href="mailto:contact@tarmacsync.com">Contact</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
       </div>
+      <div class="footer-bottom">&copy; 2026 TarmacSync</div>
     </footer>
   </div>
 </body>
