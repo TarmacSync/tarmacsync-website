@@ -200,7 +200,7 @@ module.exports = async function waitlist(request, response) {
     "What happens next:",
     "",
     "1. We'll review your application personally, usually within two business days.",
-    "2. If the pilot appears to be a good fit, Omar will invite you to a short conversation and walk through your project in Pathfinder — no slide deck.",
+    "2. If the pilot appears to be a good fit, I'll invite you to a short conversation and walk through your project in Pathfinder — no slide deck.",
     "",
     "We're selecting two airport partners for the pilot and expect to finalize selections shortly after conversations wrap up.",
     "",
@@ -246,7 +246,7 @@ module.exports = async function waitlist(request, response) {
         </tr>
         <tr>
           <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">2.</td>
-          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the pilot appears to be a good fit, Omar will invite you to a short conversation and walk through your project in Pathfinder — no slide deck.</td>
+          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the pilot appears to be a good fit, I'll invite you to a short conversation and walk through your project in Pathfinder — no slide deck.</td>
         </tr>
       </table>
     </td>
