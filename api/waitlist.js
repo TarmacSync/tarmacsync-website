@@ -319,6 +319,12 @@ module.exports = async function waitlist(request, response) {
       };
 
       if (state) zohoFields.State = state;
+      if (airportType) zohoFields["Airport Type"] = airportType;
+      if (project) zohoFields.Project = project;
+      if (timing) zohoFields.Timing = timing;
+      if (utmSource) zohoFields["UTM Source"] = utmSource;
+      if (utmMedium) zohoFields["UTM Medium"] = utmMedium;
+      if (utmCampaign) zohoFields["UTM Campaign"] = utmCampaign;
 
       const zohoRes = await fetch("https://crm.zoho.com/crm/WebToLeadForm", {
         method: "POST",
