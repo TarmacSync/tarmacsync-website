@@ -33,9 +33,9 @@ The waitlist endpoint currently includes:
 
 ## Reporting
 
-If you discover a security issue, report it privately to:
+If you discover a security issue, report it through the contact form at:
 
-`contact@tarmacsync.com`
+https://www.tarmacsync.com/#apply
 
 Do not open a public issue for an unpatched vulnerability.
 

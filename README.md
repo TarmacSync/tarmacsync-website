@@ -53,6 +53,11 @@ The waitlist endpoint requires:
 - `WAITLIST_FROM_EMAIL`
 - `WAITLIST_TO_EMAIL`
 
+Optional:
+
+- `CONFIRMATION_FROM_EMAIL` (defaults to `hello@tarmacsync.com`; sends applicant confirmation)
+- `ZOHO_XNQSJSDP` and `ZOHO_XMIWTLD` — Zoho CRM Web-to-Lead form parameters
+
 Behavior:
 
 - If any of these are missing, `api/waitlist.js` returns `503`.
@@ -64,8 +69,10 @@ Behavior:
 1. Visitor submits the waitlist form.
 2. Browser sends `POST /api/waitlist`.
 3. The endpoint validates method, origin, payload shape, and email format.
-4. The endpoint sends a plain-text message through Resend.
-5. The endpoint returns JSON success or failure.
+4. The endpoint sends a plain-text message through Resend to the internal team.
+5. The endpoint sends a confirmation email to the applicant from `hello@tarmacsync.com`.
+6. If Zoho Web-to-Lead env vars are set, the lead is forwarded to Zoho CRM (best-effort).
+7. The endpoint returns JSON success or failure.
 
 ## Deployment
 
