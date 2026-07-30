@@ -197,11 +197,10 @@ module.exports = async function waitlist(request, response) {
     "",
     "What happens next:",
     "",
-    "1. We'll review your application personally, usually within one business day.",
-    "2. If your airport looks like a strong fit, Omar will reach out to schedule a 20-minute call.",
-    "3. On the call, we'll walk through your first project and show you how Pathfinder would approach it — no slide deck, just the product.",
+    "1. We'll review your application personally, usually within two business days.",
+    "2. If the pilot appears to be a good fit, Omar will invite you to a short conversation and walk through your project in Pathfinder — no slide deck.",
     "",
-    "We're selecting two founding airports and expect to finalize selections shortly after conversations wrap up.",
+    "We're selecting two airport partners for the pilot and expect to finalize selections shortly after conversations wrap up.",
     "",
     "If you have any questions before then, just reply to this email.",
     "",
@@ -241,22 +240,18 @@ module.exports = async function waitlist(request, response) {
       <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:10px 14px;border-bottom:1px solid #f0f0f3;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">1.</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:14px;color:#3a3a42;line-height:1.5;">We'll review your application personally, usually within one business day.</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:14px;color:#3a3a42;line-height:1.5;">We'll review your application personally, usually within two business days.</td>
         </tr>
         <tr>
-          <td style="padding:10px 14px;border-bottom:1px solid #f0f0f3;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">2.</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:14px;color:#3a3a42;line-height:1.5;">If your airport looks like a strong fit, Omar will reach out to schedule a 20-minute call.</td>
-        </tr>
-        <tr>
-          <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">3.</td>
-          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">On the call, we'll walk through your first project and show you how Pathfinder would approach it — no slide deck, just the product.</td>
+          <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">2.</td>
+          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the pilot appears to be a good fit, Omar will invite you to a short conversation and walk through your project in Pathfinder — no slide deck.</td>
         </tr>
       </table>
     </td>
   </tr>
   <tr>
     <td style="padding:16px 36px 28px;font-size:14px;color:#3a3a42;line-height:1.65;">
-      <p style="margin:0;">We're selecting two founding airports and expect to finalize selections shortly after conversations wrap up.</p>
+      <p style="margin:0;">We're selecting two airport partners for the pilot and expect to finalize selections shortly after conversations wrap up.</p>
       <p style="margin:14px 0 0;">If you have any questions before then, just reply to this email.</p>
     </td>
   </tr>
