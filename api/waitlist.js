@@ -103,7 +103,11 @@ module.exports = async function waitlist(request, response) {
 
   const htmlRows = [
     { label: "Name", value: fullName },
-    { label: "Email", value: `<a href="mailto:${email}" style="color:#0a0a0d;text-decoration:none;">${email}</a>` },
+    // Marked raw: the render loop below HTML-escapes every other row's value
+    // (correctly, since those are unsanitized applicant input). Escaping this
+    // one too turned the anchor into visible "<a href=...>" text in every
+    // notification email instead of a clickable mailto link.
+    { label: "Email", value: `<a href="mailto:${email}" style="color:#0a0a0d;text-decoration:none;">${email}</a>`, raw: true },
     { label: "Airport", value: organization },
     { label: "Role", value: role },
     ...(airportType ? [{ label: "Airport type", value: airportType }] : []),
@@ -139,7 +143,7 @@ module.exports = async function waitlist(request, response) {
         ${htmlRows.map(r => `
         <tr>
           <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:12px;font-weight:600;text-transform:uppercase;color:#999;width:100px;">${r.label}</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;line-height:1.5;">${String(r.value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:15px;color:#0a0a0d;line-height:1.5;">${r.raw ? r.value : String(r.value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>
         </tr>`).join("")}
       </table>
     </td>
