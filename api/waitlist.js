@@ -87,7 +87,7 @@ module.exports = async function waitlist(request, response) {
   }
 
   const text = [
-    "New Co-Founding Airport Program application",
+    "New Founding Airport Partner Program application",
     "",
     `Name: ${fullName}`,
     `Work email: ${email}`,
@@ -166,7 +166,7 @@ module.exports = async function waitlist(request, response) {
         from: WAITLIST_FROM_EMAIL,
         to: [WAITLIST_TO_EMAIL],
         reply_to: email,
-        subject: `Co-Founding Airport Program — ${organization}`,
+        subject: `Founding Airport Partner application — ${organization}`,
         text,
         html,
       }),
