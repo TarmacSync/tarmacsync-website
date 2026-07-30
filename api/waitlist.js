@@ -193,7 +193,9 @@ module.exports = async function waitlist(request, response) {
   const confirmationText = [
     `Hi ${fullName},`,
     "",
-    "Thank you for applying to the TarmacSync Founding Airport Partner Program. Your application has been received.",
+    "Welcome to TarmacSync — we're glad you're here.",
+    "",
+    "Your application for the Founding Airport Partner Program has been received, and we're looking forward to the possibility of working together.",
     "",
     "What happens next:",
     "",
@@ -225,13 +227,13 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:28px 36px 12px;">
-      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Application received — thank you</p>
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Welcome to TarmacSync</p>
     </td>
   </tr>
   <tr>
     <td style="padding:6px 36px 0;font-size:15px;color:#3a3a42;line-height:1.65;">
       <p style="margin:0 0 14px;">Hi ${escapeHtml(fullName)},</p>
-      <p style="margin:0 0 14px;">Thank you for applying to the TarmacSync Founding Airport Partner Program. Your application has been received.</p>
+      <p style="margin:0 0 14px;">Welcome to TarmacSync — we're glad you're here. Your application for the Founding Airport Partner Program has been received, and we're looking forward to the possibility of working together.</p>
     </td>
   </tr>
   <tr>
@@ -278,7 +280,7 @@ module.exports = async function waitlist(request, response) {
       body: JSON.stringify({
         from: CONFIRMATION_FROM_EMAIL,
         to: [email],
-        subject: "We received your application — TarmacSync",
+        subject: "Welcome to TarmacSync",
         text: confirmationText,
         html: confirmationHtml,
       }),
