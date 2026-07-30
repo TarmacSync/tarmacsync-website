@@ -1,6 +1,9 @@
 const clean = (value, maxLength) =>
   typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 
+const escapeHtml = (value) =>
+  String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
 const isEmail = (value) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
 
@@ -143,7 +146,7 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:20px 36px 32px;border-top:1px solid #eee;">
-      <p style="margin:0;font-size:13px;color:#999;line-height:1.5;">Reply directly to this email to respond to ${fullName}.</p>
+      <p style="margin:0;font-size:13px;color:#999;line-height:1.5;">Reply directly to this email to respond to ${escapeHtml(fullName)}.</p>
     </td>
   </tr>
 </table>
@@ -228,7 +231,7 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:6px 36px 0;font-size:15px;color:#3a3a42;line-height:1.65;">
-      <p style="margin:0 0 14px;">Hi ${fullName},</p>
+      <p style="margin:0 0 14px;">Hi ${escapeHtml(fullName)},</p>
       <p style="margin:0 0 14px;">Thank you for applying to the TarmacSync Founding Airport Partner Program. Your application has been received.</p>
     </td>
   </tr>
