@@ -528,18 +528,32 @@
 
     /* ── Program ────────────────────────────────────────────────── */
     /* Value proposition left, conversion form right — stacking them made the
-       section run ~2x longer than it needed to. */
-    .apply-grid { display: grid; gap: 2.5rem; margin-top: 3.2rem; align-items: center; }
+       section run ~2x longer than it needed to.
+       align-items was `center`, which vertically centered this shorter block
+       against the taller form card — leaving a large dead gap above the
+       lists and making the section read unbalanced. Top-align instead, and
+       give the info side a matching card so the two panels read as one
+       deliberate layout (the offer / the ask) rather than loose text next
+       to a boxed form. */
+    .apply-grid { display: grid; gap: 2rem; margin-top: 3.2rem; align-items: start; }
     @media (min-width: 900px) {
-      .apply-grid { grid-template-columns: .9fr 1.1fr; gap: 4.5rem; }
+      .apply-grid { grid-template-columns: .9fr 1.1fr; gap: 2rem; }
     }
-    .apply-info { display: grid; gap: 2.4rem; }
-    .apply-info .h3 { font-size: 1.28rem; letter-spacing: -.018em; }
-    .apply-info .list { gap: .85rem; margin-top: 1.15rem; }
-    .apply-info .list li { font-size: 1.06rem; line-height: 1.5; }
-    .apply-info .list li::before { top: .6em; }
+    /* No height:100% — the form is naturally taller, and stretching this
+       card to match it just relocates the dead space inside a visible
+       border instead of removing it. Natural content height, top-aligned. */
+    .apply-info {
+      display: grid; gap: 1.8rem;
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 20px; padding: clamp(1.6rem, 3.4vw, 2.6rem);
+    }
+    .apply-info-cols { display: grid; gap: 1.8rem; }
+    @media (min-width: 520px) and (max-width: 899px) { .apply-info-cols { grid-template-columns: 1fr 1fr; } }
+    .apply-info .h3 { font-size: 1rem; letter-spacing: -.012em; }
+    .apply-info .list { gap: .65rem; margin-top: .9rem; }
+    .apply-info .list li { font-size: .95rem; line-height: 1.5; }
     .apply-close {
-      font-size: .9rem; line-height: 1.55; color: var(--muted);
+      font-size: .86rem; line-height: 1.55; color: var(--muted);
       padding-top: 1.5rem; border-top: 1px solid var(--line);
     }
     .list { list-style: none; margin-top: 1.1rem; display: grid; gap: .7rem; }
@@ -894,21 +908,23 @@
 
         <div class="apply-grid reveal">
           <div class="apply-info">
-            <div>
-              <h3 class="h3">What you receive</h3>
-              <ul class="list">
-                <li>A configured airport profile</li>
-                <li>Two guided project workflows</li>
-                <li>Direct founder support</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="h3">What we ask</h3>
-              <ul class="list">
-                <li>One kickoff</li>
-                <li>Two real, non-sensitive airport projects</li>
-                <li>Two feedback conversations</li>
-              </ul>
+            <div class="apply-info-cols">
+              <div>
+                <h3 class="h3">What you receive</h3>
+                <ul class="list">
+                  <li>A configured airport profile</li>
+                  <li>Two guided project workflows</li>
+                  <li>Direct founder support</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="h3">What we ask</h3>
+                <ul class="list">
+                  <li>One kickoff</li>
+                  <li>Two real, non-sensitive airport projects</li>
+                  <li>Two feedback conversations</li>
+                </ul>
+              </div>
             </div>
             <p class="apply-close">Applications close when two airport partners are selected.</p>
           </div>
