@@ -776,6 +776,12 @@
     .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
     .js .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
+
+    /* Orange emphasis reveal — transitions with parent reveal */
+    .reveal .hl-orange { color: var(--ink); transition: color .8s cubic-bezier(.16,1,.3,1) .3s; }
+    .reveal.in .hl-orange { color: var(--orange-ink); }
+    .hero .hl-orange { color: var(--orange-ink); }
+    @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: var(--orange-ink); } }
   </style>
 </head>
 <body>
@@ -802,7 +808,7 @@
     <section class="hero">
       <div class="page">
         <span class="eyebrow">Airport Procurement Intelligence</span>
-        <h1 class="display">Know the path. Keep the airport project moving.</h1>
+        <h1 class="display">Know the <span class="hl-orange">path.</span> Keep the airport project <span class="hl-orange">moving.</span></h1>
         <p class="lede">TarmacSync brings your airport's policy, funding, contract options, evidence, and next steps together — so your team doesn't have to rebuild the answer from scattered files and inboxes.</p>
         <p class="invite">Two Founding Airport Partner openings · Free 90-day pilot</p>
         <div class="hero-actions">
@@ -857,7 +863,7 @@
       <div class="page">
         <div class="section-head reveal">
           <span class="eyebrow eyebrow-accent">Pathfinder in action</span>
-          <h2 class="h2">From one request to a working path.</h2>
+          <h2 class="h2">From one request to a <span class="hl-orange">working path.</span></h2>
           <p class="lede">Pathfinder connects the request to the airport's policy, funding, and project record — then surfaces what matters next.</p>
         </div>
 
