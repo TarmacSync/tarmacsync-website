@@ -781,16 +781,18 @@
     .reveal .hl-orange { color: var(--ink); }
     .reveal.in .hl-orange {
       animation: hl-flow 18s ease-in-out infinite;
+      display: inline-block;
+      background: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 70%, white));
       background-clip: text; -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     @keyframes hl-flow {
-      0%   { background-image: linear-gradient(to bottom, var(--ink), var(--ink)); }
-      15%  { background-image: linear-gradient(to bottom, #D4680C, #E8953D); }
-      40%  { background-image: linear-gradient(to bottom, #D4680C, #E8953D); }
-      55%  { background-image: linear-gradient(to bottom, #1E3F63, #3A6D99); }
-      70%  { background-image: linear-gradient(to bottom, #1E3F63, #3A6D99); }
-      100% { background-image: linear-gradient(to bottom, var(--ink), var(--ink)); }
+      0%   { color: var(--ink); }
+      15%  { color: #D4680C; }
+      40%  { color: #D4680C; }
+      55%  { color: #1E3F63; }
+      70%  { color: #1E3F63; }
+      100% { color: var(--ink); }
     }
     @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #1E3F63; animation: none; } }
   </style>
