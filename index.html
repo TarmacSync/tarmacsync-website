@@ -558,7 +558,7 @@
        give the info side a matching card so the two panels read as one
        deliberate layout (the offer / the ask) rather than loose text next
        to a boxed form. */
-    .apply-grid { display: grid; gap: 2rem; margin-top: 3.2rem; align-items: start; }
+    .apply-grid { display: grid; gap: 2rem; margin-top: 3.2rem; align-items: stretch; }
     @media (min-width: 900px) {
       .apply-grid { grid-template-columns: .9fr 1.1fr; gap: 2rem; }
     }
@@ -573,7 +573,7 @@
     .apply-info-cols { display: grid; gap: 1.8rem; }
     @media (min-width: 520px) and (max-width: 899px) { .apply-info-cols { grid-template-columns: 1fr 1fr; } }
     .apply-info .h3 { font-size: 1rem; letter-spacing: -.012em; }
-    .apply-info .list { gap: .65rem; margin-top: .9rem; }
+    .apply-info .list { gap: .9rem; margin-top: .9rem; }
     .apply-info .list li { font-size: .95rem; line-height: 1.5; }
     .apply-close {
       font-size: .86rem; line-height: 1.55; color: var(--muted);
