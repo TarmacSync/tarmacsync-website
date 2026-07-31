@@ -166,8 +166,7 @@
       --orange-ink: #B94E08;
       --green: #256C43;
 
-      /* Apple's own stack — real SF Pro on Apple devices, Inter elsewhere. */
-      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+      --sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
       /* Three deliberate measures, stepped far enough apart to read as
@@ -510,6 +509,10 @@
     .record-row:last-of-type { border-bottom: none; }
     .record-row > span:first-child { color: var(--muted); }
     .record-row > :last-child { font-weight: 600; text-align: right; }
+    .record-label {
+      font-family: var(--mono); font-size: .62rem; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+    }
     .record-row .open { color: var(--orange-ink); font-weight: 600; }
     .record-src {
       margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line);
@@ -798,7 +801,7 @@
         </div>
 
         <div class="convo-grid reveal" style="margin-top:3.8rem;">
-           <div class="steps">
+          <div class="steps">
             <div class="step">
               <span class="step-num">01</span>
               <div>
@@ -820,22 +823,19 @@
               <span class="step-num">03</span>
               <div>
                 <p class="step-title">See the working path and next step</p>
-                <p class="step-detail">Formal competition is the working path in this example. Scope and solicitation planning can continue, but award timing still depends on the grant decision.</p>
-                <p class="step-detail">A cooperative contract candidate remains another option to check — not the selected path. Its authority, scope, funding fit, current status, and price would still need confirmation.</p>
+                <p class="step-detail">Formal competition is the working path. A cooperative contract candidate remains another option to check — not the selected path.</p>
                 <p class="step-detail">Next step: build the equipment scope brief.</p>
               </div>
             </div>
           </div>
 
           <div class="record">
-            <p class="record-title">Project record updated</p>
-            <div class="record-row"><span>Purchase:</span> <strong>Runway sweeper replacement</strong></div>
-            <div class="record-row"><span>Funding:</span> <strong>AIP + local match</strong></div>
-            <div class="record-row"><span>Grant status:</span> <span class="open">Application pending</span></div>
-            <div class="record-row"><span>Working path:</span> <strong>Formal competition</strong></div>
-            <div class="record-row"><span>Still to confirm:</span> <strong>Grant award timing</strong></div>
-            <div class="record-row"><span>Next step:</span> <span class="open">Equipment scope brief</span></div>
-            <p class="record-src">Context used: Airport procurement policy · Capital plan · User-confirmed grant status</p>
+            <p class="record-title">Runway sweeper replacement</p>
+            <div class="record-row"><span class="record-label">Known</span> <span>AIP + local match</span></div>
+            <div class="record-row"><span class="record-label">Working path</span> <span style="font-weight:600;">Formal competition</span></div>
+            <div class="record-row"><span class="record-label">Open issue</span> <span class="open">Grant award pending</span></div>
+            <div class="record-row"><span class="record-label">Next move</span> <span style="font-weight:600;color:var(--ink);">Build the equipment scope</span></div>
+            <p class="record-src">Context: Airport procurement policy · Capital plan · User-confirmed grant status</p>
           </div>
         </div>
       </div>
