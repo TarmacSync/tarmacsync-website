@@ -778,10 +778,10 @@
     @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; } }
 
     /* Orange emphasis reveal — transitions with parent reveal */
-    .reveal .hl-orange { color: var(--ink); transition: color .8s cubic-bezier(.16,1,.3,1) .3s; }
-    .reveal.in .hl-orange { color: #A26339; }
-    .hero .hl-orange { color: #A26339; }
-    @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #A26339; } }
+    .reveal .hl-orange { color: var(--ink); transition: color 1s cubic-bezier(.16,1,.3,1) .5s; }
+    .reveal.in .hl-orange { color: #AD5C1E; }
+    .hero .hl-orange { color: #AD5C1E; }
+    @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #AD5C1E; } }
   </style>
 </head>
 <body>
@@ -808,7 +808,9 @@
     <section class="hero">
       <div class="page">
         <span class="eyebrow">Airport Procurement Intelligence</span>
+        <div class="reveal">
         <h1 class="display">Know the <span class="hl-orange">path.</span> Keep the airport project <span class="hl-orange">moving.</span></h1>
+        </div>
         <p class="lede">TarmacSync brings your airport's policy, funding, contract options, evidence, and next steps together — so your team doesn't have to rebuild the answer from scattered files and inboxes.</p>
         <p class="invite">Two Founding Airport Partner openings · Free 90-day pilot</p>
         <div class="hero-actions">
