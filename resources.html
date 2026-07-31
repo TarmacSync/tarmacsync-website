@@ -41,13 +41,17 @@
     .footer-links a:hover { color: var(--ink); }
     .footer-bottom { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .78rem; color: var(--muted); }
 
+
+    .header-row { display: flex; justify-content: space-between; align-items: center; }
+    .header-btn { display: inline-flex; align-items: center; padding: .5rem 1.05rem; font-size: .82rem; font-weight: 500; text-decoration: none; border-radius: 980px; background: var(--ink); color: #fff; font-family: var(--sans); }
+
   </style>
 </head>
 <body>
   <header>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <div class="container header-row">
       <a href="/" aria-label="TarmacSync home"><img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
-      <a href="/#program" style="display:inline-flex;align-items:center;padding:.5rem 1.05rem;font-size:.82rem;font-weight:500;text-decoration:none;border-radius:980px;background:var(--ink);color:#fff;font-family:var(--sans);">Founding Partner Program</a>
+      <a href="/#program" class="header-btn">Founding Partner Program</a>
     </div>
   </header>
   <main class="container">

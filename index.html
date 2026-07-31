@@ -543,6 +543,34 @@
     .record-row-alt { border-bottom: 1px solid var(--line); }
     .record-row-alt span:last-child { font-weight: 400; color: var(--muted); }
 
+    /* ── Inline-style replacements ──────────────────────────────── */
+    .converge-node img { height: 56px; display: block; margin: 0 auto; }
+    .section-product { padding-top: 120px; }
+    .convo-grid-demo { margin-top: 3.8rem; }
+    .convo .reveal:nth-child(1) { transition-delay: 0s; }
+    .convo .reveal:nth-child(2) { transition-delay: .1s; }
+    .convo .reveal:nth-child(3) { transition-delay: .15s; }
+    .convo .reveal:nth-child(4) { transition-delay: .25s; }
+    .convo .reveal:nth-child(5) { transition-delay: .3s; }
+    .convo .reveal:nth-child(6) { transition-delay: .4s; }
+    .convo .reveal:nth-child(7) { transition-delay: .45s; }
+    .convo .reveal:nth-child(8) { transition-delay: .6s; }
+    .record-reveal { transition-delay: .45s; }
+    .grant-status-muted { color: var(--muted); }
+    .grant-status-open { margin-left: .3rem; color: var(--orange-ink); font-weight: 500; }
+    .record-value-bold { font-weight: 600; }
+    .record-value-next { font-weight: 600; color: var(--ink); }
+    .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
+    .disclosure-grid { display: grid; gap: .95rem; }
+    .success-heading { text-align: center; font-size: 1.3rem; }
+    .success-intro { margin-top: 1rem; font-size: .95rem; text-align: left; }
+    .success-next-label { font-size: .82rem; font-weight: 600; color: var(--orange-ink); margin: 1.5rem 0 .6rem; text-transform: uppercase; letter-spacing: .06em; text-align: left; }
+    .success-steps { list-style: none; font-size: .92rem; color: var(--muted); line-height: 1.6; display: grid; gap: .6rem; text-align: left; }
+    .success-steps li { padding-left: 1.4rem; position: relative; }
+    .success-steps li span { position: absolute; left: 0; color: var(--orange-ink); font-weight: 600; }
+    .success-privacy { color: var(--silver); font-size: .76rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+    .success-privacy a { color: var(--muted); }
+
     .record {
       background: var(--white); border: 1px solid var(--line);
       border-radius: 16px; padding: 1.5rem;
@@ -854,7 +882,7 @@
 
           <div class="converge-hub">
             <span class="converge-arrow" aria-hidden="true"></span>
-            <div class="converge-node"><img src="assets/TarmacSync_Horizontal_Transparent.png" alt="TarmacSync" style="height:56px;display:block;margin:0 auto;"><span>brings it together</span></div>
+            <div class="converge-node"><img src="assets/TarmacSync_Horizontal_Transparent.png" alt="TarmacSync"><span>brings it together</span></div>
             <span class="converge-arrow" aria-hidden="true"></span>
           </div>
 
@@ -874,7 +902,7 @@
     </section>
 
     <!-- ══ PRODUCT ═══════════════════════════════════════════════ -->
-    <section class="section" id="product" style="padding-top:120px;">
+    <section class="section section-product" id="product">
       <div class="page">
         <div class="section-head reveal">
           <span class="eyebrow eyebrow-accent">Pathfinder in action</span>
@@ -882,16 +910,16 @@
           <p class="lede">Pathfinder connects the request to the airport's policy, funding, and project record — then surfaces what matters next.</p>
         </div>
 
-        <div class="convo-grid reveal" style="margin-top:3.8rem;">
+        <div class="convo-grid convo-grid-demo reveal">
           <div class="convo">
-            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:0s;">
+            <div class="convo-msg convo-msg-airport reveal">
               <span class="convo-label">Airport team</span>
               <div class="convo-bubble">We need to replace our runway sweeper.</div>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.1s;"></div>
+            <div class="convo-connector reveal" aria-hidden="true"></div>
 
-            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.15s;">
+            <div class="convo-msg convo-msg-pathfinder reveal">
               <span class="convo-label">Pathfinder</span>
               <div class="convo-bubble">
                 <span class="convo-tag">Capital plan match</span>
@@ -899,32 +927,32 @@
               </div>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.25s;"></div>
+            <div class="convo-connector reveal" aria-hidden="true"></div>
 
-            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:.3s;">
+            <div class="convo-msg convo-msg-airport reveal">
               <span class="convo-label">Airport team</span>
               <div class="convo-bubble">Application submitted — no decision yet.</div>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.4s;"></div>
+            <div class="convo-connector reveal" aria-hidden="true"></div>
 
-            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.45s;">
+            <div class="convo-msg convo-msg-pathfinder reveal">
               <span class="convo-label">Pathfinder</span>
               <div class="convo-bubble">Understood. Scope planning can continue, but award timing remains tied to the grant decision.</div>
             </div>
 
-            <div class="convo-transition reveal" aria-hidden="true" style="transition-delay:.6s;">
+            <div class="convo-transition reveal" aria-hidden="true">
               Project record updated &rarr;
             </div>
           </div>
 
-          <div class="record reveal" style="transition-delay:.45s;">
+          <div class="record reveal record-reveal">
             <p class="record-title">Runway sweeper replacement</p>
             <div class="record-row"><span class="record-label">Funding plan</span> <span>AIP + local match</span></div>
-            <div class="record-row"><span class="record-label">Grant status</span> <span><span style="color:var(--muted);">Application submitted</span> <span style="margin-left:.3rem;color:var(--orange-ink);font-weight:500;">&middot; Decision pending</span></span></div>
-            <div class="record-row"><span class="record-label">Working path</span> <span style="font-weight:600;">Formal competition</span></div>
+            <div class="record-row"><span class="record-label">Grant status</span> <span><span class="grant-status-muted">Application submitted</span> <span class="grant-status-open">&middot; Decision pending</span></span></div>
+            <div class="record-row"><span class="record-label">Working path</span> <span class="record-value-bold">Formal competition</span></div>
             <div class="record-row record-row-alt"><span class="record-label">Other option</span> <span>Cooperative contract candidate</span></div>
-            <div class="record-row is-next-move"><span class="record-label">Next move</span> <span style="font-weight:600;color:var(--ink);">Prepare the equipment scope brief</span></div>
+            <div class="record-row is-next-move"><span class="record-label">Next move</span> <span class="record-value-next">Prepare the equipment scope brief</span></div>
             <p class="record-src">Based on: Airport procurement policy &middot; Capital plan &middot; Airport-confirmed grant status</p>
           </div>
         </div>
@@ -989,7 +1017,7 @@
 
         <div class="apply-grid reveal">
           <div class="apply-info">
-            <p style="font-size:.95rem;line-height:1.6;color:var(--graphite);margin-bottom:1.8rem;">Each partner will use TarmacSync on two real, non-sensitive airport projects during a free 90-day pilot. Your experience and feedback will help shape the priorities for the first release.</p>
+            <p class="program-intro">Each partner will use TarmacSync on two real, non-sensitive airport projects during a free 90-day pilot. Your experience and feedback will help shape the priorities for the first release.</p>
             <div class="apply-info-cols">
               <div>
                 <h3 class="h3">What your airport receives</h3>
@@ -1035,7 +1063,7 @@
 
             <details class="disclosure">
               <summary>Additional details (optional)</summary>
-              <div class="disclosure-body" style="display:grid;gap:.95rem;">
+              <div class="disclosure-body disclosure-grid">
                 <div class="field-row">
                   <div class="field"><label for="airport-type">Airport type</label>
                     <select id="airport-type" name="airport_type">
@@ -1078,14 +1106,14 @@
           </div>
           <div class="success-panel" id="contact-success" style="display:none">
             <div class="success-check">&#10003;</div>
-            <h3 class="h3" style="text-align:center;font-size:1.3rem;">Your application is in — thank you.</h3>
-            <p class="small" style="margin-top:1rem;font-size:.95rem;text-align:left;">We're excited that you're considering becoming a Founding Airport Partner. The first two airport partners will play a meaningful role in shaping how Pathfinder supports real airport purchases and projects.</p>
-            <p style="font-size:.82rem;font-weight:600;color:var(--orange-ink);margin:1.5rem 0 .6rem;text-transform:uppercase;letter-spacing:.06em;text-align:left;">What happens next</p>
-            <ul style="list-style:none;font-size:.92rem;color:var(--muted);line-height:1.6;display:grid;gap:.6rem;text-align:left;">
-              <li style="padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--orange-ink);font-weight:600;">1.</span> We'll review your application and reply personally within two business days.</li>
-              <li style="padding-left:1.4rem;position:relative;"><span style="position:absolute;left:0;color:var(--orange-ink);font-weight:600;">2.</span> If the program aligns with your airport's needs, we'll invite you to a short working conversation — no preparation needed.</li>
+            <h3 class="h3 success-heading">Your application is in — thank you.</h3>
+            <p class="small success-intro">We're excited that you're considering becoming a Founding Airport Partner. The first two airport partners will play a meaningful role in shaping how Pathfinder supports real airport purchases and projects.</p>
+            <p class="success-next-label">What happens next</p>
+            <ul class="success-steps">
+              <li><span>1.</span> We'll review your application and reply personally within two business days.</li>
+              <li><span>2.</span> If the program aligns with your airport's needs, we'll invite you to a short working conversation — no preparation needed.</li>
             </ul>
-            <p class="small" style="color:var(--silver);font-size:.76rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line);">We use your information only to review your application and operate the Founding Airport Partner Program. We do not sell personal information. <a href="/privacy.html" style="color:var(--muted);">Read our Privacy Policy.</a></p>
+            <p class="small success-privacy">We use your information only to review your application and operate the Founding Airport Partner Program. We do not sell personal information. <a href="/privacy.html">Read our Privacy Policy.</a></p>
           </div>
           </div>
         </div>
