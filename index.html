@@ -925,6 +925,7 @@
           </div>
 
           <div class="form-card" id="application">
+          <div id="form-content">
           <span class="eyebrow">Apply to become a Founding Airport Partner</span>
           <p class="form-card-intro">Tell us about your airport and the first project you would like to explore. We'll review your application and reply personally within two business days.</p>
 
@@ -984,6 +985,7 @@
             </div>
           </form>
 
+          </div>
           <div class="success-panel" id="contact-success" style="display:none">
             <div class="success-check">&#10003;</div>
             <h3 class="h3">Application received — thank you.</h3>
@@ -1081,10 +1083,10 @@
         const d=await r.json().catch(()=>({}));
         if(!r.ok||!d.ok)throw new Error(d.error||'We could not send your submission. Please try again.');
         form.reset();status.className='form-status success';status.textContent='';
-        form.style.display='none';document.getElementById('contact-success').style.display='block';
+        form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
       }catch(err){
         status.className='form-status error';status.textContent=err.message||'We could not send your submission. Please try again.';
-        form.style.display='';document.getElementById('contact-success').style.display='none';
+        form.style.display='';document.getElementById('form-content').style.display='';document.getElementById('contact-success').style.display='none';
         button.disabled=false;button.textContent='Submit application';
       }finally{form.removeAttribute('aria-busy');}
     });
