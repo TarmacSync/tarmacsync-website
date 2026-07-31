@@ -781,10 +781,11 @@
     .reveal .hl-orange { color: var(--ink); }
     .reveal.in .hl-orange {
       animation: hl-flow 18s ease-in-out infinite;
-      display: inline-block;
+      display: inline;
       background: linear-gradient(to bottom, currentColor, color-mix(in srgb, currentColor 70%, white));
       background-clip: text; -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      padding-bottom: .05em;
     }
     @keyframes hl-flow {
       0%   { color: var(--ink); }
