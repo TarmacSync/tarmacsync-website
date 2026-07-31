@@ -497,11 +497,18 @@
       letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
       padding-left: .2rem;
     }
-    .convo-msg-pathfinder .convo-label { color: var(--orange-ink); }
+    .convo-msg-pathfinder .convo-label { color: var(--orange-ink); padding-left: 0; }
+    .convo-msg-airport { justify-items: end; }
+    .convo-msg-airport .convo-label { padding-left: 0; padding-right: .2rem; }
     .convo-bubble {
       font-size: .95rem; color: var(--ink); line-height: 1.5;
-      background: var(--cloud); border-radius: 2px 12px 12px 12px;
+      background: var(--cloud); border-radius: 12px 2px 12px 12px;
       padding: .65rem .9rem; max-width: 92%;
+    }
+    .convo-msg-pathfinder .convo-bubble {
+      border-radius: 2px 12px 12px 12px;
+      background: var(--white); border: 1px solid var(--line);
+      border-left: 2px solid var(--orange-ink);
     }
     .convo-surface {
       font-size: .93rem; color: var(--ink); line-height: 1.5;
@@ -509,23 +516,27 @@
       border-radius: 8px; padding: .75rem .95rem;
       border-left: 2px solid var(--orange-ink);
     }
-    .convo-chip {
-      display: inline-flex; align-items: center; gap: .35rem;
-      font-size: .86rem; font-weight: 500; color: var(--orange-ink);
-      background: rgba(245,106,0,.06); border: 1px solid rgba(245,106,0,.3);
-      border-radius: 980px; padding: .35rem .85rem;
-      cursor: default;
-    }
-    .convo-chip::before {
-      content: ""; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--orange-ink); flex-shrink: 0;
+    .convo-tag {
+      display: inline-block;
+      font-family: var(--mono); font-size: .57rem; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--orange-ink); margin-bottom: .4rem;
     }
     .convo-connector {
       width: 2px; height: 1.2rem; background: var(--line);
       margin-left: 1.2rem;
     }
+    .convo-msg-airport ~ .convo-connector {
+      margin-left: auto; margin-right: 1.8rem;
+    }
     .convo-msg-pathfinder ~ .convo-connector {
       background: linear-gradient(to bottom, var(--orange-ink), var(--line));
+      margin-left: 1.2rem; margin-right: auto;
+    }
+    .convo-transition {
+      font-family: var(--mono); font-size: .58rem; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase; color: var(--orange-ink);
+      text-align: right; padding: .8rem .2rem 0 0;
     }
 
     /* Alternative row in record */
@@ -853,26 +864,40 @@
         <div class="convo-grid reveal" style="margin-top:3.8rem;">
           <div class="convo">
             <div class="convo-msg convo-msg-airport reveal" style="transition-delay:0s;">
-              <span class="convo-label">Airport</span>
+              <span class="convo-label">Airport team</span>
               <div class="convo-bubble">We need to replace our runway sweeper.</div>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.15s;"></div>
+            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.1s;"></div>
 
-            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.2s;">
+            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.15s;">
               <span class="convo-label">Pathfinder</span>
-              <div class="convo-surface">I found a matching project in your capital plan. Has the AIP grant been awarded?</div>
+              <div class="convo-bubble">
+                <span class="convo-tag">Capital plan match</span>
+                I found the replacement project in your capital plan with AIP + local funding. One fact changes what can happen next: has the grant been awarded?
+              </div>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.3s;"></div>
+            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.25s;"></div>
 
-            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:.35s;">
-              <span class="convo-label">Airport</span>
-              <div class="convo-chip">Applied — decision pending</div>
+            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:.3s;">
+              <span class="convo-label">Airport team</span>
+              <div class="convo-bubble">Application submitted — no decision yet.</div>
+            </div>
+
+            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.4s;"></div>
+
+            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.45s;">
+              <span class="convo-label">Pathfinder</span>
+              <div class="convo-bubble">Understood. Scope planning can continue, but award timing remains tied to the grant decision.</div>
+            </div>
+
+            <div class="convo-transition reveal" aria-hidden="true" style="transition-delay:.6s;">
+              Project record updated &rarr;
             </div>
           </div>
 
-          <div class="record">
+          <div class="record reveal" style="transition-delay:.45s;">
             <p class="record-title">Runway sweeper replacement</p>
             <div class="record-row"><span class="record-label">Known</span> <span>AIP + local match</span></div>
             <div class="record-row"><span class="record-label">Working path</span> <span style="font-weight:600;">Formal competition</span></div>
