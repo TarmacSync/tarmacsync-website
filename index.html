@@ -598,118 +598,8 @@
       .flagship-project { margin-bottom: 1.25rem; }
     }
 
-    /* ── Steps ──────────────────────────────────────────────────────
-       Replaces a mock chat transcript. A fake conversation forces the
-       reader to read linearly to extract three simple beats; numbered
-       steps let them scan and stop whenever they've got it.           */
-    .convo-grid { display: grid; gap: 2.5rem; align-items: start; }
-    @media (min-width: 940px) { .convo-grid { grid-template-columns: 1fr .82fr; gap: 4rem; } }
-
-    .steps { display: grid; gap: 0; }
-    .step {
-      display: grid; grid-template-columns: auto 1fr; gap: 1.15rem;
-      padding: 1.5rem 0; border-bottom: 1px solid var(--line);
-    }
-    .step:first-child { padding-top: 0; }
-    .step:last-child { border-bottom: none; padding-bottom: 0; }
-    .step-num {
-      font-family: var(--mono); font-size: .68rem; font-weight: 600;
-      letter-spacing: .08em; color: var(--orange-ink);
-      padding-top: .28rem;
-    }
-    .step-title {
-      font-size: 1.02rem; font-weight: 600; letter-spacing: -.014em;
-      margin-bottom: .45rem;
-    }
-    .step-detail { font-size: .93rem; line-height: 1.55; color: var(--muted); }
-    .step-quote {
-      display: inline-block; margin-top: .1rem;
-      font-size: .95rem; color: var(--ink);
-      background: var(--white); border: 1px solid var(--line);
-      border-radius: 10px; padding: .55rem .85rem;
-    }
-    .section-tint .step-quote { background: var(--white); }
-    .step-answer {
-      display: inline-flex; align-items: center; gap: .45rem; margin-top: .5rem;
-      font-size: .86rem; font-weight: 500; color: var(--orange-ink);
-      background: rgba(245,106,0,.05); border: 1px solid rgba(245,106,0,.28);
-      border-radius: 980px; padding: .32rem .8rem;
-    }
-    .step-note {
-      margin-top: .55rem; font-size: .86rem; line-height: 1.55; color: var(--muted);
-    }
-
-    /* ── Conversation demo ─────────────────────────────────────── */
-    .convo { display: grid; gap: 0; }
-    .convo-msg { display: grid; gap: .4rem; }
-    .convo-label {
-      font-family: var(--mono); font-size: .58rem; font-weight: 600;
-      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
-      padding-left: .2rem;
-    }
-    .convo-msg-pathfinder .convo-label { color: var(--orange-ink); padding-left: 0; }
-    .convo-msg-airport { justify-items: end; }
-    .convo-msg-airport .convo-label { padding-left: 0; padding-right: .2rem; }
-    .convo-bubble {
-      font-size: .95rem; color: var(--ink); line-height: 1.5;
-      background: var(--cloud); border-radius: 12px 2px 12px 12px;
-      padding: .65rem .9rem; max-width: 92%;
-    }
-    .convo-msg-pathfinder .convo-bubble {
-      border-radius: 2px 12px 12px 12px;
-      background: var(--white); border: 1px solid var(--line);
-      border-left: 2px solid var(--orange-ink);
-    }
-    .convo-surface {
-      font-size: .93rem; color: var(--ink); line-height: 1.5;
-      background: var(--white); border: 1px solid var(--line);
-      border-radius: 8px; padding: .75rem .95rem;
-      border-left: 2px solid var(--orange-ink);
-    }
-    .convo-tag {
-      display: block;
-      font-family: var(--mono); font-size: .57rem; font-weight: 600;
-      letter-spacing: .09em; text-transform: uppercase;
-      color: var(--orange-ink); margin-bottom: .55rem;
-    }
-    .convo-connector {
-      width: 2px; height: 1.2rem; background: var(--line);
-      margin-left: 1.2rem;
-    }
-    .convo-msg-airport ~ .convo-connector {
-      margin-left: auto; margin-right: 1.8rem;
-    }
-    .convo-msg-pathfinder ~ .convo-connector {
-      background: linear-gradient(to bottom, var(--orange-ink), var(--line));
-      margin-left: 1.2rem; margin-right: auto;
-    }
-    .convo-transition {
-      font-family: var(--mono); font-size: .58rem; font-weight: 600;
-      letter-spacing: .09em; text-transform: uppercase; color: var(--orange-ink);
-      text-align: right; padding: .8rem .2rem 0 0;
-    }
-
-    /* Alternative row in record */
-    .record-row-alt { border-bottom: 1px solid var(--line); }
-    .record-row-alt span:last-child { font-weight: 400; color: var(--muted); }
-
     /* ── Inline-style replacements ──────────────────────────────── */
-    .converge-node img { height: 56px; display: block; margin: 0 auto; }
     .section-product { padding-top: 120px; }
-    .convo-grid-demo { margin-top: 3.8rem; }
-    .convo .reveal:nth-child(1) { transition-delay: 0s; }
-    .convo .reveal:nth-child(2) { transition-delay: .1s; }
-    .convo .reveal:nth-child(3) { transition-delay: .15s; }
-    .convo .reveal:nth-child(4) { transition-delay: .25s; }
-    .convo .reveal:nth-child(5) { transition-delay: .3s; }
-    .convo .reveal:nth-child(6) { transition-delay: .4s; }
-    .convo .reveal:nth-child(7) { transition-delay: .45s; }
-    .convo .reveal:nth-child(8) { transition-delay: .6s; }
-    .record-reveal { transition-delay: .45s; }
-    .grant-status-muted { color: var(--muted); }
-    .grant-status-open { margin-left: .3rem; color: var(--orange-ink); font-weight: 500; }
-    .record-value-bold { font-weight: 600; }
-    .record-value-next { font-weight: 600; color: var(--ink); }
     .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
     .disclosure-grid { display: grid; gap: .95rem; }
     .success-heading { text-align: center; font-size: 1.3rem; }
@@ -721,36 +611,183 @@
     .success-privacy { color: var(--silver); font-size: .76rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
     .success-privacy a { color: var(--muted); }
 
-    .record {
-      background: var(--white); border: 1px solid var(--line);
-      border-radius: 16px; padding: 1.5rem;
-      box-shadow: 0 1px 2px rgba(23,25,31,.03), 0 10px 28px -12px rgba(23,25,31,.10);
+    /* ── Pathfinder conversation showcase ─────────────────────── */
+    .conversation-stage {
+      max-width: 1000px;
+      margin: 3.5rem auto 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: 0 30px 70px -52px rgba(23,25,31,.35);
     }
-    .record-title {
-      font-family: var(--mono); font-size: .62rem; letter-spacing: .11em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+    .conversation-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--cloud);
+      font-family: var(--mono);
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .record-row {
-      display: flex; justify-content: space-between; gap: 1rem;
-      padding: .62rem 0; border-bottom: 1px solid var(--line);
-      font-size: .87rem;
+    .conversation-topline strong { color: var(--orange-ink); font-weight: 700; }
+    .conversation-body {
+      display: grid;
+      gap: 1.55rem;
+      max-width: 790px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 2.75rem;
     }
-    .record-row:last-of-type { border-bottom: none; }
-    .record-row > span:first-child { color: var(--muted); }
-    .record-row > :last-child { font-weight: 600; text-align: right; }
-    .record-label {
-      font-family: var(--mono); font-size: .62rem; font-weight: 600;
-      letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+    .conversation-turn { display: grid; gap: .45rem; }
+    .conversation-turn-airport {
+      justify-items: end;
+      margin-left: auto;
+      max-width: 62%;
     }
-    .record-row .open { color: var(--orange-ink); font-weight: 600; }
-    .record-row.is-next-move {
-      border-left: 2px solid var(--orange-ink);
-      padding-left: .65rem; margin-left: -.65rem;
-      border-bottom: none;
+    .conversation-speaker {
+      font-family: var(--mono);
+      font-size: .56rem;
+      font-weight: 650;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .record-src {
-      margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line);
-      font-size: .78rem; line-height: 1.5; color: #2B2D33;
+    .conversation-turn-pathfinder .conversation-speaker { color: var(--orange-ink); }
+    .conversation-message {
+      font-size: 1rem;
+      line-height: 1.62;
+      color: var(--graphite);
+    }
+    .conversation-turn-airport .conversation-message {
+      padding: .8rem 1.05rem;
+      border-radius: 14px 14px 3px 14px;
+      background: var(--cloud);
+      color: var(--ink);
+    }
+    .conversation-turn-pathfinder {
+      max-width: 82%;
+      padding-left: 1.15rem;
+      border-left: 2px solid var(--orange);
+    }
+    .conversation-match {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: .15rem;
+      font-family: var(--mono);
+      font-size: .54rem;
+      font-weight: 650;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--orange-ink);
+    }
+    .conversation-turn-final {
+      max-width: 88%;
+      padding: 1.25rem 1.35rem;
+      border-left: 3px solid var(--orange);
+      border-radius: 0 12px 12px 0;
+      background: rgba(217,150,0,.05);
+    }
+    .conversation-turn-final h3 {
+      margin-bottom: .45rem;
+      font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+      line-height: 1.2;
+      letter-spacing: -.025em;
+      font-weight: 650;
+      color: var(--ink);
+    }
+    .conversation-turn-final p {
+      font-size: .93rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+    .conversation-update {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.1rem 1.5rem;
+      border-top: 1px solid var(--line);
+      background: #181a20;
+      color: var(--white);
+    }
+    .conversation-update-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--mono);
+      font-size: .57rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .conversation-update-label::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(217,150,0,.42);
+      border-radius: 50%;
+      font-size: .62rem;
+    }
+    .conversation-update-facts {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      min-width: 0;
+      font-size: .76rem;
+      color: rgba(255,255,255,.62);
+    }
+    .conversation-update-facts strong { color: rgba(255,255,255,.9); font-weight: 550; }
+    .conversation-update-facts span {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      flex: 0 0 auto;
+    }
+    .conversation-next {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: .8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .conversation-next::after { content: "→"; color: var(--orange); }
+    .conversation-source {
+      padding: .75rem 1.5rem;
+      border-top: 1px solid var(--line);
+      font-size: .73rem;
+      line-height: 1.5;
+      text-align: center;
+      color: var(--muted);
+    }
+    .conversation-source strong { color: var(--graphite); font-weight: 550; }
+    @media (max-width: 760px) {
+      .conversation-stage { border-radius: 19px; }
+      .conversation-topline { padding: 1rem 1.15rem; }
+      .conversation-topline span:last-child { display: none; }
+      .conversation-body { gap: 1.4rem; padding: 2rem 1.25rem; }
+      .conversation-turn-airport { max-width: 88%; }
+      .conversation-turn-pathfinder,
+      .conversation-turn-final { max-width: 100%; }
+      .conversation-message { font-size: .94rem; }
+      .conversation-update {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+        padding: 1.15rem 1.25rem;
+      }
+      .conversation-update-facts { justify-content: flex-start; flex-wrap: wrap; }
+      .conversation-next { padding-top: .8rem; border-top: 1px solid rgba(255,255,255,.1); }
+      .conversation-source { padding: .8rem 1.25rem; text-align: left; }
     }
 
     /* ── Trust columns ──────────────────────────────────────────── */
@@ -927,11 +964,6 @@
     .sticky-cta .btn { width: 100%; color: var(--ink); }
     @media (min-width: 861px) { .sticky-cta { display: none !important; } }
 
-    /* Slightly larger monospaced labels on mobile */
-    @media (max-width: 860px) {
-      .convo-label, .record-label { font-size: .61rem; }
-    }
-
     .back-to-top {
       position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 40;
       width: 42px; height: 42px; border-radius: 50%;
@@ -1074,51 +1106,48 @@
           <p class="lede">Pathfinder connects the request to the airport's policy, funding, and project record — then surfaces what matters next.</p>
         </div>
 
-        <div class="convo-grid convo-grid-demo reveal">
-          <div class="convo">
-            <div class="convo-msg convo-msg-airport reveal">
-              <span class="convo-label">Airport team</span>
-              <div class="convo-bubble">We need to replace our runway sweeper.</div>
+        <div class="conversation-stage reveal" role="group" aria-label="Example Pathfinder conversation">
+          <div class="conversation-topline">
+            <strong>Pathfinder conversation</strong>
+            <span>Runway sweeper replacement</span>
+          </div>
+
+          <div class="conversation-body">
+            <div class="conversation-turn conversation-turn-airport">
+              <span class="conversation-speaker">Airport team</span>
+              <p class="conversation-message">We need to replace our runway sweeper.</p>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true"></div>
-
-            <div class="convo-msg convo-msg-pathfinder reveal">
-              <span class="convo-label">Pathfinder</span>
-              <div class="convo-bubble">
-                <span class="convo-tag">Capital plan match</span>
-                I found the replacement project in your capital plan with AIP + local funding. One fact changes what can happen next: has the grant been awarded?
-              </div>
+            <div class="conversation-turn conversation-turn-pathfinder">
+              <span class="conversation-speaker">Pathfinder</span>
+              <span class="conversation-match">Capital plan match found</span>
+              <p class="conversation-message">I found the replacement project with AIP + local funding. Has the grant been awarded?</p>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true"></div>
-
-            <div class="convo-msg convo-msg-airport reveal">
-              <span class="convo-label">Airport team</span>
-              <div class="convo-bubble">Application submitted — no decision yet.</div>
+            <div class="conversation-turn conversation-turn-airport">
+              <span class="conversation-speaker">Airport team</span>
+              <p class="conversation-message">Application submitted — decision pending.</p>
             </div>
 
-            <div class="convo-connector reveal" aria-hidden="true"></div>
-
-            <div class="convo-msg convo-msg-pathfinder reveal">
-              <span class="convo-label">Pathfinder</span>
-              <div class="convo-bubble">Understood. Scope planning can continue, but award timing remains tied to the grant decision.</div>
-            </div>
-
-            <div class="convo-transition reveal" aria-hidden="true">
-              Project record updated &rarr;
+            <div class="conversation-turn conversation-turn-final">
+              <span class="conversation-speaker">Pathfinder</span>
+              <h3>Scope planning can continue now.</h3>
+              <p>Award timing remains tied to the grant decision. I’ve kept formal competition as the working path and updated the project record.</p>
             </div>
           </div>
 
-          <div class="record reveal record-reveal">
-            <p class="record-title">Runway sweeper replacement</p>
-            <div class="record-row"><span class="record-label">Funding plan</span> <span>AIP + local match</span></div>
-            <div class="record-row"><span class="record-label">Grant status</span> <span><span class="grant-status-muted">Application submitted</span> <span class="grant-status-open">&middot; Decision pending</span></span></div>
-            <div class="record-row"><span class="record-label">Working path</span> <span class="record-value-bold">Formal competition</span></div>
-            <div class="record-row record-row-alt"><span class="record-label">Other option</span> <span>Cooperative contract candidate</span></div>
-            <div class="record-row is-next-move"><span class="record-label">Next move</span> <span class="record-value-next">Prepare the equipment scope brief</span></div>
-            <p class="record-src">Based on: Airport procurement policy &middot; Capital plan &middot; Airport-confirmed grant status</p>
+          <div class="conversation-update">
+            <span class="conversation-update-label">Record updated</span>
+            <div class="conversation-update-facts">
+              <strong>Formal competition</strong>
+              <span aria-hidden="true"></span>
+              AIP + local match
+              <span aria-hidden="true"></span>
+              Grant pending
+            </div>
+            <div class="conversation-next">Prepare equipment scope</div>
           </div>
+          <p class="conversation-source"><strong>Grounded in:</strong> Airport procurement policy · Capital plan · Airport-confirmed grant status</p>
         </div>
       </div>
     </section>
