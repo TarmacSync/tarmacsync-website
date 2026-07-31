@@ -395,196 +395,207 @@
     }
     .positioning strong { color: var(--ink); font-weight: 600; }
 
-    /* ── Procurement intelligence demonstration ──────────────── */
-    .converge {
-      margin-top: 3rem;
+    /* ── Flagship Pathfinder product canvas ───────────────────── */
+    .flagship-stage {
       position: relative;
-      display: grid; gap: 4.75rem;
-      grid-template-columns: 1fr;
-      align-items: center;
-      max-width: 1040px; margin-inline: auto;
-    }
-    @media (min-width: 860px) {
-      .converge { grid-template-columns: minmax(260px, .72fr) minmax(500px, 1.28fr); }
-    }
-    .source-panel {
-      position: relative;
-      padding: 2rem;
-      background: var(--cloud);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-    }
-    .source-panel::before {
-      content: "";
-      position: absolute;
-      inset: 14px -14px -14px 14px;
-      z-index: -1;
-      border: 1px solid rgba(23,25,31,.06);
-      border-radius: 16px;
-      background: rgba(255,255,255,.45);
-    }
-    .converge-sources { display: grid; gap: .55rem; }
-    .converge-label {
-      display: block;
-      font-family: var(--mono); font-size: .63rem; font-weight: 600;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-      margin-bottom: .6rem;
-    }
-    .source-intro {
-      max-width: 28ch;
-      margin-bottom: 1.25rem;
-      font-size: .92rem;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-    .source-row {
-      display: flex; align-items: center; gap: .7rem;
-      min-height: 48px; padding: .7rem .8rem;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background: var(--white);
-      box-shadow: 0 4px 16px -14px rgba(23,25,31,.35);
-      font-size: .89rem; font-weight: 500; color: var(--graphite);
-    }
-    @media (min-width: 860px) {
-      .source-row:nth-child(2) { transform: translateX(.7rem); }
-      .source-row:nth-child(4) { transform: translateX(.35rem); }
-    }
-    .source-icon {
-      width: 21px; height: 21px; flex-shrink: 0;
-      color: var(--muted); stroke-width: 1.5;
-    }
-    .source-icon svg { display: block; }
-
-    /* Connector zone */
-    .converge-center {
-      position: absolute;
-      left: calc(31.5% - 12px);
-      top: 50%;
-      z-index: 3;
-      display: flex; align-items: center; justify-content: center;
-      width: 126px; min-height: 48px;
-      padding: .7rem .9rem;
-      transform: translate(-50%, -50%);
-      background: var(--white);
-      border: 1px solid rgba(217,150,0,.42);
-      border-radius: 999px;
-      box-shadow: 0 12px 28px -18px rgba(23,25,31,.45);
-    }
-    .converge-center::after {
-      content: "";
-      position: absolute;
-      right: -6px;
-      top: 50%;
-      width: 7px; height: 7px;
-      border-top: 1.5px solid var(--orange-ink);
-      border-right: 1.5px solid var(--orange-ink);
-      transform: translateY(-50%) rotate(45deg);
-    }
-    .converge-mark {
-      text-align: center;
-      font-family: var(--mono); font-size: .62rem; font-weight: 700;
-      letter-spacing: .08em; text-transform: uppercase; color: var(--orange-ink);
-    }
-    .converge-mark span { display: none; }
-    .converge-lines { display: none; }
-    @media (max-width: 859px) {
-      .converge { gap: .85rem; }
-      .source-panel { padding: 1.5rem; }
-      .source-panel::before { inset: 10px -8px -10px 8px; }
-      .converge-center {
-        position: relative;
-        left: auto; top: auto;
-        justify-self: center;
-        width: 132px; min-height: 46px;
-        transform: none;
-      }
-      .converge-center::after {
-        right: auto; left: 50%; top: auto; bottom: -6px;
-        transform: translateX(-50%) rotate(135deg);
-      }
-    }
-
-    /* Outcome card */
-    .outcome-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 17px;
+      max-width: 1080px;
+      min-height: 510px;
+      margin: 3.25rem auto 0;
       overflow: hidden;
-      box-shadow: 0 18px 44px -30px rgba(23,25,31,.38);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(217,150,0,.11), transparent 31%),
+        linear-gradient(145deg, #181a20 0%, #101217 100%);
+      color: var(--white);
+      box-shadow: 0 36px 80px -48px rgba(10,12,17,.7);
     }
-    .outcome-head {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--line);
-      background: var(--cloud);
-      font-family: var(--mono); font-size: .61rem; font-weight: 600;
-      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    .flagship-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .35;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
     }
-    .outcome-head::after {
-      content: "Live working record";
-      padding: .25rem .45rem;
-      border: 1px solid rgba(35,125,89,.18);
-      border-radius: 999px;
-      background: rgba(35,125,89,.07);
-      color: #27694f;
-      font-size: .52rem;
-      letter-spacing: .06em;
+    .flagship-topline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.35rem 1.75rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-family: var(--mono);
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
     }
-    .outcome-body { padding: 1.5rem; display: grid; gap: 1rem; }
-    .outcome-project { font-size: .78rem; color: var(--muted); }
-    .outcome-project strong {
-      display: block; margin-top: .18rem;
-      font-size: 1.12rem; color: var(--ink); font-weight: 650; letter-spacing: -.02em;
+    .flagship-brand { color: var(--orange); }
+    .flagship-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
     }
-    .outcome-decision {
-      padding: 1rem 1.05rem;
-      border-left: 3px solid var(--orange);
-      border-radius: 0 9px 9px 0;
-      background: rgba(217,150,0,.055);
+    .flagship-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #55b58b;
+      box-shadow: 0 0 0 4px rgba(85,181,139,.1);
     }
-    .outcome-decision span {
-      display: block; margin-bottom: .25rem;
-      font-family: var(--mono); font-size: .55rem; font-weight: 600;
-      letter-spacing: .09em; text-transform: uppercase; color: var(--orange-ink);
+    .flagship-body {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr);
+      min-height: 386px;
     }
-    .outcome-decision strong {
-      display: block; font-size: 1.15rem; line-height: 1.25;
-      color: var(--ink); font-weight: 650; letter-spacing: -.02em;
+    .flagship-decision {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3.75rem 3.5rem;
     }
-    .outcome-decision p { margin-top: .35rem; font-size: .79rem; line-height: 1.45; color: var(--muted); }
-    .outcome-signals { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
-    .outcome-signal {
-      padding: .75rem .8rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
+    .flagship-project {
+      margin-bottom: 1.5rem;
+      font-family: var(--mono);
+      font-size: .61rem;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
     }
-    .outcome-signal span {
-      display: block; margin-bottom: .18rem;
-      font-family: var(--mono); font-size: .52rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--muted);
+    .flagship-project strong {
+      display: block;
+      margin-top: .45rem;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -.01em;
+      text-transform: none;
+      color: rgba(255,255,255,.88);
     }
-    .outcome-signal strong { font-size: .79rem; line-height: 1.3; color: var(--graphite); font-weight: 600; }
-    .outcome-evidence {
-      font-size: .8rem; color: var(--muted); line-height: 1.5;
-      padding-top: .75rem; border-top: 1px solid var(--line);
+    .flagship-kicker {
+      margin-bottom: .5rem;
+      font-family: var(--mono);
+      font-size: .61rem;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: var(--orange);
     }
-    .outcome-evidence strong { color: var(--graphite); font-weight: 600; }
-    .outcome-next {
-      background: rgba(46,85,112,.06); border-radius: 8px;
-      padding: .9rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; gap: .5rem;
-      font-size: .87rem; color: #2E5570; font-weight: 500;
+    .flagship-title {
+      max-width: 11ch;
+      font-size: clamp(2.8rem, 5.6vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 650;
+      text-wrap: balance;
     }
-    .outcome-next span { font-weight: 600; }
-    .outcome-next::after {
-      content: "→"; font-size: 1rem; opacity: .5;
+    .flagship-rationale {
+      max-width: 53ch;
+      margin-top: 1.35rem;
+      font-size: .97rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,.7);
+    }
+    .flagship-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+      padding: 2rem 2rem 2rem 0;
+    }
+    .flagship-fact {
+      padding: 1.15rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .flagship-fact:first-child { border-top: 1px solid rgba(255,255,255,.1); }
+    .flagship-fact span {
+      display: block;
+      margin-bottom: .35rem;
+      font-family: var(--mono);
+      font-size: .53rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+    .flagship-fact strong {
+      font-size: .88rem;
+      line-height: 1.4;
+      font-weight: 550;
+      color: rgba(255,255,255,.88);
+    }
+    .flagship-action {
+      display: grid;
+      gap: .25rem;
+      margin-top: 1.25rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(217,150,0,.36);
+      border-radius: 11px;
+      background: rgba(217,150,0,.09);
+      color: var(--white);
+    }
+    .flagship-action span {
+      font-family: var(--mono);
+      font-size: .53rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .flagship-action strong {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      font-size: .9rem;
+      line-height: 1.35;
+      font-weight: 550;
+    }
+    .flagship-action strong::after { content: "→"; color: var(--orange); }
+    .flagship-evidence {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1rem 1.75rem;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: .75rem;
+      color: rgba(255,255,255,.62);
+    }
+    .flagship-evidence strong { color: rgba(255,255,255,.84); font-weight: 550; }
+    .flagship-evidence span {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
     }
     @media (max-width: 859px) {
-      .outcome-head { padding: 1rem 1.2rem; }
-      .outcome-body { padding: 1.2rem; }
-      .outcome-signals { grid-template-columns: 1fr; }
+      .flagship-stage { min-height: auto; border-radius: 20px; }
+      .flagship-topline { padding: 1.05rem 1.2rem; }
+      .flagship-body { grid-template-columns: 1fr; min-height: auto; }
+      .flagship-decision { padding: 2.5rem 1.5rem 1.75rem; }
+      .flagship-title { font-size: clamp(2.45rem, 13vw, 3.6rem); }
+      .flagship-rationale { font-size: .9rem; }
+      .flagship-side { padding: 0 1.5rem 2rem; }
+      .flagship-evidence {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 1rem 1.2rem;
+        line-height: 1.5;
+      }
+    }
+    @media (max-width: 430px) {
+      .flagship-topline > span:last-child { display: none; }
+      .flagship-decision { padding-top: 2.15rem; }
+      .flagship-project { margin-bottom: 1.25rem; }
     }
 
     /* ── Steps ──────────────────────────────────────────────────────
@@ -1010,73 +1021,40 @@
       </div>
 
       <div class="page">
-        <div class="converge reveal">
-          <div class="source-panel">
-            <span class="converge-label">Scattered today</span>
-            <p class="source-intro">The answer is buried across systems, documents, and institutional knowledge.</p>
-            <div class="converge-sources">
-              <div class="source-row">
-                <span class="source-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><rect x="3" y="4" width="14" height="12" rx="2"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12" x2="11" y2="12"/></svg></span>
-                Procurement policy
-              </div>
-              <div class="source-row">
-                <span class="source-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="7"/><line x1="10" y1="6" x2="10" y2="10"/><line x1="10" y1="10" x2="13" y2="13"/></svg></span>
-                Funding conditions
-              </div>
-              <div class="source-row">
-                <span class="source-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path d="M5 4h10l1 4H4l1-4z"/><rect x="4" y="8" width="12" height="7" rx="1"/></svg></span>
-                Contract options
-              </div>
-              <div class="source-row">
-                <span class="source-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="7"/><line x1="10" y1="3" x2="10" y2="7"/><line x1="10" y1="13" x2="10" y2="17"/><line x1="3" y1="10" x2="7" y2="10"/><line x1="13" y1="10" x2="17" y2="10"/></svg></span>
-                Project facts
-              </div>
-            </div>
+        <div class="flagship-stage reveal" role="group" aria-label="Example Pathfinder procurement analysis">
+          <div class="flagship-topline">
+            <span class="flagship-brand">TarmacSync / Pathfinder</span>
+            <span class="flagship-status">Working record · Project 024</span>
           </div>
-
-          <div class="converge-center" aria-hidden="true">
-            <div class="converge-lines">
-              <span class="converge-line"></span>
-              <span class="converge-line"></span>
-              <span class="converge-line"></span>
-              <span class="converge-line"></span>
-            </div>
-            <div class="converge-mark">
-              TarmacSync
-              <span>Turns scattered inputs into a working path</span>
-            </div>
-          </div>
-
-          <div class="outcome-card">
-            <div class="outcome-head">Pathfinder analysis</div>
-            <div class="outcome-body">
-              <div class="outcome-project">
+          <div class="flagship-body">
+            <div class="flagship-decision">
+              <div class="flagship-project">
                 Project
                 <strong>Runway sweeper replacement</strong>
               </div>
-              <div class="outcome-decision">
-                <span>Working path</span>
-                <strong>Formal competition</strong>
-                <p>Based on the anticipated value, AIP funding, and the airport’s procurement policy.</p>
+              <div class="flagship-kicker">Working path</div>
+              <h3 class="flagship-title">Formal competition.</h3>
+              <p class="flagship-rationale">Based on the anticipated value, AIP funding, and the airport’s procurement policy. A cooperative contract remains an alternative to validate—not the selected path.</p>
+            </div>
+            <div class="flagship-side">
+              <div class="flagship-fact">
+                <span>Funding</span>
+                <strong>AIP + local match</strong>
               </div>
-              <div class="outcome-signals">
-                <div class="outcome-signal">
-                  <span>Funding</span>
-                  <strong>AIP + local match</strong>
-                </div>
-                <div class="outcome-signal">
-                  <span>Open issue</span>
-                  <strong>Grant award pending</strong>
-                </div>
+              <div class="flagship-fact">
+                <span>Open issue</span>
+                <strong>Grant award pending</strong>
               </div>
-              <div class="outcome-evidence">
-                <strong>Evidence from 3 airport records</strong><br>
-                Procurement policy · Capital plan · User-confirmed grant status
-              </div>
-              <div class="outcome-next">
-                <span>Next move</span> Build the equipment scope
+              <div class="flagship-action">
+                <span>Next move</span>
+                <strong>Build the equipment scope</strong>
               </div>
             </div>
+          </div>
+          <div class="flagship-evidence">
+            <strong>3 airport records connected</strong>
+            <span aria-hidden="true"></span>
+            Procurement policy · Capital plan · User-confirmed grant status
           </div>
         </div>
 
