@@ -217,7 +217,7 @@
        Wide jumps between levels are what create the "expensive" feel.
        Display is deliberately far larger than section heads.          */
     .display {
-      font-size: clamp(2.9rem, 7.2vw, 5.4rem);
+      font-size: clamp(2.9rem, 7.2vw, 5rem);
       line-height: 1.02;
       letter-spacing: -0.035em;
       font-weight: 700;
@@ -514,9 +514,14 @@
       letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
     }
     .record-row .open { color: var(--orange-ink); font-weight: 600; }
+    .record-row.is-next-move {
+      border-left: 2px solid var(--orange-ink);
+      padding-left: .65rem; margin-left: -.65rem;
+      border-bottom: none;
+    }
     .record-src {
       margin-top: 1rem; padding-top: .85rem; border-top: 1px solid var(--line);
-      font-size: .78rem; line-height: 1.5; color: #31343B;
+      font-size: .78rem; line-height: 1.5; color: #2B2D33;
     }
 
     /* ── Trust columns ──────────────────────────────────────────── */
@@ -834,7 +839,7 @@
             <div class="record-row"><span class="record-label">Known</span> <span>AIP + local match</span></div>
             <div class="record-row"><span class="record-label">Working path</span> <span style="font-weight:600;">Formal competition</span></div>
             <div class="record-row"><span class="record-label">Open issue</span> <span class="open">Grant award pending</span></div>
-            <div class="record-row"><span class="record-label">Next move</span> <span style="font-weight:600;color:var(--ink);">Build the equipment scope</span></div>
+            <div class="record-row is-next-move"><span class="record-label">Next move</span> <span style="font-weight:600;color:var(--ink);">Build the equipment scope</span></div>
             <p class="record-src">Context: Airport procurement policy · Capital plan · User-confirmed grant status</p>
           </div>
         </div>
