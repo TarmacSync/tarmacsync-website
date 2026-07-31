@@ -779,12 +779,13 @@
 
     /* Orange emphasis reveal — transitions with parent reveal */
     .reveal .hl-orange { color: var(--ink); }
-    .reveal.in .hl-orange { animation: hl-flow 6s ease-in-out infinite; }
+    .reveal.in .hl-orange { animation: hl-flow 10s ease-in-out infinite; }
     @keyframes hl-flow {
       0%   { color: var(--ink); }
-      30%  { color: #AD5C1E; }
-      60%  { color: #AD5C1E; }
-      100% { color: #2C5A7A; }
+      20%  { color: #AD5C1E; }
+      50%  { color: #AD5C1E; }
+      80%  { color: #2C5A7A; }
+      100% { color: var(--ink); }
     }
     @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #2C5A7A; animation: none; } }
   </style>
