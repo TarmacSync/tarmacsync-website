@@ -472,7 +472,6 @@
       margin-bottom: .45rem;
     }
     .step-detail { font-size: .93rem; line-height: 1.55; color: var(--muted); }
-    /* The operator's own words — set apart so it reads as input, not prose. */
     .step-quote {
       display: inline-block; margin-top: .1rem;
       font-size: .95rem; color: var(--ink);
@@ -486,11 +485,52 @@
       background: rgba(245,106,0,.05); border: 1px solid rgba(245,106,0,.28);
       border-radius: 980px; padding: .32rem .8rem;
     }
-    /* This hedge is substantive trust content, not fine print — it gets
-       readable contrast rather than the quiet silver used for disclaimers. */
     .step-note {
       margin-top: .55rem; font-size: .86rem; line-height: 1.55; color: var(--muted);
     }
+
+    /* ── Conversation demo ─────────────────────────────────────── */
+    .convo { display: grid; gap: 0; }
+    .convo-msg { display: grid; gap: .4rem; }
+    .convo-label {
+      font-family: var(--mono); font-size: .58rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+      padding-left: .2rem;
+    }
+    .convo-msg-pathfinder .convo-label { color: var(--orange-ink); }
+    .convo-bubble {
+      font-size: .95rem; color: var(--ink); line-height: 1.5;
+      background: var(--cloud); border-radius: 2px 12px 12px 12px;
+      padding: .65rem .9rem; max-width: 92%;
+    }
+    .convo-surface {
+      font-size: .93rem; color: var(--ink); line-height: 1.5;
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 8px; padding: .75rem .95rem;
+      border-left: 2px solid var(--orange-ink);
+    }
+    .convo-chip {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .86rem; font-weight: 500; color: var(--orange-ink);
+      background: rgba(245,106,0,.06); border: 1px solid rgba(245,106,0,.3);
+      border-radius: 980px; padding: .35rem .85rem;
+      cursor: default;
+    }
+    .convo-chip::before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--orange-ink); flex-shrink: 0;
+    }
+    .convo-connector {
+      width: 2px; height: 1.2rem; background: var(--line);
+      margin-left: 1.2rem;
+    }
+    .convo-msg-pathfinder ~ .convo-connector {
+      background: linear-gradient(to bottom, var(--orange-ink), var(--line));
+    }
+
+    /* Alternative row in record */
+    .record-row-alt { border-bottom: 1px solid var(--line); }
+    .record-row-alt span:last-child { font-weight: 400; color: var(--muted); }
 
     .record {
       background: var(--white); border: 1px solid var(--line);
@@ -801,36 +841,29 @@
       <div class="page">
         <div class="section-head reveal">
           <span class="eyebrow eyebrow-accent">Pathfinder in action</span>
-          <h2 class="h2">Start with the need. Leave with a next move.</h2>
-          <p class="lede">Pathfinder brings the airport's policy, funding, project context, and relevant sources into one focused conversation. It asks only for information that could materially change the path or next action.</p>
+          <h2 class="h2">From one request to a working path.</h2>
+          <p class="lede">Pathfinder connects the request to the airport's policy, funding, and project record — then surfaces what matters next.</p>
         </div>
 
         <div class="convo-grid reveal" style="margin-top:3.8rem;">
-          <div class="steps">
-            <div class="step">
-              <span class="step-num">01</span>
-              <div>
-                <p class="step-title">Describe the need</p>
-                <span class="step-quote">"We need to replace our runway sweeper."</span>
-              </div>
+          <div class="convo">
+            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:0s;">
+              <span class="convo-label">Airport</span>
+              <div class="convo-bubble">We need to replace our runway sweeper.</div>
             </div>
 
-            <div class="step">
-              <span class="step-num">02</span>
-              <div>
-                <p class="step-title">Add what changes the path</p>
-                <p class="step-detail">In this example, Pathfinder finds the item in the capital plan and asks the next question that could change the path: has the AIP grant been awarded?</p>
-                <span class="step-answer">Applied — decision pending</span>
-              </div>
+            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.15s;"></div>
+
+            <div class="convo-msg convo-msg-pathfinder reveal" style="transition-delay:.2s;">
+              <span class="convo-label">Pathfinder</span>
+              <div class="convo-surface">I found a matching project in your capital plan. Has the AIP grant been awarded?</div>
             </div>
 
-            <div class="step">
-              <span class="step-num">03</span>
-              <div>
-                <p class="step-title">See the working path and next step</p>
-                <p class="step-detail">Formal competition is the working path. A cooperative contract candidate remains another option to check — not the selected path.</p>
-                <p class="step-detail">Next step: build the equipment scope brief.</p>
-              </div>
+            <div class="convo-connector reveal" aria-hidden="true" style="transition-delay:.3s;"></div>
+
+            <div class="convo-msg convo-msg-airport reveal" style="transition-delay:.35s;">
+              <span class="convo-label">Airport</span>
+              <div class="convo-chip">Applied — decision pending</div>
             </div>
           </div>
 
@@ -839,6 +872,7 @@
             <div class="record-row"><span class="record-label">Known</span> <span>AIP + local match</span></div>
             <div class="record-row"><span class="record-label">Working path</span> <span style="font-weight:600;">Formal competition</span></div>
             <div class="record-row"><span class="record-label">Open issue</span> <span class="open">Grant award pending</span></div>
+            <div class="record-row record-row-alt"><span class="record-label">Alternative to validate</span> <span>Cooperative contract candidate</span></div>
             <div class="record-row is-next-move"><span class="record-label">Next move</span> <span style="font-weight:600;color:var(--ink);">Build the equipment scope</span></div>
             <p class="record-src">Context: Airport procurement policy · Capital plan · User-confirmed grant status</p>
           </div>
