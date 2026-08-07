@@ -611,186 +611,6 @@
     .success-privacy { color: var(--silver); font-size: .76rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
     .success-privacy a { color: var(--muted); }
 
-    /* ── Pathfinder conversation showcase ─────────────────────── */
-    .conversation-stage {
-      max-width: 1000px;
-      margin: 3.5rem auto 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: var(--white);
-      box-shadow: 0 30px 70px -52px rgba(23,25,31,.35);
-    }
-    .conversation-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.1rem 1.5rem;
-      border-bottom: 1px solid var(--line);
-      background: var(--cloud);
-      font-family: var(--mono);
-      font-size: .58rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .conversation-topline strong { color: var(--orange-ink); font-weight: 700; }
-    .conversation-body {
-      display: grid;
-      gap: 1.55rem;
-      max-width: 790px;
-      margin: 0 auto;
-      padding: 3rem 2.5rem 2.75rem;
-    }
-    .conversation-turn { display: grid; gap: .45rem; }
-    .conversation-turn-airport {
-      justify-items: end;
-      margin-left: auto;
-      max-width: 62%;
-    }
-    .conversation-speaker {
-      font-family: var(--mono);
-      font-size: .56rem;
-      font-weight: 650;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .conversation-turn-pathfinder .conversation-speaker { color: var(--muted); }
-    .conversation-turn-final .conversation-speaker { color: var(--orange-ink); }
-    .conversation-message {
-      font-size: 1rem;
-      line-height: 1.62;
-      color: var(--graphite);
-    }
-    .conversation-turn-airport .conversation-message {
-      padding: .8rem 1.05rem;
-      border-radius: 14px 14px 3px 14px;
-      background: var(--cloud);
-      color: var(--ink);
-    }
-    .conversation-turn-pathfinder {
-      max-width: 82%;
-      padding-left: 1.15rem;
-      border-left: 2px solid var(--orange);
-    }
-    .conversation-match {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: .15rem;
-      font-family: var(--mono);
-      font-size: .54rem;
-      font-weight: 650;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .conversation-turn-final {
-      max-width: 88%;
-      padding: 1.25rem 1.35rem;
-      border-left: 3px solid var(--orange);
-      border-radius: 0 12px 12px 0;
-      background: rgba(217,150,0,.05);
-    }
-    .conversation-turn-final h3 {
-      margin-bottom: .45rem;
-      font-size: clamp(1.35rem, 2.3vw, 1.75rem);
-      line-height: 1.2;
-      letter-spacing: -.025em;
-      font-weight: 650;
-      color: var(--ink);
-    }
-    .conversation-turn-final p {
-      font-size: .93rem;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-    .conversation-update {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.1rem 1.5rem;
-      border-top: 1px solid var(--line);
-      background: #181a20;
-      color: var(--white);
-    }
-    .conversation-update-label {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-family: var(--mono);
-      font-size: .57rem;
-      font-weight: 700;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-    .conversation-update-label::before {
-      content: "✓";
-      display: grid;
-      place-items: center;
-      width: 18px;
-      height: 18px;
-      border: 1px solid rgba(217,150,0,.42);
-      border-radius: 50%;
-      font-size: .62rem;
-    }
-    .conversation-update-facts {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .65rem;
-      min-width: 0;
-      font-size: .76rem;
-      color: rgba(255,255,255,.62);
-    }
-    .conversation-update-facts strong { color: rgba(255,255,255,.9); font-weight: 550; }
-    .conversation-update-facts span {
-      width: 3px; height: 3px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.25);
-      flex: 0 0 auto;
-    }
-    .conversation-next {
-      display: flex;
-      align-items: center;
-      gap: .65rem;
-      font-size: .8rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .conversation-next::after { content: "→"; color: var(--orange); }
-    .conversation-source {
-      padding: .75rem 1.5rem;
-      border-top: 1px solid var(--line);
-      font-size: .73rem;
-      line-height: 1.5;
-      text-align: center;
-      color: var(--graphite);
-    }
-    .conversation-source strong { color: var(--ink); font-weight: 550; }
-    @media (max-width: 760px) {
-      .conversation-stage { border-radius: 19px; }
-      .conversation-topline { padding: 1rem 1.15rem; }
-      .conversation-topline span:last-child { display: none; }
-      .conversation-body { gap: 1.4rem; padding: 2rem 1.25rem; }
-      .conversation-turn-airport { max-width: 88%; }
-      .conversation-turn-pathfinder,
-      .conversation-turn-final { max-width: 100%; }
-      .conversation-message { font-size: .94rem; }
-      .conversation-update {
-        grid-template-columns: 1fr;
-        gap: .8rem;
-        padding: 1.15rem 1.25rem;
-      }
-      .conversation-update-facts { justify-content: flex-start; flex-wrap: wrap; }
-      .conversation-next { padding-top: .8rem; border-top: 1px solid rgba(255,255,255,.1); }
-      .conversation-source { padding: .8rem 1.25rem; text-align: left; }
-    }
-
     /* ── Trust columns ──────────────────────────────────────────── */
     .cols { display: grid; gap: 2.6rem; margin-top: 3.8rem; }
     @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
@@ -1064,15 +884,55 @@
         <div class="section-head reveal">
           <span class="eyebrow eyebrow-accent">Pathfinder in action</span>
           <h2 class="h2">From one request to a <span class="hl-orange">working path.</span></h2>
-          <p class="lede" style="margin-bottom:2rem">Pathfinder connects the request to the airport’s policy, funding, and project record—then asks the question that changes what happens next.</p>
+          <p class="lede" style="margin-bottom:2rem">Pathfinder connects the request to the airport’s policy, funding, and project record—then surfaces the working path and the next action.</p>
         </div>
 
         <div class="reveal" style="max-width:100%;margin-left:auto;margin-right:auto">
-          <div id="demo-video" style="position:relative;border-radius:12px;overflow:hidden;cursor:pointer" onclick="var v=document.getElementById('demo-video');v.innerHTML='<iframe src=\'https://www.youtube-nocookie.com/embed/sg6Pis0CvhU?autoplay=1&modestbranding=1&rel=0&color=white\' style=\'position:absolute;top:0;left:0;width:100%;height:100%;border:0\' allowfullscreen allow=\'autoplay\'></iframe>';v.style.paddingBottom='56.25%';v.style.height='0';v.style.cursor='default'">
+          <div id="demo-video" role="button" tabindex="0" aria-label="Play video: What is TarmacSync?" style="position:relative;border-radius:12px;overflow:hidden;cursor:pointer">
             <img src="https://img.youtube.com/vi/sg6Pis0CvhU/maxresdefault.jpg" alt="What is TarmacSync?" style="width:100%;display:block" loading="lazy">
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(10,10,13,0.78);border-radius:50%;display:flex;align-items:center;justify-content:center">
               <svg width="22" height="26" viewBox="0 0 26 30" fill="white"><path d="M0 0v30l26-15z"/></svg>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page reveal" style="margin-top:3.5rem">
+        <p class="positioning" style="text-align:center;margin-bottom:1.5rem">Every request produces a working record \u2014 not a final answer, a clear next step.</p>
+        <div class="flagship-stage" role="group" aria-label="Example Pathfinder working record">
+          <div class="flagship-topline">
+            <span class="flagship-brand">TarmacSync / Pathfinder</span>
+            <span class="flagship-status">Example</span>
+          </div>
+          <div class="flagship-body">
+            <div class="flagship-decision">
+              <div class="flagship-project">
+                Project
+                <strong>Terminal chiller replacement</strong>
+              </div>
+              <div class="flagship-kicker">Working path</div>
+              <h3 class="flagship-title">Formal competition.</h3>
+              <p class="flagship-rationale">The anticipated value and AIP funding point toward formal competition as the working path. A cooperative contract is a candidate alternative to validate before award.</p>
+            </div>
+            <div class="flagship-side">
+              <div class="flagship-fact">
+                <span>Funding</span>
+                <strong>AIP + local match</strong>
+              </div>
+              <div class="flagship-fact">
+                <span>Open issue</span>
+                <strong>Cooperative candidates to evaluate</strong>
+              </div>
+              <div class="flagship-action">
+                <span>Next move</span>
+                <strong>Develop the scope of work</strong>
+              </div>
+            </div>
+          </div>
+          <div class="flagship-evidence">
+            <strong>3 airport records connected</strong>
+            <span aria-hidden="true">&middot;</span>
+            Procurement policy &middot; Capital plan &middot; Airport-confirmed grant status
           </div>
         </div>
       </div>
@@ -1325,12 +1185,21 @@
         if(!r.ok||!d.ok)throw new Error(d.error||'We could not send your submission. Please try again.');
         form.reset();status.className='form-status success';status.textContent='';
         form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
+        if(window.clarity){clarity("event","waitlist_submitted");clarity("set","utm_source",payload.utm_source||"direct");}
       }catch(err){
         status.className='form-status error';status.textContent=err.message||'We could not send your submission. Please try again.';
+        if(window.clarity)clarity("event","waitlist_error");
         form.style.display='';document.getElementById('form-content').style.display='';document.getElementById('contact-success').style.display='none';
         button.disabled=false;button.textContent='Start the conversation';
       }finally{form.removeAttribute('aria-busy');}
     });
+
+    (function(){
+      const v=document.getElementById('demo-video');if(!v)return;
+      function play(){v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/sg6Pis0CvhU?autoplay=1&modestbranding=1&rel=0&color=white" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen allow="autoplay"></iframe>';v.style.paddingBottom='56.25%';v.style.height='0';v.style.cursor='default';v.removeAttribute('role');v.removeAttribute('tabindex');v.removeAttribute('aria-label');}
+      v.addEventListener('click',play);
+      v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});
+    })();
 
     document.querySelectorAll('.faq details').forEach(d=>{
       d.addEventListener('toggle',()=>{if(!d.open)return;document.querySelectorAll('.faq details').forEach(o=>{if(o!==d)o.removeAttribute('open');});});
