@@ -411,7 +411,6 @@
     /* ── Trust columns ──────────────────────────────────────────── */
     .cols { display: grid; gap: 2.6rem; margin-top: 3.8rem; }
     @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
-    @media (min-width: 1050px) { .cols { grid-template-columns: repeat(4, 1fr); } }
     .col-num {
       font-family: var(--mono); font-size: .68rem; letter-spacing: .1em;
       color: var(--orange-ink); display: block; margin-bottom: .9rem;
@@ -685,8 +684,8 @@
           <p class="lede" style="margin-bottom:2rem">Pathfinder connects the request to the airport’s policy, funding, and project record—then surfaces the working path and the next action.</p>
         </div>
 
-        <div class="reveal" style="max-width:960px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.08)">
-          <video controls playsinline poster="assets/tarmacsync-demo-poster.png" style="width:100%;display:block" preload="metadata">
+        <div class="reveal" style="max-width:960px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.08);-webkit-mask-image:-webkit-radial-gradient(white,black)">
+          <video controls playsinline poster="assets/tarmacsync-demo-poster.png" style="width:100%;display:block;border-radius:20px" preload="metadata">
             <source src="assets/tarmacsync-demo.mp4" type="video/mp4">
           </video>
         </div>
@@ -704,7 +703,7 @@
           <div class="col">
             <span class="col-num">01</span>
             <h3 class="h3">Grounded in your airport's reviewed information and official sources.</h3>
-            <p>TarmacSync connects your airport's policy, project context, and official sources so your team can trace what shaped the working path.</p>
+            <p>TarmacSync connects your airport's policy, project context, and official sources so your team can trace what shaped the working path. The engine references FAA Advisory Circulars, Grant Assurances (40), AIP Handbook Order 5100.38D, 2 CFR Part 200, and ~7,200 cooperative contract records across five consortiums.</p>
           </div>
           <div class="col">
             <span class="col-num">02</span>
@@ -715,11 +714,6 @@
             <span class="col-num">03</span>
             <h3 class="h3">Your team remains in control of every decision and approval.</h3>
             <p>TarmacSync helps organize the path and supporting evidence. Your existing procurement, legal, grant, board, and FAA reviews stay in place.</p>
-          </div>
-          <div class="col">
-            <span class="col-num">04</span>
-            <h3 class="h3">Built on an indexed corpus of FAA and cooperative contract sources.</h3>
-            <p>The working path comes from a deterministic rules engine — not an AI guessing. The engine references FAA Advisory Circulars, Grant Assurances (40), AIP Handbook Order 5100.38D, 2 CFR Part 200, and ~7,200 cooperative contract records across five consortiums (Sourcewell, OMNIA Partners, NASPO ValuePoint, TIPS-USA, GSA).</p>
           </div>
         </div>
       </div>
