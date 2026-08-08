@@ -396,8 +396,11 @@
     }
     .problem-diagram img {
       display: block;
+      box-sizing: border-box;
       width: 100%;
       height: auto;
+      border: 1px solid var(--line);
+      border-radius: 20px;
     }
     .problem-diagram + .positioning { margin-top: 2.8rem; }
     @media (max-width: 680px) {
@@ -694,12 +697,12 @@
 
       <div class="page">
         <picture class="problem-diagram reveal">
-          <source media="(max-width: 680px)" srcset="assets/tarmacsync-path-diagram-mobile.svg">
+          <source media="(max-width: 680px)" srcset="assets/tarmacsync-path-diagram-mobile.svg" width="760" height="1980">
           <img
             src="assets/tarmacsync-path-diagram.svg"
             alt="Airport procurement policy, funding terms, project facts, contract options, and institutional knowledge flow through TarmacSync into a working path, an open issue, and the next move. Existing airport systems carry the work forward."
             width="1600"
-            height="760"
+            height="840"
             loading="lazy"
           >
         </picture>
