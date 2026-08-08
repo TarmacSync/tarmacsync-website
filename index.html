@@ -386,6 +386,28 @@
     .statement-title { margin-top: .9rem; }
     .statement .lede { max-width: 58ch; margin: 1.4rem auto 0; }
 
+    /* Problem diagram — a responsive, code-native view of TarmacSync's role:
+       connect the context, work out the path, then hand execution back to the
+       airport's existing systems. */
+    .problem-diagram {
+      display: block;
+      width: 100%;
+      margin: 3.8rem auto 0;
+    }
+    .problem-diagram img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .problem-diagram + .positioning { margin-top: 2.8rem; }
+    @media (max-width: 680px) {
+      .problem-diagram {
+        width: min(100%, 440px);
+        margin-top: 2.8rem;
+      }
+      .problem-diagram + .positioning { margin-top: 2.3rem; }
+    }
+
     /* Positioning clarifier — deliberately set apart from the argument
        above it so it reads as "and here's where we sit", not more body copy. */
     .positioning {
@@ -671,6 +693,16 @@
       </div>
 
       <div class="page">
+        <picture class="problem-diagram reveal">
+          <source media="(max-width: 680px)" srcset="assets/tarmacsync-path-diagram-mobile.svg">
+          <img
+            src="assets/tarmacsync-path-diagram.svg"
+            alt="Airport procurement policy, funding terms, project facts, contract options, and institutional knowledge flow through TarmacSync into a working path, an open issue, and the next move. Existing airport systems carry the work forward."
+            width="1600"
+            height="760"
+            loading="lazy"
+          >
+        </picture>
         <p class="positioning reveal"><strong>TarmacSync works out the path. Your existing systems carry it forward.</strong></p>
       </div>
     </section>

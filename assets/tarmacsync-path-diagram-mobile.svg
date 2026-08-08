@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1460" viewBox="0 0 760 1460" role="img" aria-labelledby="title description">
+  <title id="title">How TarmacSync turns scattered airport procurement context into a working path</title>
+  <desc id="description">Procurement policy, funding terms, project facts, contract options, and institutional knowledge flow into TarmacSync. TarmacSync connects that context and shows the working path, open issue, and next move. Existing airport systems carry the work forward.</desc>
+  <defs>
+    <style>
+      .sans { font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .eyebrow { font-size: 23px; font-weight: 700; letter-spacing: 2.5px; }
+      .input { font-size: 32px; font-weight: 600; letter-spacing: -0.3px; }
+      .center-eyebrow { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; }
+      .brand { font-size: 48px; font-weight: 650; letter-spacing: -1.7px; }
+      .row-label { font-size: 21px; font-weight: 700; letter-spacing: 1.7px; }
+      .row-value { font-size: 29px; font-weight: 550; }
+      .system { font-size: 20px; font-weight: 700; letter-spacing: .9px; }
+    </style>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#17191F" flood-opacity="0.055"/>
+    </filter>
+  </defs>
+
+  <g class="sans">
+    <text x="54" y="64" class="mono eyebrow" fill="#B94E08">SCATTERED TODAY</text>
+    <text x="54" y="101" font-size="27" fill="#6E7179">The pieces already exist across the airport.</text>
+
+    <g filter="url(#soft-shadow)">
+      <rect x="54" y="132" width="652" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="54" y="216" width="652" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="54" y="300" width="652" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="54" y="384" width="652" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="54" y="468" width="652" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+    </g>
+    <g fill="#F56A00">
+      <circle cx="84" cy="166" r="4"/><circle cx="84" cy="250" r="4"/><circle cx="84" cy="334" r="4"/><circle cx="84" cy="418" r="4"/><circle cx="84" cy="502" r="4"/>
+    </g>
+    <g class="input" fill="#17191F">
+      <text x="108" y="173">Procurement policy</text><text x="108" y="257">Funding terms</text><text x="108" y="341">Project facts</text><text x="108" y="425">Contract options</text><text x="108" y="509">Institutional knowledge</text>
+    </g>
+
+    <path d="M380 536 V584" fill="none" stroke="#B9BDC7" stroke-width="1.5"/>
+    <circle cx="380" cy="570" r="6" fill="#F56A00"/>
+    <path d="M372 576 L380 584 L388 576" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g filter="url(#soft-shadow)">
+      <rect x="54" y="602" width="652" height="252" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
+    </g>
+    <rect x="54" y="602" width="6" height="252" rx="3" fill="#F56A00"/>
+    <text x="88" y="649" class="mono center-eyebrow" fill="#B94E08">AIRPORT PROCUREMENT INTELLIGENCE</text>
+    <text x="88" y="717" class="brand" fill="#17191F">Tarmac<tspan fill="#6E7179" font-weight="450">Sync</tspan></text>
+    <text x="88" y="758" font-size="29" font-weight="500" fill="#3E4149">Connects the project context.</text>
+    <path d="M90 808 H220 C244 808 244 790 268 790 H442 C466 790 466 808 490 808 H652" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="90" cy="808" r="5" fill="#F56A00"/><circle cx="268" cy="790" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/><circle cx="490" cy="808" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
+    <path d="M644 802 L653 808 L644 814" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M380 854 V902" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M372 894 L380 902 L388 894" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g filter="url(#soft-shadow)">
+      <rect x="54" y="920" width="652" height="350" rx="22" fill="#FFFFFF" stroke="#E4E6EA"/>
+    </g>
+    <text x="88" y="968" class="mono eyebrow" fill="#6E7179">WHAT THE TEAM SEES</text>
+    <text x="88" y="1018" font-size="42" font-weight="650" letter-spacing="-1" fill="#17191F">A working path</text>
+    <line x1="88" y1="1042" x2="672" y2="1042" stroke="#E4E6EA"/>
+    <rect x="88" y="1072" width="4" height="45" rx="2" fill="#17191F"/>
+    <text x="110" y="1084" class="mono row-label" fill="#6E7179">LIKELY PATH</text><text x="110" y="1113" class="row-value" fill="#17191F">The route that appears to fit</text>
+    <rect x="88" y="1136" width="4" height="45" rx="2" fill="#B9BDC7"/>
+    <text x="110" y="1148" class="mono row-label" fill="#6E7179">OPEN ISSUE</text><text x="110" y="1177" class="row-value" fill="#17191F">What still needs validation</text>
+    <rect x="88" y="1200" width="4" height="45" rx="2" fill="#F56A00"/>
+    <text x="110" y="1212" class="mono row-label" fill="#B94E08">NEXT MOVE</text><text x="110" y="1241" class="row-value" fill="#17191F">The action that moves it forward</text>
+
+    <path d="M380 1270 V1300" fill="none" stroke="#B9BDC7" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <text x="54" y="1337" class="mono eyebrow" fill="#6E7179">YOUR SYSTEMS CARRY IT FORWARD</text>
+    <rect x="54" y="1360" width="150" height="45" rx="22.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+    <rect x="218" y="1360" width="246" height="45" rx="22.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+    <rect x="478" y="1360" width="184" height="45" rx="22.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+    <text x="129" y="1388" text-anchor="middle" class="mono system" fill="#3E4149">ERP</text>
+    <text x="341" y="1388" text-anchor="middle" class="mono system" fill="#3E4149">ePROCUREMENT</text>
+    <text x="570" y="1388" text-anchor="middle" class="mono system" fill="#3E4149">RECORDS</text>
+  </g>
+</svg>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title description">
+  <title id="title">How TarmacSync turns scattered airport procurement context into a working path</title>
+  <desc id="description">Procurement policy, funding terms, project facts, contract options, and institutional knowledge flow into TarmacSync. TarmacSync connects that context and shows the working path, the open issue, and the next move. Existing airport systems then carry the work forward.</desc>
+  <defs>
+    <style>
+      .sans { font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: 2.4px; }
+      .input { font-size: 22px; font-weight: 600; letter-spacing: -0.25px; }
+      .center-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 1px; }
+      .brand { font-size: 43px; font-weight: 650; letter-spacing: -1.8px; }
+      .center-copy { font-size: 20px; font-weight: 500; }
+      .output-title { font-size: 32px; font-weight: 650; letter-spacing: -0.9px; }
+      .row-label { font-size: 12px; font-weight: 700; letter-spacing: 1.7px; }
+      .row-value { font-size: 19px; font-weight: 550; letter-spacing: -0.15px; }
+      .system { font-size: 13px; font-weight: 700; letter-spacing: 1.1px; }
+    </style>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#17191F" flood-opacity="0.055"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent canvas: designed to sit directly on the website's cloud section. -->
+
+  <g class="sans">
+    <!-- Source context -->
+    <text x="68" y="77" class="mono eyebrow" fill="#B94E08">SCATTERED TODAY</text>
+    <text x="68" y="111" font-size="17" font-weight="450" fill="#6E7179">The pieces already exist across the airport.</text>
+
+    <g filter="url(#soft-shadow)">
+      <rect x="68" y="145" width="392" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="68" y="228" width="392" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="68" y="311" width="392" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="68" y="394" width="392" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="68" y="477" width="392" height="68" rx="13" fill="#FFFFFF" stroke="#E4E6EA"/>
+    </g>
+
+    <g fill="#F56A00">
+      <circle cx="96" cy="179" r="4"/>
+      <circle cx="96" cy="262" r="4"/>
+      <circle cx="96" cy="345" r="4"/>
+      <circle cx="96" cy="428" r="4"/>
+      <circle cx="96" cy="511" r="4"/>
+    </g>
+    <g class="input" fill="#17191F">
+      <text x="118" y="186">Procurement policy</text>
+      <text x="118" y="269">Funding terms</text>
+      <text x="118" y="352">Project facts</text>
+      <text x="118" y="435">Contract options</text>
+      <text x="118" y="518">Institutional knowledge</text>
+    </g>
+
+    <!-- Context lines converge quietly; they are supporting structure, not decoration. -->
+    <g fill="none" stroke="#B9BDC7" stroke-width="1.5">
+      <path d="M460 179 H500 C536 179 535 345 574 345"/>
+      <path d="M460 262 H518 C544 262 544 345 574 345"/>
+      <path d="M460 345 H574"/>
+      <path d="M460 428 H518 C544 428 544 345 574 345"/>
+      <path d="M460 511 H500 C536 511 535 345 574 345"/>
+    </g>
+    <circle cx="576" cy="345" r="6" fill="#F56A00"/>
+
+    <!-- TarmacSync intelligence layer -->
+    <g filter="url(#soft-shadow)">
+      <rect x="598" y="213" width="344" height="264" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
+    </g>
+    <rect x="598" y="213" width="6" height="264" rx="3" fill="#F56A00"/>
+    <text x="634" y="258" class="mono center-eyebrow" fill="#B94E08">AIRPORT PROCUREMENT INTELLIGENCE</text>
+    <text x="634" y="324" class="brand" fill="#17191F">Tarmac<tspan fill="#6E7179" font-weight="450">Sync</tspan></text>
+    <text x="634" y="365" class="center-copy" fill="#3E4149">Connects the project context.</text>
+
+    <!-- Signature path motif -->
+    <g transform="translate(635 407)">
+      <path d="M0 0 H72 C89 0 89 -18 106 -18 H188 C207 -18 207 0 226 0 H270" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="5" fill="#F56A00"/>
+      <circle cx="106" cy="-18" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
+      <circle cx="226" cy="0" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
+      <path d="M265 -6 L275 0 L265 6" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- A single worked path leaves TarmacSync. -->
+    <path d="M942 345 H1008" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M998 337 L1009 345 L998 353" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- The operator-facing result -->
+    <g filter="url(#soft-shadow)">
+      <rect x="1030" y="127" width="500" height="396" rx="22" fill="#FFFFFF" stroke="#E4E6EA"/>
+    </g>
+    <text x="1068" y="174" class="mono eyebrow" fill="#6E7179">WHAT THE TEAM SEES</text>
+    <text x="1068" y="226" class="output-title" fill="#17191F">A working path</text>
+    <line x1="1068" y1="250" x2="1492" y2="250" stroke="#E4E6EA"/>
+
+    <g>
+      <rect x="1068" y="282" width="4" height="48" rx="2" fill="#17191F"/>
+      <text x="1090" y="295" class="mono row-label" fill="#6E7179">LIKELY PATH</text>
+      <text x="1090" y="326" class="row-value" fill="#17191F">The route that appears to fit</text>
+
+      <rect x="1068" y="361" width="4" height="48" rx="2" fill="#B9BDC7"/>
+      <text x="1090" y="374" class="mono row-label" fill="#6E7179">OPEN ISSUE</text>
+      <text x="1090" y="405" class="row-value" fill="#17191F">What still needs validation</text>
+
+      <rect x="1068" y="440" width="4" height="48" rx="2" fill="#F56A00"/>
+      <text x="1090" y="453" class="mono row-label" fill="#B94E08">NEXT MOVE</text>
+      <text x="1090" y="484" class="row-value" fill="#17191F">The action that moves it forward</text>
+    </g>
+
+    <!-- Existing systems receive the worked-out direction; TarmacSync does not replace them. -->
+    <path d="M1280 523 V563" fill="none" stroke="#B9BDC7" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <text x="1030" y="602" class="mono eyebrow" fill="#6E7179">YOUR SYSTEMS CARRY IT FORWARD</text>
+    <g>
+      <rect x="1030" y="624" width="114" height="43" rx="21.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="1157" y="624" width="174" height="43" rx="21.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <rect x="1344" y="624" width="136" height="43" rx="21.5" fill="#FFFFFF" stroke="#E4E6EA"/>
+      <text x="1087" y="651" text-anchor="middle" class="mono system" fill="#3E4149">ERP</text>
+      <text x="1244" y="651" text-anchor="middle" class="mono system" fill="#3E4149">ePROCUREMENT</text>
+      <text x="1412" y="651" text-anchor="middle" class="mono system" fill="#3E4149">RECORDS</text>
+    </g>
+  </g>
+</svg>
