@@ -1,97 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="840" viewBox="0 0 1600 840" role="img" aria-labelledby="title description">
-  <title id="title">TarmacSync airport procurement intelligence</title>
-  <desc id="description">Airport-specific project, funding, policy, contract, and regulatory context flows through TarmacSync. The team sees a working procurement path, why it appears to fit, what needs validation, and the next move. Existing airport systems continue to execute and record the work.</desc>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-labelledby="title description">
+  <title id="title">Airport context becomes a working procurement path through TarmacSync</title>
+  <desc id="description">Project, funding, policy, contract, and regulatory context flows through TarmacSync. The airport team sees the likely route, the open issue, and the next move. Existing airport systems carry the work forward.</desc>
   <defs>
     <style>
       .sans { font-family: Inter, Aptos, Arial, Helvetica, sans-serif; }
-      .label { font-size: 13px; font-weight: 600; letter-spacing: 2.2px; }
-      .eyebrow { font-size: 15px; font-weight: 600; letter-spacing: .2px; }
-      .heading { font-size: 36px; font-weight: 600; letter-spacing: -1.1px; }
-      .brand { font-size: 52px; font-weight: 600; letter-spacing: -1.8px; }
-      .body { font-size: 19px; font-weight: 400; letter-spacing: -.15px; }
-      .item { font-size: 20px; font-weight: 500; letter-spacing: -.25px; }
-      .small { font-size: 16px; font-weight: 400; }
-      .systems { font-size: 13px; font-weight: 600; letter-spacing: 1.35px; }
+      .label { font-size: 16px; font-weight: 650; letter-spacing: 2.2px; }
+      .heading { font-size: 44px; font-weight: 650; letter-spacing: -1.4px; }
+      .item { font-size: 25px; font-weight: 520; letter-spacing: -.3px; }
+      .brand { font-size: 60px; font-weight: 650; letter-spacing: -2.2px; }
+      .accent { font-size: 18px; font-weight: 600; }
+      .center-copy { font-size: 28px; font-weight: 500; letter-spacing: -.3px; }
+      .output { font-size: 28px; font-weight: 560; letter-spacing: -.35px; }
+      .systems { font-size: 15px; font-weight: 650; letter-spacing: 1.35px; }
     </style>
   </defs>
 
-  <rect width="1600" height="840" fill="#FFFFFF"/>
+  <rect width="1600" height="760" fill="#FFFFFF"/>
 
   <g class="sans">
-    <text x="96" y="80" class="label" fill="#6F737C">ONE DECISION. ALL THE CONTEXT THAT CHANGES THE ANSWER.</text>
-    <line x1="96" y1="108" x2="1504" y2="108" stroke="#E7E9ED"/>
+    <!-- 01: the context already available across the airport -->
+    <text x="88" y="126" class="label" fill="#6F737C">01  AIRPORT CONTEXT</text>
+    <text x="88" y="190" class="heading" fill="#17191F">What shapes</text>
+    <text x="88" y="240" class="heading" fill="#17191F">the decision</text>
 
-    <!-- 01: airport context -->
-    <g>
-      <text x="96" y="164" class="label" fill="#6F737C">01  AIRPORT CONTEXT</text>
-      <text x="96" y="218" class="heading" fill="#17191F">What shapes the decision</text>
-
-      <g class="item" fill="#17191F">
-        <circle cx="103" cy="292" r="3.5" fill="#F56A00"/>
-        <text x="124" y="299">Project need + expected value</text>
-        <circle cx="103" cy="346" r="3.5" fill="#F56A00"/>
-        <text x="124" y="353">Funding source</text>
-        <circle cx="103" cy="400" r="3.5" fill="#F56A00"/>
-        <text x="124" y="407">Local policy + approvals</text>
-        <circle cx="103" cy="454" r="3.5" fill="#F56A00"/>
-        <text x="124" y="461">Contracts + cooperative pathways</text>
-        <circle cx="103" cy="508" r="3.5" fill="#F56A00"/>
-        <text x="124" y="515">Federal + state requirements</text>
-      </g>
-
-      <text x="96" y="574" class="small" fill="#6F737C">Airport-specific facts, not generic procurement advice.</text>
+    <g class="item" fill="#17191F">
+      <circle cx="97" cy="304" r="4" fill="#F56A00"/><text x="122" y="313">Project + expected value</text>
+      <circle cx="97" cy="364" r="4" fill="#F56A00"/><text x="122" y="373">Funding</text>
+      <circle cx="97" cy="424" r="4" fill="#F56A00"/><text x="122" y="433">Policy + approvals</text>
+      <circle cx="97" cy="484" r="4" fill="#F56A00"/><text x="122" y="493">Contract options</text>
+      <circle cx="97" cy="544" r="4" fill="#F56A00"/><text x="122" y="553">Federal + state rules</text>
     </g>
 
-    <line x1="464" y1="392" x2="532" y2="392" stroke="#B9BDC7" stroke-width="1.5"/>
-    <circle cx="464" cy="392" r="3" fill="#F56A00"/>
-    <path d="M523 386 L532 392 L523 398" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="464" y1="380" x2="530" y2="380" stroke="#B9BDC7" stroke-width="1.5"/>
+    <circle cx="464" cy="380" r="3.5" fill="#F56A00"/>
+    <path d="M521 374 L530 380 L521 386" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <!-- 02: TarmacSync intelligence layer -->
-    <g>
-      <rect x="552" y="150" width="496" height="456" rx="24" fill="#17191F"/>
-      <rect x="584" y="184" width="30" height="3" rx="1.5" fill="#F56A00"/>
-      <text x="584" y="222" class="label" fill="#B9BDC7">02  INTELLIGENCE LAYER</text>
-      <text x="584" y="300" class="brand" fill="#FFFFFF">TarmacSync</text>
-      <text x="584" y="339" class="eyebrow" fill="#F56A00">Airport procurement intelligence</text>
+    <!-- 02: the TarmacSync intelligence layer -->
+    <rect x="550" y="100" width="500" height="510" rx="28" fill="#17191F"/>
+    <rect x="590" y="144" width="34" height="4" rx="2" fill="#F56A00"/>
+    <text x="590" y="190" class="label" fill="#B9BDC7">02  INTELLIGENCE</text>
+    <text x="590" y="286" class="brand" fill="#FFFFFF">TarmacSync</text>
+    <text x="590" y="330" class="accent" fill="#F56A00">Airport procurement intelligence</text>
+    <line x1="590" y1="374" x2="1010" y2="374" stroke="#353840"/>
+    <text x="590" y="447" class="center-copy" fill="#FFFFFF">Connects the context.</text>
+    <path d="M590 516 H708 C730 516 730 497 752 497 H850 C873 497 873 516 896 516 H1006" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="590" cy="516" r="4.5" fill="#F56A00"/>
+    <circle cx="752" cy="497" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
+    <circle cx="896" cy="516" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
+    <path d="M997 510 L1007 516 L997 522" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-      <line x1="584" y1="380" x2="1016" y2="380" stroke="#353840"/>
+    <line x1="1070" y1="380" x2="1130" y2="380" stroke="#B9BDC7" stroke-width="1.5"/>
+    <circle cx="1070" cy="380" r="3.5" fill="#F56A00"/>
+    <path d="M1121 374 L1130 380 L1121 386" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-      <text x="584" y="425" class="body" fill="#FFFFFF">Brings the context together</text>
-      <text x="584" y="454" class="body" fill="#FFFFFF">before procurement starts.</text>
+    <!-- 03: the five-second output -->
+    <text x="1150" y="126" class="label" fill="#6F737C">03  WORKING PATH</text>
+    <text x="1150" y="202" class="heading" fill="#17191F">What the team sees</text>
 
-      <text x="584" y="512" class="small" fill="#B9BDC7">Evaluate viable routes</text>
-      <circle cx="759" cy="507" r="2" fill="#F56A00"/>
-      <text x="775" y="512" class="small" fill="#B9BDC7">Surface requirements</text>
-      <text x="584" y="548" class="small" fill="#B9BDC7">Connect sources, reasoning + next steps</text>
-    </g>
+    <text x="1150" y="284" class="label" fill="#6F737C">LIKELY ROUTE</text>
+    <text x="1150" y="326" class="output" fill="#17191F">What appears to fit</text>
+    <line x1="1150" y1="362" x2="1512" y2="362" stroke="#E7E9ED"/>
 
-    <line x1="1068" y1="392" x2="1136" y2="392" stroke="#B9BDC7" stroke-width="1.5"/>
-    <circle cx="1068" cy="392" r="3" fill="#F56A00"/>
-    <path d="M1127 386 L1136 392 L1127 398" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1150" y="414" class="label" fill="#6F737C">OPEN ISSUE</text>
+    <text x="1150" y="456" class="output" fill="#17191F">What needs validation</text>
+    <line x1="1150" y1="492" x2="1512" y2="492" stroke="#E7E9ED"/>
 
-    <!-- 03: decision support -->
-    <g>
-      <text x="1156" y="164" class="label" fill="#6F737C">03  DECISION SUPPORT</text>
-      <text x="1156" y="218" class="heading" fill="#17191F">A working path</text>
-      <text x="1156" y="253" class="body" fill="#3E4149">Likely route, with viable alternatives.</text>
+    <text x="1150" y="544" class="label" fill="#B94E08">NEXT MOVE</text>
+    <text x="1150" y="586" class="output" fill="#17191F">What moves it forward</text>
 
-      <line x1="1156" y1="292" x2="1504" y2="292" stroke="#E7E9ED"/>
-      <text x="1156" y="333" class="label" fill="#6F737C">WHY IT FITS</text>
-      <text x="1156" y="368" class="body" fill="#17191F">Sources + reasoning</text>
-
-      <line x1="1156" y1="402" x2="1504" y2="402" stroke="#E7E9ED"/>
-      <text x="1156" y="443" class="label" fill="#6F737C">WHAT TO CONFIRM</text>
-      <text x="1156" y="478" class="body" fill="#17191F">Requirements to validate</text>
-
-      <line x1="1156" y1="512" x2="1504" y2="512" stroke="#E7E9ED"/>
-      <text x="1156" y="553" class="label" fill="#B94E08">NEXT MOVE</text>
-      <text x="1156" y="588" class="body" fill="#17191F">Action that keeps the project moving</text>
-    </g>
-
-    <line x1="96" y1="676" x2="1504" y2="676" stroke="#E7E9ED"/>
-    <text x="96" y="724" class="label" fill="#6F737C">YOUR EXISTING SYSTEMS CARRY IT FORWARD</text>
-    <text x="96" y="758" class="small" fill="#3E4149">TarmacSync adds intelligence without replacing the systems you already use.</text>
-    <text x="1504" y="741" text-anchor="end" class="systems" fill="#3E4149">ERP <tspan fill="#B9BDC7">·</tspan> ePROCUREMENT <tspan fill="#B9BDC7">·</tspan> CONTRACTS <tspan fill="#B9BDC7">·</tspan> RECORDS</text>
+    <line x1="88" y1="650" x2="1512" y2="650" stroke="#E7E9ED"/>
+    <text x="88" y="704" class="label" fill="#6F737C">YOUR SYSTEMS CARRY IT FORWARD</text>
+    <text x="1512" y="704" text-anchor="end" class="systems" fill="#3E4149">ERP <tspan fill="#B9BDC7">·</tspan> ePROCUREMENT <tspan fill="#B9BDC7">·</tspan> RECORDS</text>
   </g>
 </svg>
