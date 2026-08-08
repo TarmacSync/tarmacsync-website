@@ -52,25 +52,25 @@
 
     <!-- Context lines converge quietly; they are supporting structure, not decoration. -->
     <g fill="none" stroke="#B9BDC7" stroke-width="1.5">
-      <path d="M460 179 H500 C536 179 535 345 574 345"/>
-      <path d="M460 262 H518 C544 262 544 345 574 345"/>
-      <path d="M460 345 H574"/>
-      <path d="M460 428 H518 C544 428 544 345 574 345"/>
-      <path d="M460 511 H500 C536 511 535 345 574 345"/>
+      <path d="M460 179 H494 C526 179 526 345 550 345"/>
+      <path d="M460 262 H512 C538 262 538 345 550 345"/>
+      <path d="M460 345 H550"/>
+      <path d="M460 428 H512 C538 428 538 345 550 345"/>
+      <path d="M460 511 H494 C526 511 526 345 550 345"/>
     </g>
-    <circle cx="576" cy="345" r="6" fill="#F56A00"/>
+    <circle cx="552" cy="345" r="6" fill="#F56A00"/>
 
     <!-- TarmacSync intelligence layer -->
     <g filter="url(#soft-shadow)">
-      <rect x="598" y="213" width="344" height="264" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
+      <rect x="574" y="198" width="394" height="294" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
     </g>
-    <rect x="598" y="213" width="6" height="264" rx="3" fill="#F56A00"/>
-    <text x="634" y="258" class="mono center-eyebrow" fill="#B94E08">AIRPORT PROCUREMENT INTELLIGENCE</text>
-    <text x="634" y="324" class="brand" fill="#17191F">Tarmac<tspan fill="#6E7179" font-weight="450">Sync</tspan></text>
-    <text x="634" y="365" class="center-copy" fill="#3E4149">Connects the project context.</text>
+    <rect x="574" y="198" width="6" height="294" rx="3" fill="#F56A00"/>
+    <text x="612" y="252" class="mono center-eyebrow" fill="#B94E08">AIRPORT PROCUREMENT INTELLIGENCE</text>
+    <text x="612" y="326" class="brand" fill="#17191F">Tarmac<tspan fill="#6E7179" font-weight="450">Sync</tspan></text>
+    <text x="612" y="370" class="center-copy" fill="#3E4149">Connects the project context.</text>
 
     <!-- Signature path motif -->
-    <g transform="translate(635 407)">
+    <g transform="translate(613 419)">
       <path d="M0 0 H72 C89 0 89 -18 106 -18 H188 C207 -18 207 0 226 0 H270" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
       <circle cx="0" cy="0" r="5" fill="#F56A00"/>
       <circle cx="106" cy="-18" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
@@ -79,7 +79,7 @@
     </g>
 
     <!-- A single worked path leaves TarmacSync. -->
-    <path d="M942 345 H1008" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M968 345 H1008" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
     <path d="M998 337 L1009 345 L998 353" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- The operator-facing result -->

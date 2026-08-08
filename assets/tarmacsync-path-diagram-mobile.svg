@@ -41,17 +41,17 @@
     <path d="M372 576 L380 584 L388 576" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
     <g filter="url(#soft-shadow)">
-      <rect x="54" y="602" width="652" height="252" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
+      <rect x="54" y="602" width="652" height="280" rx="22" fill="#FFFFFF" stroke="#F1C7A9"/>
     </g>
-    <rect x="54" y="602" width="6" height="252" rx="3" fill="#F56A00"/>
+    <rect x="54" y="602" width="6" height="280" rx="3" fill="#F56A00"/>
     <text x="88" y="649" class="mono center-eyebrow" fill="#B94E08">AIRPORT PROCUREMENT INTELLIGENCE</text>
     <text x="88" y="717" class="brand" fill="#17191F">Tarmac<tspan fill="#6E7179" font-weight="450">Sync</tspan></text>
     <text x="88" y="758" font-size="29" font-weight="500" fill="#3E4149">Connects the project context.</text>
-    <path d="M90 808 H220 C244 808 244 790 268 790 H442 C466 790 466 808 490 808 H652" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="90" cy="808" r="5" fill="#F56A00"/><circle cx="268" cy="790" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/><circle cx="490" cy="808" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
-    <path d="M644 802 L653 808 L644 814" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M90 828 H220 C244 828 244 810 268 810 H442 C466 810 466 828 490 828 H652" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="90" cy="828" r="5" fill="#F56A00"/><circle cx="268" cy="810" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/><circle cx="490" cy="828" r="5" fill="#FFFFFF" stroke="#F56A00" stroke-width="2.5"/>
+    <path d="M644 822 L653 828 L644 834" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-    <path d="M380 854 V902" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <path d="M380 882 V902" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
     <path d="M372 894 L380 902 L388 894" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
     <g filter="url(#soft-shadow)">
