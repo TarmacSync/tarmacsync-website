@@ -69,6 +69,8 @@
 .site-nav a:hover,
 .site-nav a[aria-current="page"] { color: #17191F; }
 
+.site-nav__program { display: none !important; }
+
 .site-header__cta {
   min-height: 38px;
   display: inline-flex;
@@ -209,10 +211,21 @@
     font-size: 1rem;
   }
   .site-nav a:hover { background: #F5F6F8; }
+  .site-nav .site-nav__program {
+    min-height: 48px;
+    display: flex !important;
+    justify-content: center;
+    margin-top: .65rem;
+    border: 1px solid #17191F;
+    background: #17191F;
+    color: #fff;
+    font-size: .92rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .site-nav .site-nav__program:hover { background: #2C2F38; color: #fff; }
   .site-menu { display: grid; }
-  .site-header__cta { min-height: 38px; padding-inline: .9rem; }
-  .site-header__cta-full { display: none; }
-  .site-header__cta-short { display: inline; }
+  .site-header__cta { display: none; }
   .site-footer { padding: 3.75rem 0 2.75rem; }
   .site-footer__inner,
   .site-footer__bottom { width: calc(100% - 2.5rem); }
@@ -223,7 +236,6 @@
 
 @media (max-width: 390px) {
   .site-header__logo { width: 146px; height: 36px; }
-  .site-header__cta { padding-inline: .78rem; font-size: .78rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
