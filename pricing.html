@@ -156,21 +156,6 @@
     .inc h4 { font-size: .96rem; margin-bottom: .25rem; letter-spacing: -.012em; }
     .inc p { font-size: .89rem; color: var(--muted); margin: 0; line-height: 1.55; }
 
-    /* buy list */
-    .buy { display: grid; gap: .9rem; }
-    .buy-row {
-      display: grid; grid-template-columns: 130px 1fr; gap: 1.4rem;
-      align-items: start; padding: 1.15rem 1.3rem;
-      border: 1px solid var(--line); border-radius: 12px; background: var(--white);
-    }
-    .buy-tier {
-      font-family: var(--mono); font-size: .66rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--orange-ink);
-      background: rgba(245,106,0,.09); padding: .3rem .6rem; border-radius: 4px;
-      justify-self: start;
-    }
-    .buy-row p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
-
     /* faq — matches homepage disclosure pattern */
     .faq { border-top: 1px solid var(--line); }
     .faq details { border-bottom: 1px solid var(--line); }
@@ -231,7 +216,6 @@
       .tier-who { min-height: 0; margin-bottom: 1.4rem; }
       .tier-price { font-size: 2.5rem; }
       .band { padding: 1.5rem 1.4rem; }
-      .buy-row { grid-template-columns: 1fr; gap: .6rem; padding: 1.1rem 1.15rem; }
       .details h2 { font-size: 1.35rem; }
       .grid2 { gap: 1.7rem; }
       .faq summary { font-size: .94rem; padding-right: 2rem; }
@@ -337,23 +321,6 @@
         <div class="inc"><span class="tick"></span><div><h4>Your data, exportable</h4><p>Full export of projects, decisions, and evidence files at any time.</p></div></div>
       </div>
 
-      <h2 style="margin-top:5rem">How airports buy it</h2>
-      <p class="sub">A subscription is normally paid from operating funds, not a federal grant — so your own purchasing policy governs.</p>
-      <div class="buy">
-        <div class="buy-row">
-          <span class="buy-tier">Field</span>
-          <p>Purchasing card or direct purchase order.</p>
-        </div>
-        <div class="buy-row">
-          <span class="buy-tier">Regional</span>
-          <p>Direct purchase order as a small purchase. Published airport authority policies commonly set that ceiling at or above $15,000.</p>
-        </div>
-        <div class="buy-row">
-          <span class="buy-tier">Metro</span>
-          <p>Direct purchase order as a small purchase, with headroom below common ceilings.</p>
-        </div>
-      </div>
-
       <h2 style="margin-top:5rem">Common questions</h2>
       <div class="faq">
         <details>
@@ -383,7 +350,7 @@
       </div>
 
       <div class="fine-wrap">
-        <p class="fine">Your adopted purchasing policy governs and may be more restrictive than the examples above. TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided. Cooperative contract matches are candidate pathways that require validation before award. Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors. Pricing effective August 2026 and subject to change.</p>
+        <p class="fine">Your adopted purchasing policy governs. TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided. Cooperative contract matches are candidate pathways that require validation before award. Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors. Pricing effective August 2026 and subject to change.</p>
       </div>
     </section>
   </main>
