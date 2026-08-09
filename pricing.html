@@ -83,7 +83,8 @@
     }
     .tier li.inherit { color: var(--ink); font-weight: 600; padding-left: 0; }
     .tier li.inherit::before { display: none; }
-    .tier-cta { width: 100%; }
+    .tier-cta { width: 100%; transition: background .22s, color .22s, box-shadow .22s; }
+    .tier-cta:hover { box-shadow: 0 2px 12px rgba(23,25,31,.08); }
     .tier:not(.featured) .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
     .tier:not(.featured) .tier-cta:hover { background: var(--soft); }
 
@@ -109,8 +110,9 @@
     }
 
     /* selectable cards */
-    .tier { cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .18s; }
-    .tier:hover { border-color: var(--silver); }
+    .tier { cursor: pointer; transition: border-color .22s, box-shadow .22s, transform .22s; }
+    .tier:hover { border-color: var(--silver); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(23,25,31,.08); }
+    .tier.featured:hover { border-color: var(--ink); box-shadow: 0 8px 30px rgba(23,25,31,.12); }
     .tier:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
     .tier[aria-selected="true"] {
       border-color: var(--ink); box-shadow: 0 4px 16px rgba(23,25,31,.10); transform: translateY(-2px);
