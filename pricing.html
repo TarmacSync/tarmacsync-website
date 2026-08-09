@@ -92,13 +92,6 @@
       position: relative; border: 1px solid var(--line); border-radius: 14px;
       padding: 2.4rem 1.9rem 2rem; display: flex; flex-direction: column;
     }
-    .tier.featured { border-color: var(--silver); box-shadow: 0 1px 3px rgba(23,25,31,.07); }
-    .tier-flag {
-      position: absolute; top: -.7rem; left: 50%; transform: translateX(-50%);
-      background: var(--ink); color: #fff; white-space: nowrap;
-      font-family: var(--mono); font-size: .58rem; letter-spacing: .09em;
-      text-transform: uppercase; padding: .28rem .7rem; border-radius: 4px;
-    }
     .tier-name { font-size: 1.05rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .3rem; }
     .tier-who { font-size: .88rem; color: var(--ink); line-height: 1.4; margin-bottom: .3rem; font-weight: 500; }
     .tier-thresh { font-size: .78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1.7rem; min-height: 2.1rem; }
@@ -117,8 +110,8 @@
     .tier li.inherit::before { display: none; }
     .tier-cta { width: 100%; transition: background .22s, color .22s, box-shadow .22s; }
     .tier-cta:hover { box-shadow: 0 2px 12px rgba(23,25,31,.08); }
-    .tier:not(.featured) .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
-    .tier:not(.featured) .tier-cta:hover { background: var(--soft); }
+    .tier .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
+    .tier .tier-cta:hover { background: var(--soft); }
 
 
     /* billing toggle */
@@ -306,8 +299,7 @@
         <a class="btn tier-cta" href="/?tier=field&amp;billing=annual#application">Start with Field</a>
       </div>
 
-      <div class="tier featured" role="button" tabindex="0" aria-selected="true" data-tier="regional">
-        <span class="tier-flag">Best fit for AIP-funded airports</span>
+      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="regional">
         <div class="tier-name">Regional</div>
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-thresh">About 10,000 to 500,000 annual passengers</div>
