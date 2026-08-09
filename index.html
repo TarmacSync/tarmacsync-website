@@ -185,9 +185,14 @@
       --prod: min(980px, calc(100% - 3rem));    /* the product moment */
       --narrow: min(780px, calc(100% - 3rem));  /* reading measure */
 
-      /* Generous, consistent vertical rhythm — the main lever for calm. */
-      --section: 144px;
-      --section-sm: 96px;
+      /* One responsive rhythm for every section. The previous fixed 144px
+         padding was visually calm on a large display but created 288px of
+         whitespace between neighboring content blocks and stayed just as
+         large on phones. */
+      --section: clamp(72px, 7vw, 104px);
+      --section-sm: clamp(56px, 5vw, 80px);
+      --content-gap: clamp(2rem, 3.8vw, 3.25rem);
+      --card-gap: clamp(1rem, 2.2vw, 2rem);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -379,7 +384,7 @@
     .problem-diagram {
       display: block;
       width: 100%;
-      margin: 3.8rem auto 0;
+      margin: var(--content-gap) auto 0;
     }
     .problem-diagram img {
       display: block;
@@ -389,13 +394,13 @@
       border: 1px solid var(--line);
       border-radius: 20px;
     }
-    .problem-diagram + .positioning { margin-top: 2.8rem; }
+    .problem-diagram + .positioning { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
     @media (max-width: 680px) {
       .problem-diagram {
         width: min(100%, 440px);
-        margin-top: 2.8rem;
+        margin-top: 2rem;
       }
-      .problem-diagram + .positioning { margin-top: 2.3rem; }
+      .problem-diagram + .positioning { margin-top: 1.75rem; }
     }
 
     /* Positioning clarifier — deliberately set apart from the argument
@@ -408,14 +413,15 @@
     .positioning strong { color: var(--ink); font-weight: 600; }
 
     /* ── Inline-style replacements ──────────────────────────────── */
-    .section-product { padding-top: 120px; }
-    .section-product .device { margin-top: 2.6rem; }
+    .section-product { padding-top: var(--section); }
+    .section-product .device { margin-top: var(--content-gap); }
     /* ── What it knows ─────────────────────────────────────────── */
+    .section-knows { border-top: 1px solid var(--line); }
     .know-fact-num {
       display: block; font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700;
       letter-spacing: -.02em; color: var(--orange-ink); margin-bottom: .5rem;
     }
-    .know-note { margin-top: 3rem; font-size: .88rem; color: var(--muted); text-align: center; }
+    .know-note { margin-top: 2rem; font-size: .88rem; color: var(--muted); text-align: center; }
     .know-close {
       margin: 1.2rem auto 0; max-width: 64ch; text-align: center;
       font-size: 1.05rem; line-height: 1.65; color: var(--graphite);
@@ -435,8 +441,8 @@
        One shared component (.cols grid + .col + .card) for every
        three-across block on the page — product columns, knowledge
        stats, and trust. Same grid, same card chrome, everywhere. */
-    .cols { display: grid; gap: 2.6rem; margin-top: 3.8rem; }
-    @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
+    .cols { display: grid; gap: var(--card-gap); margin-top: var(--content-gap); }
+    @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); } }
     /* .card: same white/border/radius language as .form-card and
        .apply-info — the site's one "elevated surface" card, not a one-off. */
     .card {
@@ -453,8 +459,8 @@
     /* ── Founder ────────────────────────────────────────────────── */
     /* Portrait is deliberately small — at ~420px it overpowered the quote,
        which is the actual content of this section. */
-    .founder-grid { display: grid; gap: 2rem; align-items: center; }
-    @media (min-width: 880px) { .founder-grid { grid-template-columns: 240px 1fr; gap: 4rem; } }
+    .founder-grid { display: grid; gap: var(--card-gap); align-items: center; }
+    @media (min-width: 880px) { .founder-grid { grid-template-columns: 240px 1fr; gap: 3rem; } }
     .founder-portrait {
       border-radius: 16px; overflow: hidden; background: var(--cloud);
       aspect-ratio: 1/1; width: 240px; max-width: 100%;
@@ -482,9 +488,9 @@
        give the info side a matching card so the two panels read as one
        deliberate layout (the offer / the ask) rather than loose text next
        to a boxed form. */
-    .apply-grid { display: grid; gap: 2rem; margin-top: 3.2rem; align-items: stretch; }
+    .apply-grid { display: grid; gap: var(--card-gap); margin-top: var(--content-gap); align-items: stretch; }
     @media (min-width: 900px) {
-      .apply-grid { grid-template-columns: .9fr 1.1fr; gap: 2rem; }
+      .apply-grid { grid-template-columns: .9fr 1.1fr; }
     }
     /* No height:100% — the form is naturally taller, and stretching this
        card to match it just relocates the dead space inside a visible
@@ -566,7 +572,7 @@
     }
 
     /* ── FAQ ────────────────────────────────────────────────────── */
-    .faq { margin-top: 3rem; border-top: 1px solid var(--line); }
+    .faq { margin-top: var(--content-gap); border-top: 1px solid var(--line); }
     .faq details { border-bottom: 1px solid var(--line); }
     .faq summary {
       cursor: pointer; list-style: none; padding: 1.5rem 2.5rem 1.5rem 0;
