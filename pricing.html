@@ -254,26 +254,27 @@
       footer { padding: 3.5rem 0 2.5rem; margin-top: 4rem; }
     }
   </style>
+  <link rel="stylesheet" href="assets/site-shell.css">
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home">
+        <img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
       </a>
-      <nav class="nav" aria-label="Primary navigation">
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
         <a href="/#product">Product</a>
-        <a href="/pricing.html">Pricing</a>
+        <a href="/pricing.html" aria-current="page">Pricing</a>
         <a href="/#trust">Trust</a>
         <a href="/#founder">Founder</a>
         <a href="/#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="/#program">Explore the program</a>
-      <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="site-header__cta" href="/#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content">
 
     <section class="hero">
       <h1>Simple pricing,<br>per airport.</h1>
@@ -396,28 +397,23 @@
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-top">
-      <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
-      </a>
-      <div class="footer-links">
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+      <div class="site-footer__links">
         <a href="/pricing.html">Pricing</a>
         <a href="/resources.html">Resources</a>
-        <a href="mailto:contact@tarmacsync.com">Contact</a>
+        <a href="/#application">Contact</a>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
+        <a href="/security.html">Security</a>
       </div>
     </div>
-    <div class="container footer-bottom">&copy; 2026 TarmacSync</div>
+    <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
   </footer>
 
+  <script src="assets/site-shell.js"></script>
   <script>
-    (function(){
-      const btn=document.querySelector('.hamburger');const nav=document.querySelector('.nav');if(!btn||!nav)return;
-      btn.addEventListener('click',()=>{const o=nav.classList.toggle('open');btn.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
-      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
-    })();
     (function(){
       const cards=[...document.querySelectorAll('.tier[data-tier]')];
       const annual=document.getElementById('bill-annual');

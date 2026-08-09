@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — TarmacSync</title>
   <meta name="description" content="How TarmacSync collects, uses, stores, and protects information during the website and airport pilot program." />
-  <link rel="canonical" href="privacy.html" />
+  <link rel="canonical" href="https://www.tarmacsync.com/privacy.html" />
+  <link rel="icon" type="image/png" href="tarmacsync-favicon.png" />
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,17 +44,22 @@
 
     .header-logo { display: block; opacity: .82; mix-blend-mode: multiply; }
   </style>
+  <link rel="stylesheet" href="assets/site-shell.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a href="/" aria-label="TarmacSync home">
-        <img src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" class="header-logo">
-      </a>
-      <a class="btn btn-primary" href="/#application">Reserve a place for January 2027</a>
-    </header>
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home"><img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="/#product">Product</a><a href="/pricing.html">Pricing</a><a href="/#trust">Trust</a><a href="/#founder">Founder</a><a href="/#faq">FAQ</a>
+      </nav>
+      <a class="site-header__cta" href="/#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    </div>
+  </header>
 
-    <main class="legal-page-main">
+  <div class="container">
+    <main class="legal-page-main" id="main-content">
       <div class="legal-page-header">
         <span class="coordinate-label">[ PRIVACY POLICY ]</span>
         <h1>Privacy Policy</h1>
@@ -162,21 +168,14 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-top">
-        <a href="/" aria-label="TarmacSync home">
-          <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
-        </a>
-        <div class="footer-links">
-          <a href="/pricing.html">Pricing</a>
-          <a href="/resources.html">Resources</a>
-          <a href="mailto:contact@tarmacsync.com">Contact</a>
-          <a href="/privacy.html">Privacy</a>
-          <a href="/terms.html">Terms</a>
-        </div>
-      </div>
-      <div class="footer-bottom">&copy; 2026 TarmacSync</div>
-    </footer>
   </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+      <div class="site-footer__links"><a href="/pricing.html">Pricing</a><a href="/resources.html">Resources</a><a href="/#application">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/security.html">Security</a></div>
+    </div>
+    <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
+  </footer>
+  <script src="assets/site-shell.js"></script>
 </body>
 </html>

@@ -737,24 +737,25 @@
     #application { scroll-margin-top: 72px; }
     @media (max-width: 520px) { .tier-note { align-items: flex-start; flex-direction: column; } }
 </style>
+<link rel="stylesheet" href="assets/site-shell.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header id="site-header">
-    <div class="header-inner">
-      <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
+  <header class="site-header" id="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home">
+        <img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
       </a>
-      <nav class="nav" aria-label="Primary navigation">
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
         <a href="#product">Product</a>
         <a href="/pricing.html">Pricing</a>
         <a href="#trust">Trust</a>
         <a href="#founder">Founder</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm header-cta" href="#program">Explore the program</a>
-      <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="site-header__cta" href="#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
 
@@ -861,17 +862,17 @@
           <div class="col card">
             <span class="col-num">01</span>
             <h3 class="h3">Official sources, not invented citations.</h3>
-            <p>FAA Order 5100.38D, 1,244 indexed AIP Handbook sections, and the current Airport Sponsor Grant Assurances ground the federal intelligence.</p>
+            <p>FAA Order 5100.38D, all 1,244 indexed AIP Handbook sections, and all 40 Airport Sponsor Grant Assurances — the sources every citation traces back to.</p>
           </div>
           <div class="col card">
             <span class="col-num">02</span>
-            <h3 class="h3">Contract intelligence with boundaries.</h3>
-            <p>More than 7,000 cooperative contract records can surface candidate pathways. Scope, authority, funding fit, status, and pricing still require validation.</p>
+            <h3 class="h3">Cooperative candidates, never the final word.</h3>
+            <p>More than 7,000 cooperative contract records surface candidate pathways across five national consortiums. Your team confirms scope, authority, funding fit, and pricing before anything reaches a purchase order.</p>
           </div>
           <div class="col card">
             <span class="col-num">03</span>
             <h3 class="h3">Your airport remains in control.</h3>
-            <p>Confirmed facts, working interpretations, and open questions remain distinct. Procurement, legal, grant, board, and FAA/ADO decisions stay with your team.</p>
+            <p>What's confirmed stays separate from what's still open, so nothing gets treated as settled before your team says so. Procurement, legal, grant, board, and FAA/ADO decisions stay with your team.</p>
           </div>
         </div>
       </div>
@@ -1064,24 +1065,20 @@
     </section>
   </main>
 
-  <div class="page">
-    <footer>
-      <div class="footer-top">
-        <a href="/" aria-label="TarmacSync home">
-          <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
-        </a>
-        <div class="footer-links">
+  <footer class="site-footer">
+      <div class="site-footer__inner">
+        <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+        <div class="site-footer__links">
           <a href="/pricing.html">Pricing</a>
           <a href="/resources.html">Resources</a>
-          <a href="mailto:contact@tarmacsync.com">Contact</a>
+          <a href="#application">Contact</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
           <a href="/security.html">Security</a>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2026 TarmacSync</div>
-    </footer>
-  </div>
+      <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
+  </footer>
 
 
   <div class="sticky-cta" aria-hidden="true">
@@ -1092,12 +1089,8 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
 
+  <script src="assets/site-shell.js"></script>
   <script>
-    (function(){
-      const btn=document.querySelector('.hamburger');const nav=document.querySelector('.nav');if(!btn||!nav)return;
-      btn.addEventListener('click',()=>{const o=nav.classList.toggle('open');btn.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
-      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
-    })();
     (function(){
       const player=document.querySelector('[data-vision-player]');
       const video=player?.querySelector('[data-vision-video]');
@@ -1303,12 +1296,6 @@
       let t=false;window.addEventListener('scroll',()=>{if(t)return;t=true;requestAnimationFrame(()=>{b.classList.toggle('visible',window.scrollY>500);t=false;});},{passive:true});
       b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     })();
-
-    (function(){
-      const h=document.getElementById('site-header');if(!h)return;
-      let t=false;window.addEventListener('scroll',()=>{if(t)return;t=true;requestAnimationFrame(()=>{h.classList.toggle('scrolled',window.scrollY>8);t=false;});},{passive:true});
-    })();
-
 
     (function(){
       const els=document.querySelectorAll('.reveal');
