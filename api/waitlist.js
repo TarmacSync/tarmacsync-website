@@ -58,6 +58,9 @@ module.exports = async function waitlist(request, response) {
   const state = clean(payload.state, 2);
   const project = clean(payload.project, 2000);
   const timing = clean(payload.timing, 50);
+  const tierInterest = clean(payload.tier_interest, 120);
+  const tierBilling = clean(payload.tier_billing, 20);
+  const tierPrice = clean(payload.tier_price, 120);
   const utmSource = clean(payload.utm_source, 200);
   const utmMedium = clean(payload.utm_medium, 200);
   const utmCampaign = clean(payload.utm_campaign, 200);
@@ -87,7 +90,7 @@ module.exports = async function waitlist(request, response) {
   }
 
   const text = [
-    "New Founding Airport Partner Program application",
+    "New TarmacSync partner-program interest",
     "",
     `Name: ${fullName}`,
     `Work email: ${email}`,
@@ -96,6 +99,9 @@ module.exports = async function waitlist(request, response) {
     ...(airportType ? [`Airport type: ${airportType}`] : []),
     ...(state ? [`State: ${state}`] : []),
     ...(timing ? [`Timing: ${timing}`] : []),
+    ...(tierInterest ? [`Pricing interest: ${tierInterest}`] : []),
+    ...(tierBilling ? [`Billing preference: ${tierBilling}`] : []),
+    ...(tierPrice ? [`Displayed price: ${tierPrice}`] : []),
     ...(utmSource ? [`UTM source: ${utmSource}`] : []),
     ...(utmMedium ? [`UTM medium: ${utmMedium}`] : []),
     ...(utmCampaign ? [`UTM campaign: ${utmCampaign}`] : []),
@@ -110,6 +116,9 @@ module.exports = async function waitlist(request, response) {
     ...(airportType ? [{ label: "Airport type", value: airportType }] : []),
     ...(state ? [{ label: "State", value: state }] : []),
     ...(timing ? [{ label: "Timing", value: timing }] : []),
+    ...(tierInterest ? [{ label: "Pricing interest", value: tierInterest }] : []),
+    ...(tierBilling ? [{ label: "Billing preference", value: tierBilling }] : []),
+    ...(tierPrice ? [{ label: "Displayed price", value: tierPrice }] : []),
     ...(utmSource ? [{ label: "UTM source", value: utmSource }] : []),
     ...(utmMedium ? [{ label: "UTM medium", value: utmMedium }] : []),
     ...(utmCampaign ? [{ label: "UTM campaign", value: utmCampaign }] : []),
@@ -130,7 +139,7 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:28px 36px 12px;">
-      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Co-Founding Airport Program application</p>
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">TarmacSync partner-program interest</p>
     </td>
   </tr>
   <tr>
@@ -166,7 +175,7 @@ module.exports = async function waitlist(request, response) {
         from: WAITLIST_FROM_EMAIL,
         to: [WAITLIST_TO_EMAIL],
         reply_to: email,
-        subject: `Founding Airport Partner application — ${organization}`,
+        subject: `TarmacSync partner-program interest — ${organization}`,
         text,
         html,
       }),
@@ -195,14 +204,12 @@ module.exports = async function waitlist(request, response) {
     "",
     "Welcome to TarmacSync — we're glad you're here.",
     "",
-    "Your application for the Founding Airport Partner Program has been received, and we're looking forward to the possibility of working together.",
+    "We received your interest in the Founding Airport Partner Program, and we're looking forward to learning more about your airport and project.",
     "",
     "What happens next:",
     "",
-    "1. We'll review your application personally, usually within two business days.",
-    "2. If the pilot appears to be a good fit, I'll invite you to a short conversation and walk through your project in Pathfinder — no slide deck.",
-    "",
-    "We're selecting two airport partners for the pilot and expect to finalize selections shortly after conversations wrap up.",
+    "1. We'll review your information personally, usually within two business days.",
+    "2. If the program appears to be a good fit, I'll invite you to a short working conversation about your project — no preparation needed.",
     "",
     "If you have any questions before then, just reply to this email.",
     "",
@@ -233,7 +240,7 @@ module.exports = async function waitlist(request, response) {
   <tr>
     <td style="padding:6px 36px 0;font-size:15px;color:#3a3a42;line-height:1.65;">
       <p style="margin:0 0 14px;">Hi ${escapeHtml(fullName)},</p>
-      <p style="margin:0 0 14px;">Welcome to TarmacSync — we're glad you're here. Your application for the Founding Airport Partner Program has been received, and we're looking forward to the possibility of working together.</p>
+      <p style="margin:0 0 14px;">Welcome to TarmacSync — we're glad you're here. We received your interest in the Founding Airport Partner Program and look forward to learning more about your airport and project.</p>
     </td>
   </tr>
   <tr>
@@ -242,19 +249,18 @@ module.exports = async function waitlist(request, response) {
       <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:10px 14px;border-bottom:1px solid #f0f0f3;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">1.</td>
-          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:14px;color:#3a3a42;line-height:1.5;">We'll review your application personally, usually within two business days.</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f0f3;font-size:14px;color:#3a3a42;line-height:1.5;">We'll review your information personally, usually within two business days.</td>
         </tr>
         <tr>
           <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">2.</td>
-          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the pilot appears to be a good fit, I'll invite you to a short conversation and walk through your project in Pathfinder — no slide deck.</td>
+          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the program appears to be a good fit, I'll invite you to a short working conversation about your project — no preparation needed.</td>
         </tr>
       </table>
     </td>
   </tr>
   <tr>
     <td style="padding:16px 36px 28px;font-size:14px;color:#3a3a42;line-height:1.65;">
-      <p style="margin:0;">We're selecting two airport partners for the pilot and expect to finalize selections shortly after conversations wrap up.</p>
-      <p style="margin:14px 0 0;">If you have any questions before then, just reply to this email.</p>
+      <p style="margin:0;">If you have any questions before then, just reply to this email.</p>
     </td>
   </tr>
   <tr>
@@ -303,6 +309,9 @@ module.exports = async function waitlist(request, response) {
         project ? `Project: ${project}` : "",
         airportType ? `Airport type: ${airportType}` : "",
         timing ? `Timing: ${timing}` : "",
+        tierInterest ? `Pricing interest: ${tierInterest}` : "",
+        tierBilling ? `Billing preference: ${tierBilling}` : "",
+        tierPrice ? `Displayed price: ${tierPrice}` : "",
         utmSource ? `UTM source: ${utmSource}` : "",
         utmMedium ? `UTM medium: ${utmMedium}` : "",
         utmCampaign ? `UTM campaign: ${utmCampaign}` : "",

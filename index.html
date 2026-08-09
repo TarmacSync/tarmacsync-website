@@ -415,17 +415,8 @@
     /* ── Inline-style replacements ──────────────────────────────── */
     .section-product { padding-top: var(--section); }
     .section-product .device { margin-top: var(--content-gap); }
-    /* ── What it knows ─────────────────────────────────────────── */
+    /* ── Intelligence and trust ────────────────────────────────── */
     .section-knows { border-top: 1px solid var(--line); }
-    .know-fact-num {
-      display: block; font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700;
-      letter-spacing: -.02em; color: var(--orange-ink); margin-bottom: .5rem;
-    }
-    .know-note { margin-top: 2rem; font-size: .88rem; color: var(--muted); text-align: center; }
-    .know-close {
-      margin: 1.2rem auto 0; max-width: 64ch; text-align: center;
-      font-size: 1.05rem; line-height: 1.65; color: var(--graphite);
-    }
     .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
     .disclosure-grid { display: grid; gap: .95rem; }
     .success-heading { text-align: center; font-size: 1.3rem; }
@@ -662,10 +653,15 @@
     @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #1E3F63; animation: none; } }
   
     .tier-note {
-      display: none; font-size: .85rem; color: var(--ink);
+      display: none; align-items: center; justify-content: space-between; gap: .75rem;
+      font-size: .85rem; color: var(--ink);
       background: #fdf4ec; border: 1px solid #f0d9c4; border-radius: 8px;
       padding: .7rem .95rem; margin-bottom: 1.1rem;
     }
+    .tier-note strong { font-weight: 600; }
+    .tier-note a { color: var(--orange-ink); font-size: .8rem; white-space: nowrap; }
+    #application { scroll-margin-top: 72px; }
+    @media (max-width: 520px) { .tier-note { align-items: flex-start; flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -683,7 +679,7 @@
         <a href="#founder">Founder</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm header-cta" href="#program">Founding Partner Program</a>
+      <a class="btn btn-primary btn-sm header-cta" href="#program">Explore the program</a>
       <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -697,7 +693,7 @@
         <div class="reveal">
         <h1 class="display"><span class="hl-orange">Know the path.</span> Keep the airport project moving.</h1>
         </div>
-        <p class="lede">TarmacSync brings your airport's policy, funding context, project facts, and contract options together so your team can see the working path and what to do next.</p>
+        <p class="lede">TarmacSync helps U.S. airport teams identify the likely buying path, see what could change it, and keep the supporting record moving from planning through closeout.</p>
         <p class="invite">Welcoming Founding Airport Partners · Free 90-day collaboration</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#program">Explore the program</a>
@@ -707,12 +703,44 @@
       </div>
     </section>
 
+    <!-- ══ PRODUCT ═══════════════════════════════════════════════ -->
+    <section class="section section-product" id="product">
+      <div class="page">
+        <div class="section-head center reveal">
+          <span class="eyebrow eyebrow-accent">TarmacSync in action</span>
+          <h2 class="h2">From one request to a <span class="hl-orange">working path.</span></h2>
+          <p class="lede">TarmacSync connects the request to the airport’s policy, funding, and project record—then surfaces the working path and the next action.</p>
+        </div>
+
+        <div class="device prod device-video reveal">
+          <video controls playsinline poster="assets/tarmacsync-demo-poster.png" preload="none" width="1280" height="720">
+            <source src="assets/tarmacsync-demo.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="cols reveal">
+          <div class="col card">
+            <h3 class="h3">Buying path</h3>
+            <p>See which route appears to fit the purchase, anticipated value, funding source, and airport policy—and what still needs validation.</p>
+          </div>
+          <div class="col card">
+            <h3 class="h3">Funding and requirements</h3>
+            <p>Keep AIP, BIL, PFC, state, and local requirements separated so the team can see which funding conditions may shape the project.</p>
+          </div>
+          <div class="col card">
+            <h3 class="h3">Project record</h3>
+            <p>Carry the facts, open questions, supporting evidence, and next actions forward instead of reconstructing the file at closeout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ══ PROBLEM ═══════════════════════════════════════════════ -->
     <section class="section section-tint">
       <div class="narrow statement reveal">
         <span class="eyebrow">The problem</span>
         <h2 class="h2 statement-title">Stop rebuilding the answer for every project.</h2>
-        <p class="lede">The answer already exists across your purchasing policy, your grant assurances, the cooperative contracts you can already use, and whatever the last person to run this project remembered. TarmacSync brings those together before the solicitation goes out — so the route, the thresholds that apply, and the evidence you will need at closeout are settled up front.</p>
+        <p class="lede">Airport teams usually have the pieces already: policy, funding terms, project facts, contract options, and institutional knowledge. TarmacSync connects them before the process starts so the team can see the working path and the next move.</p>
       </div>
 
       <div class="page">
@@ -730,89 +758,28 @@
       </div>
     </section>
 
-    <!-- ══ PRODUCT ═══════════════════════════════════════════════ -->
-    <section class="section section-product" id="product">
+    <!-- ══ INTELLIGENCE + TRUST ═════════════════════════════════ -->
+    <section class="section section-knows" id="trust">
       <div class="page">
         <div class="section-head center reveal">
-          <span class="eyebrow eyebrow-accent">TarmacSync in action</span>
-          <h2 class="h2">From one request to a <span class="hl-orange">working path.</span></h2>
-          <p class="lede">TarmacSync connects the request to the airport’s policy, funding, and project record—then surfaces the working path and the next action.</p>
-        </div>
-
-        <div class="device prod device-video reveal">
-          <video controls playsinline poster="assets/tarmacsync-demo-poster.png" preload="none">
-            <source src="assets/tarmacsync-demo.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="cols reveal">
-          <div class="col card">
-            <h3 class="h3">Route</h3>
-            <p>Purchase type, dollar amount, and funding source decide the buying path. Cooperative, competitive bid, quotes, or an exception — with the thresholds that produced it.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">Overlay</h3>
-            <p>AIP, BIL, and PFC funding each carry different obligations. TarmacSync shows which apply to this purchase and which are still open questions.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">File</h3>
-            <p>The evidence checklist, forms to prepare, and closeout record assemble as you work, rather than being reconstructed afterwards.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ WHAT IT KNOWS ═══════════════════════════════════════════ -->
-    <section class="section section-knows">
-      <div class="page reveal">
-        <div class="section-head center">
-          <span class="eyebrow eyebrow-accent">Airport Procurement Intelligence</span>
-          <h2 class="h2">Built on the documents that actually govern the decision.</h2>
-        </div>
-
-        <div class="cols">
-          <div class="col card">
-            <span class="know-fact-num">1,244 sections</span>
-            <p>FAA Order 5100.38D, the AIP Handbook, indexed section by section</p>
-          </div>
-          <div class="col card">
-            <span class="know-fact-num">40</span>
-            <p>Airport Sponsor Grant Assurances, April 2025 set</p>
-          </div>
-          <div class="col card">
-            <span class="know-fact-num">7,000+</span>
-            <p>cooperative contracts across Sourcewell, OMNIA Partners, NASPO ValuePoint, TIPS-USA, and GSA</p>
-          </div>
-        </div>
-
-        <p class="know-note">Every source dated — each carries a last-verified date, checked monthly against the official publication</p>
-
-        <p class="know-close">TarmacSync retrieves regulatory text. It does not write it. The buying path is decided by a rules engine using your thresholds and funding facts; the language model explains the result and never authors a citation. If the answer is not in a source, TarmacSync says so.</p>
-      </div>
-    </section>
-
-    <!-- ══ TRUST ═════════════════════════════════════════════════ -->
-    <section class="section section-tint" id="trust">
-      <div class="page">
-        <div class="section-head center reveal">
-          <span class="eyebrow">How it earns trust</span>
-          <h2 class="h2">Trust starts with showing the work.</h2>
+          <span class="eyebrow eyebrow-accent">Intelligence you can inspect</span>
+          <h2 class="h2">Built on official sources. Clear about what still needs confirmation.</h2>
         </div>
         <div class="cols reveal">
           <div class="col card">
             <span class="col-num">01</span>
-            <h3 class="h3">See what shaped the path.</h3>
-            <p>TarmacSync connects your airport's reviewed policies and project facts with official guidance and contract intelligence—so your team can trace what informed the working path.</p>
+            <h3 class="h3">Official sources, not invented citations.</h3>
+            <p>FAA Order 5100.38D, 1,244 indexed AIP Handbook sections, and the current Airport Sponsor Grant Assurances ground the federal intelligence.</p>
           </div>
           <div class="col card">
             <span class="col-num">02</span>
-            <h3 class="h3">Know what could change it.</h3>
-            <p>Confirmed facts stay separate from working interpretations and open questions. If one missing answer could change the path, TarmacSync brings it forward.</p>
+            <h3 class="h3">Contract intelligence with boundaries.</h3>
+            <p>More than 7,000 cooperative contract records can surface candidate pathways. Scope, authority, funding fit, status, and pricing still require validation.</p>
           </div>
           <div class="col card">
             <span class="col-num">03</span>
-            <h3 class="h3">Keep every decision with your team.</h3>
-            <p>TarmacSync organizes the path, evidence, and next move. Procurement, legal, grant, board, and FAA/ADO decisions remain with the people responsible for them.</p>
+            <h3 class="h3">Your airport remains in control.</h3>
+            <p>Confirmed facts, working interpretations, and open questions remain distinct. Procurement, legal, grant, board, and FAA/ADO decisions stay with your team.</p>
           </div>
         </div>
       </div>
@@ -844,7 +811,7 @@
         <div class="section-head center reveal">
           <span class="eyebrow eyebrow-accent">Founding Airport Partner Program</span>
           <h2 class="h2">Built for airports. Shaped with airports.</h2>
-          <p class="lede">We're inviting U.S. airports to work directly with TarmacSync during a free 90-day collaboration beginning January 2027. Each airport will bring real projects. Together, we'll evaluate how TarmacSync fits the airport's workflow and use that experience to shape the first release. Airports reserving a place now are configured ahead of the start.</p>
+          <p class="lede">Bring one real, non-sensitive airport purchase or project. We'll configure TarmacSync for your airport, work through it with your team during a free 90-day collaboration, and use what we learn to shape the first release.</p>
         </div>
 
         <div class="apply-grid reveal">
@@ -877,7 +844,10 @@
           <div class="form-card" id="application">
           <div id="form-content">
           <span class="eyebrow">See if your airport is a fit</span>
-          <p id="tier-note" class="tier-note" style="display:none"></p>
+          <div id="tier-note" class="tier-note" style="display:none">
+            <strong id="tier-note-copy"></strong>
+            <a href="/pricing.html">Change pricing selection</a>
+          </div>
             <p class="form-card-intro">Tell us about your airport and one project you would like to explore. Omar will personally review your information and reply within two business days. Starting the conversation does not commit your airport to the program.</p>
 
           <form id="waitlist-form">
@@ -923,6 +893,7 @@
 
             <input type="hidden" name="tier_interest" id="tier_interest" value="">
             <input type="hidden" name="tier_billing" id="tier_billing" value="">
+            <input type="hidden" name="tier_price" id="tier_price" value="">
               <input type="hidden" name="utm_source" id="utm_source" value="">
             <input type="hidden" name="utm_medium" id="utm_medium" value="">
             <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
@@ -1039,10 +1010,12 @@
       const p=new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});
       const tier=(p.get('tier')||'').toLowerCase(); if(!tier)return;
-      const MAP={field:{label:'Field',type:'Nonprimary general aviation'},
-                 regional:{label:'Regional',type:'Commercial service \u2014 non-hub'},
-                 metro:{label:'Metro',type:'Small hub'},
-                 pilot:{label:'Founding Partner pilot',type:''}};
+      const billing=p.get('billing')==='monthly'?'monthly':'annual';
+      const MAP={field:{label:'Field',type:'Nonprimary general aviation',annual:'$2,400 per year',monthly:'$240 per month'},
+                 regional:{label:'Regional',type:'Commercial service \u2014 non-hub',annual:'$8,400 per year',monthly:'$840 per month'},
+                 metro:{label:'Metro',type:'Small hub',annual:'$12,000 per year',monthly:'$1,200 per month'},
+                 custom:{label:'Custom airport or capital program',type:'',annual:'Custom pricing',monthly:'Custom pricing'},
+                 pilot:{label:'Founding Airport Partner collaboration',type:'',annual:'No cost for 90 days',monthly:'No cost for 90 days'}};
       const sel=MAP[tier]; if(!sel)return;
       const h=document.getElementById('tier_interest'); if(h)h.value=sel.label;
       if(sel.type){
@@ -1051,12 +1024,26 @@
       }
       const note=document.getElementById('tier-note');
       if(note){
-        const billing=(p.get('billing')||'').toLowerCase();
-        const billingLabel=billing==='monthly'?' (monthly)':' (annual)';
-        note.textContent='You selected '+sel.label+billingLabel+'. You can change anything below.';
-        note.style.display='block';
+        const billingLabel=billing==='monthly'?'Monthly':'Annual';
+        const copy=document.getElementById('tier-note-copy');
+        if(copy)copy.textContent='Pricing interest saved: '+sel.label+' \u00b7 '+billingLabel+' \u00b7 '+sel[billing];
+        note.style.display='flex';
       }
-      const bh=document.getElementById('tier_billing'); if(bh)bh.value=billing||'annual';
+      const bh=document.getElementById('tier_billing'); if(bh)bh.value=billing;
+      const ph=document.getElementById('tier_price'); if(ph)ph.value=sel[billing];
+
+      const application=document.getElementById('application');
+      const showSelection=()=>{
+        if(!application)return;
+        application.closest('.reveal')?.classList.add('in');
+        const root=document.documentElement;
+        const previousBehavior=root.style.scrollBehavior;
+        root.style.scrollBehavior='auto';
+        application.scrollIntoView({behavior:'auto',block:'start'});
+        root.style.scrollBehavior=previousBehavior;
+      };
+      requestAnimationFrame(showSelection);
+      window.addEventListener('load',()=>setTimeout(showSelection,50),{once:true});
     })();
 
     const form=document.getElementById('waitlist-form');

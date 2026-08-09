@@ -268,7 +268,7 @@
         <a href="/#founder">Founder</a>
         <a href="/#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="/#program">Founding Partner Program</a>
+      <a class="btn btn-primary btn-sm" href="/#program">Explore the program</a>
       <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -301,7 +301,7 @@
           <li>Cooperative contract candidates</li>
           <li>Evidence checklist and procurement file export</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=field#application">Reserve a place</a>
+        <a class="btn tier-cta" href="/?tier=field&amp;billing=annual#application">Start with Field</a>
       </div>
 
       <div class="tier featured" role="button" tabindex="0" aria-selected="true" data-tier="regional">
@@ -317,7 +317,7 @@
           <li>Board-ready decision summaries</li>
           <li>Approval routing and activity log</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=regional#application">Reserve a place</a>
+        <a class="btn tier-cta" href="/?tier=regional&amp;billing=annual#application">Start with Regional</a>
       </div>
 
       <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="metro">
@@ -332,7 +332,7 @@
           <li>Post-award lifecycle and change impact</li>
           <li>Grant closeout evidence file</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=metro#application">Reserve a place</a>
+        <a class="btn tier-cta" href="/?tier=metro&amp;billing=annual#application">Start with Metro</a>
       </div>
     </section>
 
@@ -341,7 +341,7 @@
         <h3>Medium hub, large hub, or a major capital program?</h3>
         <p>You are not outside the plan — you are the case a price list handles badly. Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you. Tell us what you are planning and we will work out what fits.</p>
       </div>
-      <a class="btn" href="mailto:contact@tarmacsync.com?subject=TarmacSync%20for%20a%20larger%20airport%20or%20capital%20program">Start a conversation</a>
+      <a class="btn custom-tier-cta" href="/?tier=custom&amp;billing=annual#application">Start a conversation</a>
     </div>
 
     <div class="band band-dark">
@@ -349,7 +349,7 @@
         <h3>Start with 90 days at no cost</h3>
         <p>No fee, no automatic renewal, no purchase commitment. Nothing converts on its own. We configure each airport's policy and thresholds personally before the start, so the first cohort is limited — reserve by November 30, 2026.</p>
       </div>
-      <a class="btn" href="/?tier=pilot#application">Reserve a place for January 2027</a>
+      <a class="btn pilot-tier-cta" href="/?tier=pilot&amp;billing=annual#application">Reserve a place for January 2027</a>
     </div>
 
     <section class="details narrow">
@@ -450,8 +450,10 @@
             a.href='/?tier='+t+'&billing='+billing+'#application';
           }
         });
-        const pilot=document.querySelector('a[href*="tier=pilot"]');
+        const pilot=document.querySelector('.pilot-tier-cta');
         if(pilot) pilot.href='/?tier=pilot&billing='+billing+'#application';
+        const custom=document.querySelector('.custom-tier-cta');
+        if(custom) custom.href='/?tier=custom&billing='+billing+'#application';
       }
 
       annual.addEventListener('click',()=>setBilling('annual'));
