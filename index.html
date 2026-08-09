@@ -620,10 +620,10 @@
       color: var(--graphite); font-family: var(--sans);
       font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: -.003em;
     }
-    .trust-head .h2 {
-      max-width: 22ch; font-weight: 600;
-      font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.12;
-    }
+    /* Measure only. This previously also set font-weight:600 and a smaller
+       clamp, making it the one h2 on the page rendering lighter and smaller
+       than every other section headline. */
+    .trust-head .h2 { max-width: 24ch; }
     .trust-lede {
       max-width: 50ch; margin: 1.15rem auto 0;
       color: var(--muted); font-size: 1rem; line-height: 1.6;
@@ -1046,7 +1046,7 @@
             <ul class="trust-points">
               <li>Official FAA material is retrieved and quoted. If the answer isn't in a source, TarmacSync tells you that instead of filling the gap.</li>
             </ul>
-            <p class="trust-proof copy-stack copy-stack--tight"><span>FAA Order 5100.38D</span><span>1,244 AIP Handbook sections</span><span>40 Grant Assurances</span></p>
+            <p class="trust-proof copy-stack copy-stack--tight"><span>The AIP Handbook</span><span>Grant Assurances</span><span>FAA Orders and Advisory Circulars</span></p>
           </div>
           <div class="col card trust-card">
             <span class="col-num">02</span>
@@ -1093,35 +1093,31 @@
       <div class="page">
         <div class="section-head center reveal">
           <span class="eyebrow eyebrow-accent">Founding Airport Partner Program</span>
-          <h2 class="h2">Built for airports. Shaped with airports.</h2>
-          <p class="lede copy-stack"><span>Bring one real, non-sensitive airport purchase or project.</span><span>We'll configure TarmacSync for your airport, work through it with your team during a free 90-day collaboration, and use what we learn to shape the first release.</span></p>
+          <h2 class="h2">Bring one project. Work it through with us, free, for 90 days.</h2>
         </div>
 
         <div class="apply-grid reveal">
           <div class="apply-info">
-            <p class="program-intro copy-stack"><span>Use TarmacSync alongside your airport's existing process.</span><span>We'll configure the workspace, work through real projects with your team, and compare TarmacSync's guidance with how your airport operates today.</span></p>
             <div class="apply-info-cols">
               <div>
-                <h3 class="h3">What your airport receives</h3>
+                <h3 class="h3">What you get</h3>
                 <ul class="list">
-                  <li>A configured TarmacSync workspace for your airport</li>
-                  <li>Hands-on TarmacSync support for real projects</li>
-                  <li>Structured project records and supporting evidence</li>
-                  <li>Direct working sessions with the founder</li>
-                  <li>Direct input into first-release priorities</li>
+                  <li>A workspace configured for your airport</li>
+                  <li>Hands-on support on real projects</li>
+                  <li>Working sessions with the founder</li>
+                  <li>Direct input into the first release</li>
                 </ul>
               </div>
               <div>
-                <h3 class="h3">What participation involves</h3>
+                <h3 class="h3">What we ask</h3>
                 <ul class="list">
-                  <li>One kickoff conversation</li>
-                  <li>Real airport projects</li>
-                  <li>Short check-ins during the 90-day program</li>
-                  <li>Candid feedback about the workflow and outputs</li>
+                  <li>One kickoff call</li>
+                  <li>One real project</li>
+                  <li>Candid feedback</li>
                 </ul>
               </div>
             </div>
-            <p class="apply-close copy-stack"><span>The program is open to all U.S. public-use airports.</span><span>Expressing interest does not guarantee selection.</span></p>
+            <p class="apply-close">Open to all U.S. public-use airports. Interest doesn't guarantee selection.</p>
           </div>
 
           <div class="form-card" id="application">
@@ -1131,7 +1127,7 @@
             <strong id="tier-note-copy"></strong>
             <a href="/pricing.html">Change pricing selection</a>
           </div>
-            <p class="form-card-intro copy-stack"><span>Tell us about your airport and one project you would like to explore.</span><span>Omar will personally review your information and reply within two business days.</span><span>Starting the conversation does not commit your airport to the program.</span></p>
+            <p class="form-card-intro">Omar reviews every submission personally and replies within two business days.</p>
 
           <form id="waitlist-form">
             <div class="spam-trap" aria-hidden="true">
@@ -1188,10 +1184,10 @@
 
             <div class="form-actions">
               <button class="btn btn-accent btn-lg" type="submit">Start the conversation</button>
-              <span class="form-note">A 90-day Founding Airport collaboration at no cost. No purchase commitment.</span>
+              <span class="form-note">Free for 90 days. No purchase commitment.</span>
             </div>
           </form>
-          <p class="form-legal copy-stack"><span>We'll use your information only to respond to your interest and operate the Founding Airport Partner Program, as described in our <a href="/privacy.html">Privacy Policy</a>.</span><span>We do not sell your information.</span></p>
+          <p class="form-legal">Used only to respond to your interest, per our <a href="/privacy.html">Privacy Policy</a>. We never sell your information.</p>
           </div>
           <div class="success-panel" id="contact-success" style="display:none">
             <div class="success-check">&#10003;</div>
