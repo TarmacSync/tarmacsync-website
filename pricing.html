@@ -134,16 +134,9 @@
       background: var(--orange); color: #fff; padding: .18rem .45rem; border-radius: 3px;
     }
 
-    /* selectable cards */
-    .tier { cursor: pointer; transition: border-color .22s, box-shadow .22s, transform .22s; }
-    .tier:hover { border-color: var(--silver); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(23,25,31,.08); }
-    .tier[aria-selected="true"]:hover { border-color: var(--ink); box-shadow: 0 8px 30px rgba(23,25,31,.12); }
-    .tier:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-    .tier[aria-selected="true"] {
-      border-color: var(--ink); box-shadow: 0 4px 16px rgba(23,25,31,.10); transform: translateY(-2px);
-    }
-    .tier[aria-selected="true"] .tier-cta { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .tier[aria-selected="true"] .tier-cta:hover { background: var(--graphite); }
+    /* Pricing cards are informational surfaces. The CTA—not the entire
+       card—is interactive, so no hover or selection state can imply a
+       recommended/default tier. */
     .tier-note-sm { font-size: .76rem; color: var(--muted); margin-top: .55rem; min-height: 1rem; }
 
     /* bands */
@@ -285,7 +278,7 @@
     </section>
 
     <section class="tiers">
-      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="field">
+      <div class="tier" data-tier="field">
         <div class="tier-name">Field</div>
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-thresh">Under about 10,000 annual passengers</div>
@@ -299,7 +292,7 @@
         <a class="btn tier-cta" href="/?tier=field&amp;billing=annual#application">Start with Field</a>
       </div>
 
-      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="regional">
+      <div class="tier" data-tier="regional">
         <div class="tier-name">Regional</div>
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-thresh">About 10,000 to 500,000 annual passengers</div>
@@ -314,7 +307,7 @@
         <a class="btn tier-cta" href="/?tier=regional&amp;billing=annual#application">Start with Regional</a>
       </div>
 
-      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="metro">
+      <div class="tier" data-tier="metro">
         <div class="tier-name">Metro</div>
         <div class="tier-who">Small hub</div>
         <div class="tier-thresh">About 500,000 to 2.5 million annual passengers</div>
@@ -424,19 +417,11 @@
         updateLinks();
       }
 
-      function select(card){
-        cards.forEach(c=>c.setAttribute('aria-selected', c===card));
-        updateLinks();
-      }
-
       function updateLinks(){
-        const sel=cards.find(c=>c.getAttribute('aria-selected')==='true');
-        const tier=sel?sel.dataset.tier:'';
         cards.forEach(c=>{
           const a=c.querySelector('.tier-cta');
           if(a){
-            const t=c===sel?tier:(c.dataset.tier);
-            a.href='/?tier='+t+'&billing='+billing+'#application';
+            a.href='/?tier='+c.dataset.tier+'&billing='+billing+'#application';
           }
         });
         const pilot=document.querySelector('.pilot-tier-cta');
@@ -447,16 +432,6 @@
 
       annual.addEventListener('click',()=>setBilling('annual'));
       monthly.addEventListener('click',()=>setBilling('monthly'));
-
-      cards.forEach(card=>{
-        card.addEventListener('click',e=>{
-          if(e.target.closest('a')) return;
-          select(card);
-        });
-        card.addEventListener('keydown',e=>{
-          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); select(card); }
-        });
-      });
 
       updateLinks();
     })();
