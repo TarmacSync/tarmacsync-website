@@ -104,7 +104,7 @@
     .tier-who { font-size: .82rem; color: var(--muted); margin-bottom: 1.1rem; line-height: 1.45; }
     .tier-price { font-size: 2rem; font-weight: 700; letter-spacing: -.035em; line-height: 1; }
     .tier-per { font-size: .8rem; color: var(--muted); margin: .35rem 0 1.2rem; }
-    .tier ul { margin: 0; list-style: none; }
+    .tier ul { margin: 0; list-style: none; flex: 1; }
     .tier li {
       font-size: .86rem; color: var(--muted); line-height: 1.45;
       padding-left: 1.1rem; text-indent: -1.1rem; margin-bottom: .55rem;
@@ -127,6 +127,47 @@
       font-size: .9rem; color: var(--muted); line-height: 1.55;
     }
     .cohort strong { color: var(--ink); display: block; margin-bottom: .2rem; }
+
+    .anchor-line {
+      font-size: 1rem; color: var(--ink); line-height: 1.6;
+      margin: 0 0 1.6rem; padding: 0;
+    }
+    .anchor-line b { font-weight: 700; }
+    .tier-cta {
+      display: block; text-align: center; margin-top: 1.2rem;
+      padding: .55rem 1rem; border-radius: 980px;
+      border: 1px solid var(--line); background: transparent; color: var(--ink);
+      font-size: .82rem; font-weight: 500; text-decoration: none;
+    }
+    .tier-cta:hover { background: var(--soft); }
+    .tier.featured .tier-cta { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .tier.featured .tier-cta:hover { background: #2C2F38; }
+    .tier-flag {
+      position: absolute; top: -.65rem; left: 1.4rem;
+      background: var(--orange); color: #fff;
+      font-family: var(--mono); font-size: .6rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px;
+    }
+    .tier { position: relative; }
+
+    .free-band {
+      border: 1px solid var(--ink); border-radius: 10px;
+      padding: 1.6rem 1.7rem; margin: 2rem 0 1rem;
+    }
+    .free-band .kicker {
+      font-family: var(--mono); font-size: .66rem; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .5rem;
+    }
+    .free-band h3 { font-size: 1.3rem; color: var(--ink); margin: 0 0 .5rem; letter-spacing: -.02em; }
+    .free-band p { margin-bottom: .8rem; }
+    .free-points { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin: .9rem 0 1.2rem; padding: 0; list-style: none; }
+    .free-points li { font-size: .86rem; color: var(--muted); margin: 0; padding-left: 1.05rem; text-indent: -1.05rem; }
+    .free-points li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+
+    .faq-q { border-top: 1px solid var(--line); padding: 1.1rem 0; }
+    .faq-q:last-of-type { border-bottom: 1px solid var(--line); }
+    .faq-q h4 { font-size: .95rem; color: var(--ink); margin: 0 0 .35rem; font-weight: 600; }
+    .faq-q p { margin: 0; font-size: .9rem; }
     .buy-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .88rem; }
     .buy-table th {
       text-align: left; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
@@ -163,6 +204,8 @@
       <p class="lede">TarmacSync is priced per airport, not per user. Your operations, finance, procurement, and grants staff all work in the same file — and so can your consultants.</p>
       <p class="per-airport">Per airport &middot; unlimited users</p>
 
+      <p class="anchor-line">For a typical airport in each category, TarmacSync costs <b>less than two tenths of one percent</b> of the federal grant funding that airport already manages each year.</p>
+
       <div class="cohort">
         <strong>The first Founding Airport Partner cohort begins January 2027.</strong>
         Pricing is published now so airports can plan a budget line ahead of it. Partners in the first cohort are configured at these rates.
@@ -184,9 +227,11 @@
           <li>Your airport policy and thresholds configured</li>
           <li>Email support</li>
         </ul>
+        <a class="tier-cta" href="/#application">Reserve a place</a>
       </div>
 
       <div class="tier featured">
+        <span class="tier-flag">Best fit for AIP-funded airports</span>
         <div class="tier-tag">Regional</div>
         <div class="tier-name">$8,400</div>
         <div class="tier-per">per year &middot; or $700/month</div>
@@ -200,6 +245,7 @@
           <li>Approval routing and activity log</li>
           <li>Solicitation scope foundations</li>
         </ul>
+        <a class="tier-cta" href="/#application">Reserve a place</a>
       </div>
 
       <div class="tier">
@@ -216,6 +262,7 @@
           <li>Multi-role approvals and audit trail</li>
           <li>Priority support</li>
         </ul>
+        <a class="tier-cta" href="/#application">Reserve a place</a>
       </div>
     </div>
 
@@ -226,6 +273,21 @@
     </div>
 
     <div class="narrow">
+      <div class="free-band">
+        <div class="kicker">Before you pay anything</div>
+        <h3>Start with 90 days at no cost</h3>
+        <p>Founding Airport Partners evaluate TarmacSync on real purchases and projects — with your actual policy, thresholds, and funding context configured, and unlimited users from day one. The first cohort begins January 2027.</p>
+        <ul class="free-points">
+          <li>No fee</li>
+          <li>No automatic renewal</li>
+          <li>No purchase commitment</li>
+          <li>Nothing converts on its own</li>
+        </ul>
+        <a class="btn" href="/#application">Reserve a place for January 2027</a>
+        &nbsp;
+        <a class="btn btn-secondary" href="/founding-airports.html">Program details</a>
+      </div>
+
       <p class="note">Annual agreements. No automatic renewal. Multi-airport pricing is available for authorities, county and municipal systems operating more than one facility, and state aviation offices. Consultants and program managers can license TarmacSync across client engagements.</p>
 
       <h2>What every tier includes</h2>
@@ -262,13 +324,31 @@
 
       <p class="note">Your adopted purchasing policy governs and may be more restrictive than the examples above. TarmacSync does not make procurement determinations for your airport — we supply documentation to support your price-reasonableness file, a single-source narrative where your policy permits one, or a response to a formal solicitation, whichever your process requires.</p>
 
-      <h2>Start with 90 days at no cost</h2>
-      <p>Founding Airport Partners evaluate TarmacSync on real purchases and projects for 90 days at no cost, with your actual policy and funding context configured — and with unlimited users from day one, the same as a paid tier. No fee, no automatic renewal, and no purchase commitment. At the end of the 90 days you decide whether to continue; nothing converts automatically.</p>
+      <h2>Common questions</h2>
 
-      <p><strong style="color:var(--ink)">The first cohort begins January 2027.</strong> Reserving a place now costs nothing and commits you to nothing. It lets us configure your airport's policy and thresholds ahead of the start, and gives you a number to work with if you are building a budget request for the coming fiscal year.</p>
+      <div class="faq-q">
+        <h4>Do you charge per user?</h4>
+        <p>No. Pricing is per airport. Operations, finance, procurement, grants, legal, and your outside consultants can all work in the same file at no additional cost.</p>
+      </div>
+      <div class="faq-q">
+        <h4>Can we pay monthly instead of annually?</h4>
+        <p>Yes. Monthly billing is available on every tier, which also keeps each transaction well inside typical purchasing-card limits.</p>
+      </div>
+      <div class="faq-q">
+        <h4>Our airport does not fit neatly into one of these categories.</h4>
+        <p>That is common. A general aviation field running a large federally funded project has more to manage than its size suggests. Tell us what you have coming up and we will tell you which tier fits.</p>
+      </div>
+      <div class="faq-q">
+        <h4>Is a subscription an allowable grant cost?</h4>
+        <p>That depends on the grant and how the cost is treated, and it should be confirmed with your grant administrator and FAA ADO before assuming it. Most airports purchase from operating funds, where local purchasing policy governs.</p>
+      </div>
+      <div class="faq-q">
+        <h4>What happens at the end of the 90 days?</h4>
+        <p>You decide whether to continue. Nothing converts automatically, and there is no renewal to cancel.</p>
+      </div>
 
-      <p style="margin-top:1.5rem">
-        <a class="btn" href="/#application">Reserve a place in the January 2027 cohort</a>
+      <p style="margin-top:2rem">
+        <a class="btn" href="/#application">Reserve a place for January 2027</a>
         &nbsp;
         <a class="btn btn-secondary" href="/founding-airports.html">Program details</a>
       </p>
