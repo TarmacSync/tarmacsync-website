@@ -449,7 +449,7 @@
       margin: var(--content-gap) auto 0;
     }
     .path-card {
-      min-width: 0; min-height: 410px;
+      min-width: 0; min-height: 470px;
       display: flex; flex-direction: column;
       padding: clamp(1.6rem, 2.5vw, 2.25rem);
       border: 1px solid var(--line); border-radius: 22px;
@@ -488,12 +488,12 @@
       opacity: .45; transition: opacity .35s ease, transform .35s cubic-bezier(.16,1,.3,1);
     }
     .path-intelligence:hover,
-    .path-intelligence:focus-visible {
+    .path-intelligence:focus-within {
       transform: translateY(-7px);
       box-shadow: 0 28px 58px rgba(23,25,31,.22);
     }
     .path-intelligence:hover::before,
-    .path-intelligence:focus-visible::before { opacity: 1; transform: translate(-16px, 18px) scale(1.12); }
+    .path-intelligence:focus-within::before { opacity: 1; transform: translate(-16px, 18px) scale(1.12); }
     .path-intelligence .path-step { position: relative; color: var(--silver); }
     .path-intelligence .path-step::before {
       content: ""; display: block; width: 30px; height: 3px;
@@ -501,7 +501,7 @@
       transition: width .35s cubic-bezier(.16,1,.3,1);
     }
     .path-intelligence:hover .path-step::before,
-    .path-intelligence:focus-visible .path-step::before { width: 58px; }
+    .path-intelligence:focus-within .path-step::before { width: 58px; }
     .path-brand {
       position: relative; margin-top: .3rem;
       font-size: clamp(2rem, 3.2vw, 2.65rem); line-height: 1;
@@ -510,6 +510,18 @@
     .path-intelligence-kicker {
       position: relative; margin-top: .7rem;
       color: #FF8A33; font-size: .82rem; line-height: 1.45;
+    }
+    .path-intelligence-sources {
+      position: relative; list-style: none; display: grid; gap: .55rem;
+      margin: 1.55rem 0 1.35rem; padding: 0;
+    }
+    .path-intelligence-sources li {
+      position: relative; padding-left: .85rem;
+      color: rgba(255,255,255,.68); font-size: .76rem; line-height: 1.42;
+    }
+    .path-intelligence-sources li::before {
+      content: ""; position: absolute; left: 0; top: .6em;
+      width: 3px; height: 3px; border-radius: 50%; background: var(--orange);
     }
     .path-intelligence-copy {
       position: relative; margin-top: auto; padding-top: 1.5rem;
@@ -526,14 +538,14 @@
       transition: transform .25s ease;
     }
     .path-intelligence:hover .path-intelligence-link::after,
-    .path-intelligence:focus-visible .path-intelligence-link::after { transform: translateX(4px); }
+    .path-intelligence:focus-within .path-intelligence-link::after { transform: translateX(4px); }
     .path-connector { display: grid; place-items: center; color: var(--orange); }
     .path-connector svg {
       width: 34px; height: 24px; overflow: visible;
       transition: transform .3s cubic-bezier(.16,1,.3,1);
     }
     .path-flow:has(.path-intelligence:hover) .path-connector svg,
-    .path-flow:has(.path-intelligence:focus-visible) .path-connector svg { transform: scaleX(1.16); }
+    .path-flow:has(.path-intelligence:focus-within) .path-connector svg { transform: scaleX(1.16); }
     .path-results { display: grid; gap: 0; margin-top: 1.5rem; }
     .path-result { padding: 1rem 0; border-top: 1px solid rgba(62,65,73,.12); }
     .path-result:first-child { border-top: 0; padding-top: .35rem; }
@@ -544,6 +556,21 @@
     }
     .path-result strong { color: var(--ink); font-size: .92rem; line-height: 1.4; font-weight: 600; }
     .path-result:last-child span { color: var(--orange-ink); }
+    .path-lifecycle {
+      margin-top: auto; padding-top: 1rem;
+      border-top: 1px solid rgba(62,65,73,.12);
+    }
+    .path-lifecycle-label {
+      display: block; margin-bottom: .65rem;
+      color: var(--muted); font-family: var(--mono);
+      font-size: .59rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .path-lifecycle-track { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .path-lifecycle-track span {
+      padding: .28rem .5rem; border: 1px solid rgba(62,65,73,.14);
+      border-radius: 999px; background: rgba(255,255,255,.7);
+      color: var(--graphite); font-size: .62rem; font-weight: 600;
+    }
     .path-handoff {
       display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
       margin-top: 1.25rem; padding: 1rem 1.2rem;
@@ -565,13 +592,13 @@
       .path-connector { height: 52px; }
       .path-connector svg { transform: rotate(90deg); }
       .path-flow:has(.path-intelligence:hover) .path-connector svg,
-      .path-flow:has(.path-intelligence:focus-visible) .path-connector svg { transform: rotate(90deg) scaleX(1.16); }
+      .path-flow:has(.path-intelligence:focus-within) .path-connector svg { transform: rotate(90deg) scaleX(1.16); }
       .path-handoff { width: min(100%, 520px); margin-inline: auto; align-items: flex-start; flex-direction: column; }
       .path-systems { justify-content: flex-start; }
     }
     @media (prefers-reduced-motion: reduce) {
       .path-intelligence, .path-intelligence::before, .path-intelligence *, .path-connector svg { transition: none; }
-      .path-intelligence:hover, .path-intelligence:focus-visible { transform: none; }
+      .path-intelligence:hover, .path-intelligence:focus-within { transform: none; }
     }
 
     /* ── Inline-style replacements ──────────────────────────────── */
@@ -968,13 +995,13 @@
         <div class="path-flow reveal" role="group" aria-label="Airport context becomes a working procurement path through TarmacSync">
           <article class="path-card path-card-context">
             <span class="path-step">01 Airport context</span>
-            <h3>What shapes the decision</h3>
+            <h3>What TarmacSync brings together</h3>
             <ul class="path-inputs">
-              <li>Project and expected value</li>
-              <li>Funding</li>
-              <li>Policy and approvals</li>
-              <li>Contract options</li>
-              <li>Federal and state rules</li>
+              <li>Need, scope, and expected value</li>
+              <li>ACIP/CIP, budget, and funding plan</li>
+              <li>Local purchasing and P-card policies</li>
+              <li>State and federal requirements</li>
+              <li>Contracts, approvals, and grant conditions</li>
             </ul>
           </article>
 
@@ -982,25 +1009,35 @@
             <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
 
-          <a class="path-card path-intelligence" href="#trust">
+          <article class="path-card path-intelligence">
             <span class="path-step">02 Intelligence</span>
             <span class="path-brand">TarmacSync</span>
             <span class="path-intelligence-kicker">Airport procurement intelligence</span>
-            <span class="path-intelligence-copy">Turns airport context into <strong>a working path.</strong></span>
-            <span class="path-intelligence-link">See how the intelligence is grounded</span>
-          </a>
+            <ul class="path-intelligence-sources">
+              <li>Airport and P-card policies</li>
+              <li>ACIP/CIP, budgets, and funding</li>
+              <li>AIP Handbook, Grant Assurances, FAA Orders, and Advisory Circulars</li>
+              <li>Contract, approval, and project records</li>
+            </ul>
+            <span class="path-intelligence-copy">Connects the full context to identify <strong>the likely path—and what could change it.</strong></span>
+            <a class="path-intelligence-link" href="#trust">See how the intelligence is grounded</a>
+          </article>
 
           <div class="path-connector" aria-hidden="true">
             <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
 
           <article class="path-card path-card-output">
-            <span class="path-step">03 Working path</span>
-            <h3>What the team sees</h3>
+            <span class="path-step">03 Project path</span>
+            <h3>What the team can move forward</h3>
             <div class="path-results">
               <div class="path-result"><span>Likely route</span><strong>What appears to fit</strong></div>
               <div class="path-result"><span>Open issue</span><strong>What needs validation</strong></div>
               <div class="path-result"><span>Next move</span><strong>What moves it forward</strong></div>
+            </div>
+            <div class="path-lifecycle">
+              <span class="path-lifecycle-label">Guided from need through closeout</span>
+              <div class="path-lifecycle-track"><span>Need</span><span>Budget</span><span>Funding</span><span>Procurement</span><span>Award</span><span>Grant closeout</span></div>
             </div>
           </article>
         </div>
