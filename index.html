@@ -146,7 +146,7 @@
         "name": "What does TarmacSync cost after the 90 days?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027, and pricing is published now so airports can plan a budget line ahead of it. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on the TarmacSync pricing page."
+          "text": "TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027 and is limited by how many airports we can configure personally before the start — reserve by November 30, 2026. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on the TarmacSync pricing page."
         }
       }
     ]
@@ -656,7 +656,13 @@
       100% { color: var(--ink); }
     }
     @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #1E3F63; animation: none; } }
-  </style>
+  
+    .tier-note {
+      display: none; font-size: .85rem; color: var(--ink);
+      background: #fdf4ec; border: 1px solid #f0d9c4; border-radius: 8px;
+      padding: .7rem .95rem; margin-bottom: 1.1rem;
+    }
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -822,7 +828,8 @@
           <div class="form-card" id="application">
           <div id="form-content">
           <span class="eyebrow">See if your airport is a fit</span>
-          <p class="form-card-intro">Tell us about your airport and one project you would like to explore. Omar will personally review your information and reply within two business days. Starting the conversation does not commit your airport to the program.</p>
+          <p id="tier-note" class="tier-note" style="display:none"></p>
+            <p class="form-card-intro">Tell us about your airport and one project you would like to explore. Omar will personally review your information and reply within two business days. Starting the conversation does not commit your airport to the program.</p>
 
           <form id="waitlist-form">
             <div class="spam-trap" aria-hidden="true">
@@ -865,7 +872,8 @@
               </div>
             </details>
 
-            <input type="hidden" name="utm_source" id="utm_source" value="">
+            <input type="hidden" name="tier_interest" id="tier_interest" value="">
+              <input type="hidden" name="utm_source" id="utm_source" value="">
             <input type="hidden" name="utm_medium" id="utm_medium" value="">
             <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
 
@@ -926,7 +934,7 @@
             <div class="faq-answer"><p>"Founding Airport Partner" describes participation in TarmacSync's initial airport program. It does not create an ownership, equity, agency, joint-venture, endorsement, or intellectual-property relationship.</p></div>
           </details>
           <details><summary>What does TarmacSync cost after the 90 days?</summary>
-            <div class="faq-answer"><p>TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027, and pricing is published now so airports can plan a budget line ahead of it. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on our <a href="/pricing.html">pricing page</a>.</p></div>
+            <div class="faq-answer"><p>TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027 and is limited by how many airports we can configure personally before the start — reserve by November 30, 2026. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on our <a href="/pricing.html">pricing page</a>.</p></div>
           </details>
         </div>
       </div>
@@ -970,7 +978,23 @@
   </button>
 
   <script>
-    (function(){const p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});})();
+    (function(){
+      const p=new URLSearchParams(window.location.search);
+      ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});
+      const tier=(p.get('tier')||'').toLowerCase(); if(!tier)return;
+      const MAP={field:{label:'Field',type:'Nonprimary general aviation'},
+                 regional:{label:'Regional',type:'Commercial service \u2014 non-hub'},
+                 metro:{label:'Metro',type:'Small hub'},
+                 pilot:{label:'Founding Partner pilot',type:''}};
+      const sel=MAP[tier]; if(!sel)return;
+      const h=document.getElementById('tier_interest'); if(h)h.value=sel.label;
+      if(sel.type){
+        const at=document.getElementById('airport-type');
+        if(at){const o=[...at.options].find(x=>x.text.trim()===sel.type); if(o){at.value=o.value||o.text;}}
+      }
+      const note=document.getElementById('tier-note');
+      if(note){note.textContent='You selected '+sel.label+'. You can change anything below.';note.style.display='block';}
+    })();
 
     const form=document.getElementById('waitlist-form');
     const status=document.getElementById('form-status');
