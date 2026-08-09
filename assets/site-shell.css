@@ -132,6 +132,13 @@
   border-radius: 4px;
 }
 
+/* Use deliberate paragraph rhythm instead of hard-coded line breaks. Each
+   span remains responsive while distinct ideas receive their own line. */
+.copy-stack > span { display: block; }
+.copy-stack > span + span { margin-top: .5rem; }
+.copy-stack--tight > span + span { margin-top: .25rem; }
+.invite.copy-stack { flex-direction: column; }
+
 .site-footer {
   border-top: 1px solid #E4E6EA;
   padding: 4.5rem 0 3.5rem;

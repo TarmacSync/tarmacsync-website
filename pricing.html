@@ -85,6 +85,8 @@
       line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
       margin: 2.2rem auto 0; max-width: none;
     }
+    .hero p.cohort-line span { display: block; }
+    .hero p.cohort-line span + span { margin-top: .25rem; }
 
     /* tiers */
     .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-bottom: 1.5rem; }
@@ -228,8 +230,6 @@
       .hero h1 { font-size: 2.15rem; }
       .hero p { font-size: 1rem; }
       .hero p.cohort-line { font-size: .76rem; letter-spacing: .05em; line-height: 1.65; }
-      .hero p.cohort-line span { display: block; }
-      .hero p.cohort-line .dot { display: none; }
 
       .switch { width: 100%; align-items: stretch; }
       .switch button { flex: 1; padding: .6rem .5rem; font-size: .82rem; }
@@ -276,8 +276,8 @@
 
     <section class="hero">
       <h1>Simple pricing,<br>per airport.</h1>
-      <p>Unlimited users. Your operations, finance, procurement, and grants staff all work in the same file.</p>
-      <p class="cohort-line"><span>First cohort begins January 2027</span><span class="dot"> &middot; </span><span>Reserve by November 30</span></p>
+      <p class="copy-stack"><span>Unlimited users.</span><span>Your operations, finance, procurement, and grants staff all work in the same file.</span></p>
+      <p class="cohort-line"><span>First cohort begins January 2027</span><span>Reserve by November 30</span></p>
 
       <div class="billing">
         <div class="switch" role="group" aria-label="Billing period">
@@ -337,7 +337,7 @@
     <div class="band band-invite">
       <div>
         <h3>Medium hub, large hub, or a major capital program?</h3>
-        <p>You are not outside the plan — you are the case a price list handles badly. Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you. Tell us what you are planning and we will work out what fits.</p>
+        <p class="copy-stack"><span>You are not outside the plan — you are the case a price list handles badly.</span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span><span>Tell us what you are planning and we will work out what fits.</span></p>
       </div>
       <a class="btn custom-tier-cta" href="/?tier=custom&amp;billing=annual#application">Start a conversation</a>
     </div>
@@ -345,7 +345,7 @@
     <div class="band band-dark">
       <div>
         <h3>Start with 90 days at no cost</h3>
-        <p>No fee, no automatic renewal, no purchase commitment. Nothing converts on its own. We configure each airport's policy and thresholds personally before the start, so the first cohort is limited — reserve by November 30, 2026.</p>
+        <p class="copy-stack"><span>No fee, no automatic renewal, no purchase commitment.</span><span>Nothing converts on its own.</span><span>We configure each airport's policy and thresholds personally before the start, so the first cohort is limited — reserve by November 30, 2026.</span></p>
       </div>
       <a class="btn pilot-tier-cta" href="/?tier=pilot&amp;billing=annual#application">Reserve a place for January 2027</a>
     </div>
@@ -389,7 +389,7 @@
       </div>
 
       <div class="fine-wrap">
-        <p class="fine">Your adopted purchasing policy governs. TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided. Cooperative contract matches are candidate pathways that require validation before award. Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors. Pricing effective August 2026 and subject to change.</p>
+        <p class="fine copy-stack"><span>Your adopted purchasing policy governs.</span><span>TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided.</span><span>Cooperative contract matches are candidate pathways that require validation before award.</span><span>Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors.</span><span>Pricing effective August 2026 and subject to change.</span></p>
       </div>
     </section>
   </main>
