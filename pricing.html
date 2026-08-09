@@ -409,30 +409,52 @@
       const cards=[...document.querySelectorAll('.tier[data-tier]')];
       const annual=document.getElementById('bill-annual');
       const monthly=document.getElementById('bill-monthly');
+      let billing='annual';
 
       function setBilling(mode){
+        billing=mode;
         const isAnnual = mode==='annual';
         annual.setAttribute('aria-pressed', isAnnual);
         monthly.setAttribute('aria-pressed', !isAnnual);
         document.querySelectorAll('[data-annual]').forEach(el=>{
           el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
         });
+        updateLinks();
       }
-      annual.addEventListener('click',()=>setBilling('annual'));
-      monthly.addEventListener('click',()=>setBilling('monthly'));
 
       function select(card){
         cards.forEach(c=>c.setAttribute('aria-selected', c===card));
+        updateLinks();
       }
+
+      function updateLinks(){
+        const sel=cards.find(c=>c.getAttribute('aria-selected')==='true');
+        const tier=sel?sel.dataset.tier:'';
+        cards.forEach(c=>{
+          const a=c.querySelector('.tier-cta');
+          if(a){
+            const t=c===sel?tier:(c.dataset.tier);
+            a.href='/?tier='+t+'&billing='+billing+'#application';
+          }
+        });
+        const pilot=document.querySelector('a[href*="tier=pilot"]');
+        if(pilot) pilot.href='/?tier=pilot&billing='+billing+'#application';
+      }
+
+      annual.addEventListener('click',()=>setBilling('annual'));
+      monthly.addEventListener('click',()=>setBilling('monthly'));
+
       cards.forEach(card=>{
         card.addEventListener('click',e=>{
-          if(e.target.closest('a')) return;   // let the CTA link work normally
+          if(e.target.closest('a')) return;
           select(card);
         });
         card.addEventListener('keydown',e=>{
           if(e.key==='Enter'||e.key===' '){ e.preventDefault(); select(card); }
         });
       });
+
+      updateLinks();
     })();
   </script>
 </body>
