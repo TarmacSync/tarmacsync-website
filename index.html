@@ -339,21 +339,96 @@
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
 
-    /* ── Product visual ─────────────────────────────────────────────
-       Elevated, centered card treatment shared by the hero-style demo
-       device below (see .device-video for the video-specific pairing). */
-    .device {
-      width: 100%; margin-inline: auto;
-      background: var(--white); border: 1px solid var(--line);
-      border-radius: 18px; overflow: hidden;
-      box-shadow: 0 1px 2px rgba(23,25,31,.04), 0 12px 32px -8px rgba(23,25,31,.10), 0 40px 80px -32px rgba(23,25,31,.16);
+    /* ── TarmacSync vision film ────────────────────────────────────────
+       A deliberate, single-purpose film surface. Custom controls preserve the
+       cinematic frame and appear only after a visitor chooses to watch. */
+    .vision-section {
+      position: relative; overflow: hidden;
+      background: var(--ink); color: var(--white);
+      padding: clamp(76px, 8vw, 116px) 0 clamp(82px, 9vw, 128px);
     }
-    /* .device-video: the product-section demo reuses the hero's .device card
-       (same border + elevation, so the two "product moment" surfaces read as
-       one visual system) with a -webkit-mask-image clip, since Safari does not
-       reliably apply overflow:hidden + border-radius clipping to <video>. */
-    .device-video { -webkit-mask-image: -webkit-radial-gradient(white, black); }
-    .device-video video { width: 100%; display: block; }
+    .vision-section::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 50% 82%, rgba(245,106,0,.08), transparent 36%);
+    }
+    .vision-section .page { position: relative; }
+    .vision-head { text-align: center; max-width: 880px; margin-inline: auto; }
+    .vision-head .eyebrow { color: rgba(255,255,255,.52); }
+    .vision-title {
+      max-width: 18ch; margin: .95rem auto 0;
+      font-size: clamp(2.15rem, 4.6vw, 4rem); line-height: 1.07;
+      letter-spacing: -.034em; font-weight: 600;
+    }
+    .vision-accent { color: var(--orange); }
+    .vision-copy {
+      max-width: 61ch; margin: 1.35rem auto 0;
+      color: rgba(255,255,255,.7); font-size: clamp(1.05rem, 1.55vw, 1.22rem);
+      line-height: 1.58; letter-spacing: -.01em;
+    }
+    .vision-player {
+      position: relative; width: var(--prod); max-width: calc(100% - 3rem);
+      aspect-ratio: 16 / 9; margin: clamp(2.5rem, 5vw, 4.25rem) auto 0;
+      overflow: hidden; border: 1px solid rgba(255,255,255,.14);
+      border-radius: clamp(16px, 2vw, 24px); background: #0D0E12;
+      box-shadow: 0 34px 100px rgba(0,0,0,.42), 0 1px 0 rgba(255,255,255,.08) inset;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+    .vision-player video { display: block; width: 100%; height: 100%; object-fit: cover; background: #0D0E12; }
+    .vision-player::after {
+      content: ""; position: absolute; inset: auto 0 0; height: 25%;
+      background: linear-gradient(to top, rgba(8,9,12,.64), transparent);
+      pointer-events: none; opacity: 1; transition: opacity .3s ease;
+    }
+    .vision-player.is-playing::after { opacity: 0; }
+    .vision-start {
+      position: absolute; z-index: 3; right: clamp(16px, 2.4vw, 28px); bottom: clamp(16px, 2.4vw, 28px);
+      min-height: 48px; display: inline-flex; align-items: center; gap: .62rem;
+      border: 1px solid rgba(255,255,255,.32); border-radius: 999px;
+      background: rgba(23,25,31,.82); color: #fff; padding: .72rem 1.08rem;
+      font: 500 .9rem/1 var(--sans); letter-spacing: -.005em; cursor: pointer;
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      box-shadow: 0 10px 26px rgba(0,0,0,.24); transition: background .2s ease, transform .2s ease;
+    }
+    .vision-start:hover { background: rgba(245,106,0,.94); transform: translateY(-1px); }
+    .vision-start svg { width: 14px; height: 14px; flex: 0 0 auto; }
+    .vision-controls {
+      position: absolute; z-index: 4; left: clamp(12px, 2vw, 22px); bottom: clamp(12px, 2vw, 22px);
+      display: flex; align-items: center; gap: .35rem; padding: .38rem;
+      border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+      background: rgba(12,13,17,.76); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    .vision-controls[hidden], .vision-start[hidden] { display: none !important; }
+    .vision-control {
+      width: 40px; height: 40px; display: inline-grid; place-items: center;
+      border: 0; border-radius: 50%; background: transparent; color: #fff;
+      cursor: pointer; transition: background .2s ease, color .2s ease;
+    }
+    .vision-control:hover { background: rgba(255,255,255,.13); }
+    .vision-control svg { width: 17px; height: 17px; }
+    .vision-control svg[hidden] { display: none !important; }
+    .vision-replay-label { display: none; font: 500 .82rem/1 var(--sans); padding-right: .4rem; }
+    .vision-player.is-ended .vision-controls [data-vision-toggle],
+    .vision-player.is-ended .vision-controls [data-vision-mute],
+    .vision-player.is-ended .vision-controls [data-vision-fullscreen] { display: none; }
+    .vision-player.is-ended [data-vision-replay] { width: auto; grid-auto-flow: column; gap: .4rem; padding-inline: .72rem; border-radius: 999px; }
+    .vision-player.is-ended .vision-replay-label { display: inline; }
+    .vision-caption { margin: 1rem auto 0; text-align: center; color: rgba(255,255,255,.48); font-size: .78rem; }
+    .sr-only {
+      position: absolute !important; width: 1px !important; height: 1px !important;
+      padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+      clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important;
+    }
+    @media (max-width: 680px) {
+      .vision-section { padding-block: 68px 76px; }
+      .vision-title { max-width: 12ch; font-size: clamp(2rem, 10vw, 2.75rem); }
+      .vision-copy { max-width: 34ch; font-size: 1rem; }
+      .vision-player { width: calc(100% - 1.25rem); max-width: none; margin-top: 2.25rem; border-radius: 15px; }
+      .vision-start { left: 50%; right: auto; bottom: 13px; transform: translateX(-50%); min-height: 46px; width: max-content; max-width: calc(100% - 24px); font-size: .82rem; }
+      .vision-start:hover { transform: translateX(-50%); }
+      .vision-controls { left: 10px; bottom: 10px; gap: .15rem; padding: .24rem; }
+      .vision-control { width: 38px; height: 38px; }
+    }
 
     /* ── Sections ───────────────────────────────────────────────── */
     .section { padding: var(--section) 0; }
@@ -413,8 +488,6 @@
     .positioning strong { color: var(--ink); font-weight: 600; }
 
     /* ── Inline-style replacements ──────────────────────────────── */
-    .section-product { padding-top: var(--section); }
-    .section-product .device { margin-top: var(--content-gap); }
     /* ── Intelligence and trust ────────────────────────────────── */
     .section-knows { border-top: 1px solid var(--line); }
     .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
@@ -611,6 +684,7 @@
       box-shadow: 0 4px 14px rgba(23,25,31,.08);
     }
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top.vision-hidden { opacity: 0; pointer-events: none; }
     .back-to-top:hover { transform: translateY(-2px); }
     .back-to-top svg { width: 17px; height: 17px; fill: none; stroke: var(--graphite); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     @media (max-width: 860px) { .back-to-top { bottom: 5.2rem; } }
@@ -697,41 +771,59 @@
         <p class="invite">Welcoming Founding Airport Partners · Free 90-day collaboration</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#program">Explore the program</a>
-          <a class="btn btn-secondary btn-lg" href="#product">See TarmacSync in action</a>
+          <a class="btn btn-secondary btn-lg" href="#product">Experience the vision</a>
         </div>
         <p class="hero-note">Built by an Accredited Airport Executive.</p>
       </div>
     </section>
 
-    <!-- ══ PRODUCT ═══════════════════════════════════════════════ -->
-    <section class="section section-product" id="product">
+    <!-- ══ VISION FILM ════════════════════════════════════════════ -->
+    <section class="vision-section" id="product" aria-labelledby="vision-title">
       <div class="page">
-        <div class="section-head center reveal">
-          <span class="eyebrow eyebrow-accent">TarmacSync in action</span>
-          <h2 class="h2">From one request to a <span class="hl-orange">working path.</span></h2>
-          <p class="lede">TarmacSync connects the request to the airport’s policy, funding, and project record—then surfaces the working path and the next action.</p>
+        <div class="vision-head reveal">
+          <span class="eyebrow">The TarmacSync vision</span>
+          <h2 class="vision-title" id="vision-title">The Future of Airport Procurement Starts with <span class="vision-accent">Better Decisions.</span></h2>
+          <p class="vision-copy">TarmacSync gives airport leaders the intelligence to identify the likely buying path, understand what could change it, and move forward before procurement begins.</p>
         </div>
 
-        <div class="device prod device-video reveal">
-          <video controls playsinline poster="assets/tarmacsync-demo-poster.png" preload="none" width="1280" height="720">
-            <source src="assets/tarmacsync-demo.mp4" type="video/mp4">
+        <div class="vision-player reveal" data-vision-player>
+          <video
+            data-vision-video
+            playsinline
+            webkit-playsinline
+            poster="assets/tarmacsync-vision-poster.webp"
+            preload="none"
+            width="1280"
+            height="720"
+            aria-label="TarmacSync vision film"
+          >
+            <source data-src="assets/tarmacsync-demo.mp4" type="video/mp4">
+            Your browser does not support HTML video.
           </video>
+          <button class="vision-start" type="button" data-vision-start aria-label="Play the TarmacSync vision film with sound">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5.5 3.8a1 1 0 0 1 1.53-.84l9 6.2a1 1 0 0 1 0 1.68l-9 6.2a1 1 0 0 1-1.53-.84V3.8Z"/></svg>
+            <span>Experience the TarmacSync vision</span>
+          </button>
+          <div class="vision-controls" data-vision-controls hidden aria-label="Video controls">
+            <button class="vision-control" type="button" data-vision-toggle aria-label="Pause video">
+              <svg data-icon-play viewBox="0 0 20 20" aria-hidden="true" hidden><path fill="currentColor" d="M5.5 3.8a1 1 0 0 1 1.53-.84l9 6.2a1 1 0 0 1 0 1.68l-9 6.2a1 1 0 0 1-1.53-.84V3.8Z"/></svg>
+              <svg data-icon-pause viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5 3.5h3.2v13H5v-13Zm6.8 0H15v13h-3.2v-13Z"/></svg>
+            </button>
+            <button class="vision-control" type="button" data-vision-mute aria-label="Mute video">
+              <svg data-icon-sound viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M3 7.2h3.1L10 4v12l-3.9-3.2H3V7.2Zm9.2-.9a1 1 0 0 1 1.4.1 5.6 5.6 0 0 1 0 7.2 1 1 0 1 1-1.5-1.3 3.6 3.6 0 0 0 0-4.6 1 1 0 0 1 .1-1.4Zm2.7-2.1a1 1 0 0 1 1.4.1 9 9 0 0 1 0 11.4 1 1 0 1 1-1.5-1.3 7 7 0 0 0 0-8.8 1 1 0 0 1 .1-1.4Z"/></svg>
+              <svg data-icon-muted viewBox="0 0 20 20" aria-hidden="true" hidden><path fill="currentColor" d="M3 7.2h3.1L10 4v12l-3.9-3.2H3V7.2Zm9.7.1 1.6 1.6 1.6-1.6 1.1 1.1-1.6 1.6 1.6 1.6-1.1 1.1-1.6-1.6-1.6 1.6-1.1-1.1 1.6-1.6-1.6-1.6 1.1-1.1Z"/></svg>
+            </button>
+            <button class="vision-control" type="button" data-vision-replay aria-label="Replay video">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 3.2a6.8 6.8 0 1 1-6.4 4.5l-1.8-.1 2.8-3.2 2.4 3.5-1.6-.1A4.9 4.9 0 1 0 10 5.1V3.2Z"/></svg>
+              <span class="vision-replay-label">Replay</span>
+            </button>
+            <button class="vision-control" type="button" data-vision-fullscreen aria-label="Enter fullscreen">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M3.5 3.5H8v1.8H5.3V8H3.5V3.5Zm8.5 0h4.5V8h-1.8V5.3H12V3.5ZM3.5 12h1.8v2.7H8v1.8H3.5V12Zm11.2 0h1.8v4.5H12v-1.8h2.7V12Z"/></svg>
+            </button>
+          </div>
+          <span class="sr-only" data-vision-status aria-live="polite"></span>
         </div>
-
-        <div class="cols reveal">
-          <div class="col card">
-            <h3 class="h3">Buying path</h3>
-            <p>See which route appears to fit the purchase, anticipated value, funding source, and airport policy—and what still needs validation.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">Funding and requirements</h3>
-            <p>Keep AIP, BIL, PFC, state, and local requirements separated so the team can see which funding conditions may shape the project.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">Project record</h3>
-            <p>Carry the facts, open questions, supporting evidence, and next actions forward instead of reconstructing the file at closeout.</p>
-          </div>
-        </div>
+        <p class="vision-caption" data-vision-caption>Turn sound on for the full experience.</p>
       </div>
     </section>
 
@@ -1007,6 +1099,117 @@
       nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
     })();
     (function(){
+      const player=document.querySelector('[data-vision-player]');
+      const video=player?.querySelector('[data-vision-video]');
+      const source=video?.querySelector('source[data-src]');
+      const start=player?.querySelector('[data-vision-start]');
+      const controls=player?.querySelector('[data-vision-controls]');
+      const toggle=player?.querySelector('[data-vision-toggle]');
+      const mute=player?.querySelector('[data-vision-mute]');
+      const replay=player?.querySelector('[data-vision-replay]');
+      const fullscreen=player?.querySelector('[data-vision-fullscreen]');
+      const caption=document.querySelector('[data-vision-caption]');
+      const playIcon=player?.querySelector('[data-icon-play]');
+      const pauseIcon=player?.querySelector('[data-icon-pause]');
+      const soundIcon=player?.querySelector('[data-icon-sound]');
+      const mutedIcon=player?.querySelector('[data-icon-muted]');
+      const status=player?.querySelector('[data-vision-status]');
+      if(!player||!video||!source||!start||!controls||!toggle||!mute||!replay||!fullscreen)return;
+
+      let sourceLoaded=false;
+      const announce=message=>{if(status)status.textContent=message;};
+      const loadSource=()=>{
+        if(sourceLoaded)return;
+        source.src=source.dataset.src;
+        video.preload='metadata';
+        video.load();
+        sourceLoaded=true;
+      };
+      const syncPlayback=()=>{
+        const paused=video.paused;
+        toggle.setAttribute('aria-label',paused?'Play video':'Pause video');
+        if(playIcon)playIcon.hidden=!paused;
+        if(pauseIcon)pauseIcon.hidden=paused;
+        player.classList.toggle('is-playing',!paused);
+      };
+      const syncMute=()=>{
+        mute.setAttribute('aria-label',video.muted?'Unmute video':'Mute video');
+        if(soundIcon)soundIcon.hidden=video.muted;
+        if(mutedIcon)mutedIcon.hidden=!video.muted;
+      };
+      const begin=async()=>{
+        loadSource();
+        player.classList.remove('is-ended');
+        start.hidden=true;
+        controls.hidden=false;
+        if(caption)caption.hidden=true;
+        video.currentTime=0;
+        video.muted=false;
+        video.volume=1;
+        syncMute();
+        try{
+          await video.play();
+          announce('TarmacSync vision film playing with sound.');
+        }catch(_error){
+          video.muted=true;
+          syncMute();
+          try{await video.play();announce('TarmacSync vision film playing muted. Use the sound control to unmute.');}
+          catch(_ignored){announce('The film is ready. Press play to begin.');}
+        }
+        syncPlayback();
+      };
+
+      start.addEventListener('click',begin);
+      toggle.addEventListener('click',async()=>{
+        loadSource();
+        player.classList.remove('is-ended');
+        if(video.paused){
+          try{await video.play();announce('Video playing.');}catch(_error){announce('Unable to start playback. Try again.');}
+        }else{video.pause();announce('Video paused.');}
+        syncPlayback();
+      });
+      mute.addEventListener('click',()=>{video.muted=!video.muted;syncMute();announce(video.muted?'Video muted.':'Sound on.');});
+      replay.addEventListener('click',async()=>{
+        loadSource();
+        player.classList.remove('is-ended');
+        video.currentTime=0;
+        try{await video.play();announce('Video replaying.');}catch(_error){announce('Press play to replay the film.');}
+        syncPlayback();
+      });
+      fullscreen.addEventListener('click',async()=>{
+        try{
+          if(document.fullscreenElement){await document.exitFullscreen();}
+          else if(player.requestFullscreen){await player.requestFullscreen();}
+          else if(player.webkitRequestFullscreen){player.webkitRequestFullscreen();}
+        }catch(_error){announce('Fullscreen is not available in this browser.');}
+      });
+      video.addEventListener('play',syncPlayback);
+      video.addEventListener('pause',syncPlayback);
+      video.addEventListener('volumechange',syncMute);
+      video.addEventListener('ended',()=>{
+        player.classList.remove('is-playing');
+        player.classList.add('is-ended');
+        controls.hidden=false;
+        announce('Film ended. Replay is available.');
+      });
+      document.addEventListener('fullscreenchange',()=>{
+        const active=document.fullscreenElement===player;
+        fullscreen.setAttribute('aria-label',active?'Exit fullscreen':'Enter fullscreen');
+      });
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape'&&document.fullscreenElement===player){video.pause();announce('Video paused.');}
+      });
+
+      if('IntersectionObserver'in window){
+        const observer=new IntersectionObserver(entries=>{
+          if(entries.some(entry=>entry.isIntersecting)){loadSource();observer.disconnect();}
+        },{rootMargin:'400px 0px',threshold:0.01});
+        observer.observe(player);
+      }else{loadSource();}
+      syncPlayback();
+      syncMute();
+    })();
+    (function(){
       const p=new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});
       const tier=(p.get('tier')||'').toLowerCase(); if(!tier)return;
@@ -1079,9 +1282,20 @@
       const s=document.querySelector('.sticky-cta');
       const heroCta=document.querySelector('.hero-actions');
       const apply=document.getElementById('application');
+      const vision=document.getElementById('product');
+      const backToTop=document.querySelector('.back-to-top');
       if(!s||!heroCta)return;
-      new IntersectionObserver(([e])=>{s.setAttribute('aria-hidden',e.isIntersecting?'true':'false');s.style.display=e.isIntersecting?'none':'';},{threshold:0.1}).observe(heroCta);
-      if(apply){new IntersectionObserver(([e])=>{if(e.isIntersecting){s.setAttribute('aria-hidden','true');s.style.display='none';}},{threshold:0.1,rootMargin:'0px 0px -80px 0px'}).observe(apply);}
+      const state={hero:true,vision:false,apply:false};
+      const sync=()=>{
+        const hidden=state.hero||state.vision||state.apply;
+        s.setAttribute('aria-hidden',hidden?'true':'false');
+        s.style.display=hidden?'none':'';
+        backToTop?.classList.toggle('vision-hidden',state.vision);
+      };
+      new IntersectionObserver(([e])=>{state.hero=e.isIntersecting;sync();},{threshold:0.1}).observe(heroCta);
+      if(vision){new IntersectionObserver(([e])=>{state.vision=e.isIntersecting;sync();},{threshold:0.12}).observe(vision);}
+      if(apply){new IntersectionObserver(([e])=>{state.apply=e.isIntersecting;sync();},{threshold:0.1,rootMargin:'0px 0px -80px 0px'}).observe(apply);}
+      sync();
     })();
 
     (function(){
