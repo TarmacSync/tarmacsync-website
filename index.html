@@ -519,6 +519,24 @@
     }
     .col .h3 { margin-bottom: .6rem; }
     .col p { font-size: .93rem; line-height: 1.6; color: var(--muted); }
+    .trust-points {
+      list-style: none; display: grid; gap: .62rem;
+      margin: 1rem 0 0; padding: 0;
+    }
+    .trust-points li {
+      position: relative; padding-left: 1rem;
+      font-size: .9rem; line-height: 1.55; color: var(--muted);
+    }
+    .trust-points li::before {
+      content: ""; position: absolute; left: 0; top: .68em;
+      width: 4px; height: 4px; border-radius: 50%; background: var(--orange-ink);
+    }
+    .col .trust-proof {
+      margin-top: 1.2rem; padding-top: .85rem;
+      border-top: 1px solid var(--line);
+      color: var(--graphite); font-family: var(--mono);
+      font-size: .68rem; line-height: 1.55; letter-spacing: .025em;
+    }
 
     /* ── Founder ────────────────────────────────────────────────── */
     /* Portrait is deliberately small — at ~420px it overpowered the quote,
@@ -857,23 +875,35 @@
       <div class="page">
         <div class="section-head center reveal">
           <span class="eyebrow eyebrow-accent">Intelligence you can inspect</span>
-          <h2 class="h2">Built on official sources. Clear about what still needs confirmation.</h2>
+          <h2 class="h2">See the source. See what still needs checking. Keep control of the decision.</h2>
         </div>
         <div class="cols reveal">
           <div class="col card">
             <span class="col-num">01</span>
-            <h3 class="h3">Official sources, not invented citations.</h3>
-            <p>FAA Order 5100.38D, all 1,244 indexed AIP Handbook sections, and all 40 Airport Sponsor Grant Assurances — the sources every citation traces back to.</p>
+            <h3 class="h3">Every answer starts with a source.</h3>
+            <ul class="trust-points">
+              <li>Official FAA material is retrieved, not guessed.</li>
+              <li>Material claims trace back to the underlying source.</li>
+            </ul>
+            <p class="trust-proof">FAA Order 5100.38D · 1,244 AIP Handbook sections · 40 Sponsor Assurances</p>
           </div>
           <div class="col card">
             <span class="col-num">02</span>
-            <h3 class="h3">Cooperative candidates, never the final word.</h3>
-            <p>More than 7,000 cooperative contract records surface candidate pathways across five national consortiums. Your team confirms scope, authority, funding fit, and pricing before anything reaches a purchase order.</p>
+            <h3 class="h3">See the contract option—and the checks.</h3>
+            <ul class="trust-points">
+              <li>TarmacSync searches 7,000+ cooperative contract records across five national consortiums.</li>
+              <li>Your team validates scope, authority, funding fit, and pricing before moving forward.</li>
+            </ul>
+            <p class="trust-proof">Candidate pathway · Not a selected contract</p>
           </div>
           <div class="col card">
             <span class="col-num">03</span>
-            <h3 class="h3">Your airport remains in control.</h3>
-            <p>What's confirmed stays separate from what's still open, so nothing gets treated as settled before your team says so. Procurement, legal, grant, board, and FAA/ADO decisions stay with your team.</p>
+            <h3 class="h3">Your team makes the call.</h3>
+            <ul class="trust-points">
+              <li>Confirmed facts remain separate from open questions.</li>
+              <li>Procurement, legal, grant, board, and FAA/ADO decisions remain with your team.</li>
+            </ul>
+            <p class="trust-proof">TarmacSync organizes the path · Your airport decides</p>
           </div>
         </div>
       </div>
