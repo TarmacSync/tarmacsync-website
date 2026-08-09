@@ -319,20 +319,6 @@
     .hero { padding: clamp(72px, 11vw, 132px) 0 3rem; text-align: center; }
     .hero .display { margin: 1.15rem auto 0; max-width: 16ch; }
     .hero .lede { margin: 1.5rem auto 0; max-width: 60ch; }
-    /* The founding-partner invitation is the actual hook — it belongs in the
-       hero, not five sections down. Bordered so it reads as an offer, not
-       another paragraph. */
-    .invite {
-      display: inline-flex; align-items: center; gap: .6rem;
-      margin: 2rem auto 0; padding: .6rem 1.15rem;
-      border: 1px solid rgba(245,106,0,.32); background: rgba(245,106,0,.05);
-      border-radius: 980px; font-size: .93rem; color: var(--ink); font-weight: 500;
-      max-width: 100%;
-    }
-    .invite b { color: var(--orange-ink); font-weight: 700; }
-    @media (max-width: 560px) {
-      .invite { border-radius: 14px; text-align: center; line-height: 1.45; }
-    }
     .hero-actions {
       display: flex; gap: .75rem; justify-content: center;
       margin-top: 1.9rem; flex-wrap: wrap;
@@ -912,7 +898,6 @@
         <h1 class="display"><span class="hl-orange">Know the path.</span> Keep the airport project moving.</h1>
         </div>
         <p class="lede">TarmacSync helps U.S. airport teams identify the likely buying path, see what could change it, and keep the supporting record moving from planning through closeout.</p>
-        <p class="invite copy-stack copy-stack--tight"><span>Welcoming Founding Airport Partners</span><span>Free 90-day collaboration</span></p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#program">Explore the program</a>
           <a class="btn btn-secondary btn-lg" href="#product">Experience the vision</a>

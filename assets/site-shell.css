@@ -137,7 +137,6 @@
 .copy-stack > span { display: block; }
 .copy-stack > span + span { margin-top: .5rem; }
 .copy-stack--tight > span + span { margin-top: .25rem; }
-.invite.copy-stack { flex-direction: column; }
 
 .site-footer {
   border-top: 1px solid #E4E6EA;
