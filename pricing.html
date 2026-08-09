@@ -28,7 +28,7 @@
       line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
     .container { width: min(1040px, calc(100% - 2.5rem)); margin: 0 auto; }
-    .narrow { width: min(720px, 100%); }
+    .narrow { width: min(760px, 100%); margin-left: auto; margin-right: auto; }
 
     header { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
     header a { color: var(--ink); text-decoration: none; }
@@ -100,6 +100,7 @@
     }
     .switch button[aria-pressed="true"] { background: var(--white); color: var(--ink); box-shadow: 0 1px 2px rgba(23,25,31,.10); }
     .switch button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .save-caption { display: none; }
     .save-pill {
       display: inline-block; margin-left: .55rem; vertical-align: middle;
       font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase;
@@ -132,24 +133,62 @@
     .band-dark .btn:hover { background: var(--cloud); }
 
     /* details */
-    .details { padding: 6rem 0 1rem; }
-    .details h2 { font-size: 1.5rem; letter-spacing: -.025em; margin-bottom: 1.6rem; }
-    .details h2 + p { color: var(--muted); margin-bottom: 1.6rem; }
-    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem 2.6rem; }
-    .inc h4 { font-size: .95rem; margin-bottom: .3rem; }
-    .inc p { font-size: .88rem; color: var(--muted); margin: 0; line-height: 1.55; }
+    .details { padding: 6.5rem 0 1rem; }
+    .details h2 { font-size: 1.55rem; letter-spacing: -.028em; margin-bottom: .6rem; }
+    .details .sub { color: var(--muted); font-size: .98rem; margin-bottom: 2.2rem; max-width: 34rem; }
 
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    th { text-align: left; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
-         color: var(--muted); font-weight: 600; padding: 0 1rem .7rem 0; border-bottom: 1px solid var(--line); }
-    td { padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--line); color: var(--muted); vertical-align: top; line-height: 1.55; }
-    td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+    /* included grid */
+    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.2rem 3rem; }
+    .inc { display: flex; gap: .85rem; align-items: flex-start; }
+    .inc .tick {
+      flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(245,106,0,.10); position: relative; margin-top: .12rem;
+    }
+    .inc .tick::after {
+      content: ""; position: absolute; left: 7px; top: 5px;
+      width: 5px; height: 9px; border: solid var(--orange-ink);
+      border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    .inc h4 { font-size: .96rem; margin-bottom: .25rem; letter-spacing: -.012em; }
+    .inc p { font-size: .89rem; color: var(--muted); margin: 0; line-height: 1.55; }
 
-    .faq-q { border-bottom: 1px solid var(--line); padding: 1.35rem 0; }
-    .faq-q h4 { font-size: .98rem; margin-bottom: .35rem; }
-    .faq-q p { font-size: .9rem; color: var(--muted); margin: 0; line-height: 1.6; }
+    /* buy list */
+    .buy { display: grid; gap: .9rem; }
+    .buy-row {
+      display: grid; grid-template-columns: 130px 1fr; gap: 1.4rem;
+      align-items: start; padding: 1.15rem 1.3rem;
+      border: 1px solid var(--line); border-radius: 12px; background: var(--white);
+    }
+    .buy-tier {
+      font-family: var(--mono); font-size: .66rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--orange-ink);
+      background: rgba(245,106,0,.09); padding: .3rem .6rem; border-radius: 4px;
+      justify-self: start;
+    }
+    .buy-row p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.55; }
 
-    .fine { font-size: .78rem; color: var(--silver); line-height: 1.6; margin-top: 2.5rem; }
+    /* faq — matches homepage disclosure pattern */
+    .faq { border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary {
+      cursor: pointer; list-style: none; padding: 1.35rem 2.5rem 1.35rem 0;
+      font-size: 1rem; font-weight: 500; letter-spacing: -.014em;
+      position: relative; transition: color .2s ease; color: var(--ink);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary:hover { color: var(--orange-ink); }
+    .faq summary::after {
+      content: "+"; position: absolute; right: .35rem; top: 50%; transform: translateY(-50%);
+      color: var(--orange-ink); font-weight: 600; font-size: 1.15rem;
+    }
+    .faq details[open] summary::after { content: "\2013"; }
+    .faq-answer { padding: 0 2.5rem 1.5rem 0; font-size: .93rem; line-height: 1.65; color: var(--muted); }
+
+    .fine {
+      font-size: .78rem; color: var(--muted); line-height: 1.6;
+      margin-top: 1.1rem; opacity: .85;
+    }
+    .fine-wrap { margin-top: 3.5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
 
     footer { padding: 5rem 0 3.5rem; border-top: 1px solid var(--line); margin-top: 6rem; }
     .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
@@ -161,9 +200,38 @@
 
     @media (max-width: 900px) {
       .tiers, .grid2 { grid-template-columns: 1fr; }
-      .hero { padding: 3.5rem 0 2.5rem; }
+      .hero { padding: 3rem 0 2rem; }
       .details { padding: 4rem 0 1rem; }
-      .band { flex-direction: column; align-items: flex-start; }
+      .band { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+      .band .btn { width: 100%; }
+    }
+    @media (max-width: 620px) {
+      .container { width: calc(100% - 2rem); }
+      .hero h1 { font-size: 2.15rem; }
+      .hero p { font-size: 1rem; }
+      .hero p.cohort-line { font-size: .62rem; letter-spacing: .05em; line-height: 1.9; }
+      .hero p.cohort-line span { display: block; }
+      .hero p.cohort-line .dot { display: none; }
+
+      .switch { width: 100%; align-items: stretch; }
+      .switch button { flex: 1; padding: .6rem .5rem; font-size: .82rem; }
+      .save-pill { display: none; }
+      .billing { flex-direction: column; align-items: center; gap: .55rem; }
+      .save-caption {
+        display: block; font-family: var(--mono); font-size: .58rem;
+        letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
+      }
+
+      .tiers { gap: 1.1rem; }
+      .tier { padding: 2rem 1.4rem 1.6rem; }
+      .tier-who { min-height: 0; margin-bottom: 1.4rem; }
+      .tier-price { font-size: 2.5rem; }
+      .band { padding: 1.5rem 1.4rem; }
+      .buy-row { grid-template-columns: 1fr; gap: .6rem; padding: 1.1rem 1.15rem; }
+      .details h2 { font-size: 1.35rem; }
+      .grid2 { gap: 1.7rem; }
+      .faq summary { font-size: .94rem; padding-right: 2rem; }
+      footer { padding: 3.5rem 0 2.5rem; margin-top: 4rem; }
     }
   </style>
 </head>
@@ -181,13 +249,14 @@
     <section class="hero">
       <h1>Simple pricing,<br>per airport.</h1>
       <p>Unlimited users. Your operations, finance, procurement, and grants staff all work in the same file — and so can your consultants.</p>
-      <p class="cohort-line">First cohort begins January 2027 &middot; Reserve by November 30</p>
+      <p class="cohort-line"><span>First cohort begins January 2027</span><span class="dot"> &middot; </span><span>Reserve by November 30</span></p>
 
       <div class="billing">
         <div class="switch" role="group" aria-label="Billing period">
           <button type="button" id="bill-annual" aria-pressed="true">Annual<span class="save-pill">2 months free</span></button>
           <button type="button" id="bill-monthly" aria-pressed="false">Monthly</button>
         </div>
+        <span class="save-caption">Annual = 2 months free</span>
       </div>
     </section>
 
@@ -253,50 +322,62 @@
 
     <section class="details narrow">
       <h2>Every tier includes</h2>
+      <p class="sub">No feature gates inside your airport. The tiers differ by the kind of work your airport does, not by who is allowed to log in.</p>
       <div class="grid2">
-        <div class="inc"><h4>Unlimited users</h4><p>No per-seat charges and no access tiers inside your airport.</p></div>
-        <div class="inc"><h4>Your policy, configured</h4><p>Local thresholds, approval levels, board calendar, and standing contracts.</p></div>
-        <div class="inc"><h4>Source-traceable answers</h4><p>Every recommendation shows the facts behind it and names the validation step.</p></div>
-        <div class="inc"><h4>Your data, exportable</h4><p>Full export of projects, decisions, and evidence files at any time.</p></div>
+        <div class="inc"><span class="tick"></span><div><h4>Unlimited users</h4><p>No per-seat charges and no access tiers inside your airport.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h4>Your policy, configured</h4><p>Local thresholds, approval levels, board calendar, and standing contracts.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h4>Source-traceable answers</h4><p>Every recommendation shows the facts behind it and names the validation step.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h4>Your data, exportable</h4><p>Full export of projects, decisions, and evidence files at any time.</p></div></div>
       </div>
 
-      <h2 style="margin-top:4.5rem">How airports buy it</h2>
-      <p>A subscription is normally paid from operating funds, not a federal grant — so your own purchasing policy governs.</p>
-      <table>
-        <thead><tr><th style="width:22%">Tier</th><th>Typical path</th></tr></thead>
-        <tbody>
-          <tr><td>Field</td><td>Purchasing card or direct purchase order.</td></tr>
-          <tr><td>Regional</td><td>Direct purchase order as a small purchase. Published airport authority policies commonly set that ceiling at or above $15,000.</td></tr>
-          <tr><td>Metro</td><td>Direct purchase order as a small purchase, with headroom below common ceilings.</td></tr>
-        </tbody>
-      </table>
-
-      <h2 style="margin-top:4.5rem">Common questions</h2>
-
-      <div class="faq-q">
-        <h4>Do you charge per user?</h4>
-        <p>No. Pricing is per airport, and your outside consultants can work in the file at no additional cost.</p>
-      </div>
-      <div class="faq-q">
-        <h4>Is annual cheaper than monthly?</h4>
-        <p>Yes — paying annually is the equivalent of two months free. Monthly billing keeps each transaction well inside typical purchasing-card limits, which is why we offer it.</p>
-      </div>
-      <div class="faq-q">
-        <h4>Our airport does not fit neatly into a category.</h4>
-        <p>Common. A general aviation field running a large federally funded project has more to manage than its size suggests. Tell us what you have coming up and we will tell you which tier fits.</p>
-      </div>
-      <div class="faq-q">
-        <h4>Is a subscription an allowable grant cost?</h4>
-        <p>That depends on the grant and how the cost is treated. Confirm with your grant administrator and FAA ADO before assuming it — most airports purchase from operating funds.</p>
-      </div>
-      <div class="faq-q">
-        <h4>What happens at the end of the 90 days?</h4>
-        <p>You decide whether to continue. Nothing converts automatically, and there is no renewal to cancel.</p>
+      <h2 style="margin-top:5rem">How airports buy it</h2>
+      <p class="sub">A subscription is normally paid from operating funds, not a federal grant — so your own purchasing policy governs.</p>
+      <div class="buy">
+        <div class="buy-row">
+          <span class="buy-tier">Field</span>
+          <p>Purchasing card or direct purchase order.</p>
+        </div>
+        <div class="buy-row">
+          <span class="buy-tier">Regional</span>
+          <p>Direct purchase order as a small purchase. Published airport authority policies commonly set that ceiling at or above $15,000.</p>
+        </div>
+        <div class="buy-row">
+          <span class="buy-tier">Metro</span>
+          <p>Direct purchase order as a small purchase, with headroom below common ceilings.</p>
+        </div>
       </div>
 
-      <p class="fine">Multi-airport pricing is available for authorities, county and municipal systems, and state aviation offices. Consultants and program managers can license TarmacSync across client engagements. Your adopted purchasing policy governs and may be more restrictive than the examples above.</p>
+      <h2 style="margin-top:5rem">Common questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Do you charge per user?</summary>
+          <div class="faq-answer">No. Pricing is per airport, and your outside consultants can work in the file at no additional cost.</div>
+        </details>
+        <details>
+          <summary>Is annual cheaper than monthly?</summary>
+          <div class="faq-answer">Yes — paying annually is the equivalent of two months free. Monthly billing keeps each transaction well inside typical purchasing-card limits, which is why we offer it.</div>
+        </details>
+        <details>
+          <summary>Our airport does not fit neatly into a category.</summary>
+          <div class="faq-answer">Common. A general aviation field running a large federally funded project has more to manage than its size suggests. Tell us what you have coming up and we will tell you which tier fits.</div>
+        </details>
+        <details>
+          <summary>Is a subscription an allowable grant cost?</summary>
+          <div class="faq-answer">That depends on the grant and how the cost is treated. Confirm with your grant administrator and FAA ADO before assuming it — most airports purchase from operating funds.</div>
+        </details>
+        <details>
+          <summary>What happens at the end of the 90 days?</summary>
+          <div class="faq-answer">You decide whether to continue. Nothing converts automatically, and there is no renewal to cancel.</div>
+        </details>
+        <details>
+          <summary>Do you offer multi-airport or consultant pricing?</summary>
+          <div class="faq-answer">Yes. Multi-airport pricing is available for authorities, county and municipal systems, and state aviation offices. Consultants and program managers can license TarmacSync across client engagements.</div>
+        </details>
+      </div>
 
-      <p class="fine">TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided. Cooperative contract matches are candidate pathways that require validation before award. Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors. Pricing effective August 2026 and subject to change.</p>
+      <div class="fine-wrap">
+        <p class="fine">Your adopted purchasing policy governs and may be more restrictive than the examples above. TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided. Cooperative contract matches are candidate pathways that require validation before award. Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors. Pricing effective August 2026 and subject to change.</p>
+      </div>
     </section>
   </main>
 
