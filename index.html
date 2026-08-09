@@ -335,54 +335,13 @@
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
 
     /* ── Product visual ─────────────────────────────────────────────
-       Elevated, centered, and deliberately simplified. The original
-       card carried 3 metadata rows + a disclaimer that competed with
-       the headline; this keeps the two paths as the whole story.      */
-    .showcase { margin-top: clamp(52px, 6.4vw, 84px); padding-bottom: var(--section); }
+       Elevated, centered card treatment shared by the hero-style demo
+       device below (see .device-video for the video-specific pairing). */
     .device {
       width: 100%; margin-inline: auto;
       background: var(--white); border: 1px solid var(--line);
       border-radius: 18px; overflow: hidden;
       box-shadow: 0 1px 2px rgba(23,25,31,.04), 0 12px 32px -8px rgba(23,25,31,.10), 0 40px 80px -32px rgba(23,25,31,.16);
-    }
-    .device-bar {
-      display: flex; align-items: center; gap: .5rem;
-      padding: .8rem 1.15rem; border-bottom: 1px solid var(--line); background: var(--cloud);
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: #D9DCE1; }
-    .device-title {
-      margin-left: .5rem; font-family: var(--mono); font-size: .64rem;
-      letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
-    }
-    .device-body { padding: clamp(1.5rem, 3.4vw, 2.4rem); text-align: left; }
-    .device-project { font-size: 1.34rem; font-weight: 600; letter-spacing: -.02em; }
-    .device-meta { margin-top: .4rem; font-size: .88rem; color: var(--muted); }
-    .paths { display: grid; gap: .7rem; margin-top: 1.7rem; }
-    @media (min-width: 720px) { .paths { grid-template-columns: 1fr 1fr; } }
-    .path {
-      border: 1px solid var(--line); border-radius: 12px;
-      padding: 1.15rem 1.25rem; background: var(--white);
-    }
-    .path.is-likely { border-color: rgba(245,106,0,.4); background: rgba(245,106,0,.035); }
-    .path-tag {
-      font-family: var(--mono); font-size: .6rem; letter-spacing: .11em;
-      text-transform: uppercase; color: var(--muted); display: block;
-    }
-    .path.is-likely .path-tag { color: var(--orange-ink); }
-    .path-name { margin-top: .5rem; font-size: 1.02rem; font-weight: 600; letter-spacing: -.014em; }
-    .path-desc { margin-top: .3rem; font-size: .85rem; line-height: 1.5; color: var(--muted); }
-    .device-foot {
-      display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline;
-      margin-top: 1.5rem; padding-top: 1.15rem; border-top: 1px solid var(--line);
-    }
-    .foot-item { font-size: .86rem; color: var(--graphite); }
-    .foot-item b { font-weight: 600; color: var(--ink); }
-    .foot-item .k {
-      font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .15rem;
-    }
-    .device-note {
-      margin-top: 1.15rem; font-size: .72rem; line-height: 1.5; color: var(--silver);
     }
     /* .device-video: the product-section demo reuses the hero's .device card
        (same border + elevation, so the two "product moment" surfaces read as
@@ -451,14 +410,16 @@
     /* ── Inline-style replacements ──────────────────────────────── */
     .section-product { padding-top: 120px; }
     .section-product .device { margin-top: 2.6rem; }
-    .section-product .grid3 { margin-top: 4rem; }
     /* ── What it knows ─────────────────────────────────────────── */
-    .section-knows .h2 { margin-top: .5rem; }
-    .know-facts { margin-top: 2.5rem; display: grid; gap: 1.5rem; }
-    .know-fact { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--ink); line-height: 1.3; }
-    .know-fact-num { color: var(--orange-ink); }
-    .know-note { margin-top: 2rem; font-size: .88rem; color: var(--muted); }
-    .know-close { margin-top: 2.5rem; max-width: 64ch; font-size: 1.05rem; line-height: 1.65; color: var(--graphite); }
+    .know-fact-num {
+      display: block; font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700;
+      letter-spacing: -.02em; color: var(--orange-ink); margin-bottom: .5rem;
+    }
+    .know-note { margin-top: 3rem; font-size: .88rem; color: var(--muted); text-align: center; }
+    .know-close {
+      margin: 1.2rem auto 0; max-width: 64ch; text-align: center;
+      font-size: 1.05rem; line-height: 1.65; color: var(--graphite);
+    }
     .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
     .disclosure-grid { display: grid; gap: .95rem; }
     .success-heading { text-align: center; font-size: 1.3rem; }
@@ -470,16 +431,15 @@
     .success-privacy { color: var(--silver); font-size: .76rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
     .success-privacy a { color: var(--muted); }
 
-    /* ── Trust columns ──────────────────────────────────────────── */
+    /* ── Three-column cards ────────────────────────────────────────
+       One shared component (.cols grid + .col + .card) for every
+       three-across block on the page — product columns, knowledge
+       stats, and trust. Same grid, same card chrome, everywhere. */
     .cols { display: grid; gap: 2.6rem; margin-top: 3.8rem; }
     @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
-
-    .grid3 { display: grid; gap: 2rem; }
-    @media (min-width: 720px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
-    .grid3-heading { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; color: var(--ink); }
-    /* .trust-card: same white/border/radius language as .form-card and
+    /* .card: same white/border/radius language as .form-card and
        .apply-info — the site's one "elevated surface" card, not a one-off. */
-    .trust-card {
+    .card {
       background: var(--white); border: 1px solid var(--line);
       border-radius: 20px; padding: clamp(1.5rem, 3vw, 2rem);
     }
@@ -778,20 +738,18 @@
             <source src="assets/tarmacsync-demo.mp4" type="video/mp4">
           </video>
         </div>
-      </div>
 
-      <div class="reveal">
-        <div class="grid3">
-          <div class="grid3-col">
-            <h3 class="grid3-heading">Route</h3>
+        <div class="cols reveal">
+          <div class="col card">
+            <h3 class="h3">Route</h3>
             <p>Purchase type, dollar amount, and funding source decide the buying path. Cooperative, competitive bid, quotes, or an exception — with the thresholds that produced it.</p>
           </div>
-          <div class="grid3-col">
-            <h3 class="grid3-heading">Overlay</h3>
+          <div class="col card">
+            <h3 class="h3">Overlay</h3>
             <p>AIP, BIL, and PFC funding each carry different obligations. TarmacSync shows which apply to this purchase and which are still open questions.</p>
           </div>
-          <div class="grid3-col">
-            <h3 class="grid3-heading">File</h3>
+          <div class="col card">
+            <h3 class="h3">File</h3>
             <p>The evidence checklist, forms to prepare, and closeout record assemble as you work, rather than being reconstructed afterwards.</p>
           </div>
         </div>
@@ -801,13 +759,24 @@
     <!-- ══ WHAT IT KNOWS ═══════════════════════════════════════════ -->
     <section class="section section-knows">
       <div class="page reveal">
-        <span class="eyebrow eyebrow-accent">Airport Procurement Intelligence</span>
-        <h2 class="h2">Built on the documents that actually govern the decision.</h2>
+        <div class="section-head center">
+          <span class="eyebrow eyebrow-accent">Airport Procurement Intelligence</span>
+          <h2 class="h2">Built on the documents that actually govern the decision.</h2>
+        </div>
 
-        <div class="know-facts">
-          <p class="know-fact"><span class="know-fact-num">1,244 sections</span> — FAA Order 5100.38D, the AIP Handbook, indexed section by section</p>
-          <p class="know-fact"><span class="know-fact-num">40</span> — Airport Sponsor Grant Assurances, April 2025 set</p>
-          <p class="know-fact"><span class="know-fact-num">7,000+</span> — cooperative contracts across Sourcewell, OMNIA Partners, NASPO ValuePoint, TIPS-USA, and GSA</p>
+        <div class="cols">
+          <div class="col card">
+            <span class="know-fact-num">1,244 sections</span>
+            <p>FAA Order 5100.38D, the AIP Handbook, indexed section by section</p>
+          </div>
+          <div class="col card">
+            <span class="know-fact-num">40</span>
+            <p>Airport Sponsor Grant Assurances, April 2025 set</p>
+          </div>
+          <div class="col card">
+            <span class="know-fact-num">7,000+</span>
+            <p>cooperative contracts across Sourcewell, OMNIA Partners, NASPO ValuePoint, TIPS-USA, and GSA</p>
+          </div>
         </div>
 
         <p class="know-note">Every source dated — each carries a last-verified date, checked monthly against the official publication</p>
@@ -824,17 +793,17 @@
           <h2 class="h2">Trust starts with showing the work.</h2>
         </div>
         <div class="cols reveal">
-          <div class="col trust-card">
+          <div class="col card">
             <span class="col-num">01</span>
             <h3 class="h3">See what shaped the path.</h3>
             <p>TarmacSync connects your airport's reviewed policies and project facts with official guidance and contract intelligence—so your team can trace what informed the working path.</p>
           </div>
-          <div class="col trust-card">
+          <div class="col card">
             <span class="col-num">02</span>
             <h3 class="h3">Know what could change it.</h3>
             <p>Confirmed facts stay separate from working interpretations and open questions. If one missing answer could change the path, TarmacSync brings it forward.</p>
           </div>
-          <div class="col trust-card">
+          <div class="col card">
             <span class="col-num">03</span>
             <h3 class="h3">Keep every decision with your team.</h3>
             <p>TarmacSync organizes the path, evidence, and next move. Procurement, legal, grant, board, and FAA/ADO decisions remain with the people responsible for them.</p>
