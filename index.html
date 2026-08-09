@@ -268,6 +268,7 @@
       height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
     }
     header .logo { width: 152px; height: 37px; object-fit: contain; object-position: left center; }
+    @media (max-width: 860px) { header .logo { width: 180px; height: 44px; } }
     .nav { display: flex; gap: 2.1rem; align-items: center; }
     .nav a {
       color: var(--graphite); text-decoration: none;
@@ -616,17 +617,6 @@
       font-size: .78rem; color: var(--muted);
     }
 
-    /* ── Floating affordances ───────────────────────────────────── */
-    .sticky-cta {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-      padding: .6rem 1.25rem calc(.6rem + env(safe-area-inset-bottom));
-      background: rgba(255,255,255,.88);
-      -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
-      border-top: 1px solid var(--line);
-    }
-    .sticky-cta .btn { width: 100%; color: var(--ink); }
-    @media (min-width: 861px) { .sticky-cta { display: none !important; } }
-
     .back-to-top {
       position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 40;
       width: 42px; height: 42px; border-radius: 50%;
@@ -640,7 +630,7 @@
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
     .back-to-top:hover { transform: translateY(-2px); }
     .back-to-top svg { width: 17px; height: 17px; fill: none; stroke: var(--graphite); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    @media (max-width: 860px) { .back-to-top { bottom: 5.2rem; } }
+    @media (max-width: 860px) { .back-to-top { bottom: 1rem; } }
 
     /* ── Entrance motion (subtle, reduced-motion safe) ──────────────
        Content is visible by default and only hidden once the `js` class
@@ -983,9 +973,6 @@
     </footer>
   </div>
 
-  <div class="sticky-cta" aria-hidden="true">
-    <a class="btn btn-accent" href="#program">Explore the program</a>
-  </div>
 
   <button type="button" class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
@@ -1055,14 +1042,6 @@
       let t=false;window.addEventListener('scroll',()=>{if(t)return;t=true;requestAnimationFrame(()=>{h.classList.toggle('scrolled',window.scrollY>8);t=false;});},{passive:true});
     })();
 
-    (function(){
-      const s=document.querySelector('.sticky-cta');
-      const heroCta=document.querySelector('.hero-actions');
-      const apply=document.getElementById('application');
-      if(!s||!heroCta)return;
-      new IntersectionObserver(([e])=>{s.setAttribute('aria-hidden',e.isIntersecting?'true':'false');s.style.display=e.isIntersecting?'none':'';},{threshold:0.1}).observe(heroCta);
-      if(apply){new IntersectionObserver(([e])=>{if(e.isIntersecting){s.setAttribute('aria-hidden','true');s.style.display='none';}},{threshold:0.1,rootMargin:'0px 0px -80px 0px'}).observe(apply);}
-    })();
 
     (function(){
       const els=document.querySelectorAll('.reveal');
