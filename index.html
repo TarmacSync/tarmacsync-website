@@ -146,7 +146,7 @@
         "name": "What does TarmacSync cost after the 90 days?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027 and is limited by how many airports we can configure personally before the start — reserve by November 30, 2026. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on the TarmacSync pricing page."
+          "text": "TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. Founding Airport collaborations begin in January 2027. Nothing converts automatically — at the end of the 90 days, your airport decides whether to continue. Full tiers and how airports typically purchase are on the TarmacSync pricing page."
         }
       }
     ]
@@ -589,7 +589,7 @@
     .cols { display: grid; gap: var(--card-gap); margin-top: var(--content-gap); }
     @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); } }
     /* .card: same white/border/radius language as .form-card and
-       .apply-info — the site's one "elevated surface" card, not a one-off. */
+       .partner-stage — the site's shared elevated-surface treatment. */
     .card {
       background: var(--white); border: 1px solid var(--line);
       border-radius: 20px; padding: clamp(1.5rem, 3vw, 2rem);
@@ -665,36 +665,68 @@
       font-size: .64rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
     }
 
-    /* ── Program ────────────────────────────────────────────────── */
-    /* Value proposition left, conversion form right — stacking them made the
-       section run ~2x longer than it needed to.
-       align-items was `center`, which vertically centered this shorter block
-       against the taller form card — leaving a large dead gap above the
-       lists and making the section read unbalanced. Top-align instead, and
-       give the info side a matching card so the two panels read as one
-       deliberate layout (the offer / the ask) rather than loose text next
-       to a boxed form. */
-    .apply-grid { display: grid; gap: var(--card-gap); margin-top: var(--content-gap); align-items: stretch; }
-    @media (min-width: 900px) {
-      .apply-grid { grid-template-columns: .9fr 1.1fr; }
+    /* ── Founding Airport Partner Program ──────────────────────── */
+    .partner-section { background: var(--white); }
+    .partner-stage {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: grid; background: #17191f; border: 1px solid rgba(255,255,255,.08);
+      border-radius: 30px; box-shadow: 0 34px 80px -46px rgba(23,25,31,.65);
     }
-    /* No height:100% — the form is naturally taller, and stretching this
-       card to match it just relocates the dead space inside a visible
-       border instead of removing it. Natural content height, top-aligned. */
-    .apply-info {
-      display: grid; gap: 1.8rem;
-      background: var(--white); border: 1px solid var(--line);
-      border-radius: 20px; padding: clamp(1.6rem, 3.4vw, 2.6rem);
+    .partner-stage::before {
+      content: ""; position: absolute; z-index: -1; inset: 0;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(245,106,0,.18), transparent 32%),
+        linear-gradient(120deg, transparent 48%, rgba(255,255,255,.035) 48.1%, transparent 48.4%),
+        linear-gradient(150deg, transparent 68%, rgba(255,255,255,.025) 68.1%, transparent 68.4%);
+      pointer-events: none;
     }
-    .apply-info-cols { display: grid; gap: 1.8rem; }
-    @media (min-width: 520px) and (max-width: 899px) { .apply-info-cols { grid-template-columns: 1fr 1fr; } }
-    .apply-info .h3 { font-size: 1rem; letter-spacing: -.012em; }
-    .apply-info .list { gap: .9rem; margin-top: .9rem; }
-    .apply-info .list li { font-size: .95rem; line-height: 1.5; }
-    .apply-close {
-      font-size: .86rem; line-height: 1.55; color: var(--muted);
-      padding-top: 1.5rem; border-top: 1px solid var(--line);
+    @media (min-width: 960px) {
+      .partner-stage { grid-template-columns: 1.04fr .96fr; align-items: stretch; }
     }
+    .partner-story {
+      position: relative; display: flex; flex-direction: column;
+      padding: clamp(2.2rem, 5vw, 4.6rem);
+    }
+    .partner-story .eyebrow { color: #ff9a50; }
+    .partner-title {
+      max-width: 11.5ch; margin-top: 1rem; color: var(--white);
+      font-size: clamp(2.45rem, 5vw, 4.4rem); line-height: .98;
+      letter-spacing: -.055em; font-weight: 600;
+    }
+    .partner-lede {
+      max-width: 55ch; margin-top: 1.5rem; color: rgba(255,255,255,.72);
+      font-size: clamp(1rem, 1.5vw, 1.12rem); line-height: 1.68;
+    }
+    .partner-lede strong { color: var(--white); font-weight: 600; }
+    .partner-benefits { display: grid; margin-top: clamp(2rem, 4vw, 3rem); }
+    .partner-benefit {
+      display: grid; grid-template-columns: 2.35rem 1fr; gap: 1rem;
+      padding: 1.15rem 0; border-top: 1px solid rgba(255,255,255,.13);
+    }
+    .partner-benefit-num {
+      padding-top: .15rem; color: #ff9a50; font-family: var(--mono);
+      font-size: .66rem; font-weight: 600; letter-spacing: .08em;
+    }
+    .partner-benefit strong { display: block; color: var(--white); font-size: .96rem; font-weight: 600; }
+    .partner-benefit p { margin-top: .35rem; color: rgba(255,255,255,.58); font-size: .84rem; line-height: 1.55; }
+    .partner-collaboration {
+      margin-top: auto; padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+    .partner-collaboration-label {
+      display: block; color: rgba(255,255,255,.45); font-family: var(--mono);
+      font-size: .61rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .partner-collaboration-items { display: flex; flex-wrap: wrap; gap: .55rem 1.2rem; margin-top: .85rem; }
+    .partner-collaboration-items span {
+      position: relative; padding-left: .8rem; color: rgba(255,255,255,.82);
+      font-size: .82rem; font-weight: 500;
+    }
+    .partner-collaboration-items span::before {
+      content: ""; position: absolute; left: 0; top: .55em;
+      width: 4px; height: 4px; border-radius: 50%; background: #ff9a50;
+    }
+    .partner-open { margin-top: 1rem; color: rgba(255,255,255,.48); font-size: .74rem; line-height: 1.5; }
     .list { list-style: none; margin-top: 1.1rem; display: grid; gap: .7rem; }
     .list li {
       position: relative; padding-left: 1.6rem;
@@ -712,13 +744,24 @@
       border-radius: 20px; padding: clamp(1.6rem, 3.4vw, 2.6rem);
       box-shadow: 0 1px 2px rgba(23,25,31,.03), 0 16px 40px -16px rgba(23,25,31,.12);
     }
+    .partner-stage .form-card {
+      position: relative; align-self: center;
+      width: auto; margin: clamp(.75rem, 1.5vw, 1.1rem);
+      border: 0; border-radius: 22px; padding: clamp(1.7rem, 3.5vw, 2.8rem);
+      box-shadow: 0 24px 58px rgba(0,0,0,.2);
+    }
     .form-card > .eyebrow { display: block; }
+    .form-card-title {
+      margin-top: .75rem; color: var(--ink); font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+      line-height: 1.08; letter-spacing: -.038em; font-weight: 600;
+    }
     .form-card-intro { margin: .7rem 0 1.7rem; font-size: .93rem; line-height: 1.55; color: var(--muted); }
     form { display: grid; gap: .95rem; }
     .field { display: grid; gap: .38rem; }
     .field-row { display: grid; gap: .95rem; }
     @media (min-width: 520px) { .field-row { grid-template-columns: 1fr 1fr; } }
     label { font-size: .82rem; font-weight: 500; color: var(--graphite); }
+    .optional { color: var(--silver); font-size: .72rem; font-weight: 400; }
     input, select, textarea {
       font-family: inherit; font-size: .95rem; color: var(--ink);
       background: var(--white); border: 1px solid var(--line);
@@ -739,6 +782,18 @@
     .form-note { font-size: .78rem; color: var(--muted); }
     .form-legal { margin-top: 1.1rem; font-size: .72rem; line-height: 1.5; color: var(--silver); }
     .form-legal a { color: var(--muted); }
+    @media (max-width: 959px) {
+      .partner-stage .form-card { margin-top: 0; }
+      .partner-title { max-width: 13ch; }
+    }
+    @media (max-width: 560px) {
+      .partner-stage { border-radius: 22px; }
+      .partner-story { padding: 2rem 1.35rem 1.5rem; }
+      .partner-stage .form-card { margin: 0 .55rem .55rem; padding: 1.6rem 1.2rem; border-radius: 18px; }
+      .partner-title { font-size: clamp(2.2rem, 12vw, 3.15rem); }
+      .partner-benefit { gap: .65rem; grid-template-columns: 1.75rem 1fr; }
+      .partner-collaboration-items { display: grid; gap: .55rem; }
+    }
     .success-panel { text-align: center; padding: 1.5rem 0; }
     .success-check {
       width: 46px; height: 46px; margin: 0 auto 1.1rem; border-radius: 50%;
@@ -1077,45 +1132,45 @@
     </section>
 
     <!-- ══ PROGRAM + APPLY ═══════════════════════════════════════ -->
-    <section class="section section-tint" id="program">
+    <section class="section partner-section" id="program">
       <div class="page">
-        <div class="section-head center reveal">
-          <span class="eyebrow eyebrow-accent">Founding Airport Partner Program</span>
-          <h2 class="h2">Bring one project. Work it through with us, free, for 90 days.</h2>
-        </div>
+        <div class="partner-stage reveal">
+          <div class="partner-story">
+            <span class="eyebrow">Founding Airport Partner Program</span>
+            <h2 class="partner-title">Help build the future of airport procurement.</h2>
+            <p class="partner-lede"><strong>Bring one real project.</strong> For 90 days, we will work alongside your team to connect the policy, funding, approvals, contracts, and project facts shaping the next decision—then use what we learn together to make TarmacSync stronger for airports nationwide.</p>
 
-        <div class="apply-grid reveal">
-          <div class="apply-info">
-            <div class="apply-info-cols">
-              <div>
-                <h3 class="h3">What you get</h3>
-                <ul class="list">
-                  <li>A workspace configured for your airport</li>
-                  <li>Hands-on support on real projects</li>
-                  <li>Working sessions with the founder</li>
-                  <li>Direct input into the first release</li>
-                </ul>
+            <div class="partner-benefits" role="list" aria-label="Founding Airport Partner benefits">
+              <div class="partner-benefit" role="listitem">
+                <span class="partner-benefit-num">01</span>
+                <div><strong>Built around your airport</strong><p>A workspace grounded in your policies, funding, project context, and working practices.</p></div>
               </div>
-              <div>
-                <h3 class="h3">What we ask</h3>
-                <ul class="list">
-                  <li>One kickoff call</li>
-                  <li>One real project</li>
-                  <li>Candid feedback</li>
-                </ul>
+              <div class="partner-benefit" role="listitem">
+                <span class="partner-benefit-num">02</span>
+                <div><strong>Worked on a real project</strong><p>Hands-on founder support to clarify the path, open issues, and next move—not a generic product demo.</p></div>
+              </div>
+              <div class="partner-benefit" role="listitem">
+                <span class="partner-benefit-num">03</span>
+                <div><strong>Shaped by airport experience</strong><p>Your candid feedback directly informs how TarmacSync supports the people moving airport projects forward.</p></div>
               </div>
             </div>
-            <p class="apply-close">Open to every U.S. public-use airport.</p>
+
+            <div class="partner-collaboration">
+              <span class="partner-collaboration-label">The collaboration</span>
+              <div class="partner-collaboration-items"><span>One real project</span><span>One focused kickoff</span><span>Candid feedback</span></div>
+              <p class="partner-open">Open to U.S. public-use airports. Your team stays in control of every decision.</p>
+            </div>
           </div>
 
           <div class="form-card" id="application">
           <div id="form-content">
-          <span class="eyebrow">See if your airport is a fit</span>
+          <span class="eyebrow eyebrow-accent">Start with a real project</span>
           <div id="tier-note" class="tier-note" style="display:none">
             <strong id="tier-note-copy"></strong>
             <a href="/pricing.html">Change pricing selection</a>
           </div>
-            <p class="form-card-intro">Omar reviews every submission personally and replies within two business days.</p>
+            <h3 class="form-card-title">Let’s make the next decision clearer.</h3>
+            <p class="form-card-intro">Tell us about your airport and the project on your desk. Omar will reply personally within two business days to arrange a working conversation—no deck or preparation required.</p>
 
           <form id="waitlist-form">
             <div class="spam-trap" aria-hidden="true">
@@ -1123,13 +1178,15 @@
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
-            <div class="field"><label for="full-name">Full name</label><input id="full-name" name="full_name" type="text" autocomplete="name" required></div>
-            <div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field-row">
+              <div class="field"><label for="full-name">Full name</label><input id="full-name" name="full_name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div>
+            </div>
             <div class="field-row">
               <div class="field"><label for="organization">Airport or organization</label><input id="organization" name="organization" type="text" autocomplete="organization" required></div>
               <div class="field"><label for="role">Your role</label><input id="role" name="role" type="text" autocomplete="organization-title" required></div>
             </div>
-            <div class="field"><label for="project">What project or purchase would you like to explore? (optional)</label><textarea id="project" name="project" placeholder="e.g., Runway sweeper replacement, terminal HVAC upgrade…"></textarea></div>
+            <div class="field"><label for="project">What project or purchase is on your mind? <span class="optional">Optional</span></label><textarea id="project" name="project" placeholder="Runway rehabilitation, terminal HVAC replacement, ARFF vehicle…"></textarea></div>
 
             <input type="hidden" name="tier_interest" id="tier_interest" value="">
             <input type="hidden" name="tier_billing" id="tier_billing" value="">
@@ -1145,10 +1202,10 @@
 
             <div class="form-actions">
               <button class="btn btn-accent btn-lg" type="submit">Start the conversation</button>
-              <span class="form-note">Free for 90 days. No purchase commitment.</span>
+              <span class="form-note">Free 90-day collaboration. No purchase commitment.</span>
             </div>
           </form>
-          <p class="form-legal">Used only to respond to your interest, per our <a href="/privacy.html">Privacy Policy</a>. We never sell your information.</p>
+          <p class="form-legal">Your information is used only to respond and operate the program, as described in our <a href="/privacy.html">Privacy Policy</a>. It is never sold.</p>
           </div>
           <div class="success-panel" id="contact-success" style="display:none">
             <div class="success-check">&#10003;</div>
@@ -1158,7 +1215,7 @@
             <ul class="success-steps">
               <li><span>1.</span> You'll hear personally from Omar within two business days.</li>
               <li><span>2.</span> We'll schedule a short conversation around a project or procurement challenge on your mind — no deck, preparation, or commitment.</li>
-              <li><span>3.</span> You'll see how TarmacSync could help, ask questions, and decide whether a January 2027 Founding Airport collaboration makes sense for your team.</li>
+              <li><span>3.</span> You'll see how TarmacSync could support the project, ask questions, and decide whether a Founding Airport collaboration makes sense for your team.</li>
             </ul>
             <p class="small success-privacy copy-stack"><span>We'll use your information only to respond to your interest and operate the program.</span><span>We do not sell personal information. <a href="/privacy.html">Read our Privacy Policy.</a></span></p>
           </div>
@@ -1196,7 +1253,7 @@
             <div class="faq-answer"><p>"Founding Airport Partner" describes participation in TarmacSync's initial airport program. It does not create an ownership, equity, agency, joint-venture, endorsement, or intellectual-property relationship.</p></div>
           </details>
           <details><summary>What does TarmacSync cost after the 90 days?</summary>
-            <div class="faq-answer"><p>TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. The first cohort begins January 2027 and is limited by how many airports we can configure personally before the start — reserve by November 30, 2026. Nothing converts automatically — at the end of the 90 days you decide whether to continue. Full tiers and how airports typically purchase are on our <a href="/pricing.html">pricing page</a>.</p></div>
+            <div class="faq-answer"><p>TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. Founding Airport collaborations begin in January 2027. Nothing converts automatically — at the end of the 90 days, your airport decides whether to continue. Full tiers and how airports typically purchase are on our <a href="/pricing.html">pricing page</a>.</p></div>
           </details>
         </div>
       </div>
@@ -1205,9 +1262,9 @@
     <!-- ══ CLOSING CTA ═══════════════════════════════════════════ -->
     <section class="section-sm section-dark">
       <div class="page closer reveal">
-        <h2 class="h2">Bring one project. We will show you the path.</h2>
-        <p>Reserve a place in the January 2027 cohort and tell us the first project you want to work through together.</p>
-        <a class="btn btn-light btn-lg" href="#application">Start the conversation</a>
+        <h2 class="h2">Airport procurement is ready for a better starting point.</h2>
+        <p>Bring a real project and help shape the intelligence built for the people who move airports forward.</p>
+        <a class="btn btn-light btn-lg" href="#application">Explore a founding partnership</a>
       </div>
     </section>
   </main>
