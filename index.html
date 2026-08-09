@@ -532,10 +532,33 @@
       width: 4px; height: 4px; border-radius: 50%; background: var(--orange-ink);
     }
     .col .trust-proof {
-      margin-top: 1.2rem; padding-top: .85rem;
+      margin-top: auto; padding-top: 1rem;
       border-top: 1px solid var(--line);
-      color: var(--graphite); font-family: var(--mono);
-      font-size: .68rem; line-height: 1.55; letter-spacing: .025em;
+      color: var(--graphite); font-family: var(--sans);
+      font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: -.003em;
+    }
+    .trust-head .h2 {
+      max-width: 22ch; font-weight: 600;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.12;
+    }
+    .trust-lede {
+      max-width: 50ch; margin: 1.15rem auto 0;
+      color: var(--muted); font-size: 1rem; line-height: 1.6;
+    }
+    .trust-grid {
+      gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .trust-grid .trust-card {
+      min-width: 0; min-height: 330px; display: flex; flex-direction: column;
+      padding: clamp(1.8rem, 3vw, 2.4rem) clamp(1.5rem, 2.8vw, 2.25rem);
+      border: 0; border-radius: 0; background: transparent;
+    }
+    .trust-grid .trust-card + .trust-card { border-left: 1px solid var(--line); }
+    .trust-card .h3 { font-size: 1.08rem; line-height: 1.38; letter-spacing: -.012em; }
+    .trust-card .trust-points { margin-bottom: 1.3rem; }
+    @media (max-width: 819px) {
+      .trust-grid .trust-card { min-height: 0; padding: 1.75rem 0; }
+      .trust-grid .trust-card + .trust-card { border-left: 0; border-top: 1px solid var(--line); }
     }
 
     /* ── Founder ────────────────────────────────────────────────── */
@@ -873,12 +896,13 @@
     <!-- ══ INTELLIGENCE + TRUST ═════════════════════════════════ -->
     <section class="section section-knows" id="trust">
       <div class="page">
-        <div class="section-head center reveal">
+        <div class="section-head center trust-head reveal">
           <span class="eyebrow eyebrow-accent">Intelligence you can inspect</span>
-          <h2 class="h2">See the source. See what still needs checking. Keep control of the decision.</h2>
+          <h2 class="h2">See the source. Know what still needs checking.</h2>
+          <p class="trust-lede">TarmacSync brings the evidence forward while your airport keeps control of every decision.</p>
         </div>
-        <div class="cols reveal">
-          <div class="col card">
+        <div class="cols trust-grid reveal">
+          <div class="col card trust-card">
             <span class="col-num">01</span>
             <h3 class="h3">Every answer starts with a source.</h3>
             <ul class="trust-points">
@@ -887,16 +911,16 @@
             </ul>
             <p class="trust-proof">FAA Order 5100.38D · 1,244 AIP Handbook sections · 40 Sponsor Assurances</p>
           </div>
-          <div class="col card">
+          <div class="col card trust-card">
             <span class="col-num">02</span>
-            <h3 class="h3">See the contract option—and the checks.</h3>
+            <h3 class="h3">See the option—and the checks.</h3>
             <ul class="trust-points">
               <li>TarmacSync searches 7,000+ cooperative contract records across five national consortiums.</li>
               <li>Your team validates scope, authority, funding fit, and pricing before moving forward.</li>
             </ul>
             <p class="trust-proof">Candidate pathway · Not a selected contract</p>
           </div>
-          <div class="col card">
+          <div class="col card trust-card">
             <span class="col-num">03</span>
             <h3 class="h3">Your team makes the call.</h3>
             <ul class="trust-points">
