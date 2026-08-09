@@ -81,8 +81,8 @@
     .hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.04em; margin-bottom: 1.1rem; }
     .hero p { font-size: 1.12rem; color: var(--muted); max-width: 34rem; margin: 0 auto; line-height: 1.6; }
     .hero p.cohort-line {
-      font-family: var(--mono); font-size: .7rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--orange-ink);
+      font-family: var(--mono); font-size: clamp(.76rem, .9vw, .84rem); font-weight: 600;
+      line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
       margin: 2.2rem auto 0; max-width: none;
     }
 
@@ -227,7 +227,7 @@
       .container { width: calc(100% - 2rem); }
       .hero h1 { font-size: 2.15rem; }
       .hero p { font-size: 1rem; }
-      .hero p.cohort-line { font-size: .62rem; letter-spacing: .05em; line-height: 1.9; }
+      .hero p.cohort-line { font-size: .76rem; letter-spacing: .05em; line-height: 1.65; }
       .hero p.cohort-line span { display: block; }
       .hero p.cohort-line .dot { display: none; }
 
