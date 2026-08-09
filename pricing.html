@@ -60,7 +60,7 @@
       position: relative; border: 1px solid var(--line); border-radius: 14px;
       padding: 2.4rem 1.9rem 2rem; display: flex; flex-direction: column;
     }
-    .tier.featured { border-color: var(--ink); box-shadow: 0 1px 3px rgba(23,25,31,.07); }
+    .tier.featured { border-color: var(--silver); box-shadow: 0 1px 3px rgba(23,25,31,.07); }
     .tier-flag {
       position: absolute; top: -.7rem; left: 50%; transform: translateX(-50%);
       background: var(--ink); color: #fff; white-space: nowrap;
@@ -112,7 +112,7 @@
     /* selectable cards */
     .tier { cursor: pointer; transition: border-color .22s, box-shadow .22s, transform .22s; }
     .tier:hover { border-color: var(--silver); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(23,25,31,.08); }
-    .tier.featured:hover { border-color: var(--ink); box-shadow: 0 8px 30px rgba(23,25,31,.12); }
+    .tier[aria-selected="true"]:hover { border-color: var(--ink); box-shadow: 0 8px 30px rgba(23,25,31,.12); }
     .tier:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
     .tier[aria-selected="true"] {
       border-color: var(--ink); box-shadow: 0 4px 16px rgba(23,25,31,.10); transform: translateY(-2px);
