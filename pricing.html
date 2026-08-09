@@ -14,8 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fff; --ink: #0a0a0d; --muted: #4a4a52; --orange: #b94e08;
-      --line: #e5e5eb; --soft: #f9f9fb; --green: #256c43;
+      --white: #FFFFFF; --cloud: #F5F6F8; --silver: #B9BDC7;
+      --graphite: #3E4149; --ink: #17191F; --muted: #6E7179;
+      --line: #E4E6EA; --orange: #F56A00; --orange-ink: #B94E08;
+      --green: #256C43;
+      --bg: var(--white); --soft: var(--cloud);
       --sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
@@ -37,7 +40,7 @@
       font-family: var(--sans); font-size: .86rem; font-weight: 500;
       text-decoration: none; cursor: pointer; background: var(--ink); color: #fff;
     }
-    .btn:hover { background: #2C2F38; }
+    .btn:hover { background: var(--graphite); }
     .btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
     .btn-secondary:hover { background: var(--soft); }
 
@@ -47,7 +50,7 @@
     .hero p { font-size: 1.12rem; color: var(--muted); max-width: 34rem; margin: 0 auto; line-height: 1.6; }
     .hero p.cohort-line {
       font-family: var(--mono); font-size: .7rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--orange);
+      text-transform: uppercase; color: var(--orange-ink);
       margin: 2.2rem auto 0; max-width: none;
     }
 
@@ -57,7 +60,7 @@
       position: relative; border: 1px solid var(--line); border-radius: 14px;
       padding: 2.4rem 1.9rem 2rem; display: flex; flex-direction: column;
     }
-    .tier.featured { border-color: var(--ink); box-shadow: 0 1px 3px rgba(10,10,13,.06); }
+    .tier.featured { border-color: var(--ink); box-shadow: 0 1px 3px rgba(23,25,31,.07); }
     .tier-flag {
       position: absolute; top: -.7rem; left: 50%; transform: translateX(-50%);
       background: var(--ink); color: #fff; white-space: nowrap;
@@ -83,6 +86,37 @@
     .tier:not(.featured) .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
     .tier:not(.featured) .tier-cta:hover { background: var(--soft); }
 
+
+    /* billing toggle */
+    .billing { display: flex; justify-content: center; margin-top: 2.2rem; }
+    .switch {
+      display: inline-flex; background: var(--cloud); border: 1px solid var(--line);
+      border-radius: 980px; padding: .25rem; gap: .2rem;
+    }
+    .switch button {
+      font-family: var(--sans); font-size: .82rem; font-weight: 500; cursor: pointer;
+      border: 0; background: transparent; color: var(--muted);
+      padding: .5rem 1.15rem; border-radius: 980px; transition: background .18s, color .18s;
+    }
+    .switch button[aria-pressed="true"] { background: var(--white); color: var(--ink); box-shadow: 0 1px 2px rgba(23,25,31,.10); }
+    .switch button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .save-pill {
+      display: inline-block; margin-left: .55rem; vertical-align: middle;
+      font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase;
+      background: var(--orange); color: #fff; padding: .18rem .45rem; border-radius: 3px;
+    }
+
+    /* selectable cards */
+    .tier { cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .18s; }
+    .tier:hover { border-color: var(--silver); }
+    .tier:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+    .tier[aria-selected="true"] {
+      border-color: var(--ink); box-shadow: 0 4px 16px rgba(23,25,31,.10); transform: translateY(-2px);
+    }
+    .tier[aria-selected="true"] .tier-cta { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .tier[aria-selected="true"] .tier-cta:hover { background: var(--graphite); }
+    .tier-note-sm { font-size: .76rem; color: var(--muted); margin-top: .55rem; min-height: 1rem; }
+
     /* bands */
     .band {
       border: 1px solid var(--line); border-radius: 14px; background: var(--soft);
@@ -95,7 +129,7 @@
     .band-dark h3 { color: #fff; }
     .band-dark p { color: rgba(255,255,255,.72); }
     .band-dark .btn { background: #fff; color: var(--ink); }
-    .band-dark .btn:hover { background: #e9e9ee; }
+    .band-dark .btn:hover { background: var(--cloud); }
 
     /* details */
     .details { padding: 6rem 0 1rem; }
@@ -115,7 +149,7 @@
     .faq-q h4 { font-size: .98rem; margin-bottom: .35rem; }
     .faq-q p { font-size: .9rem; color: var(--muted); margin: 0; line-height: 1.6; }
 
-    .fine { font-size: .78rem; color: #7a7a85; line-height: 1.6; margin-top: 2.5rem; }
+    .fine { font-size: .78rem; color: var(--silver); line-height: 1.6; margin-top: 2.5rem; }
 
     footer { padding: 5rem 0 3.5rem; border-top: 1px solid var(--line); margin-top: 6rem; }
     .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
@@ -148,14 +182,21 @@
       <h1>Simple pricing,<br>per airport.</h1>
       <p>Unlimited users. Your operations, finance, procurement, and grants staff all work in the same file — and so can your consultants.</p>
       <p class="cohort-line">First cohort begins January 2027 &middot; Reserve by November 30</p>
+
+      <div class="billing">
+        <div class="switch" role="group" aria-label="Billing period">
+          <button type="button" id="bill-annual" aria-pressed="true">Annual<span class="save-pill">2 months free</span></button>
+          <button type="button" id="bill-monthly" aria-pressed="false">Monthly</button>
+        </div>
+      </div>
     </section>
 
     <section class="tiers">
-      <div class="tier">
+      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="field">
         <div class="tier-name">Field</div>
         <div class="tier-who">General aviation and reliever airports</div>
-        <div class="tier-price">$2,400</div>
-        <div class="tier-per">per year, or $240/month</div>
+        <div class="tier-price" data-annual="$2,400" data-monthly="$240">$2,400</div>
+        <div class="tier-per" data-annual="per year, or $240/month" data-monthly="per month, billed monthly">per year, or $240/month</div>
         <ul>
           <li>Buying-path review with funding and threshold logic</li>
           <li>Cooperative contract candidates</li>
@@ -164,12 +205,12 @@
         <a class="btn tier-cta" href="/?tier=field#application">Reserve a place</a>
       </div>
 
-      <div class="tier featured">
+      <div class="tier featured" role="button" tabindex="0" aria-selected="true" data-tier="regional">
         <span class="tier-flag">Best fit for AIP-funded airports</span>
         <div class="tier-name">Regional</div>
         <div class="tier-who">Non-hub primary and grant-active GA airports</div>
-        <div class="tier-price">$8,400</div>
-        <div class="tier-per">per year, or $840/month</div>
+        <div class="tier-price" data-annual="$8,400" data-monthly="$840">$8,400</div>
+        <div class="tier-per" data-annual="per year, or $840/month" data-monthly="per month, billed monthly">per year, or $840/month</div>
         <ul>
           <li class="inherit">Everything in Field, plus</li>
           <li>Federal overlay — AIP, BIL, Grant Assurances</li>
@@ -179,11 +220,11 @@
         <a class="btn tier-cta" href="/?tier=regional#application">Reserve a place</a>
       </div>
 
-      <div class="tier">
+      <div class="tier" role="button" tabindex="0" aria-selected="false" data-tier="metro">
         <div class="tier-name">Metro</div>
         <div class="tier-who">Small hub and large non-hub airports</div>
-        <div class="tier-price">$12,000</div>
-        <div class="tier-per">per year, or $1,200/month</div>
+        <div class="tier-price" data-annual="$12,000" data-monthly="$1,200">$12,000</div>
+        <div class="tier-per" data-annual="per year, or $1,200/month" data-monthly="per month, billed monthly">per year, or $1,200/month</div>
         <ul>
           <li class="inherit">Everything in Regional, plus</li>
           <li>PFC workspace and consultation tracking</li>
@@ -274,5 +315,37 @@
     </div>
     <div class="container footer-bottom">&copy; 2026 TarmacSync</div>
   </footer>
+
+  <script>
+    (function(){
+      const cards=[...document.querySelectorAll('.tier[data-tier]')];
+      const annual=document.getElementById('bill-annual');
+      const monthly=document.getElementById('bill-monthly');
+
+      function setBilling(mode){
+        const isAnnual = mode==='annual';
+        annual.setAttribute('aria-pressed', isAnnual);
+        monthly.setAttribute('aria-pressed', !isAnnual);
+        document.querySelectorAll('[data-annual]').forEach(el=>{
+          el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+        });
+      }
+      annual.addEventListener('click',()=>setBilling('annual'));
+      monthly.addEventListener('click',()=>setBilling('monthly'));
+
+      function select(card){
+        cards.forEach(c=>c.setAttribute('aria-selected', c===card));
+      }
+      cards.forEach(card=>{
+        card.addEventListener('click',e=>{
+          if(e.target.closest('a')) return;   // let the CTA link work normally
+          select(card);
+        });
+        card.addEventListener('keydown',e=>{
+          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); select(card); }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
