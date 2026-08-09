@@ -573,8 +573,6 @@
     /* ── Inline-style replacements ──────────────────────────────── */
     /* ── Intelligence and trust ────────────────────────────────── */
     .section-knows { border-top: 1px solid var(--line); }
-    .program-intro { font-size: .95rem; line-height: 1.6; color: var(--graphite); margin-bottom: 1.8rem; }
-    .disclosure-grid { display: grid; gap: .95rem; }
     .success-heading { text-align: center; font-size: 1.3rem; }
     .success-intro { margin-top: 1rem; font-size: .95rem; text-align: left; }
     .success-next-label { font-size: .82rem; font-weight: 600; color: var(--orange-ink); margin: 1.5rem 0 .6rem; text-transform: uppercase; letter-spacing: .06em; text-align: left; }
@@ -706,15 +704,6 @@
       content: ""; position: absolute; left: 0; top: .52em;
       width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
     }
-    .disclosure { margin-top: 1.1rem; }
-    .disclosure summary {
-      cursor: pointer; list-style: none; font-size: .85rem;
-      font-weight: 500; color: var(--graphite); display: inline-flex; align-items: center; gap: .4rem;
-    }
-    .disclosure summary::-webkit-details-marker { display: none; }
-    .disclosure summary::after { content: "+"; color: var(--orange-ink); font-weight: 600; }
-    .disclosure[open] summary::after { content: "–"; }
-    .disclosure-body { margin-top: .7rem; font-size: .85rem; line-height: 1.6; color: var(--muted); }
 
     /* ── Form ───────────────────────────────────────────────────── */
     .form-card {
@@ -741,7 +730,6 @@
       box-shadow: 0 0 0 3px rgba(23,25,31,.07);
     }
     textarea { min-height: 92px; resize: vertical; line-height: 1.5; }
-    select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%236E7179' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .8rem center; background-size: 12px; padding-right: 2rem; }
     .spam-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .form-status { min-height: 1.1rem; font-size: .84rem; font-weight: 600; }
     .form-status.success { color: var(--green); }
@@ -1018,7 +1006,7 @@
         <div class="cols reveal">
           <div class="col card">
             <h3 class="h3">Your AIP record, next to your peers'.</h3>
-            <p>Built entirely from public federal award records — the same ones anyone can look up. Every figure traces to a real award ID, and none of it comes from another airport's workspace.</p>
+            <p>See how much federal funding your airport has drawn next to airports your size in your state. Built from public award records only — never another airport's workspace.</p>
           </div>
           <div class="col card">
             <h3 class="h3">New FAA awards, flagged automatically.</h3>
@@ -1117,7 +1105,7 @@
                 </ul>
               </div>
             </div>
-            <p class="apply-close">Open to all U.S. public-use airports. Interest doesn't guarantee selection.</p>
+            <p class="apply-close">Open to every U.S. public-use airport.</p>
           </div>
 
           <div class="form-card" id="application">
@@ -1142,33 +1130,6 @@
               <div class="field"><label for="role">Your role</label><input id="role" name="role" type="text" autocomplete="organization-title" required></div>
             </div>
             <div class="field"><label for="project">What project or purchase would you like to explore? (optional)</label><textarea id="project" name="project" placeholder="e.g., Runway sweeper replacement, terminal HVAC upgrade…"></textarea></div>
-
-            <details class="disclosure">
-              <summary>Anything else you'd like us to know? (optional)</summary>
-              <div class="disclosure-body disclosure-grid">
-                <div class="field-row">
-                  <div class="field"><label for="airport-type">Airport type</label>
-                    <select id="airport-type" name="airport_type">
-                      <option value="">Select…</option>
-                      <option>Nonprimary general aviation</option><option>Reliever</option>
-                      <option>Commercial service — non-hub</option><option>Small hub</option>
-                      <option>Medium or large hub</option><option>Sponsor / agency / other</option>
-                    </select>
-                  </div>
-                  <div class="field"><label for="state">State</label>
-                    <select id="state" name="state">
-                      <option value="">Select…</option>
-                      <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="field"><label for="timing">Timing</label>
-                  <select id="timing" name="timing">
-                    <option value="">Select…</option><option>Now</option><option>Next 90 days</option><option>This fiscal year</option><option>Early planning</option>
-                  </select>
-                </div>
-              </div>
-            </details>
 
             <input type="hidden" name="tier_interest" id="tier_interest" value="">
             <input type="hidden" name="tier_billing" id="tier_billing" value="">
@@ -1400,10 +1361,6 @@
                  pilot:{label:'Founding Airport Partner collaboration',type:'',annual:'No cost for 90 days',monthly:'No cost for 90 days'}};
       const sel=MAP[tier]; if(!sel)return;
       const h=document.getElementById('tier_interest'); if(h)h.value=sel.label;
-      if(sel.type){
-        const at=document.getElementById('airport-type');
-        if(at){const o=[...at.options].find(x=>x.text.trim()===sel.type); if(o){at.value=o.value||o.text;}}
-      }
       const note=document.getElementById('tier-note');
       if(note){
         const billingLabel=billing==='monthly'?'Monthly':'Annual';
