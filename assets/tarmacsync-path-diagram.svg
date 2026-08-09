@@ -4,21 +4,22 @@
   <defs>
     <style>
       .sans { font-family: Inter, Aptos, Arial, Helvetica, sans-serif; }
-      .label { font-size: 16px; font-weight: 650; letter-spacing: 2.2px; }
-      .heading { font-size: 44px; font-weight: 650; letter-spacing: -1.4px; }
-      .item { font-size: 25px; font-weight: 520; letter-spacing: -.3px; }
-      .brand { font-size: 60px; font-weight: 650; letter-spacing: -2.2px; }
-      .accent { font-size: 18px; font-weight: 600; }
-      .center-copy { font-size: 28px; font-weight: 500; letter-spacing: -.3px; }
-      .output { font-size: 28px; font-weight: 560; letter-spacing: -.35px; }
-      .systems { font-size: 15px; font-weight: 650; letter-spacing: 1.35px; }
+      .label { font-size: 16px; font-weight: 500; letter-spacing: 2.2px; }
+      .heading { font-family: "Aptos Display", Aptos, Inter, Arial, sans-serif; font-size: 44px; font-weight: 500; letter-spacing: -1.1px; }
+      .item { font-size: 25px; font-weight: 400; letter-spacing: -.2px; }
+      .brand { font-family: "Aptos Display", Aptos, Inter, Arial, sans-serif; font-size: 60px; font-weight: 500; letter-spacing: -1.8px; }
+      .accent { font-size: 18px; font-weight: 400; }
+      .center-copy { font-family: "Aptos Display", Aptos, Inter, Arial, sans-serif; font-size: 29px; font-weight: 400; letter-spacing: -.2px; }
+      .center-emphasis { font-weight: 500; }
+      .output { font-size: 28px; font-weight: 400; letter-spacing: -.2px; }
+      .systems { font-size: 15px; font-weight: 500; letter-spacing: 1.35px; }
+      .flow-arrow { fill: none; stroke: #F56A00; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
     </style>
   </defs>
 
   <rect width="1600" height="760" fill="#FFFFFF"/>
 
   <g class="sans">
-    <!-- 01: the context already available across the airport -->
     <text x="88" y="126" class="label" fill="#6F737C">01  AIRPORT CONTEXT</text>
     <text x="88" y="190" class="heading" fill="#17191F">What shapes</text>
     <text x="88" y="240" class="heading" fill="#17191F">the decision</text>
@@ -31,29 +32,24 @@
       <circle cx="97" cy="544" r="4" fill="#F56A00"/><text x="122" y="553">Federal + state rules</text>
     </g>
 
-    <line x1="464" y1="380" x2="530" y2="380" stroke="#B9BDC7" stroke-width="1.5"/>
-    <circle cx="464" cy="380" r="3.5" fill="#F56A00"/>
-    <path d="M521 374 L530 380 L521 386" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="flow-arrow" d="M456 380 H524 M511 367 L524 380 L511 393"/>
 
-    <!-- 02: the TarmacSync intelligence layer -->
     <rect x="550" y="100" width="500" height="510" rx="28" fill="#17191F"/>
     <rect x="590" y="144" width="34" height="4" rx="2" fill="#F56A00"/>
     <text x="590" y="190" class="label" fill="#B9BDC7">02  INTELLIGENCE</text>
     <text x="590" y="286" class="brand" fill="#FFFFFF">TarmacSync</text>
     <text x="590" y="330" class="accent" fill="#F56A00">Airport procurement intelligence</text>
     <line x1="590" y1="374" x2="1010" y2="374" stroke="#353840"/>
-    <text x="590" y="447" class="center-copy" fill="#FFFFFF">Connects the context.</text>
-    <path d="M590 516 H708 C730 516 730 497 752 497 H850 C873 497 873 516 896 516 H1006" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
+    <text x="590" y="435" class="center-copy" fill="#FFFFFF">Turns airport context into</text>
+    <text x="590" y="474" class="center-copy center-emphasis" fill="#FFFFFF">a working path.</text>
+    <path d="M590 516 H708 C730 516 730 497 752 497 H850 C873 497 873 516 896 516 H994" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
     <circle cx="590" cy="516" r="4.5" fill="#F56A00"/>
     <circle cx="752" cy="497" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
     <circle cx="896" cy="516" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
-    <path d="M997 510 L1007 516 L997 522" fill="none" stroke="#F56A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M992 507 L1009 516 L992 525 Z" fill="#F56A00"/>
 
-    <line x1="1070" y1="380" x2="1130" y2="380" stroke="#B9BDC7" stroke-width="1.5"/>
-    <circle cx="1070" cy="380" r="3.5" fill="#F56A00"/>
-    <path d="M1121 374 L1130 380 L1121 386" fill="none" stroke="#F56A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="flow-arrow" d="M1070 380 H1134 M1121 367 L1134 380 L1121 393"/>
 
-    <!-- 03: the five-second output -->
     <text x="1150" y="126" class="label" fill="#6F737C">03  WORKING PATH</text>
     <text x="1150" y="202" class="heading" fill="#17191F">What the team sees</text>
 
