@@ -30,11 +30,41 @@
     .container { width: min(1040px, calc(100% - 2.5rem)); margin: 0 auto; }
     .narrow { width: min(760px, 100%); margin-left: auto; margin-right: auto; }
 
-    header { border-bottom: 1px solid var(--line); padding: 1.25rem 0; }
-    header a { color: var(--ink); text-decoration: none; }
-    .logo { display: block; width: 190px; height: 46px; object-fit: contain; object-position: left center; }
+    header { 
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid transparent;
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+    header.scrolled { border-bottom-color: var(--line); }
+    .header-inner {
+      width: min(1120px, calc(100% - 3rem)); margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 0;
+    }
+    .logo { display: block; width: 152px; height: 37px; object-fit: contain; object-position: left center; }
+    @media (max-width: 860px) { .logo { width: 180px; height: 44px; } }
+    .nav { display: flex; gap: 2.1rem; align-items: center; }
+    .nav a {
+      color: var(--graphite); text-decoration: none;
+      font-size: .82rem; font-weight: 500; letter-spacing: -.005em;
+      transition: color .2s ease;
+    }
+    .nav a:hover { color: var(--ink); }
+    @media (max-width: 860px) { .nav { display: none; } }
 
-    .btn {
+    .hamburger { display: none; background: none; border: 0; padding: .5rem; cursor: pointer; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: all .22s ease; }
+    @media (max-width: 860px) {
+      .hamburger { display: block; z-index: 1001; }
+      .nav.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--white); z-index: 1000; padding: 5rem 2rem 2rem; gap: 1.5rem; align-items: flex-start; }
+      .nav.open a { font-size: 1.25rem; font-weight: 600; }
+      .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    }
+
+.btn {
       display: inline-flex; align-items: center; justify-content: center;
       padding: .62rem 1.3rem; border-radius: 980px; border: 1px solid transparent;
       font-family: var(--sans); font-size: .86rem; font-weight: 500;
@@ -43,6 +73,7 @@
     .btn:hover { background: var(--graphite); }
     .btn-secondary { background: transparent; color: var(--ink); border-color: var(--line); }
     .btn-secondary:hover { background: var(--soft); }
+    .btn-sm { font-size: .82rem; padding: .5rem 1.05rem; }
 
     /* hero */
     .hero { padding: 5.5rem 0 3.5rem; text-align: center; }
@@ -225,10 +256,19 @@
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="header-inner">
       <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
+        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="152" height="37">
       </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/#product">Product</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/#trust">Trust</a>
+        <a href="/#founder">Founder</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="/#program">Founding Partner Program</a>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
 
@@ -372,6 +412,11 @@
   </footer>
 
   <script>
+    (function(){
+      const btn=document.querySelector('.hamburger');const nav=document.querySelector('.nav');if(!btn||!nav)return;
+      btn.addEventListener('click',()=>{const o=nav.classList.toggle('open');btn.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
+      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
+    })();
     (function(){
       const cards=[...document.querySelectorAll('.tier[data-tier]')];
       const annual=document.getElementById('bill-annual');
