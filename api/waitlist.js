@@ -139,7 +139,7 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:28px 36px 12px;">
-      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">TarmacSync partner-program interest</p>
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Founding Airport Partner application</p>
     </td>
   </tr>
   <tr>
@@ -202,16 +202,22 @@ module.exports = async function waitlist(request, response) {
   const confirmationText = [
     `Hi ${fullName},`,
     "",
-    "Welcome to TarmacSync — we're glad you're here.",
-    "",
-    "We received your interest in the Founding Airport Partner Program, and we're looking forward to learning more about your airport and project.",
+    "Thank you — your application for the Founding Airport Partner Program is in. We're looking forward to learning about your airport.",
     "",
     "What happens next:",
     "",
-    "1. We'll review your information personally, usually within two business days.",
-    "2. If the program appears to be a good fit, I'll invite you to a short working conversation about your project — no preparation needed.",
+    "1. We'll review your application personally, usually within two business days.",
+    "2. You'll hear from Omar directly — a short conversation to understand your project, walk through Pathfinder together, and answer your questions. No slide deck.",
     "",
-    "If you have any questions before then, just reply to this email.",
+    "The first cohort begins January 2027. We'll confirm your place as soon as we've talked.",
+    "",
+    "In the meantime:",
+    `— See how TarmacSync works: https://www.tarmacsync.com/${project ? '#product' : ''}`,
+    "— Pricing: https://www.tarmacsync.com/pricing.html",
+    "",
+    "We're opening the program to all U.S. public-use airports. If you know another airport that might be interested, feel free to forward this.",
+    "",
+    "Reply anytime with questions.",
     "",
     "— Omar Daaboul, A.A.E.",
     "Founder, TarmacSync",
@@ -234,13 +240,13 @@ module.exports = async function waitlist(request, response) {
   </tr>
   <tr>
     <td style="padding:28px 36px 12px;">
-      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Welcome to TarmacSync</p>
+      <p style="margin:0;font-size:20px;font-weight:700;color:#0a0a0d;line-height:1.3;">Your application is in — thank you</p>
     </td>
   </tr>
   <tr>
     <td style="padding:6px 36px 0;font-size:15px;color:#3a3a42;line-height:1.65;">
       <p style="margin:0 0 14px;">Hi ${escapeHtml(fullName)},</p>
-      <p style="margin:0 0 14px;">Welcome to TarmacSync — we're glad you're here. We received your interest in the Founding Airport Partner Program and look forward to learning more about your airport and project.</p>
+      <p style="margin:0 0 14px;">Thank you — your application for the Founding Airport Partner Program is in. We're looking forward to learning about your airport and the project you have in mind.</p>
     </td>
   </tr>
   <tr>
@@ -253,14 +259,28 @@ module.exports = async function waitlist(request, response) {
         </tr>
         <tr>
           <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#999;width:22px;vertical-align:top;">2.</td>
-          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">If the program appears to be a good fit, I'll invite you to a short working conversation about your project — no preparation needed.</td>
+          <td style="padding:10px 0;font-size:14px;color:#3a3a42;line-height:1.5;">You'll hear from Omar directly — a short conversation to understand your project, walk through Pathfinder together, and answer your questions. No slide deck.</td>
         </tr>
       </table>
     </td>
   </tr>
   <tr>
-    <td style="padding:16px 36px 28px;font-size:14px;color:#3a3a42;line-height:1.65;">
-      <p style="margin:0;">If you have any questions before then, just reply to this email.</p>
+    <td style="padding:16px 36px 8px;font-size:14px;color:#3a3a42;line-height:1.65;">
+      <p style="margin:0;">The first cohort begins January 2027. We'll confirm your place as soon as we've talked.</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:8px 36px 16px;">
+      <p style="margin:0;font-size:14px;font-weight:600;color:#0a0a0d;">While you wait</p>
+      <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+        <tr><td style="padding:4px 0;font-size:14px;">&rarr; <a href="https://www.tarmacsync.com/${project ? '#product' : ''}" style="color:#F56A00;text-decoration:none;">See TarmacSync in action</a></td></tr>
+        <tr><td style="padding:4px 0;font-size:14px;">&rarr; <a href="https://www.tarmacsync.com/pricing.html" style="color:#F56A00;text-decoration:none;">Pricing &mdash; from $2,400/year, per airport</a></td></tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:0 36px 16px;font-size:13px;color:#999;line-height:1.5;">
+      <p style="margin:0;">We're opening the program to all U.S. public-use airports. If you know another airport that might be interested, feel free to forward this.</p>
     </td>
   </tr>
   <tr>
