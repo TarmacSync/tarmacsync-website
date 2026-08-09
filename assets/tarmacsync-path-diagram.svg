@@ -42,11 +42,6 @@
     <line x1="590" y1="374" x2="1010" y2="374" stroke="#353840"/>
     <text x="590" y="435" class="center-copy" fill="#FFFFFF">Turns airport context into</text>
     <text x="590" y="474" class="center-copy center-emphasis" fill="#FFFFFF">a working path.</text>
-    <path d="M590 516 H708 C730 516 730 497 752 497 H850 C873 497 873 516 896 516 H994" fill="none" stroke="#F56A00" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="590" cy="516" r="4.5" fill="#F56A00"/>
-    <circle cx="752" cy="497" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
-    <circle cx="896" cy="516" r="5" fill="#17191F" stroke="#F56A00" stroke-width="2.5"/>
-    <path d="M992 507 L1009 516 L992 525 Z" fill="#F56A00"/>
 
     <path class="flow-arrow" d="M1070 380 H1134 M1121 367 L1134 380 L1121 393"/>
 
