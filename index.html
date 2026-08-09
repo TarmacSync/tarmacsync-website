@@ -277,6 +277,7 @@
     }
     .nav a:hover { color: var(--ink); }
     @media (max-width: 860px) { .nav { display: none; } }
+    @media (max-width: 860px) { .header-cta { display: none; } }
 
     /* ── Hamburger ───────────────────────────────────────────────── */
     .hamburger { display: none; background: none; border: 0; padding: .5rem; cursor: pointer; }
@@ -634,7 +635,17 @@
     .back-to-top.visible { opacity: 1; pointer-events: auto; }
     .back-to-top:hover { transform: translateY(-2px); }
     .back-to-top svg { width: 17px; height: 17px; fill: none; stroke: var(--graphite); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    @media (max-width: 860px) { .back-to-top { bottom: 1rem; } }
+    @media (max-width: 860px) { .back-to-top { bottom: 5.2rem; } }
+
+    .sticky-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      padding: .6rem 1.25rem calc(.6rem + env(safe-area-inset-bottom));
+      background: rgba(255,255,255,.88);
+      -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+      border-top: 1px solid var(--line);
+    }
+    .sticky-cta .btn { width: 100%; color: var(--ink); }
+    @media (min-width: 861px) { .sticky-cta { display: none !important; } }
 
     /* ── Entrance motion (subtle, reduced-motion safe) ──────────────
        Content is visible by default and only hidden once the `js` class
@@ -685,7 +696,7 @@
         <a href="#founder">Founder</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="#program">Founding Partner Program</a>
+      <a class="btn btn-primary btn-sm header-cta" href="#program">Founding Partner Program</a>
       <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -1014,6 +1025,10 @@
   </div>
 
 
+  <div class="sticky-cta" aria-hidden="true">
+    <a class="btn btn-accent" href="#application">Explore the program</a>
+  </div>
+
   <button type="button" class="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
@@ -1076,6 +1091,15 @@
     document.querySelectorAll('.faq details').forEach(d=>{
       d.addEventListener('toggle',()=>{if(!d.open)return;document.querySelectorAll('.faq details').forEach(o=>{if(o!==d)o.removeAttribute('open');});});
     });
+
+    (function(){
+      const s=document.querySelector('.sticky-cta');
+      const heroCta=document.querySelector('.hero-actions');
+      const apply=document.getElementById('application');
+      if(!s||!heroCta)return;
+      new IntersectionObserver(([e])=>{s.setAttribute('aria-hidden',e.isIntersecting?'true':'false');s.style.display=e.isIntersecting?'none':'';},{threshold:0.1}).observe(heroCta);
+      if(apply){new IntersectionObserver(([e])=>{if(e.isIntersecting){s.setAttribute('aria-hidden','true');s.style.display='none';}},{threshold:0.1,rootMargin:'0px 0px -80px 0px'}).observe(apply);}
+    })();
 
     (function(){
       const b=document.querySelector('.back-to-top');if(!b)return;
