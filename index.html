@@ -489,9 +489,11 @@
     .snapshot-next .snapshot-label { color: rgba(255,255,255,.56); }
     .snapshot-next p { max-width: 720px; font-size: 1rem; line-height: 1.55; }
     .snapshot-next-mark {
-      width: 2.2rem; height: 2.2rem; display: grid; place-items: center;
-      border-radius: 50%; background: var(--orange); color: var(--ink); font-weight: 700;
+      width: 3rem; height: 3rem; display: grid; place-items: center;
+      border-radius: 50%; background: var(--orange); color: var(--ink);
+      flex-shrink: 0;
     }
+    .snapshot-next-mark svg { width: 1.25rem; height: 1.25rem; }
     .snapshot-sources {
       margin-top: 1.2rem; color: var(--muted); font-size: .78rem; line-height: 1.55;
     }
@@ -1154,7 +1156,7 @@
             </div>
             <div class="snapshot-next">
               <div><span class="snapshot-label">Next step</span><p>Confirm that the airport is authorized to use the agreement and that the required equipment is within its awarded scope.</p></div>
-              <span class="snapshot-next-mark" aria-hidden="true">→</span>
+              <span class="snapshot-next-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h12M13 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </div>
             <p class="snapshot-sources"><strong>Sources reviewed:</strong> Local purchasing policy · Existing agreements · Cooperative contract documentation</p>
           </div>
