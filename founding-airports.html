@@ -24,96 +24,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #fff;
-      --ink: #0a0a0d;
-      --muted: #4a4a52;
-      --orange: #b94e08;
-      --line: #e5e5eb;
-      --soft: #f9f9fb;
-      --green: #256c43;
-      --sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --mono: 'JetBrains Mono', monospace;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .mono {
-      font-family: var(--mono);
-      font-size: .72rem;
-      letter-spacing: .08em;
-      color: var(--muted);
-    }
-    .container { width: min(800px, calc(100% - 2.5rem)); margin: 0 auto; }
-    header {
-      border-bottom: 1px solid var(--line);
-      padding: 1.25rem 0;
-      margin-bottom: 3rem;
-    }
-    header a { color: var(--ink); text-decoration: none; }
-    .logo {
-      display: block;
-      width: 190px;
-      height: 46px;
-      object-fit: contain;
-      object-position: left center;
-    }
-    h1 {
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      line-height: 1.15;
-      letter-spacing: -.035em;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      font-size: 1.35rem;
-      margin: 2.5rem 0 1rem;
-    }
-    p { color: var(--muted); font-size: 1rem; line-height: 1.65; margin-bottom: 1rem; }
-    ul { margin: 0 0 1.5rem 1.25rem; color: var(--muted); line-height: 1.7; }
-    li { margin-bottom: .5rem; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: .5rem 1.05rem;
-      border-radius: 980px; border: 1px solid transparent;
-      font-family: var(--sans); font-size: .82rem; font-weight: 500;
-      letter-spacing: -.008em; text-decoration: none; cursor: pointer; background: var(--ink); color: #fff;
-    }
-    .btn:hover { background: #2C2F38; }
-    .card {
-      border: 1px solid var(--line); border-radius: 8px;
-      padding: 1.5rem; margin-bottom: 1rem;
-    }
-
-    footer { padding: 4.5rem 0 3.5rem; border-top: 1px solid var(--line); margin-top: 4rem; }
-    .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
-    footer .logo { width: 150px; height: 36px; object-fit: contain; object-position: left center; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: .7rem 2rem; }
-    .footer-links a { font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .2s ease; }
-    .footer-links a:hover { color: var(--ink); }
-    .footer-bottom { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .78rem; color: var(--muted); }
-
-
-    .header-row { display: flex; justify-content: space-between; align-items: center; }
-    .header-btn { display: inline-flex; align-items: center; padding: .5rem 1.05rem; font-size: .82rem; font-weight: 500; text-decoration: none; border-radius: 980px; background: var(--ink); color: #fff; font-family: var(--sans); }
-
-    .list-clean { margin-bottom: 0; }
+    :root { --bg:#fff; --ink:#0a0a0d; --muted:#4a4a52; --orange:#b94e08; --line:#e5e5eb; --soft:#f9f9fb; --green:#256c43; --sans:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --mono:'JetBrains Mono',monospace; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.6; -webkit-font-smoothing:antialiased; }
+    .container { max-width:780px; margin:0 auto; padding:0 2rem; }
+    h1 { font-size:clamp(2rem,4vw,2.6rem); line-height:1.15; letter-spacing:-.035em; margin-bottom:1rem; }
+    h2 { font-size:1.35rem; margin:2.5rem 0 1rem; }
+    p { color:var(--muted); font-size:1rem; line-height:1.65; margin-bottom:1rem; }
+    ul { margin:0 0 1.5rem 1.25rem; color:var(--muted); line-height:1.7; }
+    li { margin-bottom:.5rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:.5rem 1.05rem; border-radius:980px; border:1px solid transparent; font-family:var(--sans); font-size:.82rem; font-weight:500; letter-spacing:-.008em; text-decoration:none; cursor:pointer; background:var(--ink); color:#fff; }
+    .btn:hover { background:#2C2F38; }
+    .card { border:1px solid var(--line); border-radius:8px; padding:1.5rem; margin-bottom:1rem; }
+    .list-clean { margin-bottom:0; }
+    .main { padding:4rem 0 2rem; }
+    @media (max-width:640px) { .main { padding:2rem 0 1rem; } }
   </style>
+  <link rel="stylesheet" href="assets/site-shell.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46">
-      </a>
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home"><img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="/#product">Product</a><a href="/pricing.html">Pricing</a><a href="/#trust">Trust</a><a href="/#founder">Founder</a><a href="/#faq">FAQ</a><a class="site-nav__program" href="/#program">Explore the Founding Airport Partner Program</a>
+      </nav>
+      <a class="site-header__cta" href="/#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container main" id="main-content">
     <h1>Founding Airport Partner Program</h1>
     <p>TarmacSync is welcoming Founding Airport Partners to evaluate the product on real purchases and projects during a free 90-day pilot. Founding Partners shape the platform before broader release. We are happy to welcome any U.S. public-use airport that wants to participate.</p>
 
@@ -146,28 +87,18 @@
 
     <h2>How to apply</h2>
     <p>Complete the application on our homepage. Applications are reviewed personally — no sales sequence and no commitment. We respond within two business days to schedule a fit conversation.</p>
-
     <p>Between now and January we use that conversation to understand your policy, thresholds, and the projects you expect to run, so the platform reflects your airport when the cohort starts.</p>
 
     <a class="btn" href="/#application">Reserve a place in the January 2027 cohort</a>
   </main>
 
-  <footer>
-    <div class="container footer-top">
-      <a href="/" aria-label="TarmacSync home">
-        <img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy">
-      </a>
-      <div class="footer-links">
-        <a href="/pricing.html">Pricing</a>
-        <a href="/resources.html">Resources</a>
-        <a href="mailto:contact@tarmacsync.com">Contact</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/government-customer-addendum.html">Government Addendum</a>
-        <a href="/data-processing-addendum.html">DPA</a>
-      </div>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+      <div class="site-footer__links"><a href="/pricing.html">Pricing</a><a href="/resources.html">Resources</a><a href="/#application">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/government-customer-addendum.html">Government Addendum</a><a href="/data-processing-addendum.html">DPA</a><a href="/security.html">Security</a></div>
     </div>
-    <div class="container footer-bottom">&copy; 2026 TarmacSync</div>
+    <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
   </footer>
+  <script src="assets/site-shell.js"></script>
 </body>
 </html>

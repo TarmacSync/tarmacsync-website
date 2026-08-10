@@ -103,23 +103,16 @@
         <table>
           <tr><th>Subprocessor</th><th>Purpose</th><th>Data processed</th><th>Location</th></tr>
           <tr><td>Google (Gemini AI)</td><td>AI inference, PDF extraction</td><td>Conversation content, airport context, uploaded PDF text</td><td>United States (Google Cloud)</td></tr>
-          <tr><td>OpenRouter (AI Inference)</td><td>AI inference</td><td>Conversation content, airport context</td><td>Provider-dependent routing</td></tr>
           <tr><td>Sentry (Error Monitoring)</td><td>Error capture</td><td>Error messages, stack traces, request context</td><td>United States</td></tr>
-          <tr><td>Langfuse (AI Observability)</td><td>AI turn tracing</td><td>Prompt/response content, airport context</td><td>Langfuse Cloud or self-hosted</td></tr>
-          <tr><td>Upstash Redis</td><td>Rate limiting, short-lived cache</td><td>Rate-limit keys, counters, metadata</td><td>Selected Upstash region</td></tr>
           <tr><td>Document Vault Object Store</td><td>Uploaded document storage</td><td>Policy docs, grant agreements, attachments</td><td>Per deployment</td></tr>
           <tr><td>Hosted Malware Scanner</td><td>Upload scanning</td><td>Object keys, content type, file bytes</td><td>Per deployment</td></tr>
           <tr><td>Docling Document Conversion</td><td>PDF extraction for knowledge index</td><td>Uploaded document bytes, extracted text</td><td>Self-hosted by default</td></tr>
           <tr><td>PDF OCR Worker</td><td>OCR for scanned PDFs</td><td>Uploaded document bytes, recognized text</td><td>Self-hosted by default</td></tr>
         </table>
 
-        <p style="margin-top:1rem;font-size:.88rem;"><strong>DeepSeek note:</strong> DeepSeek is the default AI provider and routes data to the People's Republic of China. For government-adjacent deployments, we recommend US-hosted providers (Gemini via Google Cloud) and disabling providers that route data outside the US. Setting <code>AI_PROVIDER</code> to another provider and leaving <code>DEEPSEEK_API_KEY</code> unset prevents DeepSeek from being used as a fallback.</p>
-
         <h3>Outbound lookup services (not subprocessors — store no airport data)</h3>
         <table>
           <tr><th>Service</th><th>Purpose</th><th>Data sent</th></tr>
-          <tr><td>Tavily (Web Search)</td><td>Vendor/market research</td><td>Search query strings</td></tr>
-          <tr><td>NimbleWay (Web Search)</td><td>Live web retrieval for research turns</td><td>Search query strings</td></tr>
           <tr><td>SAM.gov</td><td>Vendor exclusion screening</td><td>Vendor name strings</td></tr>
           <tr><td>USAspending.gov</td><td>Comparable federal award lookups</td><td>Keyword strings</td></tr>
         </table>
