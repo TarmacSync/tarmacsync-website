@@ -1340,8 +1340,8 @@
       const syncPlayback=()=>{
         const paused=video.paused;
         toggle.setAttribute('aria-label',paused?'Play video':'Pause video');
-        if(playIcon)playIcon.hidden=!paused;
-        if(pauseIcon)pauseIcon.hidden=paused;
+        if(playIcon)playIcon.style.display=paused?'':'none';
+        if(pauseIcon)pauseIcon.style.display=paused?'none':'';
         player.classList.toggle('is-playing',!paused);
       };
       const syncMute=()=>{
