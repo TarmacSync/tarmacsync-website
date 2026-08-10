@@ -103,7 +103,6 @@
         <table>
           <tr><th>Subprocessor</th><th>Purpose</th><th>Data processed</th><th>Location</th></tr>
           <tr><td>Google (Gemini AI)</td><td>AI inference, PDF extraction</td><td>Conversation content, airport context, uploaded PDF text</td><td>United States (Google Cloud)</td></tr>
-          <tr><td>DeepSeek (AI Inference)</td><td>AI inference (default/fallback)</td><td>Conversation content, airport context</td><td>People's Republic of China</td></tr>
           <tr><td>OpenRouter (AI Inference)</td><td>AI inference</td><td>Conversation content, airport context</td><td>Provider-dependent routing</td></tr>
           <tr><td>Sentry (Error Monitoring)</td><td>Error capture</td><td>Error messages, stack traces, request context</td><td>United States</td></tr>
           <tr><td>Langfuse (AI Observability)</td><td>AI turn tracing</td><td>Prompt/response content, airport context</td><td>Langfuse Cloud or self-hosted</td></tr>
@@ -155,7 +154,7 @@
 
       <section>
         <h2>7. Cross-border transfers</h2>
-        <p>Core subprocessors operate in the United States. When AI inference is configured to use DeepSeek, data is processed in the People's Republic of China. Your airport may request US-only processing by directing TarmacSync to use US-hosted providers. TarmacSync will document the provider configuration in your order form or pilot agreement.</p>
+        <p>All subprocessors operate in the United States. AI inference providers are configured for US-hosted processing. TarmacSync will document the provider configuration in your order form or pilot agreement.</p>
       </section>
 
       <section>
