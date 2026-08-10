@@ -126,6 +126,11 @@
       letter-spacing: -0.011em; font-weight: 400;
     }
     .body { font-size: 1rem; line-height: 1.62; color: var(--graphite); }
+    .legal-page-main { padding: 5rem 0 2rem; }
+    .legal-page-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+    .coordinate-label { font-family: var(--mono); font-size: .75rem; letter-spacing: .1em; color: var(--graphite); }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+    .intro { color: var(--graphite); font-size: 1.08rem; max-width: 760px; }
     .small { font-size: .875rem; line-height: 1.55; color: var(--muted); }
     .eyebrow {
       font-family: var(--mono); font-size: .74rem; font-weight: 600;
@@ -760,15 +765,13 @@
     </div>
   </header>
 
-  <main id="main-content">
-    <section class="section">
-      <div class="page">
-        <div class="section-head">
-          <p class="eyebrow">Trust center</p>
-          <h1 class="display" style="font-size:clamp(2rem,4vw,2.6rem);margin-bottom:1rem">Security &amp; Compliance</h1>
-        </div>
-
-        <p class="lede copy-stack"><span>TarmacSync is procurement intelligence for U.S. airport operators — a planning aid, not a grant ERP, bid portal, or official system of record.</span><span>This page summarizes our security posture, accessibility standard, and compliance scope for pilot and enterprise evaluation.</span></p>
+  <div class="container">
+    <main class="legal-page-main" id="main-content">
+      <div class="legal-page-header">
+        <span class="coordinate-label">[ SECURITY &amp; COMPLIANCE ]</span>
+        <h1>Security &amp; Compliance</h1>
+        <p class="intro">TarmacSync is procurement intelligence for U.S. airport operators — a planning aid, not a grant ERP, bid portal, or official system of record. This page summarizes our security posture, accessibility standard, and compliance scope for pilot and enterprise evaluation.</p>
+      </div>
 
         <div class="card" style="border:1px solid var(--line);border-radius:12px;background:var(--cloud);padding:1.5rem;margin:2rem 0">
           <p style="font-weight:600;color:var(--ink);margin-bottom:.5rem">System-of-record disclaimer</p>
@@ -806,19 +809,18 @@
         </div>
 
         <h2 class="h2" style="margin-top:3rem">Reporting a security issue</h2>
-        <p class="lede copy-stack"><span>Report vulnerabilities or security concerns to <a href="mailto:security@tarmacsync.com" style="color:var(--ink);font-weight:500">security@tarmacsync.com</a>.</span><span>We aim to acknowledge reports within two business days.</span></p>
+        <p>Report vulnerabilities or security concerns to <a href="mailto:security@tarmacsync.com" style="color:var(--ink);font-weight:500">security@tarmacsync.com</a>. We aim to acknowledge reports within two business days.</p>
 
         <h2 class="h2" style="margin-top:2rem">Request documentation</h2>
-        <p class="lede">Airport pilots and RFP evaluators can request:</p>
+        <p>Airport pilots and RFP evaluators can request:</p>
         <ul style="margin:1rem 0 0 1.25rem;color:var(--muted);line-height:1.7">
           <li>Data processing agreements (DPAs) from Neon and hosting providers</li>
           <li>Subprocessor list (also published on our subprocessors page)</li>
           <li>Accessibility conformance summary (VPAT draft)</li>
           <li>Compliance gap tracker for your security questionnaire</li>
         </ul>
-        <p class="lede" style="margin-top:1rem">Email <a href="mailto:security@tarmacsync.com" style="color:var(--ink);font-weight:500">security@tarmacsync.com</a> or <a href="mailto:contact@tarmacsync.com" style="color:var(--ink);font-weight:500">contact@tarmacsync.com</a>.</p>
-      </div>
-    </section>
+        <p style="margin-top:1rem">Email <a href="mailto:security@tarmacsync.com" style="color:var(--ink);font-weight:500">security@tarmacsync.com</a> or <a href="mailto:contact@tarmacsync.com" style="color:var(--ink);font-weight:500">contact@tarmacsync.com</a>.</p>
+    </div>
   </main>
 
   <footer class="site-footer">
