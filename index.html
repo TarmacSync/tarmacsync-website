@@ -420,6 +420,10 @@
     .vision-player.is-ended .vision-controls [data-vision-fullscreen] { display: none; }
     .vision-player.is-ended [data-vision-replay] { width: auto; grid-auto-flow: column; gap: .4rem; padding-inline: .72rem; border-radius: 999px; }
     .vision-player.is-ended .vision-replay-label { display: inline; }
+    .vision-player:fullscreen,
+    .vision-player:-webkit-full-screen { width: 100vw; height: 100vh; max-width: none; border-radius: 0; }
+    .vision-player:fullscreen video,
+    .vision-player:-webkit-full-screen video { width: 100%; height: 100%; object-fit: contain; }
     .vision-caption { margin: 1rem auto 0; text-align: center; color: rgba(255,255,255,.48); font-size: .78rem; }
     .sr-only {
       position: absolute !important; width: 1px !important; height: 1px !important;
@@ -1442,8 +1446,8 @@
       fullscreen.addEventListener('click',async()=>{
         try{
           if(document.fullscreenElement){await document.exitFullscreen();}
-          else if(video.webkitEnterFullscreen){video.webkitEnterFullscreen();}
           else if(player.requestFullscreen){await player.requestFullscreen();}
+          else if(video.webkitEnterFullscreen){video.webkitEnterFullscreen();}
           else if(player.webkitRequestFullscreen){player.webkitRequestFullscreen();}
         }catch(_error){announce('Fullscreen is not available in this browser.');}
       });
@@ -1456,10 +1460,12 @@
         controls.hidden=false;
         announce('Film ended. Replay is available.');
       });
-      document.addEventListener('fullscreenchange',()=>{
-        const active=document.fullscreenElement===player;
+      document.addEventListener('fullscreenchange',syncFullscreenState);
+      document.addEventListener('webkitfullscreenchange',syncFullscreenState);
+      function syncFullscreenState(){
+        const active=!!(document.fullscreenElement||document.webkitFullscreenElement);
         fullscreen.setAttribute('aria-label',active?'Exit fullscreen':'Enter fullscreen');
-      });
+      }
       document.addEventListener('keydown',event=>{
         if(event.key==='Escape'&&document.fullscreenElement===player){video.pause();announce('Video paused.');}
       });
