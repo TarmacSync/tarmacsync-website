@@ -401,7 +401,11 @@
       border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
       background: rgba(12,13,17,.76); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
       box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      transition: opacity .4s ease;
     }
+    .vision-player.is-playing .vision-controls { opacity: 0; pointer-events: none; }
+    .vision-player:hover .vision-controls,
+    .vision-player.is-ended .vision-controls { opacity: 1; pointer-events: auto; }
     .vision-controls[hidden], .vision-start[hidden] { display: none !important; }
     .vision-control {
       width: 40px; height: 40px; display: inline-grid; place-items: center;
