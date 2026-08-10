@@ -715,6 +715,29 @@
       100% { color: var(--ink); }
     }
     @media (prefers-reduced-motion: reduce) { .reveal .hl-orange { color: #1E3F63; animation: none; } }
+
+    /* Public trust-center hierarchy */
+    .security-grid {
+      display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .security-card {
+      padding: 1.45rem; border: 1px solid var(--line); border-radius: 14px;
+      background: var(--white);
+    }
+    .security-card-wide { grid-column: 1 / -1; }
+    .security-card h3 { margin-bottom: .5rem; font-size: 1rem; letter-spacing: -.015em; }
+    .security-card p { color: var(--muted); font-size: .9rem; line-height: 1.62; }
+    .security-card a { color: var(--ink); font-weight: 500; }
+    .technical-grid { margin-top: 1.5rem; }
+    .security-note {
+      margin-top: 1rem; padding: 1rem 1.1rem; border-left: 2px solid var(--orange);
+      background: var(--cloud); color: var(--muted); font-size: .84rem; line-height: 1.6;
+    }
+    @media (max-width: 720px) {
+      .security-grid { grid-template-columns: 1fr; }
+      .security-card-wide { grid-column: auto; }
+    }
   </style>
   <link rel="stylesheet" href="assets/site-shell.css">
 </head>
@@ -752,26 +775,27 @@
           <p class="copy-stack" style="color:var(--muted);font-size:.93rem"><span>The airport remains responsible for its official procurement file and FAA, state, and local record-retention obligations.</span><span>TarmacSync exports are advisory drafts as of the timestamp shown.</span></p>
         </div>
 
-        <h2 class="h2">Security controls</h2>
-        <div class="cols" style="margin-top:2rem">
-          <div class="col"><h3 class="h3">Authentication</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Passwordless email one-time-code sign-in with organization-scoped workspaces. Single sign-on via OIDC (Entra ID, Okta, Google Workspace). Time-based one-time passwords (TOTP) for MFA with recovery codes. Administrators can require MFA organization-wide.</p></div>
-          <div class="col"><h3 class="h3">Tenant isolation</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Every database query is scoped to the authenticated organization. PostgreSQL row-level security enforced in production on all org-scoped tables — a query without tenant context returns zero rows.</p></div>
-          <div class="col"><h3 class="h3">Encryption</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">TLS 1.2+ for all connections. Neon Postgres AES-256 at rest. Secrets stored as server-side environment variables — never exposed to the browser.</p></div>
-          <div class="col"><h3 class="h3">Audit logging</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Append-only and enforced by the database. Critical actions write a domain record and transactional outbox before delivery. Covers procurement activity, organization administration, and authorization events.</p></div>
+        <h2 class="h2">Security at a glance</h2>
+        <div class="security-grid">
+          <article class="security-card"><h3>Encryption and tenant separation</h3><p>TLS 1.2+ protects connections, and Neon Postgres provides AES-256 encryption at rest. Application queries are scoped to the authenticated organization so airport workspaces remain separated.</p></article>
+          <article class="security-card"><h3>Authentication and MFA</h3><p>Passwordless email one-time-code sign-in supports organization-scoped workspaces. OIDC single sign-on and time-based one-time-password MFA with recovery codes are supported; administrators can require MFA organization-wide.</p></article>
+          <article class="security-card"><h3>Airport data handling</h3><p>Procurement and project data is stored in U.S. infrastructure by default. Procurement sessions, evidence packets, and audit events are retained for seven years; AI conversation data may be retained for a shorter period. Generated drafts are not the airport's official system of record.</p></article>
+          <article class="security-card"><h3>Data export and deletion</h3><p>Authorized workspace owners can export organization-scoped data from Settings. Account and organization deletion requests are handled through support, subject to applicable retention requirements and written agreements.</p></article>
+          <article class="security-card"><h3>Incident-response practices</h3><p>TarmacSync maintains an incident-response procedure for triage, containment, recovery, and notification. Security reports are acknowledged within two business days; affected organizations are notified within 72 hours of confirming a breach.</p></article>
+          <article class="security-card"><h3>Accessibility</h3><p>WCAG 2.2 Level AA is the documented standard, with automated axe-core checks across primary workspace routes. A VPAT draft and the current known-limitations summary are available on request.</p></article>
+          <article class="security-card security-card-wide"><h3>DPA and subprocessor information</h3><p>Data-processing materials and the current subprocessor list are available on request from <a href="mailto:security@tarmacsync.com">security@tarmacsync.com</a>. Available provider DPAs can also be included in an airport's review package.</p></article>
         </div>
 
-        <div class="cols" style="margin-top:2rem">
-          <div class="col"><h3 class="h3">Rate limiting</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Sliding window enforced atomically across all instances via Upstash Redis. Cost-bearing and authentication buckets fail closed — if the limiter is unreachable, the request is refused.</p></div>
-          <div class="col"><h3 class="h3">Security headers</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, HSTS. Content-Security-Policy enforced in hosted deployments with per-request nonce and strict-dynamic.</p></div>
-          <div class="col"><h3 class="h3">Data handling</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">US regions (AWS us-east-1 default). Procurement sessions, evidence packets, and audit events retained 7 years (aligned with 2 CFR &sect;200.334). AI conversation data may be retained for a shorter period.</p></div>
-          <div class="col"><h3 class="h3">Org data export</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Workspace owners can export org-scoped data from Settings. Breach notification commitment: 72 hours. Subprocessors listed on our subprocessors page.</p></div>
+        <h2 class="h2" style="margin-top:3rem">Additional technical controls</h2>
+        <div class="security-grid technical-grid">
+          <article class="security-card"><h3>Audit logging</h3><p>Critical actions write a domain record and transactional outbox before delivery. Audit coverage includes procurement activity, organization administration, and authorization events.</p></article>
+          <article class="security-card"><h3>Rate limiting</h3><p>Sliding-window controls are enforced across instances through Upstash Redis. Cost-bearing and authentication buckets fail closed if the limiter is unavailable.</p></article>
+          <article class="security-card"><h3>Security headers</h3><p>Hosted deployments use X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, HSTS, and a nonce-based Content-Security-Policy.</p></article>
+          <article class="security-card"><h3>Infrastructure and secrets</h3><p>The hosted service uses a U.S. region by default. Application secrets are stored as server-side environment variables and are not exposed to the browser.</p></article>
+          <article class="security-card"><h3>Database enforcement rollout</h3><p>Row-level-security policies are staged as an additional tenant boundary and require production rollout validation.</p></article>
+          <article class="security-card"><h3>Accessibility limitations</h3><p>Screen-reader testing, the VoiceOver and Safari checklist, focus confinement in four secondary dialogs, and third-party VPAT review remain incomplete.</p></article>
         </div>
-
-        <h2 class="h2" style="margin-top:3rem">Accessibility (ADA / Section 508)</h2>
-        <div class="cols" style="margin-top:2rem">
-          <div class="col"><h3 class="h3">WCAG 2.2 Level AA</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">Documented standard. Automated axe-core audits run on every pull request across primary workspace routes. Skip-to-main navigation, focus restoration, and Escape-to-close throughout. VPAT draft available on request.</p></div>
-          <div class="col"><h3 class="h3">Known limitations</h3><p style="font-size:.93rem;line-height:1.6;color:var(--muted)">No session with a screen-reader user has been conducted. VoiceOver and Safari checklist not yet completed. Four secondary dialogs do not yet confine keyboard focus. VPAT draft not reviewed by a third-party auditor.</p></div>
-        </div>
+        <p class="security-note">The airport remains responsible for determining its own security, privacy, records, and procurement requirements before using the service.</p>
 
         <h2 class="h2" style="margin-top:3rem">Compliance scope</h2>
         <div class="cols" style="margin-top:2rem">
@@ -806,6 +830,7 @@
           <a href="/#application">Contact</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
+          <a href="/government-customer-addendum.html">Government Addendum</a>
           <a href="/security.html">Security</a>
         </div>
       </div>

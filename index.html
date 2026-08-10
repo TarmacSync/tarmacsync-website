@@ -425,6 +425,13 @@
     .vision-player:fullscreen video,
     .vision-player:-webkit-full-screen video { width: 100%; height: 100%; object-fit: contain; }
     .vision-caption { margin: 1rem auto 0; text-align: center; color: rgba(255,255,255,.48); font-size: .78rem; }
+    .vision-snapshot-link {
+      display: flex; width: fit-content; margin: 1.35rem auto 0;
+      color: rgba(255,255,255,.82); font-size: .82rem; font-weight: 500;
+      text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.28);
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .vision-snapshot-link:hover { color: var(--white); border-color: var(--orange); }
     .sr-only {
       position: absolute !important; width: 1px !important; height: 1px !important;
       padding: 0 !important; margin: -1px !important; overflow: hidden !important;
@@ -439,6 +446,73 @@
       .vision-start:hover { transform: translateX(-50%); }
       .vision-controls { left: 10px; bottom: 10px; gap: .15rem; padding: .24rem; }
       .vision-control { width: 38px; height: 38px; }
+    }
+
+    /* ── Illustrative procurement path snapshot ───────────────── */
+    .snapshot-section { background: var(--white); }
+    .snapshot-section .section-head { max-width: 690px; }
+    .snapshot-card {
+      max-width: 980px; margin: 3rem auto 0; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 22px; background: var(--white);
+      box-shadow: 0 28px 70px -52px rgba(23,25,31,.38);
+    }
+    .snapshot-topline {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--line); background: var(--cloud);
+    }
+    .snapshot-example {
+      font-family: var(--mono); color: var(--orange-ink); font-size: .6rem;
+      font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .snapshot-project { color: var(--muted); font-size: .8rem; }
+    .snapshot-body { padding: clamp(1.5rem, 4vw, 2.6rem); }
+    .snapshot-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    }
+    .snapshot-field { min-height: 112px; padding: 1.25rem 1.35rem; }
+    .snapshot-field:nth-child(odd) { border-right: 1px solid var(--line); }
+    .snapshot-field:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .snapshot-field-wide { grid-column: 1 / -1; border-right: 0 !important; }
+    .snapshot-label {
+      display: block; margin-bottom: .45rem; font-family: var(--mono);
+      color: var(--muted); font-size: .59rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .snapshot-value { color: var(--ink); font-size: .98rem; line-height: 1.5; font-weight: 500; }
+    .snapshot-field-path .snapshot-value { color: var(--orange-ink); }
+    .snapshot-next {
+      display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 2rem;
+      margin-top: 1.15rem; padding: 1.35rem 1.45rem; border-radius: 14px;
+      background: var(--ink); color: var(--white);
+    }
+    .snapshot-next .snapshot-label { color: rgba(255,255,255,.56); }
+    .snapshot-next p { max-width: 720px; font-size: 1rem; line-height: 1.55; }
+    .snapshot-next-mark {
+      width: 2.2rem; height: 2.2rem; display: grid; place-items: center;
+      border-radius: 50%; background: var(--orange); color: var(--ink); font-weight: 700;
+    }
+    .snapshot-sources {
+      margin-top: 1.2rem; color: var(--muted); font-size: .78rem; line-height: 1.55;
+    }
+    .snapshot-sources strong { color: var(--graphite); font-weight: 600; }
+    .capability-tag {
+      display: inline-flex; align-items: center; width: fit-content; margin-bottom: .75rem;
+      padding: .3rem .55rem; border: 1px solid rgba(245,106,0,.28); border-radius: 999px;
+      color: var(--orange-ink); font-family: var(--mono); font-size: .56rem;
+      font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .vision-head .capability-tag { color: #FFD6B8; border-color: rgba(245,106,0,.48); }
+    @media (max-width: 640px) {
+      .snapshot-card { margin-top: 2rem; border-radius: 16px; }
+      .snapshot-topline { align-items: flex-start; padding: 1rem 1.1rem; }
+      .snapshot-project { text-align: right; }
+      .snapshot-grid { grid-template-columns: 1fr; }
+      .snapshot-field, .snapshot-field:nth-child(odd) { border-right: 0; }
+      .snapshot-field:nth-child(n+2) { border-top: 1px solid var(--line); }
+      .snapshot-field-wide { grid-column: auto; }
+      .snapshot-next { grid-template-columns: 1fr; gap: 1rem; }
+      .snapshot-next-mark { display: none; }
     }
 
     /* ── Sections ───────────────────────────────────────────────── */
@@ -993,9 +1067,9 @@
         <div class="reveal">
         <h1 class="display"><span class="hl-orange">Know the path.</span> Keep the airport project moving.</h1>
         </div>
-        <p class="lede">Tell us what your airport needs to buy. TarmacSync works out how — the likely path, the rules that apply, and the record that goes with it.</p>
+        <p class="lede">Tell us what your airport needs to buy. TarmacSync brings your policy, project funding, available agreements, and required approvals together to show the likely purchasing path and next step.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#program" data-program-cta="hero">Explore the program</a>
+          <a class="btn btn-primary btn-lg" href="#application" data-program-cta="hero" data-project-cta="hero">Bring us a project</a>
           <a class="btn btn-secondary btn-lg" href="#product">See how it works</a>
         </div>
         <p class="hero-note">Built by an Accredited Airport Executive.</p>
@@ -1007,6 +1081,7 @@
       <div class="page">
         <div class="vision-head reveal">
           <span class="eyebrow">The TarmacSync vision</span>
+          <span class="capability-tag">Planned lifecycle</span>
           <h2 class="vision-title" id="vision-title">One purchase, from need through <span class="vision-accent">grant closeout.</span></h2>
           <p class="vision-copy">A look inside a single airport purchase — the policy and funding that shape it, the federal requirements that attach to it, and the file it leaves behind.</p>
         </div>
@@ -1050,6 +1125,40 @@
           <span class="sr-only" data-vision-status aria-live="polite"></span>
         </div>
         <p class="vision-caption" data-vision-caption>Turn sound on for the full experience.</p>
+        <a class="vision-snapshot-link" href="#sample-snapshot" data-snapshot-cta="vision">View a sample Procurement Path Snapshot</a>
+      </div>
+    </section>
+
+    <!-- ══ ILLUSTRATIVE PROCUREMENT PATH SNAPSHOT ═══════════════ -->
+    <section class="section snapshot-section" id="sample-snapshot" aria-labelledby="snapshot-title">
+      <div class="page">
+        <div class="section-head center reveal">
+          <span class="eyebrow eyebrow-accent">Illustrative example</span>
+          <h2 class="h2" id="snapshot-title">Procurement Path Snapshot</h2>
+          <p class="lede">A concise view of the likely path, what still needs validation, and the next action.</p>
+        </div>
+
+        <article class="snapshot-card reveal" aria-label="Illustrative Procurement Path Snapshot for a runway sweeper">
+          <div class="snapshot-topline">
+            <span class="snapshot-example">Illustrative example</span>
+            <span class="snapshot-project">Runway Sweeper</span>
+          </div>
+          <div class="snapshot-body">
+            <div class="snapshot-grid">
+              <div class="snapshot-field"><span class="snapshot-label">Project</span><div class="snapshot-value">Runway Sweeper</div></div>
+              <div class="snapshot-field"><span class="snapshot-label">Estimated value</span><div class="snapshot-value">$180,000</div></div>
+              <div class="snapshot-field"><span class="snapshot-label">Project funds</span><div class="snapshot-value">Airport operating funds</div></div>
+              <div class="snapshot-field snapshot-field-path"><span class="snapshot-label">Likely path</span><div class="snapshot-value">Cooperative contract candidate</div></div>
+              <div class="snapshot-field"><span class="snapshot-label">Authority</span><div class="snapshot-value">Airport approval requirements must be confirmed</div></div>
+              <div class="snapshot-field"><span class="snapshot-label">Open question</span><div class="snapshot-value">Contract scope and cooperative-use authorization must be validated</div></div>
+            </div>
+            <div class="snapshot-next">
+              <div><span class="snapshot-label">Next step</span><p>Confirm that the airport is authorized to use the agreement and that the required equipment is within its awarded scope.</p></div>
+              <span class="snapshot-next-mark" aria-hidden="true">→</span>
+            </div>
+            <p class="snapshot-sources"><strong>Sources reviewed:</strong> Local purchasing policy · Existing agreements · Cooperative contract documentation</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -1100,7 +1209,7 @@
               <div class="path-result"><span>Next move</span><strong>Validate contract scope</strong></div>
             </div>
             <div class="path-lifecycle">
-              <span class="path-lifecycle-label">Guided from need through grant closeout</span>
+              <span class="path-lifecycle-label">Planned: guided from need through grant closeout</span>
             </div>
           </article>
         </div>
@@ -1118,8 +1227,9 @@
         </div>
         <div class="cols reveal">
           <div class="col card">
+            <span class="capability-tag">Coming later</span>
             <h3 class="h3">Your AIP record, next to your peers'.</h3>
-            <p>See how much federal funding your airport has drawn next to airports your size in your state. Built from public award records only — never another airport's workspace.</p>
+            <p>Compare public federal-funding records with airports of a similar size without using another airport's private workspace data.</p>
           </div>
           <div class="col card">
             <h3 class="h3">New FAA awards, flagged automatically.</h3>
@@ -1136,36 +1246,36 @@
     <section class="section section-knows" id="trust">
       <div class="page">
         <div class="section-head center trust-head reveal">
-          <span class="eyebrow eyebrow-accent">How the answer is made</span>
-          <h2 class="h2">Ask twice. Get the same answer.</h2>
-          <p class="trust-lede">Your purchasing policy, thresholds, budget, ACIP projects, grant terms, state law, and the FAA's own text — weighed together by rules, not improvised by a model.</p>
+          <span class="eyebrow eyebrow-accent">How the answer is built</span>
+          <h2 class="h2">Same facts in. Same clear path forward.</h2>
+          <p class="trust-lede">TarmacSync weighs your airport’s purchasing rules, project facts, available agreements, and funding requirements together—then shows the sources and reasoning behind the recommended path.</p>
         </div>
         <div class="cols reveal">
           <div class="col card trust-card">
             <span class="col-num">01</span>
-            <h3 class="h3">The FAA's words. Not a paraphrase.</h3>
-            <p class="trust-summary">Every claim links to the source text and the revision in effect.</p>
+            <h3 class="h3">Grounded in trusted sources</h3>
+            <p class="trust-summary">Key requirements link directly to the authoritative source and applicable revision.</p>
             <div class="trust-proof">
-              <span class="trust-proof-label">Official sources</span>
-              <ul class="trust-proof-list"><li>AIP Handbook</li><li>Grant Assurances</li><li>FAA Orders and Advisory Circulars</li></ul>
+              <span class="trust-proof-label">Authoritative guidance</span>
+              <ul class="trust-proof-list"><li>FAA orders, handbooks, and advisory circulars</li><li>Grant assurances and award requirements</li><li>Applicable federal and state requirements</li></ul>
             </div>
           </div>
           <div class="col card trust-card">
             <span class="col-num">02</span>
-            <h3 class="h3">Your airport's rules. Not a generic policy.</h3>
-            <p class="trust-summary">The path reflects how your airport buys and how the project is funded.</p>
+            <h3 class="h3">Built around your airport</h3>
+            <p class="trust-summary">The recommended path reflects how your airport is authorized to buy—not a generic procurement policy.</p>
             <div class="trust-proof">
               <span class="trust-proof-label">Airport context</span>
-              <ul class="trust-proof-list"><li>Local purchasing thresholds</li><li>P-card limits</li><li>ACIP, AIP, and PFC funding</li></ul>
+              <ul class="trust-proof-list"><li>Local thresholds and delegated authority</li><li>P-card, quote, and solicitation requirements</li><li>Project funding and existing agreements</li></ul>
             </div>
           </div>
           <div class="col card trust-card">
             <span class="col-num">03</span>
-            <h3 class="h3">The reasoning stays with the project.</h3>
-            <p class="trust-summary">The file keeps what was considered, where each fact came from, and who signed off.</p>
+            <h3 class="h3">Recorded with the project</h3>
+            <p class="trust-summary">TarmacSync keeps the facts, sources, and options considered with the project, creating a clear record of how the purchasing path was selected.</p>
             <div class="trust-proof">
-              <span class="trust-proof-label">Project record</span>
-              <ul class="trust-proof-list"><li>Paths considered</li><li>Fact provenance</li><li>Approvals and sign-offs</li></ul>
+              <span class="trust-proof-label">Decision record</span>
+              <ul class="trust-proof-list"><li>Recommended and alternative paths</li><li>Sources and supporting facts</li><li>Required reviews and approvals</li></ul>
             </div>
           </div>
         </div>
@@ -1348,6 +1458,7 @@
           <a href="#application" data-program-cta="footer_contact">Contact</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
+          <a href="/government-customer-addendum.html">Government Addendum</a>
           <a href="/security.html">Security</a>
         </div>
       </div>
@@ -1365,6 +1476,12 @@
 
   <script src="assets/site-shell.js"></script>
   <script>
+    function trackClarity(eventName,properties){
+      if(typeof window.clarity!=='function')return;
+      Object.entries(properties||{}).forEach(([key,value])=>window.clarity('set',key,String(value)));
+      window.clarity('event',eventName);
+    }
+
     (function(){
       const player=document.querySelector('[data-vision-player]');
       const video=player?.querySelector('[data-vision-video]');
@@ -1405,6 +1522,7 @@
         if(mutedIcon)mutedIcon.style.display=video.muted?'':'none';
       };
       const begin=async()=>{
+        trackClarity('vision_video_started');
         loadSource();
         player.classList.remove('is-ended');
         start.hidden=true;
@@ -1482,7 +1600,30 @@
     (function(){
       const p=new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});
-      const tier=(p.get('tier')||'').toLowerCase(); if(!tier)return;
+      const interest=(p.get('interest')||'').toLowerCase();
+      if(interest==='procurement-support-packet'){
+        const h=document.getElementById('tier_interest'); if(h)h.value='Procurement Support Packet request';
+        const note=document.getElementById('tier-note');
+        if(note){
+          const copy=document.getElementById('tier-note-copy');
+          if(copy)copy.textContent='Request saved: Procurement Support Packet';
+          note.style.display='flex';
+        }
+        const project=document.getElementById('project');
+        if(project&&!project.value)project.value='Please send our airport the Procurement Support Packet.';
+      }
+      const tier=(p.get('tier')||'').toLowerCase(); if(!tier&&!interest)return;
+      if(!tier){
+        const application=document.getElementById('application');
+        const showSelection=()=>{
+          if(!application)return;
+          application.closest('.reveal')?.classList.add('in');
+          application.scrollIntoView({behavior:'auto',block:'start'});
+        };
+        requestAnimationFrame(showSelection);
+        window.addEventListener('load',()=>setTimeout(showSelection,50),{once:true});
+        return;
+      }
       const billing=p.get('billing')==='monthly'?'monthly':'annual';
       const MAP={field:{label:'Field',type:'Nonprimary general aviation',annual:'$2,400 per year',monthly:'$240 per month'},
                  regional:{label:'Regional',type:'Commercial service \u2014 non-hub',annual:'$8,400 per year',monthly:'$840 per month'},
@@ -1517,21 +1658,32 @@
 
     document.querySelectorAll('[data-program-cta]').forEach(link=>{
       link.addEventListener('click',()=>{
-        if(typeof window.clarity!=='function')return;
-        clarity('set','founding_partner_cta_location',link.dataset.programCta||'unknown');
-        clarity('event','founding_partner_cta_clicked');
+        trackClarity('founding_partner_cta_clicked',{founding_partner_cta_location:link.dataset.programCta||'unknown'});
       });
+    });
+    document.querySelectorAll('[data-project-cta]').forEach(link=>{
+      link.addEventListener('click',()=>trackClarity('bring_us_project_clicked',{cta_location:link.dataset.projectCta||'unknown'}));
+    });
+    document.querySelectorAll('[data-snapshot-cta]').forEach(link=>{
+      link.addEventListener('click',()=>trackClarity('sample_snapshot_clicked',{cta_location:link.dataset.snapshotCta||'unknown'}));
     });
 
     const form=document.getElementById('waitlist-form');
     const status=document.getElementById('form-status');
     const button=form.querySelector('button[type="submit"]');
     form.addEventListener('focusin',()=>{
-      if(typeof window.clarity==='function')clarity('event','founding_partner_form_started');
+      trackClarity('founding_partner_form_started');
     },{once:true});
+    form.addEventListener('invalid',()=>{
+      trackClarity('founding_partner_form_error',{error_type:'validation'});
+    },{capture:true,once:true});
     form.addEventListener('submit',async e=>{
       e.preventDefault();
-      if(!form.reportValidity())return;
+      if(!form.checkValidity()){
+        trackClarity('founding_partner_form_error',{error_type:'validation'});
+        form.reportValidity();
+        return;
+      }
       const payload=Object.fromEntries(new FormData(form).entries());
       form.setAttribute('aria-busy','true');
       button.disabled=true;button.textContent='Sending…';
@@ -1542,10 +1694,12 @@
         if(!r.ok||!d.ok)throw new Error(d.error||'We could not send your submission. Please try again.');
         form.reset();status.className='form-status success';status.textContent='';
         form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
-        if(window.clarity){clarity("event","waitlist_submitted");clarity("event","founding_partner_form_submitted");clarity("set","utm_source",payload.utm_source||"direct");}
+        trackClarity('waitlist_submitted',{utm_source:payload.utm_source||'direct'});
+        trackClarity('founding_partner_form_submitted');
       }catch(err){
         status.className='form-status error';status.textContent=err.message||'We could not send your submission. Please try again.';
-        if(window.clarity)clarity("event","waitlist_error");
+        trackClarity('waitlist_error');
+        trackClarity('founding_partner_form_error',{error_type:'submission'});
         form.style.display='';document.getElementById('form-content').style.display='';document.getElementById('contact-success').style.display='none';
         button.disabled=false;button.textContent='Start the conversation';
       }finally{form.removeAttribute('aria-busy');}

@@ -140,7 +140,7 @@
     .save-pill {
       display: inline-block; margin-left: .55rem; vertical-align: middle;
       font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase;
-      background: var(--orange); color: #fff; padding: .18rem .45rem; border-radius: 3px;
+      background: var(--orange-ink); color: #fff; padding: .18rem .45rem; border-radius: 3px;
     }
 
     /* Pricing cards are informational surfaces. The CTA—not the entire
@@ -160,9 +160,9 @@
     }
     .band-dark { background: var(--ink); border-color: var(--ink); }
     .band-invite { background: var(--white); border-color: var(--silver); }
-    .band h3 { font-size: 1.22rem; letter-spacing: -.02em; margin-bottom: .3rem; }
+    .band h2 { font-size: 1.22rem; letter-spacing: -.02em; margin-bottom: .3rem; }
     .band p { font-size: .92rem; color: var(--muted); margin: 0; max-width: 46rem; }
-    .band-dark h3 { color: #fff; }
+    .band-dark h2 { color: #fff; }
     .band-dark p { color: rgba(255,255,255,.72); }
     .band-dark .btn { background: #fff; color: var(--ink); }
     .band-dark .btn:hover { background: var(--cloud); }
@@ -184,8 +184,26 @@
       width: 5px; height: 9px; border: solid var(--orange-ink);
       border-width: 0 2px 2px 0; transform: rotate(45deg);
     }
-    .inc h4 { font-size: .96rem; margin-bottom: .25rem; letter-spacing: -.012em; }
+    .inc h3 { font-size: .96rem; margin-bottom: .25rem; letter-spacing: -.012em; }
     .inc p { font-size: .89rem; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* purchasing support */
+    .purchase-ease {
+      margin: 5rem auto 0; padding: clamp(1.8rem, 4vw, 2.7rem);
+      border: 1px solid var(--line); border-radius: 18px; background: var(--cloud);
+    }
+    .purchase-ease .eyebrow {
+      display: block; margin-bottom: .8rem; color: var(--orange-ink);
+      font-family: var(--mono); font-size: .62rem; font-weight: 600;
+      letter-spacing: .11em; text-transform: uppercase;
+    }
+    .purchase-ease h2 { margin-bottom: .75rem; font-size: clamp(1.55rem,3vw,2rem); letter-spacing: -.03em; }
+    .purchase-ease > p { max-width: 650px; color: var(--muted); font-size: .95rem; line-height: 1.65; }
+    .purchase-ease .btn { margin-top: 1.45rem; }
+    .purchase-ease-footnote {
+      margin-top: 1.35rem; padding-top: 1rem; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: .76rem; line-height: 1.55;
+    }
 
     /* faq — matches homepage disclosure pattern */
     .faq { border-top: 1px solid var(--line); }
@@ -206,7 +224,7 @@
 
     .fine {
       font-size: .78rem; color: var(--muted); line-height: 1.6;
-      margin-top: 1.1rem; opacity: .85;
+      margin-top: 1.1rem;
     }
     .fine-wrap { margin-top: 3.5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
 
@@ -294,11 +312,11 @@
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-thresh">Under about 10,000 annual enplanements</div>
         <div class="tier-price" data-annual="$2,400" data-monthly="$240">$2,400</div>
-        <div class="tier-per" data-annual="per year, or $240/month" data-monthly="per month, billed monthly">per year, or $240/month</div>
+        <div class="tier-per" data-annual="per year, or $240/month" data-monthly="per month on a one-year subscription">per year, or $240/month</div>
         <ul>
-          <li>Buying-path review with funding and threshold logic</li>
-          <li>Cooperative contract candidates</li>
-          <li>Evidence checklist and procurement file export</li>
+          <li>For straightforward GA and reliever purchasing workflows</li>
+          <li>Guided implementation of local policy and thresholds</li>
+          <li>Core procurement file and cooperative candidate review</li>
         </ul>
         <a class="btn tier-cta" href="/?tier=field&amp;billing=annual#application">Start with Field</a>
       </div>
@@ -308,12 +326,12 @@
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-thresh">About 10,000 to 500,000 annual enplanements</div>
         <div class="tier-price" data-annual="$8,400" data-monthly="$840">$8,400</div>
-        <div class="tier-per" data-annual="per year, or $840/month" data-monthly="per month, billed monthly">per year, or $840/month</div>
+        <div class="tier-per" data-annual="per year, or $840/month" data-monthly="per month on a one-year subscription">per year, or $840/month</div>
         <ul>
           <li class="inherit">Everything in Field, plus</li>
-          <li>Federal overlay — AIP, BIL, Grant Assurances</li>
+          <li>Expanded federal-funding and grant-requirement analysis</li>
           <li>Board-ready decision summaries</li>
-          <li>Approval routing and activity log</li>
+          <li>Approval routing, monitoring, and implementation support</li>
         </ul>
         <a class="btn tier-cta" href="/?tier=regional&amp;billing=annual#application">Start with Regional</a>
       </div>
@@ -323,12 +341,12 @@
         <div class="tier-who">Small hub</div>
         <div class="tier-thresh">About 500,000 to 2.5 million annual enplanements</div>
         <div class="tier-price" data-annual="$12,000" data-monthly="$1,200">$12,000</div>
-        <div class="tier-per" data-annual="per year, or $1,200/month" data-monthly="per month, billed monthly">per year, or $1,200/month</div>
+        <div class="tier-per" data-annual="per year, or $1,200/month" data-monthly="per month on a one-year subscription">per year, or $1,200/month</div>
         <ul>
           <li class="inherit">Everything in Regional, plus</li>
-          <li>PFC workspace and consultation tracking</li>
-          <li>Post-award lifecycle and change impact</li>
-          <li>Grant closeout evidence file</li>
+          <li>Complex multi-source funding and PFC workflows</li>
+          <li>Planned: post-award lifecycle and change impact</li>
+          <li>Planned: grant closeout evidence file</li>
         </ul>
         <a class="btn tier-cta" href="/?tier=metro&amp;billing=annual#application">Start with Metro</a>
       </div>
@@ -336,7 +354,7 @@
 
     <div class="band band-invite">
       <div>
-        <h3>Medium hub, large hub, or a major capital program?</h3>
+        <h2>Medium hub, large hub, or a major capital program?</h2>
         <p class="copy-stack"><span>You are not outside the plan — you are the case a price list handles badly.</span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span><span>Tell us what you are planning and we will work out what fits.</span></p>
       </div>
       <a class="btn custom-tier-cta" href="/?tier=custom&amp;billing=annual#application">Start a conversation</a>
@@ -344,21 +362,31 @@
 
     <div class="band band-dark">
       <div>
-        <h3>Start with 90 days at no cost</h3>
-        <p class="copy-stack"><span>No fee, no automatic renewal, no purchase commitment.</span><span>Founding airports that continue after the 90 days lock in their launch price for the first 12 months.</span><span>We configure each airport's policy and thresholds personally before the start, so the first cohort is limited — reserve by November 30, 2026.</span></p>
+        <h2>Start with 90 days at no cost</h2>
+        <p class="copy-stack"><span>No fee, no automatic renewal, no purchase commitment.</span><span>Nothing converts on its own.</span><span>We configure each airport's policy and thresholds personally before the start, so the first cohort is limited — reserve by November 30, 2026.</span></p>
       </div>
       <a class="btn pilot-tier-cta" href="/?tier=pilot&amp;billing=annual#application">Reserve a place for January 2027</a>
     </div>
 
     <section class="details narrow">
       <h2>Every tier includes</h2>
-      <p class="sub">Core Pathfinder intelligence is included in every plan; additional modules reflect airport complexity.</p>
+      <p class="sub">Core Pathfinder intelligence, local-policy analysis, and applicable funding-requirement analysis are included in every tier.</p>
       <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h4>Unlimited users</h4><p>No per-seat charges and no access tiers inside your airport.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h4>Your policy, configured</h4><p>Local thresholds, approval levels, board calendar, and standing contracts.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h4>Source-traceable answers</h4><p>Every recommendation shows the facts behind it and names the validation step.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h4>Your data, exportable</h4><p>Full export of projects, decisions, and evidence files at any time.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Unlimited users</h3><p>No per-seat charges and no access tiers inside your airport.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Core Pathfinder intelligence</h3><p>Likely buying paths, open questions, and the next action for the project.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Your policy, configured</h3><p>Local thresholds, approval levels, and purchasing authority used as airport-specific context.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Applicable funding analysis</h3><p>Funding requirements are separated and applied only when they are relevant to the project.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Source-traceable answers</h3><p>Every recommendation shows the facts behind it and names the validation step.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Your data, exportable</h3><p>Organization-scoped project and evidence data can be exported by an authorized workspace owner.</p></div></div>
       </div>
+
+      <section class="purchase-ease" aria-labelledby="purchase-ease-title">
+        <span class="eyebrow">Straightforward to purchase</span>
+        <h2 id="purchase-ease-title">Built for practical airport adoption.</h2>
+        <p>One-year subscription. No automatic renewal. Per-airport pricing. Unlimited users. A Procurement Support Packet is available to help your airport review the purchase.</p>
+        <a class="btn" href="/?interest=procurement-support-packet#application" data-support-packet-cta>Request the Procurement Support Packet</a>
+        <p class="purchase-ease-footnote">Your airport’s purchasing policy, delegated authority, P-card rules, and total contract commitment determine the appropriate purchasing and payment path.</p>
+      </section>
 
       <h2 style="margin-top:5rem">Common questions</h2>
       <div class="faq">
@@ -372,7 +400,7 @@
         </details>
         <details>
           <summary>Which tier is my airport?</summary>
-          <div class="faq-answer">Tiers follow your FAA airport category, which is set by annual enplanements. Under roughly 10,000 passengers — general aviation, reliever, and nonprimary commercial service — is Field. Roughly 10,000 to 500,000, the nonhub primary range, is Regional. Roughly 500,000 to 2.5 million, small hub, is Metro. Above that, medium and large hubs are scoped individually. FAA sets the hub cutoffs as a share of national traffic, so the exact figures shift a little each year.<br><br>Capital activity can outrun category — a general aviation field running a large federally funded project has more to manage than its size suggests. If that is you, tell us what is coming up and we will tell you which tier fits.</div>
+          <div class="faq-answer">Tiers follow your FAA airport category, which is set by annual enplanements. Under roughly 10,000 annual enplanements — general aviation, reliever, and nonprimary commercial service — is Field. Roughly 10,000 to 500,000 annual enplanements, the nonhub primary range, is Regional. Roughly 500,000 to 2.5 million annual enplanements, small hub, is Metro. Above that, medium and large hubs are scoped individually. FAA sets the hub cutoffs as a share of national traffic, so the exact figures shift a little each year.<br><br>Capital activity can outrun category — a general aviation field running a large federally funded project has more to manage than its size suggests. If that is you, tell us what is coming up and we will tell you which tier fits.</div>
         </details>
         <details>
           <summary>What budget typically pays for TarmacSync?</summary>
@@ -382,11 +410,10 @@
           <summary>What happens at the end of the 90 days?</summary>
           <div class="faq-answer">You decide whether to continue. Nothing converts automatically, and there is no renewal to cancel. Founding airports that keep TarmacSync lock in their launch price for the first 12 months.</div>
         </details>
-
       </div>
 
       <div class="fine-wrap">
-        <p class="fine copy-stack"><span>Your adopted purchasing policy governs.</span><span>TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided.</span><span>Pricing effective August 2026 and subject to change.</span></p>
+        <p class="fine copy-stack"><span>Your adopted purchasing policy governs.</span><span>TarmacSync identifies likely buying paths, candidate contract vehicles, and compliance considerations that may apply based on the information provided.</span><span>Cooperative contract matches are candidate pathways that require validation before award.</span><span>Certifications, signatures, awards, and all procurement, grant, and legal decisions remain with the airport and its advisors.</span><span>Pricing effective August 2026 and subject to change.</span></p>
       </div>
     </section>
   </main>
@@ -410,6 +437,11 @@
   <script src="assets/site-shell.js"></script>
   <script>
     (function(){
+      function trackClarity(eventName,properties){
+        if(typeof window.clarity!=='function')return;
+        Object.entries(properties||{}).forEach(([key,value])=>window.clarity('set',key,String(value)));
+        window.clarity('event',eventName);
+      }
       const cards=[...document.querySelectorAll('.tier[data-tier]')];
       const annual=document.getElementById('bill-annual');
       const monthly=document.getElementById('bill-monthly');
@@ -439,8 +471,14 @@
         if(custom) custom.href='/?tier=custom&billing='+billing+'#application';
       }
 
-      annual.addEventListener('click',()=>setBilling('annual'));
-      monthly.addEventListener('click',()=>setBilling('monthly'));
+      annual.addEventListener('click',()=>{trackClarity('pricing_tier_interacted',{interaction:'billing',billing:'annual'});setBilling('annual');});
+      monthly.addEventListener('click',()=>{trackClarity('pricing_tier_interacted',{interaction:'billing',billing:'monthly'});setBilling('monthly');});
+      cards.forEach(card=>card.querySelector('.tier-cta')?.addEventListener('click',()=>{
+        trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:card.dataset.tier||'unknown',billing});
+      }));
+      document.querySelector('.custom-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'custom',billing}));
+      document.querySelector('.pilot-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'pilot',billing}));
+      document.querySelector('[data-support-packet-cta]')?.addEventListener('click',()=>trackClarity('procurement_support_packet_requested'));
 
       updateLinks();
     })();
