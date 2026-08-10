@@ -596,10 +596,22 @@
     @media (min-width: 820px) { .cols { grid-template-columns: repeat(3, 1fr); } }
     /* .card: same white/border/radius language as .form-card and
        .partner-stage — the site's shared elevated-surface treatment. */
+    /* A soft resting shadow lifts the card off the tinted sections; the hover
+       state deepens it and raises the card 3px. Kept subtle deliberately —
+       these are informational surfaces, not clickable targets, so the motion
+       should read as depth rather than as an invitation to click. */
     .card {
       background: var(--white); border: 1px solid var(--line);
       border-radius: 20px; padding: clamp(1.5rem, 3vw, 2rem);
+      box-shadow: 0 1px 2px rgba(23,25,31,.04), 0 10px 24px -14px rgba(23,25,31,.14);
+      transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease, border-color .28s ease;
     }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--silver);
+      box-shadow: 0 2px 4px rgba(23,25,31,.05), 0 18px 40px -18px rgba(23,25,31,.22);
+    }
+    @media (prefers-reduced-motion: reduce) { .card:hover { transform: none; } }
     .col-num {
       font-family: var(--mono); font-size: .68rem; letter-spacing: .1em;
       color: var(--orange-ink); display: block; margin-bottom: .9rem;
@@ -632,21 +644,15 @@
       max-width: 50ch; margin: 1.15rem auto 0;
       color: var(--muted); font-size: 1rem; line-height: 1.6;
     }
-    .trust-grid {
-      gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    }
-    .trust-grid .trust-card {
-      min-width: 0; min-height: 330px; display: flex; flex-direction: column;
-      padding: clamp(1.8rem, 3vw, 2.4rem) clamp(1.5rem, 2.8vw, 2.25rem);
-      border: 0; border-radius: 0; background: transparent;
-    }
-    .trust-grid .trust-card + .trust-card { border-left: 1px solid var(--line); }
+    /* These were previously stripped of card chrome and separated by column
+       rules instead, which made the closing section the one card block on the
+       page that did not look like the others. They are now ordinary .card
+       surfaces; only the flex column (so .trust-proof can bottom-align) and
+       the tighter heading size are section-specific. */
+    .trust-card { min-height: 330px; display: flex; flex-direction: column; }
     .trust-card .h3 { font-size: 1.08rem; line-height: 1.38; letter-spacing: -.012em; }
     .trust-card .trust-points { margin-bottom: 1.3rem; }
-    @media (max-width: 819px) {
-      .trust-grid .trust-card { min-height: 0; padding: 1.75rem 0; }
-      .trust-grid .trust-card + .trust-card { border-left: 0; border-top: 1px solid var(--line); }
-    }
+    @media (max-width: 819px) { .trust-card { min-height: 0; } }
 
     /* ── Founder ────────────────────────────────────────────────── */
     /* Portrait is deliberately small — at ~420px it overpowered the quote,
@@ -1086,12 +1092,12 @@
           <h2 class="h2">The rulebook decides. The model explains. Your team approves.</h2>
           <p class="trust-lede">Enforced in the code, not promised in a policy.</p>
         </div>
-        <div class="cols trust-grid reveal">
+        <div class="cols reveal">
           <div class="col card trust-card">
             <span class="col-num">01</span>
             <h3 class="h3">Every citation comes from the document.</h3>
             <ul class="trust-points">
-              <li>Official FAA material is retrieved and quoted. If the answer isn't in a source, TarmacSync tells you that instead of filling the gap.</li>
+              <li>Official FAA material is retrieved and quoted. If the answer isn't in a source, TarmacSync says so instead of inventing one.</li>
             </ul>
             <p class="trust-proof copy-stack copy-stack--tight"><span>The AIP Handbook</span><span>Grant Assurances</span><span>FAA Orders and Advisory Circulars</span></p>
           </div>
@@ -1099,9 +1105,9 @@
             <span class="col-num">02</span>
             <h3 class="h3">Every route comes from the rules.</h3>
             <ul class="trust-points">
-              <li>A rules engine works out the path from your thresholds and funding facts. The model's job is to explain that result in plain language.</li>
+              <li>A rules engine works out the path from your own thresholds and funding. Cooperative contracts surface as candidates to validate — never as a decision already made.</li>
             </ul>
-            <p class="trust-proof copy-stack copy-stack--tight"><span>7,000+ cooperative contracts</span><span>Always a candidate, never a selection</span></p>
+            <p class="trust-proof copy-stack copy-stack--tight"><span>Your local and P-card thresholds</span><span>7,000+ cooperative contracts</span></p>
           </div>
           <div class="col card trust-card">
             <span class="col-num">03</span>
@@ -1125,7 +1131,7 @@
           <div>
             <span class="eyebrow">From the founder</span>
             <p class="founder-quote">"The question was never what to buy. It was always how to buy it."</p>
-            <p class="founder-story copy-stack"><span>I built TarmacSync after watching airport teams search the same policies, funding terms, contracts, and project files whenever a new purchase or project came up.</span><span>The goal is simple: help the team connect those pieces sooner and move forward with greater clarity.</span></p>
+            <p class="founder-story copy-stack"><span>I built TarmacSync after watching airport teams rebuild the same answer — policy, funding terms, contracts, project files — every time a new purchase came up.</span><span>Working it out was never the hard part of the job. It just took the longest.</span></p>
             <div class="founder-sign">
               <strong>Omar Daaboul, A.A.E.</strong>
               <span class="copy-stack copy-stack--tight"><span>Accredited Airport Executive</span><span>Founder, TarmacSync</span></span>
