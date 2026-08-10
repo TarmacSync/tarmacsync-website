@@ -423,6 +423,13 @@
     .section-dark { background: var(--ink); color: #fff; }
     .section-dark .lede, .section-dark .body { color: rgba(255,255,255,.72); }
     .section-dark .eyebrow { color: rgba(255,255,255,.5); }
+    /* After the first three cinematic sections, alternate quiet neutral fields
+       so each idea reads as a new chapter without adding decorative noise. */
+    .section-proactive { background: var(--white); border-top: 1px solid var(--line); }
+    .section-knows { background: #FAF8F5; border-block: 1px solid #ECE8E3; }
+    .founder-section { background: var(--white); }
+    .partner-section { background: var(--cloud); border-top: 1px solid var(--line); }
+    .faq-section { background: var(--white); border-top: 1px solid var(--line); }
 
     /* Measure caps live on the heading/paragraph themselves — a `ch` cap on the
        wrapper resolves against 17px body text, not the display size, which
@@ -572,7 +579,6 @@
 
     /* ── Inline-style replacements ──────────────────────────────── */
     /* ── Intelligence and trust ────────────────────────────────── */
-    .section-knows { border-top: 1px solid var(--line); }
     .success-heading { text-align: center; font-size: 1.3rem; }
     .success-intro { margin-top: 1rem; font-size: .95rem; text-align: left; }
     .success-next-label { font-size: .82rem; font-weight: 600; color: var(--orange-ink); margin: 1.5rem 0 .6rem; text-transform: uppercase; letter-spacing: .06em; text-align: left; }
@@ -666,7 +672,6 @@
     }
 
     /* ── Founding Airport Partner Program ──────────────────────── */
-    .partner-section { background: var(--white); }
     .partner-stage {
       position: relative; isolation: isolate; overflow: hidden;
       display: grid; background: #17191f; border: 1px solid rgba(255,255,255,.08);
@@ -1050,7 +1055,7 @@
 
     <!-- ══ INTELLIGENCE + TRUST ═════════════════════════════════ -->
     <!-- ══ PROACTIVE ═════════════════════════════════════════════ -->
-    <section class="section section-tint">
+    <section class="section section-proactive">
       <div class="page">
         <div class="section-head center reveal">
           <span class="eyebrow eyebrow-accent">Between projects</span>
@@ -1111,7 +1116,7 @@
     </section>
 
     <!-- ══ FOUNDER ═══════════════════════════════════════════════ -->
-    <section class="section" id="founder">
+    <section class="section founder-section" id="founder">
       <div class="page">
         <div class="founder-grid reveal">
           <div class="founder-portrait">
@@ -1224,7 +1229,7 @@
     </section>
 
     <!-- ══ FAQ ═══════════════════════════════════════════════════ -->
-    <section class="section" id="faq">
+    <section class="section faq-section" id="faq">
       <div class="narrow">
         <div class="section-head center reveal">
           <h2 class="h2">Questions you might have.</h2>
