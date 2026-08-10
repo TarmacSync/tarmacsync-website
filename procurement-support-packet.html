@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Procurement Support Packet — TarmacSync</title>
+  <meta name="description" content="Product overview, sample procurement path snapshot, and evaluation guide to help your airport review TarmacSync." />
+  <link rel="canonical" href="https://www.tarmacsync.com/procurement-support-packet.html" />
+  <link rel="icon" href="assets/tarmacsync-favicon-v2.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#FFFFFF; --tarmac:#0A0A0D; --asphalt-gray:#4A4A52; --orange:#F56A00; --orange-ink:#B94E08; --border-color:#E5E5EB; --light-gray:#F9F9FB; --font-sans:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --font-mono:'JetBrains Mono',monospace; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--tarmac); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; }
+    .container { max-width:820px; margin:0 auto; padding:0 2rem; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:2rem 0; border-bottom:1px solid var(--border-color); margin-bottom:4rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:.7rem 1.15rem; font-size:.82rem; font-weight:600; text-decoration:none; border-radius: 980px; font-family:var(--font-sans); }
+    h1 { font-size:clamp(2rem,4vw,2.8rem); line-height:1.12; letter-spacing:-.035em; margin-bottom:1.5rem; }
+    h2 { font-size:1.35rem; letter-spacing:-.02em; margin:2.5rem 0 .75rem; padding-bottom:.5rem; border-bottom:1px solid var(--border-color); }
+    h3 { font-size:1.05rem; margin:1.25rem 0 .5rem; }
+    p, li { color:var(--asphalt-gray); font-size:.98rem; }
+    ul { margin:.75rem 0 0 1.25rem; }
+    li { margin-bottom:.35rem; }
+    a { color:var(--tarmac); }
+    .eyebrow { font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-ink); display:block; margin-bottom:.5rem; }
+    .cover { text-align:center; padding:4rem 0 3rem; border-bottom:1px solid var(--border-color); }
+    .cover h1 { margin-bottom:.5rem; }
+    .cover .subtitle { color:var(--asphalt-gray); font-size:1.1rem; }
+    .snapshot { border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; margin:1.5rem 0; background:var(--light-gray); }
+    .snapshot-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; padding-bottom:.75rem; border-bottom:1px solid var(--border-color); }
+    .snapshot-label-text { font-family:var(--mono); font-size:.64rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--orange-ink); }
+    .snapshot-project { font-weight:700; font-size:1rem; }
+    .snapshot-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-bottom:1.25rem; }
+    .snapshot-field { }
+    .snapshot-field-label { font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; color:var(--asphalt-gray); margin-bottom:.15rem; }
+    .snapshot-field-value { font-weight:500; color:var(--tarmac); }
+    .snapshot-field-path .snapshot-field-value { color:var(--orange-ink); }
+    .snapshot-next-step { margin-top:1rem; padding:1.25rem; background:var(--tarmac); color:#fff; border-radius:10px; }
+    .snapshot-next-step .snapshot-field-label { color:rgba(255,255,255,.56); }
+    .snapshot-next-step p { color:#fff; margin-top:.25rem; }
+    .snapshot-sources { margin-top:1rem; font-size:.82rem; color:var(--asphalt-gray); }
+    .checklist { list-style:none; margin:1rem 0; }
+    .checklist li { padding:.5rem 0 .5rem 1.75rem; position:relative; border-bottom:1px solid var(--border-color); }
+    .checklist li::before { content:""; position:absolute; left:0; top:.8rem; width:6px; height:6px; border-radius:50%; background:var(--orange); }
+    .note { background:var(--light-gray); border-left:4px solid var(--orange); padding:1rem 1.25rem; margin:1.5rem 0; border-radius:0 6px 6px 0; color:var(--asphalt-gray); font-size:.93rem; }
+    footer { padding: 4.5rem 0 3.5rem; border-top: 1px solid var(--border-color); margin-top: 4rem; }
+    .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
+    @media (max-width: 640px) { .snapshot-grid { grid-template-columns:1fr; } .cover { padding:2rem 0; } }
+
+    @media print {
+      body { font-size:11pt; }
+      header, footer, .no-print { display:none !important; }
+      .container { max-width:100%; padding:0; }
+      .cover { padding:1rem 0; }
+      .snapshot, .note { break-inside:avoid; }
+      a { text-decoration:none; color:var(--tarmac); }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/site-shell.css">
+</head>
+<body>
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home"><img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="/#product">Product</a><a href="/pricing.html">Pricing</a><a href="/#trust">Trust</a><a href="/#founder">Founder</a><a href="/#faq">FAQ</a><a class="site-nav__program" href="/#program">Explore the Founding Airport Partner Program</a>
+      </nav>
+      <a class="site-header__cta" href="/#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <main id="main-content">
+      <div class="cover">
+        <span class="eyebrow">Procurement Support Packet</span>
+        <h1>TarmacSync</h1>
+        <p class="subtitle">Airport procurement intelligence for U.S. airport teams.</p>
+      </div>
+
+      <section>
+        <h2>What TarmacSync does</h2>
+        <p>TarmacSync helps U.S. airport teams turn a purchase or project need into a clear working procurement path, the evidence to review, and the next action — before the process gets stuck.</p>
+        <p>Pathfinder starts with a plain-English purchase or project need, connects the relevant airport and funding context, and helps the team understand a working procurement path, material open issues, supporting evidence, and the next action. It guides, organizes, researches, and drafts; airport staff and applicable authorities continue to review and decide.</p>
+
+        <h3>What the team gets</h3>
+        <ul>
+          <li>A clearer working path based on the purchase, anticipated value, funding, airport policy, and available contract context.</li>
+          <li>Material open issues surfaced before they become delays.</li>
+          <li>Grounded evidence from reviewed airport documents and current official sources when it affects the answer.</li>
+          <li>A practical next action that keeps the project moving.</li>
+          <li>A connected project file that can support planning, procurement, grant, and closeout work over time.</li>
+        </ul>
+
+        <h3>What TarmacSync is not</h3>
+        <ul>
+          <li>Not an ERP, bid portal, accounting platform, e-signature service, or official records system.</li>
+          <li>Does not select vendors or obligate funds.</li>
+          <li>Does not issue final procurement, grant, legal, or FAA determinations.</li>
+          <li>Does not replace legal or procurement review.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Sample Procurement Path Snapshot</h2>
+        <p>Every project TarmacSync works through produces a snapshot like this one. It names the likely path, the open questions, and the next action — drawn from your airport's policy, funding context, and available contract vehicles.</p>
+
+        <div class="snapshot">
+          <div class="snapshot-top">
+            <span class="snapshot-label-text">Illustrative example</span>
+            <span class="snapshot-project">Runway Sweeper</span>
+          </div>
+          <div class="snapshot-grid">
+            <div class="snapshot-field">
+              <div class="snapshot-field-label">Estimated value</div>
+              <div class="snapshot-field-value">$180,000</div>
+            </div>
+            <div class="snapshot-field">
+              <div class="snapshot-field-label">Project funds</div>
+              <div class="snapshot-field-value">Airport operating funds</div>
+            </div>
+            <div class="snapshot-field snapshot-field-path">
+              <div class="snapshot-field-label">Likely path</div>
+              <div class="snapshot-field-value">Cooperative contract candidate</div>
+            </div>
+            <div class="snapshot-field">
+              <div class="snapshot-field-label">Authority</div>
+              <div class="snapshot-field-value">Airport approval requirements must be confirmed</div>
+            </div>
+          </div>
+          <div class="snapshot-next-step">
+            <div class="snapshot-field-label">Next step</div>
+            <p>Confirm that the airport is authorized to use the agreement and that the required equipment is within its awarded scope.</p>
+          </div>
+          <p class="snapshot-sources"><strong>Sources reviewed:</strong> Local purchasing policy &middot; Existing agreements &middot; Cooperative contract documentation</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>How to evaluate TarmacSync for your airport</h2>
+        <ol class="checklist" style="list-style:decimal inside; padding-left:0;">
+          <li style="padding-left:.75rem;"><strong>Review the public trust, security, and privacy pages</strong> at <a href="https://app.tarmacsync.com/trust">app.tarmacsync.com/trust</a>. Confirm the security posture and data-handling commitments meet your airport's requirements.</li>
+          <li style="padding-left:.75rem;"><strong>Review the Data Processing Addendum</strong> for subprocessor and cross-border transfer details. US-only processing is available on request.</li>
+          <li style="padding-left:.75rem;"><strong>Confirm the pilot data boundaries.</strong> The Founding Airport Partner Program uses non-sensitive project and procurement information. SSI, CUI, classified, and export-controlled material are not accepted.</li>
+          <li style="padding-left:.75rem;"><strong>Identify a real purchase or project</strong> expected during the next six months. The strongest evaluation is working through an actual airport need.</li>
+          <li style="padding-left:.75rem;"><strong>Schedule a fit conversation.</strong> Complete the form at <a href="/#application">tarmacsync.com/#application</a>. Omar will reply personally within two business days.</li>
+        </ol>
+
+        <div class="note">
+          <strong>For your procurement or purchasing team:</strong> TarmacSync is priced per airport, not per user, starting at $2,400 per year. A W-9 is available on request for vendor setup. Government Customer Addendum and Data Processing Addendum are provided for public-agency review. Terms page: <a href="/terms.html">tarmacsync.com/terms.html</a>.
+        </div>
+      </section>
+
+      <section>
+        <h2>Founding Airport Partner Program</h2>
+        <p>Airports can evaluate TarmacSync through a free 90-day collaboration using real, non-sensitive projects. The program includes guided setup, a configured workspace, direct founder support, and no purchase commitment. Founding airports that continue lock in their launch price for the first 12 months.</p>
+        <p><a href="/founding-airports.html">Full program details</a> &middot; <a href="/#application">Reserve a place for January 2027</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+      <div class="site-footer__links"><a href="/pricing.html">Pricing</a><a href="/resources.html">Resources</a><a href="/#application">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/government-customer-addendum.html">Government Addendum</a><a href="/data-processing-addendum.html">DPA</a><a href="/security.html">Security</a></div>
+    </div>
+    <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
+  </footer>
+  <script src="assets/site-shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Roadmap — TarmacSync</title>
+  <meta name="description" content="TarmacSync product roadmap — current capabilities, what's coming, and long-term direction." />
+  <link rel="canonical" href="https://www.tarmacsync.com/product-roadmap.html" />
+  <link rel="icon" href="assets/tarmacsync-favicon-v2.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#FFFFFF; --tarmac:#0A0A0D; --asphalt-gray:#4A4A52; --orange:#F56A00; --orange-ink:#B94E08; --border-color:#E5E5EB; --light-gray:#F9F9FB; --font-sans:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --font-mono:'JetBrains Mono',monospace; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--tarmac); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; }
+    .container { max-width:820px; margin:0 auto; padding:0 2rem; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:2rem 0; border-bottom:1px solid var(--border-color); margin-bottom:3rem; }
+    h1 { font-size:clamp(2rem,4vw,2.6rem); line-height:1.12; letter-spacing:-.035em; margin-bottom:1rem; }
+    h2 { font-size:1.35rem; letter-spacing:-.02em; margin:2.5rem 0 1rem; padding-bottom:.5rem; border-bottom:1px solid var(--border-color); }
+    h3 { font-size:1.05rem; margin:1.25rem 0 .5rem; }
+    p, li { color:var(--asphalt-gray); font-size:.98rem; }
+    ul { margin:.75rem 0 0 1.25rem; }
+    li { margin-bottom:.5rem; }
+    a { color:var(--tarmac); }
+    .eyebrow { font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-ink); display:block; margin-bottom:.5rem; }
+    .phase { border:1px solid var(--border-color); border-radius:10px; padding:1.25rem 1.5rem; margin:1rem 0; background:var(--light-gray); }
+    .phase-label { font-family:var(--mono); font-size:.68rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--orange-ink); margin-bottom:.5rem; }
+    .phase h3 { margin:0 0 .5rem; }
+    .phase p { margin:0; }
+    .capability-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+    .cap-card { border:1px solid var(--border-color); border-radius:8px; padding:1rem; }
+    .cap-card h4 { font-size:.92rem; margin-bottom:.25rem; }
+    .cap-card p { font-size:.84rem; color:var(--asphalt-gray); margin:0; }
+    .note { background:var(--light-gray); border-left:4px solid var(--orange); padding:1rem 1.25rem; margin:1.5rem 0; border-radius:0 6px 6px 0; color:var(--asphalt-gray); font-size:.93rem; }
+    footer { padding:4.5rem 0 3.5rem; border-top:1px solid var(--border-color); margin-top:4rem; }
+    @media (max-width:640px) { .capability-grid { grid-template-columns:1fr; } }
+  </style>
+  <link rel="stylesheet" href="assets/site-shell.css">
+</head>
+<body>
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/" aria-label="TarmacSync home"><img class="site-header__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
+      <nav class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <a href="/#product">Product</a><a href="/pricing.html">Pricing</a><a href="/#trust">Trust</a><a href="/#founder">Founder</a><a href="/#faq">FAQ</a><a class="site-nav__program" href="/#program">Explore the Founding Airport Partner Program</a>
+      </nav>
+      <a class="site-header__cta" href="/#program"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <main id="main-content">
+      <span class="eyebrow">Product Roadmap</span>
+      <h1>What TarmacSync does today &mdash; and what is coming</h1>
+      <p>The Founding Airport Partner Program shapes the roadmap. The strongest product signals come from watching real airport teams work through real projects. This page reflects current capabilities and planned direction; timing shifts based on what we learn.</p>
+
+      <section>
+        <h2>Intelligence foundation (live today)</h2>
+        <ul>
+          <li>1,244 indexed sections of FAA AIP Handbook (Order 5100.38D Change 1)</li>
+          <li>40 Grant Assurances (April 2025 airport-development set)</li>
+          <li>7,000+ cooperative contracts across five consortiums (Sourcewell, OMNIA Partners, NASPO ValuePoint, TIPS-USA, GSA)</li>
+          <li>FAA Advisory Circulars registry with current-revision tracking</li>
+          <li>35 procurement playbooks — full airport taxonomy from ARFF vehicles to concessions</li>
+          <li>Deterministic procurement path engine plus AI synthesis (DeepSeek V4)</li>
+          <li>Weekly regulatory-currency monitoring for AC revisions, AIP Handbook edition, and FAR thresholds</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Current capabilities</h2>
+        <div class="capability-grid">
+          <div class="cap-card"><h4>Pathfinder chat</h4><p>Plain-English procurement intake. Guided path review with funding, threshold, and cooperative contract analysis.</p></div>
+          <div class="cap-card"><h4>Cooperative contract matching</h4><p>Candidates across five consortiums, with AIP eligibility assessment and GSA state addendum lookup.</p></div>
+          <div class="cap-card"><h4>Evidence drawer</h4><p>Tiered citations (T0-T3) with official source links. Full stacks in preview/drawer; material citations in chat.</p></div>
+          <div class="cap-card"><h4>Procurement file generation</h4><p>Evidence packets, packet manifest, readiness score (14-signal). Printable for audit and review.</p></div>
+          <div class="cap-card"><h4>FAA forms preparation guide</h4><p>4-tier field guidance per form. Official form links. Buyer American, civil rights, and DBE forms included.</p></div>
+          <div class="cap-card"><h4>Board-ready decision summaries</h4><p>Route, funding, open issues, and recommended action in a structured format for board agenda packets.</p></div>
+          <div class="cap-card"><h4>Approval workflow</h4><p>Request, approve/reject, activity feed. Org-scoped with named approver support.</p></div>
+          <div class="cap-card"><h4>Post-award lifecycle</h4><p>Award → Delivery → Payment → Closeout bar with phase-specific guidance and evidence citations.</p></div>
+          <div class="cap-card"><h4>Document vault</h4><p>Upload quarantine with malware scanning. Policy docs, grant agreements, capital-plan attachments.</p></div>
+          <div class="cap-card"><h4>Proactive enrichment</h4><p>Buy American flags, contract/policy findings, vendor research. Advisory only — no compliance assertions.</p></div>
+          <div class="cap-card"><h4>Leadership dashboard</h4><p>Program-level view: upcoming renewals, capital-plan rollups, estimate-vs-award tracking.</p></div>
+          <div class="cap-card"><h4>Proactive notifications</h4><p>Daily procurement alerts, weekly status digest, monthly regulatory-currency report.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Planned</h2>
+        <div class="phase">
+          <div class="phase-label">Founding partner cohort &mdash; January 2027</div>
+          <h3>Partner-driven product improvements</h3>
+          <p>The first cohort drives the immediate roadmap. Every partner session surfaces gaps, confusion points, and missing workflows. The highest-value improvements ship during the program.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-label">Near-term</div>
+          <h3>ERP and procurement system integration</h3>
+          <p>Integration with airport procurement, ERP, and financial systems. Today TarmacSync works alongside existing systems with full data export; direct integration is planned.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-label">Near-term</div>
+          <h3>Enhanced document intelligence</h3>
+          <p>Deeper policy-document analysis. Layout-aware PDF extraction (Docling). Page-anchored chunking for precise source attribution.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-label">Planned</div>
+          <h3>SOC 2 Type II</h3>
+          <p>Evaluate when enterprise-scale or RFP requirements materialize. Current posture is documented in the <a href="/data-processing-addendum.html">Data Processing Addendum</a>.</p>
+        </div>
+        <div class="phase">
+          <div class="phase-label">Planned</div>
+          <h3>Formal penetration test</h3>
+          <p>Scheduled before enterprise-tier launch.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Not on the roadmap</h2>
+        <ul>
+          <li>FedRAMP authorization (TarmacSync is not designed for CUI or FISMA workloads).</li>
+          <li>Replacing airport procurement systems of record, ERPs, or bid portals.</li>
+          <li>Submitting grants or issuing solicitations on behalf of airports.</li>
+          <li>Becoming a contract vehicle or cooperative purchasing program itself.</li>
+        </ul>
+      </section>
+
+      <div class="note">
+        <strong>Shaped by airports.</strong> This roadmap reflects what we plan, but founding partners change the order. If TarmacSync is missing something your airport needs, tell us during the program. The most requested capabilities move first.
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46" loading="lazy"></a>
+      <div class="site-footer__links"><a href="/pricing.html">Pricing</a><a href="/resources.html">Resources</a><a href="/#application">Contact</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/government-customer-addendum.html">Government Addendum</a><a href="/data-processing-addendum.html">DPA</a><a href="/security.html">Security</a></div>
+    </div>
+    <div class="site-footer__bottom">&copy; 2026 TarmacSync</div>
+  </footer>
+  <script src="assets/site-shell.js"></script>
+</body>
+</html>
