@@ -1386,6 +1386,7 @@
       fullscreen.addEventListener('click',async()=>{
         try{
           if(document.fullscreenElement){await document.exitFullscreen();}
+          else if(video.webkitEnterFullscreen){video.webkitEnterFullscreen();}
           else if(player.requestFullscreen){await player.requestFullscreen();}
           else if(player.webkitRequestFullscreen){player.webkitRequestFullscreen();}
         }catch(_error){announce('Fullscreen is not available in this browser.');}
