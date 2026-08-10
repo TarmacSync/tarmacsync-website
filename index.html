@@ -655,15 +655,6 @@
     }
     .path-result strong { color: var(--ink); font-size: .92rem; line-height: 1.4; font-weight: 600; }
     .path-result:last-child span { color: var(--orange-ink); }
-    .path-lifecycle {
-      margin-top: auto; padding-top: 1rem;
-      border-top: 1px solid rgba(62,65,73,.12);
-    }
-    .path-lifecycle-label {
-      display: block; margin-bottom: .65rem;
-      color: var(--muted); font-family: var(--mono);
-      font-size: .59rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-    }
     @media (max-width: 900px) {
       .path-flow { grid-template-columns: 1fr; width: min(100%, 520px); margin-top: 2rem; }
       .path-card { min-height: 0; }
@@ -1083,7 +1074,6 @@
       <div class="page">
         <div class="vision-head reveal">
           <span class="eyebrow">The TarmacSync vision</span>
-          <span class="capability-tag">Planned lifecycle</span>
           <h2 class="vision-title" id="vision-title">One purchase, from need through <span class="vision-accent">grant closeout.</span></h2>
           <p class="vision-copy">A look inside a single airport purchase — the policy and funding that shape it, the federal requirements that attach to it, and the file it leaves behind.</p>
         </div>
@@ -1100,7 +1090,7 @@
             aria-label="TarmacSync vision film"
           >
             <source data-src="assets/tarmacsync-demo.mp4" type="video/mp4">
-            <track src="assets/tarmacsync-demo.vtt" kind="subtitles" srclang="en" label="English">
+            <track src="assets/tarmacsync-demo.vtt" kind="subtitles" srclang="en" label="English" default>
             Your browser does not support HTML video.
           </video>
           <button class="vision-start" type="button" data-vision-start aria-label="Play the TarmacSync vision film with sound">
@@ -1209,9 +1199,6 @@
               <div class="path-result"><span>Likely route</span><strong>Cooperative contract — candidate</strong></div>
               <div class="path-result"><span>Open issue</span><strong>Federal funding not confirmed</strong></div>
               <div class="path-result"><span>Next move</span><strong>Validate contract scope</strong></div>
-            </div>
-            <div class="path-lifecycle">
-              <span class="path-lifecycle-label">Planned: guided from need through grant closeout</span>
             </div>
           </article>
         </div>
