@@ -28,7 +28,11 @@
     * { box-sizing:border-box; margin:0; padding:0; }
     body { background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.6; -webkit-font-smoothing:antialiased; }
     .container { max-width:780px; margin:0 auto; padding:0 2rem; }
-    h1 { font-size:clamp(2rem,4vw,2.6rem); line-height:1.15; letter-spacing:-.035em; margin-bottom:1rem; }
+    .legal-page-main { padding: 5rem 0 2rem; }
+    .legal-page-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+    .coordinate-label { font-family: var(--sans); font-size: .75rem; letter-spacing: .1em; color: var(--muted); }
+    h1 { font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.08; letter-spacing: -.04em; margin: 1rem 0; }
+    .intro { color: var(--muted); font-size: 1.08rem; max-width: 760px; }
     h2 { font-size:1.35rem; margin:2.5rem 0 1rem; }
     p { color:var(--muted); font-size:1rem; line-height:1.65; margin-bottom:1rem; }
     ul { margin:0 0 1.5rem 1.25rem; color:var(--muted); line-height:1.7; }
@@ -54,9 +58,12 @@
     </div>
   </header>
 
-  <main class="container main" id="main-content">
-    <h1>Founding Airport Partner Program</h1>
-    <p>TarmacSync is welcoming Founding Airport Partners to evaluate the product on real purchases and projects during a free 90-day pilot. Founding Partners shape the platform before broader release. We are happy to welcome any U.S. public-use airport that wants to participate.</p>
+  <main class="container legal-page-main" id="main-content">
+    <div class="legal-page-header">
+      <span class="coordinate-label">[ FOUNDING AIRPORT PARTNER PROGRAM ]</span>
+      <h1>Founding Airport Partner Program</h1>
+      <p class="intro">TarmacSync is welcoming Founding Airport Partners to evaluate the product on real purchases and projects during a free 90-day pilot. Founding Partners shape the platform before broader release. We are happy to welcome any U.S. public-use airport that wants to participate.</p>
+    </div>
 
     <div class="card" style="border-left:3px solid var(--orange)">
       <p style="margin:0"><strong style="color:var(--ink)">The first cohort begins January 2027.</strong> Each airport is configured personally before the start — policy, thresholds, and funding context in place on day one — so the cohort is limited. Reserve by November 30, 2026. Reserving costs nothing and commits you to nothing.</p>
@@ -90,6 +97,7 @@
     <p>Between now and January we use that conversation to understand your policy, thresholds, and the projects you expect to run, so the platform reflects your airport when the cohort starts.</p>
 
     <a class="btn" href="/#application">Reserve a place in the January 2027 cohort</a>
+    </div>
   </main>
 
   <footer class="site-footer">

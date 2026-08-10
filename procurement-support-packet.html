@@ -17,7 +17,11 @@
     * { box-sizing:border-box; margin:0; padding:0; }
     body { background:var(--bg); color:var(--tarmac); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; }
     .container { max-width:820px; margin:0 auto; padding:0 2rem; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:2rem 0; border-bottom:1px solid var(--border-color); margin-bottom:4rem; }
+    .legal-page-main { padding: 5rem 0 2rem; }
+    .legal-page-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
+    .coordinate-label { font-family: var(--sans); font-size: .75rem; letter-spacing: .1em; color: var(--asphalt-gray); }
+    h1 { font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.08; letter-spacing: -.04em; margin: 1rem 0; }
+    .intro { color: var(--asphalt-gray); font-size: 1.08rem; max-width: 760px; }
     .btn { display:inline-flex; align-items:center; justify-content:center; padding:.7rem 1.15rem; font-size:.82rem; font-weight:600; text-decoration:none; border-radius: 980px; font-family:var(--font-sans); }
     h1 { font-size:clamp(2rem,4vw,2.8rem); line-height:1.12; letter-spacing:-.035em; margin-bottom:1.5rem; }
     h2 { font-size:1.35rem; letter-spacing:-.02em; margin:2.5rem 0 .75rem; padding-bottom:.5rem; border-bottom:1px solid var(--border-color); }
@@ -75,11 +79,11 @@
   </header>
 
   <div class="container">
-    <main id="main-content">
-      <div class="cover">
-        <span class="eyebrow">Procurement Support Packet</span>
-        <h1>TarmacSync</h1>
-        <p class="subtitle">Airport procurement intelligence for U.S. airport teams.</p>
+    <main class="legal-page-main" id="main-content">
+      <div class="legal-page-header">
+        <span class="coordinate-label">[ PROCUREMENT SUPPORT PACKET ]</span>
+        <h1>Procurement Support Packet</h1>
+        <p class="intro">Product overview, sample procurement path snapshot, and evaluation guide to help your airport review TarmacSync.</p>
       </div>
 
       <section>
@@ -160,6 +164,7 @@
         <p>Airports can evaluate TarmacSync through a free 90-day collaboration using real, non-sensitive projects. The program includes guided setup, a configured workspace, direct founder support, and no purchase commitment. Founding airports that continue lock in their launch price for the first 12 months.</p>
         <p><a href="/founding-airports.html">Full program details</a> &middot; <a href="/#application">Reserve a place for January 2027</a></p>
       </section>
+    </div>
     </main>
   </div>
 
