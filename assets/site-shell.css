@@ -144,7 +144,7 @@
 }
 
 .site-footer__inner,
-.site-footer__bottom {
+.site-footer__copyright {
   width: min(1120px, calc(100% - 3rem));
   margin-inline: auto;
 }
