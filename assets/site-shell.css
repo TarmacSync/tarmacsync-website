@@ -186,10 +186,13 @@
 .site-footer__links a:hover { color: #17191F; }
 
 .site-footer__copyright {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #E4E6EA;
+  text-align: right;
   color: #6E7179;
   font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: .78rem;
-  white-space: nowrap;
+  font-size: .75rem;
 }
 
 @media (max-width: 860px) {
