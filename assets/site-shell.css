@@ -159,10 +159,13 @@
 .site-footer__logo {
   display: block;
   width: 164px;
-  height: 40px;
-  max-width: none;
+  height: auto;
+  max-width: 100%;
   object-fit: contain;
   object-position: left center;
+}
+.site-footer__logo--icon {
+  width: 40px;
 }
 
 .site-footer__links {
