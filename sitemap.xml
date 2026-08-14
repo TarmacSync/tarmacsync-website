@@ -61,6 +61,24 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://www.tarmacsync.com/privacy-choices.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.tarmacsync.com/accessibility.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.tarmacsync.com/non-discrimination.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://www.tarmacsync.com/terms.html</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>yearly</changefreq>
