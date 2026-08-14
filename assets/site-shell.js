@@ -28,4 +28,18 @@
     syncHeader();
     window.addEventListener('scroll', syncHeader, { passive: true });
   });
+
+  // Skip-to-content: move focus to <main> rather than relying on fragment navigation,
+  // which leaves focus on <body> in Chromium and does not reliably bypass the header.
+  document.querySelectorAll('.skip-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var id = link.getAttribute('href');
+      if (!id || id.charAt(0) !== '#') return;
+      var target = document.getElementById(id.slice(1));
+      if (!target) return;
+      event.preventDefault();
+      target.focus();
+      history.replaceState(null, '', id);
+    });
+  });
 })();

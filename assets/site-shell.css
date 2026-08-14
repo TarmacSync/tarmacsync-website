@@ -1,6 +1,20 @@
 /* TarmacSync shared marketing-site shell
    Keeps global navigation and footer behavior consistent across static pages. */
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #17191F;
+  color: #fff;
+  padding: .7rem 1.1rem;
+  z-index: 200;
+  border-radius: 0 0 8px 0;
+  font-size: .9rem;
+  font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
 .site-header {
   position: sticky;
   top: 0;
