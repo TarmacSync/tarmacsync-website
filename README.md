@@ -107,6 +107,32 @@ Before publishing changes:
 6. Confirm canonical, title, description, and structured data still match the product.
 7. Confirm `robots.txt` and `sitemap.xml` still point to the correct domain.
 
+## Accessibility checks
+
+A reusable accessibility sweep lives in `scripts/a11y-sweep.cjs`. It runs the
+mechanical checks that an automated axe scan cannot cover:
+
+- Horizontal overflow at 320/375/768/1280/1440px (WCAG 1.4.10 reflow)
+- Skip-link keyboard behavior (WCAG 2.4.1 bypass blocks)
+- WCAG 1.4.12 text-spacing override (no overflow)
+- Forced-colors / high-contrast rendering
+- Mobile-menu keyboard activation (`aria-expanded` + `aria-controls`)
+- Console / page errors
+
+It serves the repo on a built-in static server, or you can point `BASE_URL` at a
+deployed host. It requires Playwright as a dev-only dependency:
+
+```bash
+npm install
+npm run a11y                                      # sweep every page locally
+BASE_URL=https://www.tarmacsync.com npm run a11y  # sweep a deployed host
+PAGES="index.html,pricing.html" npm run a11y      # sweep a subset
+```
+
+Exits 0 when every check passes; exits 1 and prints a JSON report when any check
+fails. The Playwright dependency is development-only and does not affect the
+shipped static site.
+
 ## Housekeeping docs
 
 - [CONTRIBUTING.md](./CONTRIBUTING.md)

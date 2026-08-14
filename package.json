@@ -1,0 +1,12 @@
+{
+  "name": "tarmacsync-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TarmacSync public marketing website (static)",
+  "scripts": {
+    "a11y": "node scripts/a11y-sweep.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
