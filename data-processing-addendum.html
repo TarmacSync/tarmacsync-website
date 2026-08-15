@@ -109,8 +109,6 @@
             <tr><th>Subprocessor</th><th>Purpose</th><th>Data processed</th><th>Location</th></tr>
             <tr><td>Google (Gemini AI)</td><td>AI inference, PDF extraction</td><td>Conversation content, airport context, uploaded PDF text</td><td>United States (Google Cloud)</td></tr>
             <tr><td>Sentry (Error Monitoring)</td><td>Error capture</td><td>Error messages, stack traces, request context</td><td>United States</td></tr>
-            <tr><td>Langfuse (AI Observability)</td><td>AI turn tracing</td><td>Prompt and response content</td><td>Langfuse Cloud or self-hosted</td></tr>
-            <tr><td>Upstash Redis</td><td>Rate limiting, operational cache</td><td>Rate-limit keys, counters</td><td>Selected Upstash region</td></tr>
             <tr><td>Document Vault Object Store</td><td>Uploaded document storage</td><td>Policy docs, grant agreements, attachments</td><td>Per deployment</td></tr>
             <tr><td>Hosted Malware Scanner</td><td>Upload scanning</td><td>Object keys, content type, file bytes</td><td>Per deployment</td></tr>
             <tr><td>Docling Document Conversion</td><td>PDF extraction for knowledge index</td><td>Uploaded document bytes, extracted text</td><td>Self-hosted by default</td></tr>
@@ -122,8 +120,6 @@
         <div class="legal-table-scroll" role="region" aria-label="Outbound lookup services" tabindex="0">
           <table>
             <tr><th>Service</th><th>Purpose</th><th>Data sent</th></tr>
-            <tr><td>Tavily (Web Search)</td><td>Vendor and market research</td><td>Search query strings</td></tr>
-            <tr><td>NimbleWay (Web Search)</td><td>Live web retrieval</td><td>Search query strings</td></tr>
             <tr><td>SAM.gov</td><td>Vendor exclusion screening</td><td>Vendor name strings</td></tr>
             <tr><td>USAspending.gov</td><td>Comparable federal award lookups</td><td>Keyword strings</td></tr>
           </table>
