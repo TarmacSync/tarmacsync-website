@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/privacy-choices.html",
+      "destination": "/privacy.html#your-choices",
+      "statusCode": 301
+    },
+    {
       "source": "/(.*)",
       "has": [
         { "type": "host", "value": "tarmacsync.com" }
