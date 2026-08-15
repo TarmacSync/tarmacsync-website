@@ -1590,19 +1590,7 @@
     (function(){
       const p=new URLSearchParams(window.location.search);
       ['utm_source','utm_medium','utm_campaign'].forEach(k=>{const e=document.getElementById(k);if(e&&p.get(k))e.value=p.get(k)});
-      const interest=(p.get('interest')||'').toLowerCase();
-      if(interest==='procurement-support-packet'){
-        const h=document.getElementById('tier_interest'); if(h)h.value='Procurement Support Packet request';
-        const note=document.getElementById('tier-note');
-        if(note){
-          const copy=document.getElementById('tier-note-copy');
-          if(copy)copy.textContent='Request saved: Procurement Support Packet';
-          note.style.display='flex';
-        }
-        const project=document.getElementById('project');
-        if(project&&!project.value)project.value='Please send our airport the Procurement Support Packet.';
-      }
-      const tier=(p.get('tier')||'').toLowerCase(); if(!tier&&!interest)return;
+      const tier=(p.get('tier')||'').toLowerCase(); if(!tier)return;
       if(!tier){
         const application=document.getElementById('application');
         const showSelection=()=>{
