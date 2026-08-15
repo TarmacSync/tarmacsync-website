@@ -497,7 +497,7 @@
       }));
       document.querySelector('.custom-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'custom',billing}));
       document.querySelector('.pilot-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'pilot',billing}));
-      document.querySelector('[data-support-packet-cta]')?.addEventListener('click',()=>trackClarity('procurement_support_packet_requested'));
+      document.querySelector('[data-support-packet-cta]')?.addEventListener('click',()=>trackClarity('evaluation_guide_viewed'));
 
       updateLinks();
     })();
