@@ -135,7 +135,6 @@
           <li>AES-256 encryption at rest (Neon Postgres).</li>
           <li>Application-layer tenant isolation with PostgreSQL row-level security (RLS) enforced on all tables.</li>
           <li>Application connects as a database role without BYPASSRLS; a query missing tenant context returns zero rows.</li>
-          <li>Append-only, database-enforced audit logging. Application role holds no UPDATE or DELETE on the audit table.</li>
           <li>Self-hosted identity — passwordless email one-time-code sign-in with TOTP 2FA (RFC 6238).</li>
           <li>Three RBAC roles: owner, procurement, viewer. Org-scoped sessions, revocable on next request.</li>
           <li>Sliding-window rate limiting. Fails closed — if the limiter is unreachable, the request is refused.</li>
@@ -165,7 +164,7 @@
 
       <section>
         <h2>9. Compliance scope</h2>
-        <p>Application hosting (Vercel) and the database (Neon), where all airport data is stored and processed, hold SOC 2 Type II certifications. TarmacSync has not yet completed its own organizational SOC 2 audit — planned when enterprise requirements materialize. FedRAMP is not applicable (TarmacSync is not designed for CUI or FISMA workloads). An internal VPAT (WCAG 2.2 AA, ITI 2.5 format) is available on request. A formal penetration test is scheduled before enterprise-tier launch. SOC 2 reports from Vercel and Neon are available under NDA on request.</p>
+        <p>Application hosting (Vercel) and the database (Neon), where all airport data is stored and processed, hold SOC 2 Type II certifications. TarmacSync has not yet completed its own organizational SOC 2 audit — planned when enterprise requirements materialize. FedRAMP is not applicable (TarmacSync is not designed for CUI or FISMA workloads). An internal VPAT (WCAG 2.2 AA, ITI 2.5 format) is available on request. SOC 2 reports from Vercel and Neon are available under NDA on request.</p>
       </section>
 
       <section>
