@@ -1,6 +1,16 @@
 {
   "redirects": [
     {
+      "source": "/founding-airports.html",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilot-program-brief.html",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
       "source": "/privacy-choices.html",
       "destination": "/privacy.html#your-choices",
       "statusCode": 301
