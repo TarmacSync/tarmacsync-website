@@ -453,11 +453,6 @@
   <script src="assets/site-shell.js"></script>
   <script>
     (function(){
-      function trackClarity(eventName,properties){
-        if(typeof window.clarity!=='function')return;
-        Object.entries(properties||{}).forEach(([key,value])=>window.clarity('set',key,String(value)));
-        window.clarity('event',eventName);
-      }
       const cards=[...document.querySelectorAll('.tier[data-tier]')];
       const annual=document.getElementById('bill-annual');
       const monthly=document.getElementById('bill-monthly');
@@ -487,14 +482,8 @@
         if(custom) custom.href='/?tier=custom&billing='+billing+'#application';
       }
 
-      annual.addEventListener('click',()=>{trackClarity('pricing_tier_interacted',{interaction:'billing',billing:'annual'});setBilling('annual');});
-      monthly.addEventListener('click',()=>{trackClarity('pricing_tier_interacted',{interaction:'billing',billing:'monthly'});setBilling('monthly');});
-      cards.forEach(card=>card.querySelector('.tier-cta')?.addEventListener('click',()=>{
-        trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:card.dataset.tier||'unknown',billing});
-      }));
-      document.querySelector('.custom-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'custom',billing}));
-      document.querySelector('.pilot-tier-cta')?.addEventListener('click',()=>trackClarity('pricing_tier_interacted',{interaction:'tier_cta',tier:'pilot',billing}));
-      document.querySelector('[data-support-packet-cta]')?.addEventListener('click',()=>trackClarity('evaluation_guide_viewed'));
+      annual.addEventListener('click',()=>{setBilling('annual');});
+      monthly.addEventListener('click',()=>{setBilling('monthly');});
 
       updateLinks();
     })();

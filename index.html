@@ -1414,12 +1414,6 @@
 
   <script src="assets/site-shell.js"></script>
   <script>
-    function trackClarity(eventName,properties){
-      if(typeof window.clarity!=='function')return;
-      Object.entries(properties||{}).forEach(([key,value])=>window.clarity('set',key,String(value)));
-      window.clarity('event',eventName);
-    }
-
     (function(){
       const player=document.querySelector('[data-vision-player]');
       const video=player?.querySelector('[data-vision-video]');
@@ -1460,7 +1454,6 @@
         if(mutedIcon)mutedIcon.style.display=video.muted?'':'none';
       };
       const begin=async()=>{
-        trackClarity('vision_video_started');
         loadSource();
         player.classList.remove('is-ended');
         start.hidden=true;
@@ -1581,22 +1574,13 @@
       window.addEventListener('load',()=>setTimeout(showSelection,50),{once:true});
     })();
 
-    document.querySelectorAll('[data-report-cta]').forEach(link=>{
-      link.addEventListener('click',()=>trackClarity('report_cta_clicked',{report_cta_location:link.dataset.reportCta||'unknown'}));
-    });
-    document.querySelectorAll('[data-snapshot-cta]').forEach(link=>{
-      link.addEventListener('click',()=>trackClarity('snapshot_cta_clicked',{cta_location:link.dataset.snapshotCta||'unknown'}));
-    });
-
     const form=document.getElementById('report-form');
     if(form){
       const status=document.getElementById('form-status');
       const button=form.querySelector('button[type="submit"]');
-      form.addEventListener('focusin',()=>trackClarity('report_form_started'),{once:true});
-      form.addEventListener('invalid',()=>trackClarity('report_form_error',{error_type:'validation'}),{capture:true,once:true});
       form.addEventListener('submit',async e=>{
         e.preventDefault();
-        if(!form.checkValidity()){trackClarity('report_form_error',{error_type:'validation'});form.reportValidity();return;}
+        if(!form.checkValidity()){form.reportValidity();return;}
         const payload=Object.fromEntries(new FormData(form).entries());
         payload.followUpConsent=payload.follow_up_consent==='yes';
         payload.source='airport-infrastructure-delivery-gap';
@@ -1607,8 +1591,8 @@
           const r=await fetch('/api/report-download',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(payload)});
           const d=await r.json().catch(()=>({}));
           if(!r.ok||!d.ok)throw new Error(d.error||'We could not confirm your report request. Please try again.');
-          form.reset();form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';trackClarity('report_requested',{follow_up_consent:String(payload.followUpConsent)});
-        }catch(err){status.className='form-status error';status.textContent=err.message||'We couldn’t send the report right now. Please try again.';trackClarity('report_form_error',{error_type:'submission'});button.disabled=false;button.textContent='Email me the report';
+          form.reset();form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
+        }catch(err){status.className='form-status error';status.textContent=err.message||'We couldn’t send the report right now. Please try again.';button.disabled=false;button.textContent='Email me the report';
         }finally{form.removeAttribute('aria-busy');}
       });
     }
