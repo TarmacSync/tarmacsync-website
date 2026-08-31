@@ -1,3 +1,8 @@
+// Vercel Web Analytics
+(function() {
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+})();
+
 (function () {
   document.querySelectorAll('[data-site-header]').forEach(function (header) {
     var menu = header.querySelector('[data-site-menu]');
