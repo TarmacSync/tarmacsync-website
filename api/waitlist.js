@@ -13,7 +13,11 @@ const sendJson = (response, status, body) => {
 };
 
 module.exports = async function waitlist(request, response) {
-  if (request.method !== "POST") {
+  // Legacy Founding Partner endpoint disabled. The homepage now uses the guarded report flow.
+  return sendJson(response, 410, { ok: false, error: "This form is no longer available." });
+};
+
+/* Legacy implementation retained below for historical rollback reference only.
     response.setHeader("Allow", "POST");
     return sendJson(response, 405, { ok: false, error: "Method not allowed." });
   }
@@ -374,3 +378,4 @@ module.exports = async function waitlist(request, response) {
 
   return sendJson(response, 200, { ok: true });
 };
+*/

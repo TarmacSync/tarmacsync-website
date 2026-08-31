@@ -80,7 +80,7 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Who is the Founding Airport Partner Program for?",
+        "name": "Who is The Airport Infrastructure Delivery Gap for?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "U.S. public-use airport teams and sponsors — especially GA, reliever, non-hub, and small-hub airports. The strongest fit is an airport with a real upcoming purchase or project and a willingness to provide candid feedback."
@@ -88,10 +88,10 @@
       },
       {
         "@type": "Question",
-        "name": "What does the 90-day collaboration include?",
+        "name": "What happens after I request the report?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Each participating airport receives guided setup, a configured TarmacSync workspace, TarmacSync support across real airport projects, short check-ins during the 90-day program, and direct working sessions with the founder. There is no fee, automatic renewal, or purchase commitment."
+          "text": "You receive the report immediately. If you choose the optional follow-ups, Omar sends a few concise weekly insights. No project submission, account, or meeting is required."
         }
       },
       {
@@ -144,18 +144,18 @@
       },
       {
         "@type": "Question",
-        "name": "What does \"Founding Airport Partner\" mean?",
+        "name": "What does the report request require?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "\"Founding Airport Partner\" describes participation in TarmacSync's initial airport program. It does not create an ownership, equity, agency, joint-venture, endorsement, or intellectual-property relationship."
+          "text": "For the report, only your work email and airport or organization are required. Do not submit confidential, sensitive, or protected airport information."
         }
       },
       {
         "@type": "Question",
-        "name": "What does TarmacSync cost after the 90 days?",
+        "name": "Does the report request enroll me in follow-up emails?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. Founding Airport collaborations begin in January 2027. Nothing converts automatically — at the end of the 90 days, your airport decides whether to continue. Founding airports that continue lock in their launch price for 12 months. Full tiers and how airports typically purchase are on the TarmacSync pricing page."
+          "text": "No. Follow-up emails are optional and separate from report delivery."
         }
       }
     ]
@@ -786,7 +786,7 @@
       font-size: .64rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
     }
 
-    /* ── Founding Airport Partner Program ──────────────────────── */
+    /* ── Report offer ──────────────────────────────────────────── */
     .partner-stage {
       position: relative; isolation: isolate; overflow: hidden;
       display: grid; background: #17191f; border: 1px solid rgba(255,255,255,.08);
@@ -899,6 +899,9 @@
     .form-actions { display: grid; gap: .7rem; justify-items: start; margin-top: .3rem; }
     .form-actions .btn { width: 100%; }
     .form-note { font-size: .78rem; color: var(--muted); }
+    .consent-row { display:flex; gap:.75rem; align-items:flex-start; margin:1.1rem 0 0; font-size:.78rem; line-height:1.5; color:var(--muted); cursor:pointer; }
+    .consent-row input { flex:0 0 auto; width:18px; height:18px; margin:.1rem 0 0; accent-color:var(--orange-ink); }
+    .consent-row strong { color:var(--graphite); font-weight:650; }
     .form-trust {
       display: flex; gap: .7rem; align-items: flex-start;
       margin-top: 1.1rem; padding: .8rem .9rem;
@@ -1050,9 +1053,9 @@
         <a href="/security.html">Trust</a>
         <a href="#founder">Founder</a>
         <a href="#faq">FAQ</a>
-        <a class="site-nav__program" href="#program" data-program-cta="mobile_nav">Explore the Founding Airport Partner Program</a>
+        <a class="site-nav__program" href="#program" data-report-cta="mobile_nav">Get the free report</a>
       </nav>
-      <a class="site-header__cta" href="#program" data-program-cta="header"><span class="site-header__cta-full">Explore the program</span><span class="site-header__cta-short">Explore</span></a>
+      <a class="site-header__cta" href="#program" data-report-cta="header"><span class="site-header__cta-full">Get the free report</span><span class="site-header__cta-short">Get the report</span></a>
       <button class="site-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav" data-site-menu><span class="site-menu__lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
@@ -1066,9 +1069,9 @@
         <div class="reveal">
         <h1 class="display"><span class="hl-orange">Know the path.</span> Keep your airport project moving.</h1>
         </div>
-        <p class="lede">Describe the purchase. TarmacSync connects your airport’s policy, funding, project context, and applicable requirements to show the likely path and next step.</p>
+        <p class="lede">The Airport Infrastructure Delivery Gap is a practical industry report on why airport projects lose momentum between funding, procurement, approvals, delivery, and closeout.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#application" data-program-cta="hero" data-project-cta="hero">Bring us a project</a>
+          <a class="btn btn-primary btn-lg" href="#application" data-report-cta="hero">Get the free report</a>
           <a class="btn btn-secondary btn-lg" href="#product">See how it works</a>
         </div>
         <p class="hero-note">Veteran-founded · Built by an Accredited Airport Executive.</p>
@@ -1295,97 +1298,38 @@
       </div>
     </section>
 
-    <!-- ══ PROGRAM + APPLY ═══════════════════════════════════════ -->
+    <!-- ══ INDUSTRY REPORT + OPT-IN ═══════════════════════════════ -->
     <section class="section partner-section" id="program">
       <div class="page">
         <div class="partner-stage reveal">
           <div class="partner-story">
-            <span class="eyebrow">Founding Airport Partner Program</span>
-            <h2 class="partner-title">Shape the future of airport procurement.</h2>
-            <p class="partner-lede"><strong>Bring one real project.</strong> For 90 days, work directly with us to clarify the path, move the project forward, and shape what airport teams need next.</p>
-
-            <div class="partner-benefits" role="list" aria-label="Founding Airport Partner benefits">
-              <div class="partner-benefit" role="listitem">
-                <span class="partner-benefit-num">01</span>
-                <div><strong>Your airport, configured.</strong></div>
-              </div>
-              <div class="partner-benefit" role="listitem">
-                <span class="partner-benefit-num">02</span>
-                <div><strong>Your project, worked through.</strong></div>
-              </div>
-              <div class="partner-benefit" role="listitem">
-                <span class="partner-benefit-num">03</span>
-                <div><strong>Your experience, shaping what comes next.</strong></div>
-              </div>
+            <span class="eyebrow">Free industry report</span>
+            <h2 class="partner-title">The Airport Infrastructure Delivery Gap.</h2>
+            <p class="partner-lede"><strong>Airport projects do not have a work shortage. They have a continuity problem.</strong> See why momentum is lost between funding, procurement, approvals, delivery, and closeout.</p>
+            <div class="partner-benefits" role="list" aria-label="What the report covers">
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">01</span><div><strong>Where momentum gets lost.</strong></div></div>
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">02</span><div><strong>Why files can outlive the reasoning behind them.</strong></div></div>
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">03</span><div><strong>Why airports need an intelligence layer—not another system of record.</strong></div></div>
             </div>
-
-            <div class="partner-collaboration">
-              <span class="partner-collaboration-label">The collaboration</span>
-              <div class="partner-collaboration-items"><span>One real project</span> <span>One focused kickoff</span> <span>Candid feedback</span></div>
-              <p class="partner-open">Open to every U.S. public-use airport.</p>
-            </div>
+            <div class="partner-collaboration"><span class="partner-collaboration-label">A TarmacSync industry point of view</span><div class="partner-collaboration-items"><span>Public-source research</span> <span>Airport-specific relevance</span> <span>No project handoff required</span></div><p class="partner-open">Innovation at the heart of airports.</p></div>
           </div>
-
           <div class="form-card" id="application">
-          <div id="form-content">
-          <span class="eyebrow eyebrow-accent">Start with a real project</span>
-          <div id="tier-note" class="tier-note" style="display:none">
-            <strong id="tier-note-copy"></strong>
-            <a href="/pricing.html">Change pricing selection</a>
-          </div>
-            <h3 class="form-card-title">Bring us your next project.</h3>
-            <p class="form-card-intro">Tell us what is on your desk. Omar will reply personally within two business days.</p>
-
-          <form id="waitlist-form">
-            <div class="spam-trap" aria-hidden="true">
-              <label for="website">Website</label>
-              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            <div id="form-content">
+              <span class="eyebrow eyebrow-accent">Start with the insight</span>
+              <h3 class="form-card-title">Get the free report.</h3>
+              <p class="form-card-intro">A practical industry perspective for airport directors, administration, finance, procurement, grants, and capital-project teams.</p>
+              <form id="report-form" novalidate>
+                <div class="spam-trap" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+                <div class="field-row"><div class="field"><label for="full-name">Full name <span class="optional">Optional</span></label><input id="full-name" name="full_name" type="text" autocomplete="name"></div><div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div></div>
+                <div class="field"><label for="organization">Airport or organization</label><input id="organization" name="organization" type="text" autocomplete="organization" required></div>
+                <label class="consent-row"><input id="follow-up-consent" name="follow_up_consent" type="checkbox" value="yes"><span><strong>Send me the short weekly follow-ups.</strong><br><span class="optional">Optional. The report download does not depend on this. Unsubscribe anytime.</span></span></label>
+                <input type="hidden" name="utm_source" id="utm_source" value=""><input type="hidden" name="utm_medium" id="utm_medium" value=""><input type="hidden" name="utm_campaign" id="utm_campaign" value="">
+                <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+                <div class="form-actions"><button class="btn btn-accent btn-lg" type="submit">Get the free report</button><span class="form-note">No account. No project submission. No meeting required.</span></div>
+              </form>
+              <div class="form-trust"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 8.5V6.8a4.5 4.5 0 0 1 9 0v1.7m-10 0h11v8h-11v-8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your details are used to fulfil this request and, only if you opt in, send the follow-ups described above. <a href="/privacy.html">Privacy Policy</a>.</span></div>
             </div>
-
-            <div class="field-row">
-              <div class="field"><label for="full-name">Full name</label><input id="full-name" name="full_name" type="text" autocomplete="name" required></div>
-              <div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div>
-            </div>
-            <div class="field-row">
-              <div class="field"><label for="organization">Airport or organization</label><input id="organization" name="organization" type="text" autocomplete="organization" required></div>
-              <div class="field"><label for="role">Your role</label><input id="role" name="role" type="text" autocomplete="organization-title" required></div>
-            </div>
-            <div class="field"><label for="project">What project or purchase is on your mind? <span class="optional">Optional</span></label><textarea id="project" name="project" placeholder="Runway rehabilitation, terminal HVAC replacement, ARFF vehicle…"></textarea></div>
-
-            <input type="hidden" name="tier_interest" id="tier_interest" value="">
-            <input type="hidden" name="tier_billing" id="tier_billing" value="">
-            <input type="hidden" name="tier_price" id="tier_price" value="">
-              <input type="hidden" name="utm_source" id="utm_source" value="">
-            <input type="hidden" name="utm_medium" id="utm_medium" value="">
-            <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
-
-            <!-- Live region for submit feedback. The previous build referenced
-                 #form-status from JS but never rendered it, so every submit
-                 threw a TypeError before the fetch and silently lost the lead. -->
-            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-
-            <div class="form-actions">
-              <button class="btn btn-accent btn-lg" type="submit">Start the conversation</button>
-              <span class="form-note">Free 90-day collaboration. No purchase commitment.</span>
-            </div>
-          </form>
-          <div class="form-trust">
-            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 8.5V6.8a4.5 4.5 0 0 1 9 0v1.7m-10 0h11v8h-11v-8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Your information is not sold.</strong> It is used only to respond and operate the program, as described in our <a href="/privacy.html">Privacy Policy</a>.</span>
-          </div>
-          </div>
-          <div class="success-panel" id="contact-success" style="display:none">
-            <div class="success-check">&#10003;</div>
-            <h3 class="h3 success-heading">Your interest is on our radar — thank you.</h3>
-            <p class="small success-intro copy-stack"><span>This is the beginning of a working conversation.</span> <span>We'll start with a real airport project and explore how TarmacSync could make the next decision clearer and the project easier to move forward.</span></p>
-            <p class="success-next-label">What happens next</p>
-            <ul class="success-steps">
-              <li><span>1.</span> You'll hear personally from Omar within two business days.</li>
-              <li><span>2.</span> We'll schedule a short conversation around a project or procurement challenge on your mind — no deck, preparation, or commitment.</li>
-              <li><span>3.</span> You'll see how TarmacSync could support the project, ask questions, and decide whether a Founding Airport collaboration makes sense for your team.</li>
-            </ul>
-            <p class="small success-privacy copy-stack"><span>We'll use your information only to respond to your interest and operate the program.</span> <span>We do not sell personal information. <a href="/privacy.html">Read our Privacy Policy.</a></span></p>
-          </div>
+            <div class="success-panel" id="contact-success" style="display:none"><div class="success-check">&#10003;</div><h3 class="h3 success-heading">Your report request is ready.</h3><p class="small success-intro">The approved report will be delivered to the work email you provided. No project information is required.</p><p class="success-next-label">Next</p><ul class="success-steps"><li><span>1.</span> Read the report’s view of the Airport Infrastructure Delivery Gap.</li><li><span>2.</span> If you opted in, receive the short weekly follow-ups.</li><li><span>3.</span> If you have a specific public project or funding signal, you may request a founder-prepared Readiness Snapshot.</li></ul><p class="small success-privacy">We do not sell personal information. <a href="/privacy.html">Read our Privacy Policy.</a></p></div>
           </div>
         </div>
       </div>
@@ -1398,23 +1342,23 @@
           <h2 class="h2">Questions you might have.</h2>
         </div>
         <div class="faq reveal">
-          <details><summary>Who is the Founding Airport Partner Program for?</summary>
-            <div class="faq-answer"><p>U.S. public-use airport teams and sponsors — especially GA, reliever, non-hub, and small-hub airports. The strongest fit is an airport with a real upcoming purchase or project and a willingness to provide candid feedback.</p></div>
+          <details><summary>Who is The Airport Infrastructure Delivery Gap for?</summary>
+            <div class="faq-answer"><p>Airport directors, administration, finance, procurement, grants, and capital-project teams working across funding, approvals, procurement, delivery, and closeout.</p></div>
           </details>
-          <details><summary>What does the 90-day collaboration include?</summary>
-            <div class="faq-answer"><p>Each participating airport receives guided setup, a configured TarmacSync workspace, TarmacSync support across real airport projects, short check-ins during the 90-day program, and direct working sessions with the founder. There is no fee, automatic renewal, or purchase commitment.</p></div>
+          <details><summary>What happens after I request the report?</summary>
+            <div class="faq-answer"><p>You receive the report immediately. If you choose the optional follow-ups, Omar sends a few concise weekly insights. No project submission, account, or meeting is required.</p></div>
           </details>
           <details><summary>What would our airport need to provide?</summary>
-            <div class="faq-answer"><p>Your procurement policy, applicable purchasing thresholds, and background on real purchases or projects. Please do not provide SSI, CUI, classified, or protected security information.</p></div>
+            <div class="faq-answer"><p>For the report, only your work email and airport or organization are required. Do not submit confidential, sensitive, or protected airport information.</p></div>
           </details>
-          <details><summary>Does participation require a public endorsement?</summary>
-            <div class="faq-answer"><p>No. Participation may remain private. TarmacSync will not use the airport's name, logo, testimonial, or project information publicly without written permission.</p></div>
+          <details><summary>Is the report request a product evaluation?</summary>
+            <div class="faq-answer"><p>No. The report is an industry point of view. If you later have a specific public project or funding signal, you may request a separate founder-prepared Readiness Snapshot.</p></div>
           </details>
-          <details><summary>How much airport staff time does setup require?</summary>
-            <div class="faq-answer"><p>The first working conversation requires no preparation. If your airport proceeds, setup is guided around documents and project information the airport already has. Before materials are shared, we will confirm the minimum inputs, participants, and expected time with your team.</p></div>
+          <details><summary>How much time does the report require?</summary>
+            <div class="faq-answer"><p>The report is designed to be read in about 10 minutes. No preparation, project documents, or meeting are required.</p></div>
           </details>
-          <details><summary>Does our IT department need to be involved?</summary>
-            <div class="faq-answer"><p>Not for the initial conversation. Before workspace access or airport documents are introduced, your airport may require an IT, security, privacy, or procurement review. TarmacSync will provide the available security and data-handling information for that review.</p></div>
+          <details><summary>What happens if we want to go further?</summary>
+            <div class="faq-answer"><p>If you have a specific public project or funding signal, you may request a limited, founder-prepared public-source Readiness Snapshot. Any future product evaluation would be a separate, explicitly agreed step.</p></div>
           </details>
           <details><summary>Does TarmacSync replace our existing systems or reviews?</summary>
             <div class="faq-answer"><p>No. TarmacSync helps the airport understand the working path, supporting evidence, open questions, and next action. Existing procurement, legal, grant, board, FAA, ERP, eProcurement, and records processes remain in place.</p></div>
@@ -1425,11 +1369,11 @@
           <details><summary>How is airport information handled?</summary>
             <div class="faq-answer"><p>Airport information is not used to train public AI models. Approved providers may process information only to operate the service under disclosed terms. Additional data-handling expectations will be documented before an airport provides program materials.</p></div>
           </details>
-          <details><summary>What does "Founding Airport Partner" mean?</summary>
-            <div class="faq-answer"><p>"Founding Airport Partner" describes participation in TarmacSync's initial airport program. It does not create an ownership, equity, agency, joint-venture, endorsement, or intellectual-property relationship.</p></div>
+          <details><summary>Does report delivery enroll me in follow-up emails?</summary>
+            <div class="faq-answer"><p>No. Follow-up emails are optional and separate from report delivery.</p></div>
           </details>
-          <details><summary>What does TarmacSync cost after the 90 days?</summary>
-            <div class="faq-answer"><p>TarmacSync is priced per airport, not per user, starting at $2,400 per year for general aviation airports and scaling by airport size. Founding Airport collaborations begin in January 2027. Nothing converts automatically — at the end of the 90 days, your airport decides whether to continue. Founding airports that continue lock in their launch price for 12 months. Full tiers and how airports typically purchase are on our <a href="/pricing.html">pricing page</a>.</p></div>
+          <details><summary>Does the report make a procurement or FAA determination?</summary>
+            <div class="faq-answer"><p>No. It is an industry framing document, not legal, grant, procurement, compliance, eligibility, or FAA/ADO advice.</p></div>
           </details>
           <details><summary>Is TarmacSync FAA-approved or endorsed?</summary>
             <div class="faq-answer"><p>No. TarmacSync is an advisory tool. All procurement, grant, and legal decisions remain with the airport and its advisors.</p></div>
@@ -1444,9 +1388,9 @@
     <!-- ══ CLOSING CTA ═══════════════════════════════════════════ -->
     <section class="section-sm section-dark" aria-label="Call to action">
       <div class="page closer reveal">
-        <h2 class="h2">Bring one project. Let’s work through the path.</h2>
-        <p>Ninety days, at no cost, with no purchase commitment.</p>
-        <a class="btn btn-light btn-lg" href="#application" data-program-cta="closing">Explore the program</a>
+        <h2 class="h2">Start with the industry report.</h2>
+        <p>No project submission, account, or meeting required.</p>
+        <a class="btn btn-light btn-lg" href="#application" data-report-cta="closing">Get the free report</a>
       </div>
     </section>
   </main>
@@ -1461,7 +1405,7 @@
 
 
   <div class="sticky-cta" aria-hidden="true">
-    <a class="btn btn-accent" href="#application" data-program-cta="sticky">Explore the program</a>
+    <a class="btn btn-accent" href="#application" data-report-cta="sticky">Get the free report</a>
   </div>
 
   <button type="button" class="back-to-top" aria-label="Back to top">
@@ -1610,8 +1554,7 @@
       const MAP={field:{label:'Field',type:'Nonprimary general aviation',annual:'$2,400 per year',monthly:'$240 per month'},
                  regional:{label:'Regional',type:'Commercial service \u2014 non-hub',annual:'$8,400 per year',monthly:'$840 per month'},
                  metro:{label:'Metro',type:'Small hub',annual:'$12,000 per year',monthly:'$1,200 per month'},
-                 custom:{label:'Custom airport or capital program',type:'',annual:'Custom pricing',monthly:'Custom pricing'},
-                 pilot:{label:'Founding Airport Partner collaboration',type:'',annual:'No cost for 90 days',monthly:'No cost for 90 days'}};
+                 custom:{label:'Custom airport or capital program',type:'',annual:'Custom pricing',monthly:'Custom pricing'}};
       const sel=MAP[tier]; if(!sel)return;
       const h=document.getElementById('tier_interest'); if(h)h.value=sel.label;
       const note=document.getElementById('tier-note');
@@ -1638,54 +1581,37 @@
       window.addEventListener('load',()=>setTimeout(showSelection,50),{once:true});
     })();
 
-    document.querySelectorAll('[data-program-cta]').forEach(link=>{
-      link.addEventListener('click',()=>{
-        trackClarity('founding_partner_cta_clicked',{founding_partner_cta_location:link.dataset.programCta||'unknown'});
-      });
-    });
-    document.querySelectorAll('[data-project-cta]').forEach(link=>{
-      link.addEventListener('click',()=>trackClarity('bring_us_project_clicked',{cta_location:link.dataset.projectCta||'unknown'}));
+    document.querySelectorAll('[data-report-cta]').forEach(link=>{
+      link.addEventListener('click',()=>trackClarity('report_cta_clicked',{report_cta_location:link.dataset.reportCta||'unknown'}));
     });
     document.querySelectorAll('[data-snapshot-cta]').forEach(link=>{
-      link.addEventListener('click',()=>trackClarity('sample_snapshot_clicked',{cta_location:link.dataset.snapshotCta||'unknown'}));
+      link.addEventListener('click',()=>trackClarity('snapshot_cta_clicked',{cta_location:link.dataset.snapshotCta||'unknown'}));
     });
 
-    const form=document.getElementById('waitlist-form');
-    const status=document.getElementById('form-status');
-    const button=form.querySelector('button[type="submit"]');
-    form.addEventListener('focusin',()=>{
-      trackClarity('founding_partner_form_started');
-    },{once:true});
-    form.addEventListener('invalid',()=>{
-      trackClarity('founding_partner_form_error',{error_type:'validation'});
-    },{capture:true,once:true});
-    form.addEventListener('submit',async e=>{
-      e.preventDefault();
-      if(!form.checkValidity()){
-        trackClarity('founding_partner_form_error',{error_type:'validation'});
-        form.reportValidity();
-        return;
-      }
-      const payload=Object.fromEntries(new FormData(form).entries());
-      form.setAttribute('aria-busy','true');
-      button.disabled=true;button.textContent='Sending…';
-      status.className='form-status';status.textContent='';
-      try{
-        const r=await fetch('/api/waitlist',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
-        const d=await r.json().catch(()=>({}));
-        if(!r.ok||!d.ok)throw new Error(d.error||'We could not send your submission. Please try again.');
-        form.reset();status.className='form-status success';status.textContent='';
-        form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
-        trackClarity('waitlist_submitted',{utm_source:payload.utm_source||'direct'});
-        trackClarity('founding_partner_form_submitted');
-      }catch(err){
-        status.className='form-status error';status.textContent=err.message||'We could not send your submission. Please try again.';
-        trackClarity('waitlist_error');
-        trackClarity('founding_partner_form_error',{error_type:'submission'});
-        form.style.display='';document.getElementById('form-content').style.display='';document.getElementById('contact-success').style.display='none';
-        button.disabled=false;button.textContent='Start the conversation';
-      }finally{form.removeAttribute('aria-busy');}
-    });
+    const form=document.getElementById('report-form');
+    if(form){
+      const status=document.getElementById('form-status');
+      const button=form.querySelector('button[type="submit"]');
+      form.addEventListener('focusin',()=>trackClarity('report_form_started'),{once:true});
+      form.addEventListener('invalid',()=>trackClarity('report_form_error',{error_type:'validation'}),{capture:true,once:true});
+      form.addEventListener('submit',async e=>{
+        e.preventDefault();
+        if(!form.checkValidity()){trackClarity('report_form_error',{error_type:'validation'});form.reportValidity();return;}
+        const payload=Object.fromEntries(new FormData(form).entries());
+        payload.followUpConsent=payload.follow_up_consent==='yes';
+        payload.source='airport-infrastructure-delivery-gap';
+        payload.consentText='Send me the short weekly follow-ups.';
+        payload.consentVersion='report-follow-up-v1';
+        form.setAttribute('aria-busy','true');button.disabled=true;button.textContent='Preparing your report…';status.className='form-status';status.textContent='';
+        try{
+          const r=await fetch('/api/report-download',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(payload)});
+          const d=await r.json().catch(()=>({}));
+          if(!r.ok||!d.ok)throw new Error(d.error||'We could not confirm your report request. Please try again.');
+          form.reset();form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';trackClarity('report_requested',{follow_up_consent:String(payload.followUpConsent)});
+        }catch(err){status.className='form-status error';status.textContent=err.message||'We could not confirm your report request. Please try again.';trackClarity('report_form_error',{error_type:'submission'});button.disabled=false;button.textContent='Get the free report';
+        }finally{form.removeAttribute('aria-busy');}
+      });
+    }
 
     document.querySelectorAll('.faq details').forEach(d=>{
       d.addEventListener('toggle',()=>{if(!d.open)return;document.querySelectorAll('.faq details').forEach(o=>{if(o!==d)o.removeAttribute('open');});});

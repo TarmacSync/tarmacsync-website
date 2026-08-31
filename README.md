@@ -2,7 +2,7 @@
 
 Static marketing site and waitlist endpoint for `tarmacsync.com`.
 
-This repository is intentionally small. It contains the public landing page, legal pages, search/indexing assets, brand assets, and a single serverless endpoint that forwards waitlist submissions through Resend.
+This repository is intentionally small. It contains the public landing page, legal pages, search/indexing assets, brand assets, the approved Airport Infrastructure Delivery Gap report, and a guarded report-request serverless endpoint using Brevo.
 
 ## What is in this repo
 
@@ -12,13 +12,13 @@ This repository is intentionally small. It contains the public landing page, leg
 - `assets/` - logos, favicon, social preview image, founder image
 - `robots.txt` - crawler directives
 - `sitemap.xml` - sitemap for search engines
-- `api/waitlist.js` - Vercel serverless function for the waitlist form
+- `api/report-download.js` - guarded Vercel serverless function for report requests and Brevo delivery
 
 ## Stack
 
 - Static HTML/CSS/vanilla JavaScript
 - Vercel for hosting and serverless functions
-- Resend for waitlist email delivery
+- Brevo for report delivery and future consented nurture
 
 No framework, bundler, or package manager is required for this site in its current form.
 
@@ -47,11 +47,14 @@ If you only need to inspect the static pages, you can also serve the folder with
 
 ## Environment variables
 
-The waitlist endpoint requires:
+The report endpoint requires:
 
-- `RESEND_API_KEY`
-- `WAITLIST_FROM_EMAIL`
-- `WAITLIST_TO_EMAIL`
+- `BREVO_API_KEY`
+- `BREVO_REPORT_LIST_ID`
+- `BREVO_REPORT_TEMPLATE_ID`
+- `BREVO_SENDER_EMAIL`
+- `REPORT_TEST_EMAIL`
+- `REPORT_PUBLIC_DELIVERY_ENABLED`
 
 Optional:
 
@@ -64,15 +67,15 @@ Behavior:
 - The endpoint validates request origin against the current host.
 - A honeypot field (`website`) is used to ignore obvious spam bots.
 
-## Waitlist flow
+## Report-request flow
 
-1. Visitor submits the waitlist form.
-2. Browser sends `POST /api/waitlist`.
-3. The endpoint validates method, origin, payload shape, and email format.
-4. The endpoint sends a plain-text message through Resend to the internal team.
-5. The endpoint sends a confirmation email to the applicant from `hello@tarmacsync.com`.
-6. If Zoho Web-to-Lead env vars are set, the lead is forwarded to Zoho CRM (best-effort).
-7. The endpoint returns JSON success or failure.
+1. Visitor requests The Airport Infrastructure Delivery Gap report.
+2. Browser sends `POST /api/report-download`.
+3. The endpoint validates method, origin, payload, email, honeypot, and the server-side launch gate.
+4. While public delivery is disabled, only `REPORT_TEST_EMAIL` is accepted.
+5. Brevo sends the transactional report email and adds the contact to the dedicated report list only after successful delivery.
+6. Repeat requests for a delivered address return `already-delivered` and do not send again.
+7. Follow-up consent is stored separately and is not implied by report delivery.
 
 ## Deployment
 
@@ -80,7 +83,7 @@ This repo is intended for Vercel deployment.
 
 Minimum production checklist:
 
-1. Set the three waitlist environment variables in Vercel.
+1. Set the report/Brevo environment variables in Vercel.
 2. Confirm the production domain is `https://www.tarmacsync.com`.
 3. Verify `robots.txt` and `sitemap.xml` match the live canonical domain.
 4. Submit the sitemap in Google Search Console after deployment.

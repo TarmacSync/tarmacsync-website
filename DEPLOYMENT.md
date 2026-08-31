@@ -6,27 +6,28 @@ This repository is deployed as a static site with one Vercel serverless function
 
 - Hosting: Vercel
 - Primary domain: `www.tarmacsync.com`
-- API route: `api/waitlist.js`
-- Email delivery: Resend
+- API route: `api/report-download.js`
+- Email delivery: Brevo
 
 ## Required environment variables
 
 Set these in Vercel for Preview and Production:
 
-- `RESEND_API_KEY`
-- `WAITLIST_FROM_EMAIL`
-- `WAITLIST_TO_EMAIL` (should be `hello@tarmacsync.com` or your internal notification address)
+- `BREVO_API_KEY`
+- `BREVO_REPORT_LIST_ID`
+- `BREVO_REPORT_TEMPLATE_ID`
+- `BREVO_SENDER_EMAIL`
+- `REPORT_TEST_EMAIL`
+- `REPORT_PUBLIC_DELIVERY_ENABLED` (must remain `false` until Omar approves launch)
 
-Optional — the waitlist still works without them, but extra integrations won't activate:
-
-- `CONFIRMATION_FROM_EMAIL` (defaults to `hello@tarmacsync.com`; used as the From address for the applicant confirmation email)
-- `ZOHO_XNQSJSDP` — Zoho Web-to-Lead form parameter 1
-- `ZOHO_XMIWTLD` — Zoho Web-to-Lead form parameter 2
+Legacy Resend/Zoho variables may remain for rollback reference but are not used by the homepage report flow.
 
 Expected behavior:
 
-- Missing variables cause the waitlist endpoint to return `503`.
-- Invalid origin causes the waitlist endpoint to return `403`.
+- Missing variables cause the report endpoint to return `503`.
+- Invalid origin causes the report endpoint to return `403`.
+- Public delivery remains server-blocked unless `REPORT_PUBLIC_DELIVERY_ENABLED=true`.
+- When disabled, only the exact allowlisted test address in `REPORT_TEST_EMAIL` can proceed.
 
 ## Pre-deploy checklist
 
@@ -35,12 +36,14 @@ Expected behavior:
 3. Confirm `og:image` and favicon paths exist.
 4. Confirm `robots.txt` and `sitemap.xml` still match the live domain.
 5. If legal copy changed, update the effective date in the page body.
-6. If waitlist flow changed, verify `api/waitlist.js` still validates:
+6. If report flow changed, verify `api/report-download.js` still validates:
    - method
    - origin
    - payload shape
    - honeypot field
    - required env vars
+   - allowlisted test recipient
+   - duplicate suppression
 
 ## Deploy flow
 
@@ -60,10 +63,11 @@ Check these items in the live deployment:
 1. Home page loads correctly on desktop and mobile.
 2. Privacy and terms pages load directly.
 3. Favicon and OG preview image resolve.
-4. Waitlist submission succeeds with a real test email.
-5. `robots.txt` is reachable.
-6. `sitemap.xml` is reachable.
-7. Schema markup is still present in the home page source.
+5. Report submission succeeds only with the allowlisted test email.
+6. A repeated report request is suppressed.
+7. `robots.txt` is reachable.
+8. `sitemap.xml` is reachable.
+9. Schema markup is still present in the home page source.
 
 ## Search operations
 
@@ -75,10 +79,10 @@ After important public-page changes:
 
 ## Rollback
 
-If a deployment breaks the public site or waitlist flow:
+If a deployment breaks the public site or report flow:
 
 1. Roll back to the previous known-good Vercel deployment.
-2. Verify the waitlist endpoint with a test submission.
+2. Verify the report endpoint with the allowlisted test submission.
 3. Check whether the issue was content-only, asset-path-related, or env-related.
 4. Redeploy only after reproducing and fixing the issue locally.
 
