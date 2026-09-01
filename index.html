@@ -1622,7 +1622,7 @@
         payload.followUpConsent=payload.follow_up_consent==='yes';
         payload.source='airport-infrastructure-delivery-gap';
         payload.consentText='Optional: send me four weekly emails from TarmacSync about airport procurement decision continuity.';
-        payload.consentVersion='report-follow-up-v2';
+        payload.consentVersion='report-follow-up-v3';
         form.setAttribute('aria-busy','true');button.disabled=true;button.textContent='Sending the report…';status.className='form-status';status.textContent='';
         try{
           const r=await fetch('/api/report-download',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(payload)});

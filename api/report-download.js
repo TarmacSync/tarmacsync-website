@@ -45,6 +45,8 @@ const brevoRequest = async (path, body, method = "POST") => {
   return data;
 };
 const reportListId = () => Number(process.env.BREVO_REPORT_LIST_ID);
+const weeklyListId = () => Number(process.env.BREVO_WEEKLY_LIST_ID);
+const weeklyEnabled = () => Number.isInteger(weeklyListId()) && weeklyListId() > 0;
 
 module.exports = async function reportDownload(request, response) {
   if (request.method !== "POST") { response.setHeader("Allow", "POST"); return sendJson(response, 405, { ok: false, error: "Method not allowed." }); }
@@ -71,7 +73,17 @@ module.exports = async function reportDownload(request, response) {
   try {
     const existing = await brevoRequest(`/v3/contacts/${encodeURIComponent(email)}`, null, "GET");
     alreadyDelivered = Array.isArray(existing?.listIds) && existing.listIds.includes(reportListId());
-    if (alreadyDelivered) return sendJson(response, 200, { ok: true, delivery: "already-delivered", followUpEnrolled: false });
+    if (alreadyDelivered) {
+      if (followUpConsent && weeklyEnabled()) {
+        try {
+          await brevoRequest("/v3/contacts", { email, listIds: [weeklyListId()], updateEnabled: true });
+        } catch (error) {
+          console.error("Weekly enrollment failed for returning contact:", error.message);
+          return sendJson(response, 502, { ok: false, error: "We could not confirm the report request." });
+        }
+      }
+      return sendJson(response, 200, { ok: true, delivery: "already-delivered", followUpEnrolled: followUpConsent && weeklyEnabled() });
+    }
   } catch (error) {
     if (!String(error.message).includes("Brevo 404")) {
       console.error("Report delivery lookup failed:", error.message);
@@ -90,6 +102,9 @@ module.exports = async function reportDownload(request, response) {
   };
   if (followUpConsent && consentText) attributes.CONSENT_TEXT = consentText;
 
+  const listIds = [reportListId()];
+  if (followUpConsent && weeklyEnabled()) listIds.push(weeklyListId());
+
   try {
     await brevoRequest("/v3/smtp/email", {
       sender: { email: process.env.BREVO_SENDER_EMAIL || "Omar@tarmacsync.com", name: "Omar Daaboul | TarmacSync" },
@@ -98,10 +113,10 @@ module.exports = async function reportDownload(request, response) {
       params: { FIRSTNAME: firstName, AIRPORT_ORGANIZATION: airportOrganization },
       tags: ["airport-infrastructure-delivery-gap", "report-request"],
     });
-    await brevoRequest("/v3/contacts", { email, attributes, listIds: [reportListId()], updateEnabled: true });
+    await brevoRequest("/v3/contacts", { email, attributes, listIds, updateEnabled: true });
   } catch (error) {
     console.error("Report request processing failed:", error.message);
     return sendJson(response, 502, { ok: false, error: "We could not confirm the report request." });
   }
-  return sendJson(response, 200, { ok: true, delivery: "email", followUpEnrolled: followUpConsent });
+  return sendJson(response, 200, { ok: true, delivery: "email", followUpEnrolled: followUpConsent && weeklyEnabled() });
 };
