@@ -161,14 +161,15 @@
         </div>
       </section>
 
-      <section>
+      <section id="evaluation">
         <h2>How to evaluate TarmacSync for your airport</h2>
+        <p id="evaluation-tier-note" hidden></p>
         <ol class="checklist" style="list-style:decimal inside; padding-left:0;">
           <li style="padding-left:.75rem;"><strong>Review the public trust, security, and privacy pages</strong> at <a href="/security.html">tarmacsync.com/security.html</a>. Confirm the security posture and data-handling commitments meet your airport's requirements.</li>
           <li style="padding-left:.75rem;"><strong>Review the Data Processing Addendum</strong> for subprocessor and cross-border transfer details.</li>
           <li style="padding-left:.75rem;"><strong>Confirm the evaluation data boundaries.</strong> Product evaluations use permitted, non-sensitive project and procurement information. SSI, CUI, classified, and export-controlled material are not accepted.</li>
           <li style="padding-left:.75rem;"><strong>Identify a real purchase or project</strong> expected during the next six months. The strongest evaluation is working through an actual airport need.</li>
-          <li style="padding-left:.75rem;"><strong>Schedule a fit conversation.</strong> Complete the form at <a href="/#application">tarmacsync.com/#application</a>. Omar will reply personally within two business days.</li>
+          <li style="padding-left:.75rem;"><strong>Request a fit conversation.</strong> Email <a id="evaluation-request-link" href="mailto:contact@tarmacsync.com?subject=TarmacSync%20product%20evaluation">contact@tarmacsync.com</a> with your airport, project or purchase, and the tier you want to review. Omar will reply personally within two business days.</li>
         </ol>
 
         <div class="note">
@@ -192,7 +193,6 @@
       <section>
         <h2>Product evaluation</h2>
         <p>Airports may evaluate TarmacSync through a separately agreed, time-boxed evaluation using permitted, non-sensitive project information. Terms, scope, users, success measures, and any fees are documented before access begins.</p>
-        <p><a href="/#report">Get the free report</a></p>
       </section>
     </div>
     </main>
@@ -206,5 +206,16 @@
     
   </footer>
   <script src="assets/site-shell.js"></script>
+  <script>
+    (function(){
+      const labels={field:'Field',regional:'Regional',metro:'Metro',program:'Program'};
+      const tier=new URLSearchParams(window.location.search).get('tier');
+      if(!tier || !labels[tier]) return;
+      const note=document.getElementById('evaluation-tier-note');
+      if(note){ note.hidden=false; note.textContent='You selected the '+labels[tier]+' plan. The annual subscription, evaluation scope, and purchasing path are confirmed with your airport.'; }
+      const link=document.getElementById('evaluation-request-link');
+      if(link) link.href='mailto:contact@tarmacsync.com?subject='+encodeURIComponent('TarmacSync '+labels[tier]+' product evaluation');
+    })();
+  </script>
 </body>
 </html>

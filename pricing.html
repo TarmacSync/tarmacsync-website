@@ -300,7 +300,7 @@
           <li>Guided setup using your airport’s local policy and thresholds, subject to agreed scope</li>
           <li>Core procurement path review and cooperative candidate review</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=field&amp;billing=annual#application">Start with Field</a>
+        <a class="btn tier-cta" href="/procurement-support-packet.html?tier=field#evaluation">Review Field fit</a>
       </div>
 
       <div class="tier" data-tier="regional">
@@ -315,7 +315,7 @@
           <li>Decision-summary exports for airport review, where available</li>
           <li>Approval workflow and activity tracking; any hands-on implementation support is scoped separately</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=regional&amp;billing=annual#application">Start with Regional</a>
+        <a class="btn tier-cta" href="/procurement-support-packet.html?tier=regional#evaluation">Review Regional fit</a>
       </div>
 
       <div class="tier" data-tier="metro">
@@ -328,7 +328,7 @@
           <li class="inherit">Everything in Regional, plus</li>
           <li>Expanded support for complex, multi-source airport funding contexts, including PFC-related project questions, subject to current product availability</li>
         </ul>
-        <a class="btn tier-cta" href="/?tier=metro&amp;billing=annual#application">Start with Metro</a>
+        <a class="btn tier-cta" href="/procurement-support-packet.html?tier=metro#evaluation">Review Metro fit</a>
       </div>
     </section>
 
@@ -349,7 +349,7 @@
         <h2>Program — medium hub, large hub, or major capital program?</h2>
         <p class="copy-stack"><span><strong>From $45,000/year.</strong> Scope, security review, support model, data requirements, and purchasing path are confirmed before pricing is finalized.</span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span><span>Tell us what you are planning and we will work out what fits.</span></p>
       </div>
-      <a class="btn custom-tier-cta" href="/?tier=custom&amp;billing=annual#application">Start a conversation</a>
+      <a class="btn custom-tier-cta" href="/procurement-support-packet.html?tier=program#evaluation">Discuss Program scope</a>
     </div>
 
 
@@ -429,14 +429,7 @@
 
   <script src="assets/site-shell.js"></script>
   <script>
-    (function(){
-      document.querySelectorAll('.tier[data-tier] .tier-cta').forEach(a=>{
-        const tier=a.closest('.tier').dataset.tier;
-        a.href='/?tier='+tier+'&billing=annual#application';
-      });
-      const custom=document.querySelector('.custom-tier-cta');
-      if(custom) custom.href='/?tier=custom&billing=annual#application';
-    })();
+    // Pricing CTAs intentionally route to product evaluation, not the report form.
   </script>
 </body>
 </html>
