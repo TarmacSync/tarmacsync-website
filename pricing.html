@@ -134,25 +134,7 @@
     .tier .tier-cta:hover { background: var(--soft); }
 
 
-    /* billing toggle */
-    .billing { display: flex; justify-content: center; margin-top: 2.2rem; }
-    .switch {
-      display: inline-flex; background: var(--cloud); border: 1px solid var(--line);
-      border-radius: 980px; padding: .25rem; gap: .2rem;
-    }
-    .switch button {
-      font-family: var(--sans); font-size: .82rem; font-weight: 500; cursor: pointer;
-      border: 0; background: transparent; color: var(--muted);
-      padding: .5rem 1.15rem; border-radius: 980px; transition: background .18s, color .18s;
-    }
-    .switch button[aria-pressed="true"] { background: var(--white); color: var(--ink); box-shadow: 0 1px 2px rgba(23,25,31,.10); }
-    .switch button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-    .save-caption { display: none; }
-    .save-pill {
-      display: inline-block; margin-left: .55rem; vertical-align: middle;
-      font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase;
-      background: var(--orange-ink); color: #fff; padding: .18rem .45rem; border-radius: 3px;
-    }
+    .billing-note { margin-top: 2.2rem; text-align: center; font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange-ink); }
 
     /* Pricing cards are informational surfaces. The CTA—not the entire
        card—is interactive, so no hover or selection state can imply a
@@ -260,14 +242,6 @@
       .hero p { font-size: 1rem; }
       .hero p.cohort-line { font-size: .76rem; letter-spacing: .05em; line-height: 1.65; }
 
-      .switch { width: 100%; align-items: stretch; }
-      .switch button { flex: 1; padding: .6rem .5rem; font-size: .82rem; }
-      .save-pill { display: none; }
-      .billing { flex-direction: column; align-items: center; gap: .55rem; }
-      .save-caption {
-        display: block; font-family: var(--mono); font-size: .58rem;
-        letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
-      }
 
       .tiers { gap: 1.1rem; }
       .tier { padding: 2rem 1.4rem 1.6rem; }
@@ -314,13 +288,7 @@
       <p class="copy-stack"><span>Unlimited users.</span></p>
       <p class="cohort-line"><span>Start with the industry report</span></p>
 
-      <div class="billing">
-        <div class="switch" role="group" aria-label="Billing period">
-          <button type="button" id="bill-annual" aria-pressed="true">Annual<span class="save-pill">2 months free</span></button>
-          <button type="button" id="bill-monthly" aria-pressed="false">Monthly</button>
-        </div>
-        <span class="save-caption">Annual = 2 months free</span>
-      </div>
+      <p class="billing-note">Annual subscription · Per-airport pricing · Unlimited users</p>
     </section>
 
     <section class="tiers">
@@ -328,8 +296,8 @@
         <div class="tier-name">Field</div>
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-thresh">Under about 10,000 annual enplanements</div>
-        <div class="tier-price" data-annual="$2,400" data-monthly="$240">$2,400</div>
-        <div class="tier-per" data-annual="per year, or $240/month" data-monthly="per month on a one-year subscription">per year, or $240/month</div>
+        <div class="tier-price">$2,400</div>
+        <div class="tier-per">per year</div>
         <ul>
           <li>For straightforward GA and reliever purchasing workflows</li>
           <li>Guided implementation of local policy and thresholds</li>
@@ -342,8 +310,8 @@
         <div class="tier-name">Regional</div>
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-thresh">About 10,000 to 500,000 annual enplanements</div>
-        <div class="tier-price" data-annual="$8,400" data-monthly="$840">$8,400</div>
-        <div class="tier-per" data-annual="per year, or $840/month" data-monthly="per month on a one-year subscription">per year, or $840/month</div>
+        <div class="tier-price">$8,400</div>
+        <div class="tier-per">per year</div>
         <ul>
           <li class="inherit">Everything in Field, plus</li>
           <li>Expanded federal-funding and grant-requirement analysis</li>
@@ -357,8 +325,8 @@
         <div class="tier-name">Metro</div>
         <div class="tier-who">Small hub</div>
         <div class="tier-thresh">About 500,000 to 2.5 million annual enplanements</div>
-        <div class="tier-price" data-annual="$12,000" data-monthly="$1,200">$12,000</div>
-        <div class="tier-per" data-annual="per year, or $1,200/month" data-monthly="per month on a one-year subscription">per year, or $1,200/month</div>
+        <div class="tier-price">$12,000</div>
+        <div class="tier-per">per year</div>
         <ul>
           <li class="inherit">Everything in Regional, plus</li>
           <li>Complex multi-source funding and PFC workflows</li>
@@ -389,8 +357,8 @@
       </div>
 
       <section class="purchase-ease" aria-labelledby="purchase-ease-title">
-        <span class="eyebrow">Straightforward to purchase</span>
-        <h2 id="purchase-ease-title">Built for practical airport adoption.</h2>
+        <span class="eyebrow">For your airport’s purchasing review</span>
+        <h2 id="purchase-ease-title">Annual pricing, clearly stated.</h2>
         <p>One-year subscription. No automatic renewal. Per-airport pricing. Unlimited users. An <a href="/procurement-support-packet.html">evaluation guide</a> is available to help your airport review the purchase.</p>
         <a class="btn" href="/procurement-support-packet.html" data-support-packet-cta>View the Evaluation Guide</a>
         <p class="purchase-ease-footnote">Your airport's purchasing policy, delegated authority, P-card rules, and total contract commitment determine the appropriate purchasing and payment path.</p>
@@ -403,8 +371,8 @@
           <div class="faq-answer">No. Pricing is per airport.</div>
         </details>
         <details>
-          <summary>Is annual cheaper than monthly?</summary>
-          <div class="faq-answer">Yes — paying annually is the equivalent of two months free. Monthly billing is available for budgeting convenience. Your airport's policy, delegated authority and total contract commitment determine the appropriate purchasing path and whether a P-card may be used.</div>
+          <summary>How is TarmacSync priced?</summary>
+          <div class="faq-answer">Public plans are annual agreements priced per airport, with unlimited users. Invoicing and payment timing can be documented in the order form, subject to your airport’s purchasing requirements and agreed terms. The subscription term remains annual.</div>
         </details>
         <details>
           <summary>Which tier is my airport?</summary>
@@ -412,7 +380,7 @@
         </details>
         <details>
           <summary>What budget typically pays for TarmacSync?</summary>
-          <div class="faq-answer">Most airports purchase TarmacSync from airport operating funds. Your airport determines the appropriate budget and purchasing path.</div>
+          <div class="faq-answer">Airport operating funds may be one possible budget source. Your airport determines the appropriate budget classification, purchasing authority, and payment path.</div>
         </details>
         <details>
           <summary>How does a product evaluation work?</summary>
@@ -453,39 +421,12 @@
   <script src="assets/site-shell.js"></script>
   <script>
     (function(){
-      const cards=[...document.querySelectorAll('.tier[data-tier]')];
-      const annual=document.getElementById('bill-annual');
-      const monthly=document.getElementById('bill-monthly');
-      let billing='annual';
-
-      function setBilling(mode){
-        billing=mode;
-        const isAnnual = mode==='annual';
-        annual.setAttribute('aria-pressed', isAnnual);
-        monthly.setAttribute('aria-pressed', !isAnnual);
-        document.querySelectorAll('[data-annual]').forEach(el=>{
-          el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
-        });
-        updateLinks();
-      }
-
-      function updateLinks(){
-        cards.forEach(c=>{
-          const a=c.querySelector('.tier-cta');
-          if(a){
-            a.href='/?tier='+c.dataset.tier+'&billing='+billing+'#application';
-          }
-        });
-        const pilot=document.querySelector('.pilot-tier-cta');
-        if(pilot) pilot.href='/?tier=pilot&billing='+billing+'#application';
-        const custom=document.querySelector('.custom-tier-cta');
-        if(custom) custom.href='/?tier=custom&billing='+billing+'#application';
-      }
-
-      annual.addEventListener('click',()=>{setBilling('annual');});
-      monthly.addEventListener('click',()=>{setBilling('monthly');});
-
-      updateLinks();
+      document.querySelectorAll('.tier[data-tier] .tier-cta').forEach(a=>{
+        const tier=a.closest('.tier').dataset.tier;
+        a.href='/?tier='+tier+'&billing=annual#application';
+      });
+      const custom=document.querySelector('.custom-tier-cta');
+      if(custom) custom.href='/?tier=custom&billing=annual#application';
     })();
   </script>
 </body>

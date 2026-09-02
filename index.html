@@ -1580,18 +1580,17 @@
         window.addEventListener('load',()=>setTimeout(showSelection,50),{once:true});
         return;
       }
-      const billing=p.get('billing')==='monthly'?'monthly':'annual';
-      const MAP={field:{label:'Field',type:'Nonprimary general aviation',annual:'$2,400 per year',monthly:'$240 per month'},
-                 regional:{label:'Regional',type:'Commercial service \u2014 non-hub',annual:'$8,400 per year',monthly:'$840 per month'},
-                 metro:{label:'Metro',type:'Small hub',annual:'$12,000 per year',monthly:'$1,200 per month'},
-                 custom:{label:'Custom airport or capital program',type:'',annual:'Custom pricing',monthly:'Custom pricing'}};
+      const billing='annual';
+      const MAP={field:{label:'Field',type:'Nonprimary general aviation',annual:'$2,400 per year'},
+                 regional:{label:'Regional',type:'Commercial service — non-hub',annual:'$8,400 per year'},
+                 metro:{label:'Metro',type:'Small hub',annual:'$12,000 per year'},
+                 custom:{label:'Custom airport or capital program',type:'',annual:'Custom pricing'}};
       const sel=MAP[tier]; if(!sel)return;
       const h=document.getElementById('tier_interest'); if(h)h.value=sel.label;
       const note=document.getElementById('tier-note');
       if(note){
-        const billingLabel=billing==='monthly'?'Monthly':'Annual';
         const copy=document.getElementById('tier-note-copy');
-        if(copy)copy.textContent='Pricing interest saved: '+sel.label+' \u00b7 '+billingLabel+' \u00b7 '+sel[billing];
+        if(copy)copy.textContent='Pricing interest saved: '+sel.label+' · Annual · '+sel.annual;
         note.style.display='flex';
       }
       const bh=document.getElementById('tier_billing'); if(bh)bh.value=billing;
