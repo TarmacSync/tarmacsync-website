@@ -253,6 +253,189 @@
       .faq summary { font-size: .94rem; padding-right: 2rem; }
       footer { padding: 3.5rem 0 2.5rem; margin-top: 4rem; }
     }
+
+    /* Refined pricing presentation — aligned to the TarmacSync site system. */
+    .container { width: min(1120px, calc(100% - 3rem)); }
+    .hero {
+      position: relative;
+      padding: clamp(4.6rem, 8vw, 7.2rem) 0 clamp(3.5rem, 6vw, 5rem);
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero .eyebrow,
+    .details .eyebrow {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--orange-ink);
+      font-family: var(--mono);
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.25rem;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: clamp(2.55rem, 5vw, 4.15rem);
+      font-weight: 650;
+      line-height: 1.04;
+      letter-spacing: -.05em;
+      text-wrap: balance;
+    }
+    .hero p {
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: clamp(1rem, 1.5vw, 1.12rem);
+    }
+
+    .tier-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: clamp(3rem, 5vw, 4.5rem) 0 1.5rem;
+    }
+    .tier-heading h2 {
+      max-width: 600px;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.15;
+      letter-spacing: -.04em;
+    }
+    .tier-heading p {
+      max-width: 360px;
+      color: var(--muted);
+      font-size: .88rem;
+      text-align: right;
+    }
+    .tiers { gap: 1.15rem; padding-bottom: 0; }
+    .tier {
+      overflow: hidden;
+      min-height: 100%;
+      padding: 0;
+      border-radius: 16px;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(23,25,31,.02);
+    }
+    .tier::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 4px;
+      background: var(--ink);
+      transition: background .2s ease;
+    }
+    .tier:hover::before { background: var(--orange); }
+    .tier__body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 1.8rem 1.7rem 1.65rem;
+    }
+    .tier-index {
+      display: block;
+      margin-bottom: 1.2rem;
+      color: var(--orange-ink);
+      font-family: var(--mono);
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .tier-name { font-size: 1.18rem; margin-bottom: .18rem; }
+    .tier-who { margin-bottom: .2rem; }
+    .tier-thresh {
+      min-height: 2.5rem;
+      margin-bottom: 1.35rem;
+      padding-bottom: 1.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .tier-price { font-size: clamp(2.45rem, 4vw, 3.25rem); }
+    .tier-per { margin: .42rem 0 1.55rem; }
+    .tier ul { margin-bottom: 1.6rem; }
+    .tier li { margin-bottom: .68rem; }
+    .tier .tier-cta {
+      min-height: 47px;
+      margin-top: auto;
+      border-color: var(--ink);
+      border-radius: 7px;
+      font-weight: 650;
+    }
+    .tier .tier-cta:hover { background: var(--ink); color: var(--white); }
+
+    .capability-overview {
+      width: min(900px, 100%);
+      margin-top: clamp(4.5rem, 8vw, 7rem);
+      padding: clamp(2rem, 4vw, 3.4rem);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--cloud);
+    }
+    .capability-overview.details { padding-top: clamp(2rem, 4vw, 3.4rem); }
+    .capability-overview .grid2 { gap: 2rem 2.5rem; }
+    .capability-overview .sub { max-width: 660px; }
+
+    .band-invite {
+      position: relative;
+      overflow: hidden;
+      margin-top: clamp(2rem, 4vw, 3.5rem);
+      padding: clamp(1.8rem, 4vw, 2.8rem);
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--white);
+    }
+    .band-invite::after {
+      content: "";
+      position: absolute;
+      top: -75px;
+      right: -75px;
+      width: 190px;
+      height: 190px;
+      border: 48px solid rgba(245,106,0,.14);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .band-invite h2 { color: var(--white); }
+    .band-invite p { color: rgba(255,255,255,.67); }
+    .band-invite p strong { color: var(--white); }
+    .band-invite .btn {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .band-invite .btn:hover { background: var(--cloud); }
+
+    .details { padding-top: clamp(4.7rem, 8vw, 6.5rem); }
+    .purchase-ease { margin-top: clamp(3.5rem, 7vw, 5rem); }
+    .faq-heading { margin-top: clamp(3.8rem, 7vw, 5rem); }
+    .faq details[open] { background: linear-gradient(90deg, rgba(245,106,0,.045), transparent 68%); }
+    .faq details[open] .faq-answer { color: var(--graphite); }
+
+    @media (max-width: 900px) {
+      .tier-heading { align-items: flex-start; }
+      .tier-heading p { text-align: left; }
+      .tiers { grid-template-columns: repeat(2, 1fr); }
+      .tier:last-child { grid-column: 1 / -1; }
+      .tier:last-child .tier__body { min-height: 430px; }
+      .capability-overview { margin-top: 4rem; }
+    }
+    @media (max-width: 700px) {
+      .container { width: calc(100% - 2rem); }
+      .hero { padding-top: 3.5rem; }
+      .hero h1 { font-size: clamp(2.45rem, 13vw, 3.6rem); }
+      .tier-heading { display: block; }
+      .tier-heading p { margin-top: .75rem; }
+      .tiers { grid-template-columns: 1fr; }
+      .tier:last-child { grid-column: auto; }
+      .tier:last-child .tier__body { min-height: 0; }
+      .tier-thresh { min-height: 0; }
+      .capability-overview { padding: 1.6rem 1.35rem; }
+      .band-invite .btn { width: 100%; }
+    }
   </style>
   <link rel="stylesheet" href="assets/site-shell.css">
   <script>
@@ -271,7 +454,6 @@
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-site-nav>
         <a href="/#product">Product</a>
         <a href="/pricing.html" aria-current="page">Pricing</a>
-        <a href="/security.html">Trust</a>
         <a href="/#founder">Founder</a>
         <a href="/#faq">FAQ</a>
         <a class="site-nav__program" href="/#report">Get the free report</a>
@@ -285,11 +467,18 @@
 
     <section class="hero">
       <h1>Simple pricing,<br>per airport.</h1>
-      <p class="copy-stack"><span>No per-seat pricing.</span></p>
+      <p>No per-seat pricing.</p>
     </section>
+
+    <div class="tier-heading">
+      <h2>Choose the airport profile that most closely fits.</h2>
+      <p>Project complexity and funding context may point to a different scope. We’ll confirm that before anything proceeds.</p>
+    </div>
 
     <section class="tiers">
       <div class="tier" data-tier="field">
+        <div class="tier__body">
+        <span class="tier-index">Plan 01</span>
         <div class="tier-name">Field</div>
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-thresh">Under about 10,000 annual enplanements</div>
@@ -300,9 +489,13 @@
           <li>Guided setup using your airport’s local policy and thresholds, subject to agreed scope</li>
           <li>Core procurement path review and cooperative candidate review</li>
         </ul>
+        <a class="btn tier-cta" href="/book-a-call.html?tier=field">Discuss Field</a>
+        </div>
       </div>
 
       <div class="tier" data-tier="regional">
+        <div class="tier__body">
+        <span class="tier-index">Plan 02</span>
         <div class="tier-name">Regional</div>
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-thresh">About 10,000 to 500,000 annual enplanements</div>
@@ -314,9 +507,13 @@
           <li>Decision-summary exports for airport review, where available</li>
           <li>Approval workflow and activity tracking; any hands-on implementation support is scoped separately</li>
         </ul>
+        <a class="btn tier-cta" href="/book-a-call.html?tier=regional">Discuss Regional</a>
+        </div>
       </div>
 
       <div class="tier" data-tier="metro">
+        <div class="tier__body">
+        <span class="tier-index">Plan 03</span>
         <div class="tier-name">Metro</div>
         <div class="tier-who">Small hub</div>
         <div class="tier-thresh">About 500,000 to 2.5 million annual enplanements</div>
@@ -326,12 +523,10 @@
           <li class="inherit">Everything in Regional, plus</li>
           <li>Expanded support for complex, multi-source airport funding contexts, including PFC-related project questions, subject to current product availability</li>
         </ul>
+        <a class="btn tier-cta" href="/book-a-call.html?tier=metro">Discuss Metro</a>
+        </div>
       </div>
     </section>
-
-    <div class="tiers-single-cta" style="text-align:center;margin:2.6rem 0 0">
-      <a class="btn" href="/book-a-call.html" style="background:#F56A00;color:#fff;border-color:#F56A00;font-size:.95rem;font-weight:600;padding:.78rem 2.1rem;border-radius:980px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Book a call</a>
-    </div>
 
     <section class="details narrow capability-overview" aria-labelledby="capability-overview-title">
       <span class="eyebrow">What TarmacSync brings to the airport</span>
@@ -350,6 +545,7 @@
         <h2>Program — medium hub, large hub, or major capital program?</h2>
         <p class="copy-stack"><span><strong>From $45,000/year.</strong> Scope, security review, support model, data requirements, and purchasing path are confirmed before pricing is finalized.</span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span><span>Tell us what you are planning and we will work out what fits.</span></p>
       </div>
+      <a class="btn" href="/book-a-call.html?tier=program">Discuss a program</a>
     </div>
 
 
@@ -373,7 +569,7 @@
         <p class="purchase-ease-footnote">Your airport's purchasing policy, delegated authority, P-card rules, and total contract commitment determine the appropriate purchasing and payment path.</p>
       </section>
 
-      <h2 style="margin-top:5rem">Common questions</h2>
+      <h2 class="faq-heading">Common questions</h2>
       <div class="faq">
         <details>
           <summary>Do you charge per user?</summary>
@@ -422,7 +618,7 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo site-footer__logo--icon" src="assets/tarmacsync-icon.png" alt="TarmacSync" width="56" height="56" loading="lazy"></a>
-      <div class="site-footer__links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a><a href="mailto:contact@tarmacsync.com">Contact</a></div><a class="site-footer__social" href="https://www.linkedin.com/company/tarmacsync/" aria-label="TarmacSync on LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
+      <div class="site-footer__links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a><a href="/security.html">Trust</a><a href="mailto:contact@tarmacsync.com">Contact</a></div>
     </div>
     
   </footer>
