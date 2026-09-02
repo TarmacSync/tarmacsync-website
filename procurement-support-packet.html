@@ -162,18 +162,13 @@
       </section>
 
       <section id="evaluation">
-        <h2>How to evaluate TarmacSync for your airport</h2>
-        <p id="evaluation-tier-note" hidden></p>
-        <ol class="checklist" style="list-style:decimal inside; padding-left:0;">
-          <li style="padding-left:.75rem;"><strong>Review the public trust, security, and privacy pages</strong> at <a href="/security.html">tarmacsync.com/security.html</a>. Confirm the security posture and data-handling commitments meet your airport's requirements.</li>
-          <li style="padding-left:.75rem;"><strong>Review the Data Processing Addendum</strong> for subprocessor and cross-border transfer details.</li>
-          <li style="padding-left:.75rem;"><strong>Confirm the evaluation data boundaries.</strong> Product evaluations use permitted, non-sensitive project and procurement information. SSI, CUI, classified, and export-controlled material are not accepted.</li>
-          <li style="padding-left:.75rem;"><strong>Identify a real purchase or project</strong> expected during the next six months. The strongest evaluation is working through an actual airport need.</li>
-          <li style="padding-left:.75rem;"><strong>Request a fit conversation.</strong> Email <a id="evaluation-request-link" href="mailto:contact@tarmacsync.com?subject=TarmacSync%20product%20evaluation">contact@tarmacsync.com</a> with your airport, project or purchase, and the tier you want to review. Omar will reply personally within two business days.</li>
-        </ol>
-
+        <span class="coordinate-label">Your next step</span>
+        <h2>Book a 30-minute fit conversation.</h2>
+        <p id="evaluation-tier-note">Tell us the airport, the real purchase or project you have in mind, and what you want to review. We’ll confirm whether TarmacSync fits the work and explain the next step.</p>
+        <p><a class="btn" id="evaluation-request-link" href="https://zoho134.zohobookings.eu/263728000000044047">Book a fit conversation</a></p>
+        <p class="fine">Product evaluations use permitted, non-sensitive project and procurement information. Scope, users, success measures, data boundaries, and any fees are agreed in writing before access begins.</p>
         <div class="note">
-          <strong>For your procurement or purchasing team:</strong> TarmacSync is priced per airport, not per user, starting at $2,400 per year. Government Customer Addendum and Data Processing Addendum are provided for public-agency review. Terms page: <a href="/terms.html">tarmacsync.com/terms.html</a>.
+          <strong>For your procurement or purchasing team:</strong> TarmacSync is priced per airport, with no per-seat pricing, starting at $2,400 per year. Your airport’s purchasing policy, vendor setup, security review, and total contract commitment determine the purchasing path.
         </div>
       </section>
 
@@ -212,9 +207,9 @@
       const tier=new URLSearchParams(window.location.search).get('tier');
       if(!tier || !labels[tier]) return;
       const note=document.getElementById('evaluation-tier-note');
-      if(note){ note.hidden=false; note.textContent='You selected the '+labels[tier]+' plan. The annual subscription, evaluation scope, and purchasing path are confirmed with your airport.'; }
+      if(note){ note.textContent='You selected the '+labels[tier]+' plan. Tell us the airport, the real purchase or project you have in mind, and what you want to review. We’ll confirm whether TarmacSync fits the work and explain the next step.'; }
       const link=document.getElementById('evaluation-request-link');
-      if(link) link.href='mailto:contact@tarmacsync.com?subject='+encodeURIComponent('TarmacSync '+labels[tier]+' product evaluation');
+      if(link) link.href='https://zoho134.zohobookings.eu/263728000000044047';
     })();
   </script>
 </body>
