@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Processing Addendum — TarmacSync</title>
+  <title>Data Processing Addendum - TarmacSync</title>
   <meta name="description" content="Data Processing Addendum for TarmacSync airport customers. Covers subprocessors, data handling, security, and cross-border transfer commitments." />
   <link rel="canonical" href="https://www.tarmacsync.com/data-processing-addendum.html" />
   <link rel="icon" href="assets/tarmacsync-favicon-v2.svg" type="image/svg+xml">
@@ -79,7 +79,7 @@
 
       <section>
         <h2>1. Definitions</h2>
-        <p><strong>Airport Data</strong> means information your airport provides to TarmacSync — procurement policies, purchase descriptions, project context, funding information, uploaded documents, and related materials.</p>
+        <p><strong>Airport Data</strong> means information your airport provides to TarmacSync - procurement policies, purchase descriptions, project context, funding information, uploaded documents, and related materials.</p>
         <p><strong>Processing</strong> means any operation performed on Airport Data, including collection, storage, retrieval, transmission, and deletion.</p>
         <p><strong>Subprocessor</strong> means a third party engaged by TarmacSync to process Airport Data as part of delivering the service.</p>
       </section>
@@ -119,7 +119,7 @@
           </table>
         </div>
 
-        <h3>Outbound lookup services (not subprocessors — store no airport data)</h3>
+        <h3>Outbound lookup services (not subprocessors - store no airport data)</h3>
         <div class="legal-table-scroll" role="region" aria-label="Outbound lookup services" tabindex="0">
           <table>
             <tr><th>Service</th><th>Purpose</th><th>Data sent</th></tr>
@@ -138,9 +138,9 @@
           <li>AES-256 encryption at rest (Neon Postgres).</li>
           <li>Application-layer tenant isolation with PostgreSQL row-level security (RLS) enforced on all tables.</li>
           <li>Application connects as a database role without BYPASSRLS; a query missing tenant context returns zero rows.</li>
-          <li>Self-hosted identity — passwordless email one-time-code sign-in with TOTP 2FA (RFC 6238).</li>
+          <li>Self-hosted identity: passwordless email one-time-code sign-in with TOTP 2FA (RFC 6238).</li>
           <li>Three RBAC roles: owner, procurement, viewer. Org-scoped sessions, revocable on next request.</li>
-          <li>Sliding-window rate limiting. Fails closed — if the limiter is unreachable, the request is refused.</li>
+          <li>Sliding-window rate limiting. Fails closed: if the limiter is unreachable, the request is refused.</li>
           <li>Secrets are server-side environment variables only. No secrets in client code, config files, or logs.</li>
         </ul>
       </section>
@@ -167,7 +167,7 @@
 
       <section>
         <h2>9. Compliance scope</h2>
-        <p>Application hosting (Vercel) and the database (Neon), where all airport data is stored and processed, hold SOC 2 Type II certifications. TarmacSync has not yet completed its own organizational SOC 2 audit — planned when enterprise requirements materialize. FedRAMP is not applicable (TarmacSync is not designed for CUI or FISMA workloads). An internal VPAT (WCAG 2.2 AA, ITI 2.5 format) is available on request. SOC 2 reports from Vercel and Neon are available under NDA on request.</p>
+        <p>Application hosting (Vercel) and the database (Neon), where all airport data is stored and processed, hold SOC 2 Type II certifications. TarmacSync has not yet completed its own organizational SOC 2 audit - planned when enterprise requirements materialize. FedRAMP is not applicable (TarmacSync is not designed for CUI or FISMA workloads). An internal VPAT (WCAG 2.2 AA, ITI 2.5 format) is available on request. SOC 2 reports from Vercel and Neon are available under NDA on request.</p>
       </section>
 
       <section>
