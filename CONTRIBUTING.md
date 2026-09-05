@@ -21,7 +21,7 @@ This repository is small on purpose. Keep changes narrow, readable, and easy to 
 
 ## Change types that do not belong here
 
-- Pathfinder product logic
+- Core product logic
 - Dashboard or authenticated app features
 - Procurement intelligence code
 - Large content libraries or internal documentation
