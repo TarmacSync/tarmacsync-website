@@ -1623,7 +1623,7 @@
           const r=await fetch('/api/report-download',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(payload)});
           const d=await r.json().catch(()=>({}));
           if(!r.ok||!d.ok)throw new Error(d.error||'We could not confirm your report request. Please try again.');
-          form.reset();form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';
+          form.reset();form.style.display='none';document.getElementById('form-content').style.display='none';document.getElementById('contact-success').style.display='block';window.dispatchEvent(new CustomEvent('tarmacsync:report-success'));
         }catch(err){status.className='form-status error';status.textContent=err.message||'We couldn’t send the report right now. Please try again.';button.disabled=false;button.textContent='Email me the report';
         }finally{form.removeAttribute('aria-busy');}
       });
@@ -1670,5 +1670,6 @@
       els.forEach(el=>io.observe(el));
     })();
   </script>
+  <script defer src="assets/funnel-analytics.js"></script>
 </body>
 </html>
