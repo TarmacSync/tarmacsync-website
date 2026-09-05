@@ -63,7 +63,7 @@ Optional:
 
 Behavior:
 
-- If any of these are missing, `api/waitlist.js` returns `503`.
+- If any of these are missing, `api/report-download.js` returns `503`.
 - The endpoint validates request origin against the current host.
 - A honeypot field (`website`) is used to ignore obvious spam bots.
 
