@@ -334,6 +334,21 @@
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
 
+    /* ── Product model ─────────────────────────────────────────────── */
+    .product-model { padding: 0 0 var(--section-sm); }
+    .product-model__intro { max-width: 42rem; margin: 0 auto 1.7rem; text-align: center; }
+    .product-model__intro .eyebrow { color: var(--orange-ink); }
+    .product-model__intro p { margin-top: .7rem; color: var(--graphite); }
+    .product-model__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+    .product-model__step { background: var(--white); padding: 1.45rem 1.5rem 1.55rem; }
+    .product-model__number { color: var(--orange-ink); font: 600 .75rem/1 var(--mono); letter-spacing: .08em; }
+    .product-model__step h3 { margin-top: .85rem; }
+    .product-model__step p { margin-top: .45rem; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+    @media (max-width: 680px) {
+      .product-model__steps { grid-template-columns: 1fr; }
+      .product-model__step { padding: 1.25rem 1.2rem; }
+    }
+
     /* ── TarmacSync vision film ────────────────────────────────────────
        A deliberate, single-purpose film surface. Custom controls preserve the
        cinematic frame and appear only after a visitor chooses to watch. */
@@ -1100,6 +1115,33 @@
           <a class="btn btn-secondary btn-lg" href="#product">See how it works</a>
         </div>
         <p class="hero-note">Veteran-founded · Built by an Accredited Airport Executive.</p>
+      </div>
+    </section>
+
+    <!-- ══ PRODUCT MODEL ══════════════════════════════════════════ -->
+    <section class="product-model" aria-labelledby="product-model-title">
+      <div class="page">
+        <div class="product-model__intro">
+          <span class="eyebrow">How the product works</span>
+          <p id="product-model-title">A working review for the purchase in front of you—not a replacement for the process that follows.</p>
+        </div>
+        <div class="product-model__steps">
+          <article class="product-model__step">
+            <span class="product-model__number">01</span>
+            <h3>Describe the purchase</h3>
+            <p>Start with the need, estimated amount, funding context, and what the airport already knows.</p>
+          </article>
+          <article class="product-model__step">
+            <span class="product-model__number">02</span>
+            <h3>Review the working path</h3>
+            <p>Organize the candidate route, supporting sources, open questions, and facts that could change it.</p>
+          </article>
+          <article class="product-model__step">
+            <span class="product-model__number">03</span>
+            <h3>Confirm the next action</h3>
+            <p>Use the evidence and draft output to support the next human review, validation, or handoff.</p>
+          </article>
+        </div>
       </div>
     </section>
 
