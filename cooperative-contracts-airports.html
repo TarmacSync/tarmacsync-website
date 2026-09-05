@@ -56,8 +56,12 @@
     .footer-bottom { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .78rem; color: var(--muted); }
 
 
-    .header-row { display: flex; justify-content: space-between; align-items: center; }
+    .header-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .header-links { display: flex; align-items: center; gap: 1.15rem; margin-left: auto; }
+    .header-links a { color: var(--muted); font-size: .8rem; text-decoration: none; }
+    .header-links a:hover { color: var(--ink); }
     .header-btn { display: inline-flex; align-items: center; padding: .5rem 1.05rem; font-size: .82rem; font-weight: 500; text-decoration: none; border-radius: 980px; background: var(--ink); color: #fff; font-family: var(--sans); }
+    @media (max-width: 720px) { .header-links { display: none; } }
 
   </style>
   <script>
@@ -71,6 +75,11 @@
   <header>
     <div class="container header-row">
       <a href="/" aria-label="TarmacSync home"><img class="logo" src="assets/tarmacsync-logo.png" alt="TarmacSync" width="190" height="46"></a>
+      <nav class="header-links" aria-label="Primary navigation">
+        <a href="/#product">Product</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/procurement-support-packet.html">Evaluate TarmacSync</a>
+      </nav>
       <a href="/#report" class="header-btn">Get the free report</a>
     </div>
   </header>
