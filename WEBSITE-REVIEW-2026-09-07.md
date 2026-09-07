@@ -33,7 +33,7 @@ Keep the report-first acquisition strategy and the existing visual design. The r
 
 ## Scope and release checks
 
-No forms submitted, meetings booked, or production changes published in this review. Browser rendering is not a WCAG certification. End-to-end email delivery, external booking completion, field performance, indexing, and conversion measurement were not exercised.
+No forms submitted, meetings booked, or production changes published in this review. Browser rendering is not a WCAG certification. A production request to the approved Omar test address returned `delivery: already-delivered`, which verifies duplicate-request handling only, not fresh email delivery. A fresh-delivery test remains unverified. External booking completion, field performance, indexing, and conversion measurement were not exercised.
 
 Use Vercel Preview to verify the real analytics asset, report endpoint and delivery, booking destination, and responsive presentation before promoting. Keep claims about released functionality aligned with the actual evaluation scope. Existing secondary pages need ongoing product-availability review as features ship.
 
