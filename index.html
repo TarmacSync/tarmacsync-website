@@ -333,12 +333,20 @@
       margin-top: 1.9rem; flex-wrap: wrap;
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
+    .hero-status { max-width: 42rem; margin: 1.05rem auto 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
     /* ── Product model ─────────────────────────────────────────────── */
     .product-model { padding: 0 0 var(--section-sm); }
     .product-model__intro { max-width: 42rem; margin: 0 auto 1.7rem; text-align: center; }
     .product-model__intro .eyebrow { color: var(--orange-ink); }
     .product-model__intro p { margin-top: .7rem; color: var(--graphite); }
+    .product-model-status { margin-top: 1rem; color: var(--muted); font-size: .82rem; }
+    .snapshot-detail { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+    .snapshot-detail summary { cursor: pointer; color: var(--orange-ink); font-size: .86rem; font-weight: 600; }
+    .snapshot-detail-body { display: grid; gap: 1rem; margin-top: 1rem; }
+    .snapshot-detail-body p { color: var(--muted); font-size: .86rem; line-height: 1.55; }
+    .snapshot-detail-body strong { color: var(--graphite); }
+    .snapshot-cta { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; color: var(--orange-ink); }
     .product-model__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
     .product-model__step { background: var(--white); padding: 1.45rem 1.5rem 1.55rem; }
     .product-model__number { color: var(--orange-ink); font: 600 .75rem/1 var(--mono); letter-spacing: .08em; }
@@ -1110,6 +1118,7 @@
         <h1 class="display"><span class="hl-orange">Know the path.</span> Keep your airport project moving.</h1>
         </div>
         <p class="lede">Fewer scavenger hunts. Clearer next steps for airport purchases.</p>
+        <p class="hero-status"><strong>Pre-launch:</strong> TarmacSync is being prepared for evaluation. Current scope, availability, and timing are confirmed separately.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#application" data-report-cta="hero">Get the free report</a>
           <a class="btn btn-secondary btn-lg" href="#product-model">See how it works</a>
@@ -1119,11 +1128,12 @@
     </section>
 
     <!-- ══ PRODUCT MODEL ══════════════════════════════════════════ -->
-    <section class="product-model" aria-labelledby="product-model-title">
+    <section class="product-model" id="product-model" aria-labelledby="product-model-title">
       <div class="page">
         <div class="product-model__intro">
           <span class="eyebrow">How the product works</span>
           <p id="product-model-title">A focused review of the purchase in front of you, so the next step is easier to confirm.</p>
+          <p class="product-model-status">Illustrative workflow: current product scope and evaluation availability are confirmed separately.</p>
         </div>
         <div class="product-model__steps">
           <article class="product-model__step">
@@ -1216,15 +1226,26 @@
               <div class="snapshot-field"><span class="snapshot-label">Project</span><div class="snapshot-value">Runway Sweeper</div></div>
               <div class="snapshot-field"><span class="snapshot-label">Estimated value</span><div class="snapshot-value">$180,000</div></div>
               <div class="snapshot-field"><span class="snapshot-label">Project funds</span><div class="snapshot-value">Airport operating funds</div></div>
-              <div class="snapshot-field snapshot-field-path"><span class="snapshot-label">Likely path</span><div class="snapshot-value">Cooperative contract candidate</div></div>
+              <div class="snapshot-field snapshot-field-path"><span class="snapshot-label">Candidate route</span><div class="snapshot-value">Cooperative contract candidate</div></div>
               <div class="snapshot-field"><span class="snapshot-label">Authority</span><div class="snapshot-value">Airport approval requirements must be confirmed</div></div>
               <div class="snapshot-field"><span class="snapshot-label">Open question</span><div class="snapshot-value">Contract scope and cooperative-use authorization must be validated</div></div>
             </div>
             <div class="snapshot-next">
-              <div><span class="snapshot-label">Next step</span><p>Confirm eligibility to use this agreement and that the equipment fits within its awarded scope.</p></div>
+              <div><span class="snapshot-label">Next action</span><p>Procurement reviewer confirms scope and authorization before the airport relies on the candidate route.</p></div>
               <span class="snapshot-next-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h12M13 8l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </div>
-            <p class="snapshot-sources"><strong>Sources reviewed:</strong> Local purchasing policy · Existing agreements · Cooperative contract documentation</p>
+            <details class="snapshot-detail">
+              <summary>See the working detail behind this example</summary>
+              <div class="snapshot-detail-body">
+                <p><strong>Policy and source reference:</strong> Illustrative demonstration source set only: airport purchasing policy, an existing-agreement record, and cooperative-contract documentation. No live policy citation or contract identifier is asserted here.</p>
+                <p><strong>Contract candidate:</strong> No verified contract identifier is presented. The cooperative route remains a candidate until scope, currency, pricing, and participation authority are checked.</p>
+                <p><strong>Alternative route:</strong> A competitively solicited purchase remains relevant if the cooperative candidate does not cover the equipment scope or the airport cannot use it under its authority.</p>
+                <p><strong>Established findings:</strong> The supplied illustrative facts support a review of operating-fund purchasing options and a cooperative candidate pathway. They do not establish eligibility, approval, or a final route.</p>
+                <p><strong>Reviewer and handoff:</strong> The procurement reviewer confirms local authority and contract scope, then carries the source set, open question, and proposed next action into the airport's internal review.</p>
+              </div>
+            </details>
+            <p class="snapshot-sources"><strong>Source status:</strong> Illustrative demonstration sources only. This manually prepared example does not imply that current software generated it.</p>
+            <p class="snapshot-cta"><a href="/book-a-call.html?tier=field">Have an active purchasing problem? Discuss the fit</a></p>
           </div>
         </article>
       </div>
@@ -1270,10 +1291,10 @@
           <article class="path-card path-card-output">
             <span class="path-step">03 Project path</span>
             <h3>What the team acts on</h3>
-            <span class="path-example">Example: runway sweeper · $180K · AIP</span>
+            <span class="path-example">Example: runway sweeper · $180K · airport operating funds</span>
             <div class="path-results">
               <div class="path-result"><span>Likely route</span> <strong>Cooperative contract, candidate</strong></div>
-              <div class="path-result"><span>Open issue</span> <strong>Federal funding not confirmed</strong></div>
+              <div class="path-result"><span>Open issue</span> <strong>Contract scope not confirmed</strong></div>
               <div class="path-result"><span>Next move</span> <strong>Validate contract scope</strong></div>
             </div>
           </article>
