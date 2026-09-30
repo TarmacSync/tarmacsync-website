@@ -4,7 +4,7 @@
   const S = window.TourState;
   const $ = (id) => document.getElementById(id);
   const tl = S.timeline(D);
-  const GROUPS = [['now', 'Needed now'], ['solicitation', 'Before the solicitation'], ['award', 'Before award']];
+  const GROUPS = [['now', 'Needed now'], ['solicitation', 'Before the solicitation'], ['application', 'Before the grant application'], ['award', 'Before award']];
 
   function el(tag, cls, text) {
     const n = document.createElement(tag);

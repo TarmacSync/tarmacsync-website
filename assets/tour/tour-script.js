@@ -7,7 +7,7 @@
   const HB = 'AIP Handbook, FAA Order 5100.38D, Change 1';
   const HB_ED = 'Change 1 edition, checked 2026-07-16';
   const GA = 'FAA Grant Assurances, airport sponsors, April 2025 set';
-  const GA_ED = 'April 2025 set; confirm against the assurances in the airport’s grant agreement';
+  const GA_ED = 'April 2025 set; confirm against the assurances in the grant offer for this project';
 
   const citations = {
     m1d: {
@@ -39,6 +39,16 @@
       label: 'Handbook · Table 4-7', source: HB, ref: 'Chapter 4, §4-9, Table 4-7 (rows c and d, small hub and nonhub primary)',
       gist: 'The normal federal share for a small hub is 90% of allowable project costs. The Handbook’s older temporary 95% increase expired. Exceptions include public-land-state adjustments and a 95% share for smaller airports that receive Essential Air Service and sit in economically distressed areas. Since this Handbook edition, the FAA Reauthorization Act of 2024 added a temporary 95% share for nonhub and nonprimary airports in fiscal years 2025 and 2026; small hubs stay at 90%.',
       edition: HB_ED + '; statute checked against 49 USC 47109 on 2026-09-30', checked: '2026-09-30',
+    },
+    t54: {
+      label: 'Handbook · Table 5-4', source: HB, ref: 'Chapter 5, §5-4 Table 5-4 (key steps) and §5-19 Table 5-6 (application contents)',
+      gist: 'The common key steps run: notice of intent to use entitlement funds, advertisement for bids, opening of bids, submission of the grant application, acceptance of the grant offer, then award of the contract. It is FAA policy that the application incorporates actual bid or negotiated agreement amounts; an application built on estimates is possible but described as suboptimal. Early indications from the ADO are for planning only, and whether and when to start is the sponsor’s decision.',
+      edition: HB_ED, checked: '2026-09-30',
+    },
+    t360: {
+      label: 'Handbook · Table 3-60', source: HB, ref: 'Chapter 3, §3-100 and Table 3-60 (rows a and b)',
+      gist: 'Unless the law specifically allows it, project costs must be incurred after the grant is executed (49 USC 47110(b)(2)). Costs paid with passenger, cargo or nonprimary entitlement funds may be reimbursed even if incurred before the grant is executed, as long as all other applicable AIP requirements have been met. For discretionary and state apportionment funds the exceptions are narrow and statutory.',
+      edition: HB_ED + '; statute confirmed against 49 USC 47110(b)(2) on 2026-09-30', checked: '2026-09-30',
     },
     s3105: {
       label: 'Handbook · §3-105', source: HB, ref: 'Chapter 3, §3-105: Allowable Federal Share Requirement',
@@ -109,12 +119,12 @@
   const artifacts = {
     memo: {
       title: 'Route memo', sub: 'Runway broom replacement · Northfield Regional Airport (fictional) · Draft for procurement and grants review',
-      sources: ['t47', 's3105', 't332', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
+      sources: ['t47', 's3105', 't360', 't54', 't332', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
       sections: [
         { h: 'What the airport told us', items: [
           'Replacing a 2009 runway broom with about 4,100 hours, for snow and ice control.',
           'Planning allowance of $650,000. This is an allowance, not an independent estimate or a vendor price.',
-          'AIP funding is proposed and the grant decision is pending. Local match is not yet set.',
+          'AIP funding is planned and the airport has not yet applied for the grant. Local match is not yet set.',
           'Small hub, 14 CFR Part 139 airport. Local policy requires formal competition above $100,000.'] },
         { h: 'What the documents show', items: [
           'Capital plan line: $610,000. This differs from the $650,000 allowance and needs to be reconciled.',
@@ -131,9 +141,11 @@
         { h: 'Funding', items: [
           'A small hub’s normal federal share is 90% of allowable costs, unless an exception applies.',
           'Illustration only: if the whole $650,000 were allowable, that would be up to $585,000 federal and about $65,000 local. The ADO decides allowable costs and the grant agreement sets the maximum.',
-          'Local match and the funds to operate and maintain the unit need to be identified.'] },
+          'Local match and the funds to operate and maintain the unit need to be identified.',
+          'Timing: AIP generally reimburses only costs incurred after the grant is executed; entitlement funds are the main exception. Which funds pay decides whether the airport could commit before the grant and still be reimbursed, by any route.',
+          'The grant is programmed from the capital plan estimate; the application itself should carry actual bid or negotiated amounts.'] },
         { h: 'Grant Assurances that may be implicated', items: [
-          'Numbering follows the April 2025 set. Confirm against the assurances in the airport’s grant agreement.',
+          'Numbering follows the April 2025 set. Confirm against the assurances in the grant offer for this project.',
           '1 General Federal Requirements: brings in 2 CFR Part 200 and required contract provisions.',
           '3 Sponsor Fund Availability: local match, and funds to operate and maintain the unit.',
           '13 Accounting, Audit, and Record Keeping: a file that traces funds, decisions and costs.',
@@ -148,7 +160,7 @@
     },
     checklist: {
       title: 'Pre-solicitation readiness checklist', sub: 'Evidence file for the runway broom replacement · Northfield Regional Airport (fictional)',
-      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 't328', 't367', 'x1', 's567', 'ga30', 'ga33'],
+      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 't328', 't367', 't360', 't54', 'x1', 's567', 'ga30', 'ga33'],
       sections: [
         { h: 'Eligibility file', items: [
           'Current FAA Form 5100-141 inventory (on file: March 2024).',
@@ -157,16 +169,19 @@
           'Number of pieces limited to the minimum the advisory circulars recommend, unless the ADO accepts a traffic-volume justification for more.',
           'Nothing in the specification sized for areas that are not priority 1 areas.'] },
         { h: 'Competition and cost', items: [
-          'Independent estimate, made before bids or proposals are received.',
+          'Independent estimate, made before any bids, proposals or cooperative quotes are received.',
+          'Cooperative route: ADO view and purchasing director’s sign-off obtained, or the route closed, before the solicitation is released.',
           'Written protest procedures in place before the solicitation starts.',
           'Specification reviewed for requirements that could narrow the bidder pool, such as highway-vehicle standards.',
           'Plan for the engineer’s estimate, bid tabulation, price analysis and signed sponsor statement.'] },
         { h: 'Buy American', items: [
+          'Include the Buy American provision and certificate in the solicitation.',
           'Choose the path: certify 100% U.S. production, use a unit on the Nationwide conformance list, or request a waiver.',
           'If a waiver is needed, plan for the ADO’s Type III review (final assembly and content percentage).'] },
         { h: 'Funding and records', items: [
           'Reconcile the $610,000 capital plan line with the $650,000 allowance.',
-          'Confirm which AIP funds and when (entitlement or discretionary) with the ADO.',
+          'Confirm which AIP funds (entitlement or discretionary) pay for this, and whether any cost committed before the grant could be reimbursed.',
+          'Bid tabulation, price or cost analysis and the local-share source ready for the grant application, which should carry actual bid or negotiated amounts.',
           'Local match and operating funds identified.',
           'Grant file that traces funds, decisions and costs.',
           'Plan to dispose of the 2009 unit: advertise the sale, do not solicit specific buyers.'] },
@@ -178,7 +193,7 @@
     },
     ado: {
       title: 'Questions for the ADO', sub: 'Focused set for the runway broom replacement · Northfield Regional Airport (fictional)',
-      sources: ['m1d', 's312', 'c318e', 'x1', 't47'],
+      sources: ['m1d', 's312', 'c318e', 'x1', 't47', 't360', 't54'],
       sections: [
         { h: 'Eligibility', items: [
           'Please confirm the current Form 5100-141 you want on file and any updates to the March 2024 version.',
@@ -188,28 +203,31 @@
           'Would the ADO consider a cooperative purchase for this equipment? If so, what would we need to show about the original competition?',
           'Are any candidate units on the Nationwide Buy American conformance list? If a waiver is needed, which type do you expect?'] },
         { h: 'Funding and timing', items: [
-          'Which AIP funds, entitlement or discretionary, and what schedule do you expect for this project?',
+          'Is this project in our ACIP submission, and in which fiscal year? Which AIP funds, entitlement or discretionary, do you expect, and when is our notice of intent to use entitlements due?',
+          'If entitlement funds are used and we place an order or sign a contract before the grant is executed, what would you need to see for those costs to remain reimbursable?',
           draftNote] },
       ],
     },
     coop: {
       title: 'Cooperative validation checklist', sub: 'Two fictional candidates · validate before any reliance',
-      sources: ['c318e', 'u3', 'u21', 'x1', 'm1d'],
+      sources: ['c318e', 'u3', 'u21', 't367', 't332', 'x1', 'm1d'],
       sections: [
         { h: 'NPC-4471 · Northern Plains Cooperative Purchasing · Ridgeline Airfield Equipment (fictional)', items: [
           'Original solicitation and competition record obtained and reviewed.',
           'Scope covers runway snow equipment matching our Snow and Ice Control Plan and the current advisory circulars.',
-          'Term ends February 2027: compare with grant decision and award timing.',
+          'Term ends February 2027: compare with the grant timeline and award timing.',
           'Buy American path for the exact unit: conformance list, certification or waiver.',
-          'Independent estimate and cost or price analysis prepared; a cooperative discount is not a price analysis.',
+          'Independent estimate prepared before requesting a quote; a cooperative discount is not a price analysis.',
+          'Ask the ADO whether this order is treated as competitive, or needs a cost analysis and the quote as for a procurement without adequate competition.',
           'Required federal contract provisions can be added.',
           'ADO position obtained. Purchasing director’s written sign-off obtained.'] },
         { h: 'MRC-2210 · Midland Regional Purchasing Alliance · Summit Runway Systems (fictional)', items: [
           'Original solicitation and competition record obtained and reviewed.',
           'Multi-task configuration matches the Snow and Ice Control Plan; note that a multi-task unit counts as two pieces.',
-          'Term ends February 2028: compare with grant decision and award timing.',
+          'Term ends February 2028: compare with the grant timeline and award timing.',
           'Buy American path for the exact unit: conformance list, certification or waiver.',
-          'Independent estimate and cost or price analysis prepared.',
+          'Independent estimate prepared before requesting a quote.',
+          'Ask the ADO whether this order is treated as competitive, or needs a cost analysis and the quote as for a procurement without adequate competition.',
           'Required federal contract provisions can be added.',
           'ADO position obtained. Purchasing director’s written sign-off obtained.',
           draftNote] },
@@ -230,7 +248,7 @@
   const beats = [
     {
       id: 'ask', stage: 0, label: 'The purchase',
-      user: 'We need to replace our runway sweeper. Planning allowance is $650,000. We’re hoping AIP covers most of it, but the grant decision is still pending.',
+      user: 'We need to replace our runway sweeper. Planning allowance is $650,000. We’d like AIP to cover most of it, but we haven’t applied for the grant yet.',
       reply: {
         paras: [
           { lead: 'One question decides how this is treated: what will the sweeper be used for?', text: 'The AIP Handbook tests a sweeper differently depending on its purpose. Broom equipment that clears snow and ice from runways, taxiways and aprons at a Part 139 airport may be eligible as snow removal equipment, justified against your Snow and Ice Control Plan. A power vacuum sweeper for controlling foreign object debris is a separate category with its own limit on how many units may be eligible. Towed FOD sweepers are excluded, and sweeping as an activity is treated as maintenance.' },
@@ -242,7 +260,7 @@
         { when: 'send', op: 'purchase', value: 'Runway sweeper replacement' },
         { when: 'send', op: 'phase', value: 'Start · Describe the need' },
         { when: 'send', op: 'known', key: 'allowance', label: 'Planning allowance', value: '$650,000', tag: 'You said', note: 'An allowance, not an estimate' },
-        { when: 'send', op: 'known', key: 'funding', label: 'Funding', value: 'AIP proposed · grant decision pending', tag: 'You said' },
+        { when: 'send', op: 'known', key: 'funding', label: 'Funding', value: 'AIP planned · not yet applied', tag: 'You said' },
         { at: 0.8, op: 'open', key: 'use', group: 'now', text: 'What the sweeper is used for' },
         { at: 1, op: 'next', value: 'Confirm whether this is snow and ice equipment' },
       ],
@@ -255,8 +273,9 @@
           { lead: 'That puts this in the snow removal equipment category, and nothing is decided yet.', text: 'At a Part 139 airport the Handbook treats snow removal equipment as potentially eligible, so the file now has to show why this unit is needed.' },
           { text: 'Three things will carry it. The unit being replaced has to have reached the end of its useful life, so its age and hours need documenting. The number and type of pieces are tested against the two FAA advisory circulars and your Snow and Ice Control Plan, and the ADO will want a current Form 5100-141 equipment inventory. And your $100,000 policy threshold applies alongside the federal procurement standards, not instead of them.' },
           { text: 'On funding, a small hub’s normal federal share is 90% of allowable costs, unless an exception applies, such as a public-land-state adjustment. If the whole $650,000 were allowable, that would be up to $585,000 federal and about $65,000 local. That’s arithmetic on an allowance, not a grant amount: the ADO decides which costs are allowable, and the grant agreement sets the maximum.' },
+          { text: 'One sequencing point before you commit to any route: AIP generally reimburses only costs incurred after the grant is executed. Costs paid from entitlement funds are the main exception, if every other AIP requirement is met. So which funds pay for this decides whether an order or contract signed before the grant could still be reimbursed, by any route. Committing early is at your own risk, so confirm the funding plan with your ADO first.' },
         ],
-        sources: ['s312', 't47', 's3105'],
+        sources: ['s312', 't47', 't360'],
       },
       file: [
         { when: 'send', op: 'known', key: 'purpose', label: 'Purpose', value: 'Snow and ice control (runway broom)', tag: 'You said' },
@@ -267,6 +286,7 @@
         { when: 'send', op: 'phase', value: 'Understand · Apply context' },
         { at: 0.6, op: 'open', key: 'life', group: 'now', text: 'Useful-life documentation for the 2009 unit' },
         { at: 0.65, op: 'open', key: 'form', group: 'now', text: 'Current Form 5100-141' },
+        { at: 0.97, op: 'open', key: 'funds', group: 'now', text: 'Which AIP funds pay for this, since that decides whether costs committed before the grant could be reimbursed' },
         { at: 0.9, op: 'known', key: 'share', label: 'Normal federal share', value: '90% of allowable costs', tag: 'Handbook · Table 4-7', note: 'Unless an exception applies' },
         { at: 0.95, op: 'known', key: 'illus', label: 'Illustration only', value: 'Up to $585,000 federal · about $65,000 local, if the full allowance were allowable', tag: 'Arithmetic, not a grant amount' },
         { at: 1, op: 'next', value: 'Share the capital plan, purchasing policy and Snow and Ice Control Plan' },
@@ -286,9 +306,9 @@
         paras: [
           { lead: 'I’ve read all four. Most of it lines up, but three things need your attention.', text: 'The capital plan carries this project at $610,000, while your allowance is $650,000. I’ve recorded both and left the difference for you to reconcile. The Snow and Ice Control Plan lists runway broom equipment, but the count and specification still need to be checked against the advisory circulars. And the inventory form is dated March 2024, so the ADO will want a current one.' },
           { text: 'Your purchasing policy confirms formal competition above $100,000 and allows a cooperative purchase with your purchasing director’s written sign-off.' },
-          { text: 'On the file, I’ve sorted what’s open. Before any solicitation goes out you’ll need an independent estimate made before bids or proposals are received, and written protest procedures. Before award you’ll need a Buy American path and a documented cost or price analysis.' },
+          { text: 'On the file, I’ve sorted what’s open. Before any solicitation goes out you’ll need an independent estimate and written protest procedures. After bids are in, the bid tabulation, price analysis and your local-share source go into the grant application, because the FAA expects the application to carry actual bid amounts. A Buy American path is needed before award.' },
         ],
-        sources: ['u21', 'u3', 'x1'],
+        sources: ['u21', 't54', 'x1'],
       },
       file: [
         { at: 0.12, op: 'known', key: 'cip', label: 'Capital plan line', value: '$610,000', tag: 'Capital plan', flag: 'Differs from the $650,000 allowance' },
@@ -296,12 +316,11 @@
         { at: 0.42, op: 'known', key: 'form5100', label: 'FAA Form 5100-141', value: 'Dated March 2024', tag: 'Form 5100-141', flag: 'Needs a current version' },
         { at: 0.55, op: 'known', key: 'policy', label: 'Local formal-competition threshold', value: 'Above $100,000 · cooperative purchase needs the purchasing director’s written sign-off', tag: 'Purchasing policy' },
         { at: 0.7, op: 'open', key: 'form', group: 'now', text: 'Current Form 5100-141 (on file: March 2024)' },
-        { at: 0.75, op: 'open', key: 'estimate', group: 'solicitation', text: 'Independent estimate, made before bids or proposals' },
+        { at: 0.75, op: 'open', key: 'estimate', group: 'solicitation', text: 'Independent estimate, made before bids, proposals or a cooperative quote' },
         { at: 0.8, op: 'open', key: 'protest', group: 'solicitation', text: 'Written protest procedures' },
         { at: 0.86, op: 'open', key: 'buyam', group: 'award', text: 'Buy American path: certification, conformance list or waiver' },
-        { at: 0.9, op: 'open', key: 'price', group: 'award', text: 'Cost or price analysis' },
-        { at: 0.94, op: 'open', key: 'funds', group: 'award', text: 'Which AIP funds, and when (entitlement or discretionary)' },
-        { at: 0.98, op: 'open', key: 'match', group: 'award', text: 'Local match and operating funds' },
+        { at: 0.9, op: 'open', key: 'price', group: 'application', text: 'Bid tabulation and cost or price analysis' },
+        { at: 0.98, op: 'open', key: 'match', group: 'application', text: 'Local match and operating funds' },
         { at: 1, op: 'next', value: 'Reconcile the $610,000 and $650,000 figures' },
       ],
     },
@@ -318,7 +337,7 @@
       },
       file: [
         { when: 'send', op: 'phase', value: 'Route · Find the path' },
-        { at: 1, op: 'open', key: 'coop', group: 'award', text: 'Validate cooperative candidates with the ADO' },
+        { at: 1, op: 'open', key: 'coop', group: 'solicitation', text: 'Get the ADO’s view on the cooperative candidates before the solicitation is released' },
         { at: 1, op: 'next', value: 'Decide whether to test the cooperative candidates alongside formal competition' },
       ],
     },
@@ -328,15 +347,15 @@
       reply: {
         paras: [
           { lead: 'Timing, configuration and price support matter more than the catalog match.', text: 'Start with how the base contract was competed, and whether that competition supports the federal expectations for your purchase. Then Buy American: a catalog listing doesn’t establish it, so the exact unit needs its own path: certification that it’s wholly U.S.-produced, a place on the FAA’s conformance list, or a waiver. The configuration also has to match your Snow and Ice Control Plan.' },
-          { text: 'Timing counts too. One candidate ends in February 2027 and the other in February 2028, and your grant decision is still open. A cooperative discount also isn’t a price analysis: at this value you still need the independent estimate and a documented cost or price analysis.' },
+          { text: 'Timing counts too. One candidate ends in February 2027 and the other in February 2028, and you haven’t applied for the grant yet. A cooperative discount also isn’t a price analysis: at this value you still need the independent estimate and a documented cost or price analysis.' },
           { text: 'The ADO can choose to review before award in some cases, such as a brand-name specification above the federal simplified acquisition threshold. That threshold is currently $350,000. The Handbook edition I’m reading still shows $150,000, so I’m flagging the difference. Your own $100,000 policy is lower, so that’s the one that drives when you compete.' },
         ],
         sources: ['x1', 't332', 'sat'],
       },
       file: [
         { when: 'send', op: 'phase', value: 'Check · Validate the route' },
-        { at: 0.5, op: 'open', key: 'terms', group: 'award', text: 'Candidate term dates (Feb 2027, Feb 2028) against grant timing' },
-        { at: 1, op: 'open', key: 'spec', group: 'award', text: 'Candidate specifications against the Snow and Ice Control Plan' },
+        { at: 0.5, op: 'open', key: 'terms', group: 'solicitation', text: 'Candidate term dates (Feb 2027, Feb 2028) against grant timing' },
+        { at: 1, op: 'open', key: 'spec', group: 'solicitation', text: 'Candidate specifications against the Snow and Ice Control Plan' },
       ],
     },
     {
@@ -345,7 +364,7 @@
       thinkLabel: 'Preparing the file',
       reply: {
         paras: [
-          { lead: 'Formal competition is the likely buying path, and the cooperative candidates stay open for validation.', text: 'That fits your $100,000 policy threshold, and equipment bought with adequate competition has a well-defined cost-reasonableness file. What would change the path: an ADO position that supports a cooperative purchase, a candidate whose competition, specification and Buy American position hold up, or only one bid coming in.' },
+          { lead: 'Formal competition is the likely buying path, and the cooperative candidates stay open until your ADO weighs in, before any solicitation is released.', text: 'That fits your $100,000 policy threshold, and equipment bought with adequate competition has a well-defined cost-reasonableness file, which your grant application will carry. What would change the path: an ADO position that supports a cooperative purchase, a candidate whose competition, specification and Buy American position hold up, or only one bid coming in.' },
           { text: 'I’ve prepared four review drafts for your procurement and grants teams. They separate what you told me, what your documents show, and what’s still unresolved. They’re drafts for review, not a purchase authorization.' },
         ],
         sources: ['t367', 'ga13', 'ga3'],

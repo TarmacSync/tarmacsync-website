@@ -67,7 +67,7 @@ section('final state: discrepancy flagged, open items grouped, drafts offered, f
   assert.match(file, /\$610,000/);
   assert.match(file, /Differs from the \$650,000 allowance/);
   assert.match(file, /Before the solicitation/);
-  assert.match(file, /Before award/);
+  assert.match(file, /Before the grant application/);
   assert.match(file, /Ready · Build the record/);
   assert.equal(await count(page, '.attachment'), 4);
   assert.equal(await page.locator('#finish').isVisible(), true);

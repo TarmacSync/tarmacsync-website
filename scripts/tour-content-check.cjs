@@ -140,7 +140,7 @@ test('start state is the landing screen; final state is complete', () => {
   assert.equal(cip.value, '$610,000');
   assert.ok(cip.flag, 'discrepancy is flagged, not resolved');
   const groups = new Set(end.file.open.map((o) => o.group));
-  assert.deepEqual([...groups].sort(), ['award', 'now', 'solicitation']);
+  assert.deepEqual([...groups].sort(), ['application', 'award', 'now', 'solicitation']);
   assert.equal(end.file.open.find((o) => o.key === 'use').done, true);
 });
 
@@ -314,6 +314,80 @@ test('continuity: the demo page mirrors the site header CTA and hands people bac
   assert.match(t, /id="stages"/);
   assert.match(t, /href="\/#product-model"/, 'finish card links back to How TarmacSync works');
   assert.match(t, /id="replay"/);
+});
+
+test('scenario timing: AIP is planned but not applied for; nothing implies a pending application', () => {
+  const all = strings(script).join('\n');
+  assert.ok(!/grant decision|decision is (still )?(pending|open)/i.test(all), 'no "grant decision pending" framing anywhere');
+  assert.match(script.beats[0].user, /haven’t applied/);
+  const funding = script.beats[0].file.find((o) => o.key === 'funding');
+  assert.match(funding.value, /not yet applied/i);
+  assert.match(strings(script.artifacts.memo).join(' '), /has not yet applied/);
+});
+
+test('sequencing: costs before the grant (Table 3-60), the entitlement exception, and the ADO check', () => {
+  const c = script.citations.t360;
+  assert.ok(c, 't360 citation exists');
+  assert.match(c.ref, /Table 3-60/);
+  assert.match(c.gist, /after the grant/i);
+  assert.match(c.gist, /entitlement/i);
+  assert.match(c.edition, /47110/, 'statute check is recorded');
+  const b = script.beats[1];
+  assert.ok(b.reply.sources.includes('t360'), 'second reply cites it');
+  const text = b.reply.paras.map((p) => p.text).join(' ');
+  assert.match(text, /after the grant is executed/i);
+  assert.match(text, /entitlement/i);
+  assert.match(text, /ADO/);
+  const funds = script.beats.flatMap((x) => x.file).filter((o) => o.op === 'open' && o.key === 'funds');
+  assert.equal(funds.length, 1, 'the funds open item is defined once, where it is explained');
+  assert.equal(funds[0].group, 'now', 'route not chosen yet, so it is not filed under "before the solicitation"');
+  assert.match(strings(script.artifacts.ado).join(' '), /before the grant is executed/i);
+});
+
+test('sequencing copy is route-neutral: it is about incurring a cost, so it must not assume a bid or solicitation', () => {
+  const second = script.beats[1].reply.paras.map((p) => p.text).join(' ');
+  const funds = script.beats.flatMap((x) => x.file).find((o) => o.op === 'open' && o.key === 'funds');
+  [['second reply', second], ['funds open item', funds.text]].forEach(([name, text]) => {
+    assert.ok(!/\bbid(s|ding)?\b|solicit/i.test(text), name + ' assumes formal competition: "' + text.slice(0, 80) + '"');
+  });
+  assert.match(second, /order or sign a contract|commit/i, 'names what actually incurs the cost');
+  const ado = strings(script.artifacts.ado).join(' ');
+  assert.match(ado, /order or sign a contract/i, 'the ADO question covers any route, cooperative included');
+});
+
+test('grant sequence (Handbook Table 5-4, 5-6): bids feed the application; the application is a named gate', () => {
+  const c = script.citations.t54;
+  assert.ok(c, 't54 citation exists');
+  assert.match(c.ref, /Table 5-4/);
+  assert.match(c.ref, /Table 5-6/);
+  assert.match(c.gist, /actual bid or negotiated/i);
+  const docs = script.beats[2].reply.paras.map((p) => p.text).join(' ');
+  assert.match(docs, /grant application/i, 'documents reply explains what goes into the application');
+  const ops = script.beats.flatMap((b) => b.file).filter((o) => o.op === 'open');
+  const g = (k) => ops.filter((o) => o.key === k).pop().group;
+  assert.equal(g('price'), 'application');
+  assert.equal(g('match'), 'application');
+  ['coop', 'terms', 'spec'].forEach((k) => assert.equal(g(k), 'solicitation', k + ' is settled before a solicitation'));
+  assert.match(strings(script.artifacts.ado).join(' '), /ACIP/);
+  assert.match(strings(script.artifacts.ado).join(' '), /notice of intent/i);
+  const all = [script.artifacts.memo, script.artifacts.checklist, script.artifacts.ado];
+  all.forEach((a) => assert.ok(a.sources.includes('t360'), a.title + ' cites the timing rule'));
+});
+
+test('early commitment is framed as the airport\'s risk and reimbursability, not ADO permission', () => {
+  const all = strings(script).join('\n');
+  assert.ok(!/may we place an order|whether any order or contract may precede/i.test(all), 'no "ADO permits" framing');
+  assert.match(script.beats[1].reply.paras.map((p) => p.text).join(' '), /own risk/i);
+  assert.match(script.beats[1].reply.paras.map((p) => p.text).join(' '), /reimbursed/i);
+});
+
+test('the independent estimate precedes cooperative quotes too; the cooperative file is not the sealed-bid file', () => {
+  const coop = strings(script.artifacts.coop).join(' ');
+  assert.match(coop, /before requesting a quote/i);
+  assert.match(coop, /cost analysis/i);
+  assert.match(strings(script.artifacts.checklist).join(' '), /cooperative quotes/i);
+  assert.match(strings(script.artifacts.checklist).join(' '), /Buy American provision and certificate in the solicitation/i);
+  assert.ok(!/assurances in the airport’s grant agreement/.test(strings(script).join('\n')), 'no grant agreement exists yet for this project');
 });
 
 test('the tour page no longer points at the removed homepage anchor', () => {
