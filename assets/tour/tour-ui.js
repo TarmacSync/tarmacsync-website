@@ -194,6 +194,9 @@
   function renderTicks() {
     const list = $('ticks');
     tl.marks.forEach((m, i) => {
+      // The Start mark sits 3.5 s from the first exchange, so on a phone the two hit areas would
+      // overlap. Restart and dragging the scrubber to the left edge already cover it.
+      if (i === 0) return;
       const li = el('li'); li.style.left = (m.at / tl.total) * 100 + '%';
       const b = el('button'); b.type = 'button'; b.dataset.mark = String(i);
       b.setAttribute('aria-label', 'Jump to: ' + m.label);

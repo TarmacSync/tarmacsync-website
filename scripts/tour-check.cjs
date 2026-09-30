@@ -21,12 +21,13 @@ async function fresh(browser, opts = {}) {
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   page.on('request', (r) => { if (r.method() !== 'GET' || /\/api\//.test(r.url())) bad.push(r.method() + ' ' + r.url()); });
+  const target = BASE + (opts.path || '/tour.html') + (opts.hash || '');
   if (opts.realClock) {
     // Synthesized wheel input is not delivered while the virtual clock is paused, so gesture tests run in real time.
-    await page.goto(BASE + '/tour.html' + (opts.hash || ''));
+    await page.goto(target);
   } else {
     await page.clock.install({ time: 0 });
-    await page.goto(BASE + '/tour.html' + (opts.hash || ''));
+    await page.goto(target);
     await page.clock.pauseAt(1000);
   }
   const advance = (ms) => page.clock.runFor(ms);
@@ -504,6 +505,74 @@ section('phone: the stage tracker fits and names the current stage', async (brow
   assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, 'no overflow');
   assert.match(await page.locator('#stage-caption').innerText(), /Stage 3 of 5/);
   assert.match(await page.locator('#stage-caption').innerText(), /ROUTE/);
+  await context.close();
+});
+
+section('no phantom scroll: after the finish the document ends at the footer, on desktop and phone', async (browser) => {
+  for (const width of [1440, 390]) {
+    const { page, context } = await fresh(browser, { width, height: width === 390 ? 844 : 900, hash: '#beat=7' });
+    const gap = await page.evaluate(() => document.documentElement.scrollHeight - (document.querySelector('.tour-footer').getBoundingClientRect().bottom + scrollY));
+    assert.ok(gap <= 8, width + 'px wide: ' + Math.round(gap) + 'px of blank scroll below the footer');
+    await context.close();
+  }
+});
+
+section('phone controls: touch-sized, no overlapping first mark, sensible order', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 390, height: 844, hash: '#beat=4' });
+  const marks = await page.locator('#ticks button').evaluateAll((bs) => bs.map((b) => b.dataset.mark));
+  assert.deepEqual(marks, ['1', '2', '3', '4', '5', '6', '7'], 'the Start mark overlapped the first exchange; Restart covers it');
+  for (const b of await page.locator('#ticks button').all()) {
+    const r = await b.boundingBox();
+    assert.ok(r.width >= 44 && r.height >= 44, 'tick ' + (await b.getAttribute('data-mark')) + ' is ' + Math.round(r.width) + 'x' + Math.round(r.height));
+  }
+  assert.ok((await page.locator('#scrub').boundingBox()).height >= 44, 'scrubber is at least 44px tall');
+  const y = async (sel) => { const r = await page.locator(sel).boundingBox(); return r.y + r.height / 2; };
+  assert.ok(Math.abs((await y('#clock')) - (await y('#restart'))) < 30, 'clock sits beside Restart, not orphaned below');
+  assert.ok(Math.abs((await y('#speed')) - (await y('#skip'))) < 30, 'speed sits beside Skip');
+  await context.close();
+});
+
+section('phone: finish card links, Watch again and footer links are tappable', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 390, height: 844, hash: '#beat=7' });
+  await page.evaluate(() => { const s = document.getElementById('scroller'); s.scrollTop = s.scrollHeight; });
+  for (const sel of ['#finish .button', '#finish a.subtle', '#replay', '.tour-footer a']) {
+    for (const el of await page.locator(sel).all()) {
+      const r = await el.boundingBox();
+      assert.ok(r.height >= 44, sel + ' "' + (await el.innerText()).trim() + '" is only ' + Math.round(r.height) + 'px tall');
+    }
+  }
+  await context.close();
+});
+
+section('phone: header actions share one row even at 320px', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 320, height: 568 });
+  const a = await page.locator('.header-cta').boundingBox();
+  const b = await page.locator('.exit').boundingBox();
+  assert.ok(Math.abs(a.y - b.y) < 6, 'CTA and back link are on different rows (' + Math.round(a.y) + ' vs ' + Math.round(b.y) + ')');
+  assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0);
+  await context.close();
+});
+
+section('phone: the opened Project file does not repeat its own title', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 390, height: 844, hash: '#beat=4' });
+  await page.locator('#file-toggle').click();
+  assert.equal(await page.locator('#file .file-head').isVisible(), false);
+  await context.close();
+});
+
+section('homepage on a phone: demo link is tappable, labels are readable, the bridge keeps the demo name whole', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 390, height: 844, path: '/index.html' });
+  const link = page.locator('.vision-snapshot-link');
+  await link.scrollIntoViewIfNeeded();
+  assert.ok((await link.boundingBox()).height >= 44, 'the link under the film is at least 44px tall');
+  const size = await page.locator('#interactive-demo .snapshot-label').first().evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  assert.ok(size >= 11, 'section labels are ' + size + 'px');
+  const bridge = page.locator('.ts-demo-link a');
+  await bridge.scrollIntoViewIfNeeded();
+  assert.match((await bridge.innerText()).trim(), /^Watch the 2-minute demo/);
+  const rects = await bridge.evaluate((a) => a.getClientRects().length);
+  assert.equal(rects, 1, 'the link text stays on one line instead of breaking inside "2-minute"');
+  assert.ok((await bridge.boundingBox()).height >= 44);
   await context.close();
 });
 
