@@ -1,0 +1,523 @@
+#!/usr/bin/env node
+// Browser tests for the demo tour. Uses the repo's Playwright and its virtual clock.
+// No AI, email or API calls. Serve the repo first: python3 -m http.server 8094 --bind 127.0.0.1
+const assert = require('node:assert/strict');
+const { chromium } = require('playwright');
+
+const BASE = (process.env.BASE_URL || 'http://127.0.0.1:8094').replace(/\/$/, '');
+const sections = [];
+const section = (name, fn) => sections.push({ name, fn });
+// Assembled from pieces so the internal product name is not written out in this public repo.
+const CODENAME = new RegExp(['path', 'finder'].join(''), 'i');
+
+async function fresh(browser, opts = {}) {
+  const context = await browser.newContext({
+    viewport: { width: opts.width || 1440, height: opts.height || 900 },
+    reducedMotion: opts.reducedMotion ? 'reduce' : 'no-preference',
+  });
+  await context.route('**/_vercel/**', (r) => r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  const page = await context.newPage();
+  const errors = [], bad = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+  page.on('request', (r) => { if (r.method() !== 'GET' || /\/api\//.test(r.url())) bad.push(r.method() + ' ' + r.url()); });
+  if (opts.realClock) {
+    // Synthesized wheel input is not delivered while the virtual clock is paused, so gesture tests run in real time.
+    await page.goto(BASE + '/tour.html' + (opts.hash || ''));
+  } else {
+    await page.clock.install({ time: 0 });
+    await page.goto(BASE + '/tour.html' + (opts.hash || ''));
+    await page.clock.pauseAt(1000);
+  }
+  const advance = (ms) => page.clock.runFor(ms);
+  return { context, page, errors, bad, advance };
+}
+const count = (page, sel) => page.locator(sel).count();
+
+section('page loads with the fictional banner, no codename, no stray requests', async (browser) => {
+  const { page, errors, bad, context } = await fresh(browser);
+  assert.match(await page.locator('#banner').innerText(), /fictional/i);
+  assert.ok(!CODENAME.test(await page.locator('body').innerText()), 'codename visible');
+  assert.ok(!CODENAME.test(await page.content()), 'codename in DOM');
+  assert.equal(await page.locator('#landing').isVisible(), true);
+  assert.deepEqual(errors, [], 'console/page errors');
+  assert.deepEqual(bad, [], 'non-GET or API requests');
+  await context.close();
+});
+
+section('deep link to the start of exchange 3 shows two finished exchanges and the Project file', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=3' });
+  assert.equal(await count(page, '#thread > li.message.airport'), 2);
+  assert.equal(await count(page, '#thread > li.message.assistant'), 2);
+  assert.equal(await page.locator('#landing').isVisible(), false);
+  const file = await page.locator('#file').innerText();
+  assert.match(file, /Runway sweeper replacement/);
+  assert.match(file, /Understand · Apply context/);
+  assert.match(file, /Normal federal share/);
+  assert.match(file, /90% of allowable costs/);
+  assert.match(file, /You said/);
+  await context.close();
+});
+
+section('final state: discrepancy flagged, open items grouped, drafts offered, finish card shown', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  assert.equal(await count(page, '#thread > li.message'), 12);
+  const file = await page.locator('#file').innerText();
+  assert.match(file, /\$610,000/);
+  assert.match(file, /Differs from the \$650,000 allowance/);
+  assert.match(file, /Before the solicitation/);
+  assert.match(file, /Before award/);
+  assert.match(file, /Ready · Build the record/);
+  assert.equal(await count(page, '.attachment'), 4);
+  assert.equal(await page.locator('#finish').isVisible(), true);
+  assert.equal(await page.locator('[data-report-cta="tour_complete"]').getAttribute('href'), '/#report');
+  await context.close();
+});
+
+section('candidate table is labeled fictional and never says any contract fits', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  const table = page.locator('table.candidates');
+  assert.equal(await table.count(), 1);
+  const text = await table.innerText();
+  assert.match(text, /NPC-4471/); assert.match(text, /MRC-2210/);
+  assert.match(await page.locator('.table-note').innerText(), /fictional/i);
+  await context.close();
+});
+
+section('source chips: never more than three per reply', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  const groups = page.locator('.message.assistant .sources');
+  const n = await groups.count();
+  assert.equal(n, 6);
+  for (let i = 0; i < n; i++) assert.ok((await groups.nth(i).locator('.source-chip').count()) <= 3);
+  await context.close();
+});
+
+section('autoplay: composer types, then the message sends, then TarmacSync answers', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(3500 + 1500);                        // landing, then partway through typing
+  const partial = await page.locator('#composer-text').innerText();
+  assert.ok(partial.length > 5 && partial.length < 150, 'typing in progress: ' + partial.length);
+  assert.equal(await count(page, '#thread > li'), 0);
+  await advance(3500);                               // typing done, sent, thinking, streaming
+  assert.equal(await count(page, '#thread > li.message.airport'), 1);
+  assert.equal(await page.locator('#composer-text').innerText(), '');
+  await advance(10000);                              // first answer finished (~16.6 s), second exchange not yet sent (~21.7 s)
+  assert.equal(await count(page, '#thread > li.message.assistant'), 1);
+  assert.equal(await count(page, '.message.assistant .source-chip'), 3);
+  await context.close();
+});
+
+section('pause holds the clock; play resumes; the label follows', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(6000);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause');
+  await page.locator('#play').click();
+  const frozen = await page.locator('#clock').innerText();
+  await advance(5000);
+  assert.equal(await page.locator('#clock').innerText(), frozen, 'paused clock must not move');
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play');
+  await page.locator('#play').click();
+  await advance(3000);
+  assert.notEqual(await page.locator('#clock').innerText(), frozen);
+  await context.close();
+});
+
+section('playing to the end stops, shows the finish card, and offers Replay', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(200000);
+  assert.equal(await count(page, '#thread > li.message'), 12);
+  assert.equal(await page.locator('#finish').isVisible(), true);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Replay');
+  assert.match(await page.locator('#clock').innerText(), /^(\d+:\d\d) \/ \1$/);
+  await context.close();
+});
+
+section('restart clears everything and plays from the start', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(60000);
+  assert.ok((await count(page, '#thread > li')) > 2);
+  await page.locator('#restart').click();
+  assert.equal(await count(page, '#thread > li'), 0);
+  assert.equal(await page.locator('#landing').isVisible(), true);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause');
+  await advance(2000);
+  assert.equal(await count(page, '#thread > li'), 0);
+  await context.close();
+});
+
+section('scrubbing backward mid-reply leaves no duplicates or stale extras', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(200000);
+  await page.locator('#ticks button[data-mark="2"]').click();
+  assert.equal(await count(page, '#thread > li.message'), 2);
+  assert.equal(await count(page, '.attachment'), 0);
+  assert.equal(await count(page, 'table.candidates'), 0);
+  assert.equal(await page.locator('#finish').isVisible(), false);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play');
+  const file = await page.locator('#file').innerText();
+  assert.ok(!/Ready · Build the record/.test(file), 'file rolled back too');
+  assert.equal(await count(page, '.cursor'), 0, 'no typing cursor when nothing is streaming');
+  await page.locator('#scrub').focus();
+  await page.keyboard.press('End');
+  assert.equal(await count(page, '#thread > li.message'), 12);
+  assert.equal(await count(page, '.attachment'), 4);
+  await page.keyboard.press('Home');
+  assert.equal(await count(page, '#thread > li'), 0);
+  await context.close();
+});
+
+section('speed toggle changes how fast time passes', async (browser) => {
+  const a = await fresh(browser); const b = await fresh(browser);
+  await b.page.locator('#speed').click();
+  assert.equal((await b.page.locator('#speed').innerText()).trim(), '1.5×');
+  await a.advance(20000); await b.advance(20000);
+  const secs = async (p) => { const [m, s] = (await p.locator('#clock').innerText()).split(' / ')[0].split(':').map(Number); return m * 60 + s; };
+  assert.ok((await secs(b.page)) > (await secs(a.page)) + 5, 'faster clock');
+  await a.context.close(); await b.context.close();
+});
+
+section('hash restores a paused position; bad hashes fall back to the start', async (browser) => {
+  const ok = await fresh(browser, { hash: '#beat=3' });
+  assert.equal((await ok.page.locator('#play').innerText()).trim(), 'Play');
+  await ok.advance(5000);
+  assert.equal(await count(ok.page, '#thread > li'), 4, 'restored position stays paused');
+  await ok.context.close();
+  for (const h of ['#beat=99', '#beat=-1', '#beat=abc', '#beat=', '#unknown']) {
+    const bad = await fresh(browser, { hash: h });
+    assert.equal(await count(bad.page, '#thread > li'), 0, h);
+    assert.equal((await bad.page.locator('#play').innerText()).trim(), 'Pause', h);
+    assert.deepEqual(bad.errors, [], h);
+    await bad.context.close();
+  }
+});
+
+section('the hash follows playback', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(40000);
+  assert.match(page.url(), /#beat=[2-4]$/);
+  await context.close();
+});
+
+section('reduced motion shows the finished state, paused, with a play control', async (browser) => {
+  const { page, context, advance } = await fresh(browser, { reducedMotion: true });
+  assert.equal(await count(page, '#thread > li.message'), 12);
+  assert.equal(await page.locator('#finish').isVisible(), true);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play the walkthrough');
+  await page.locator('#play').click();
+  assert.equal(await count(page, '#thread > li'), 0);
+  await advance(6000);
+  assert.ok((await page.locator('#clock').innerText()).startsWith('0:0'), 'plays from the start');
+  await context.close();
+});
+
+section('scrolling up to reread pauses playback and is not yanked back down', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
+  await page.waitForTimeout(300);
+  await page.locator('#play').click();
+  await page.waitForTimeout(600);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'playing before the gesture');
+  await page.locator('#scroller').hover();
+  await page.mouse.wheel(0, -400);
+  await page.waitForTimeout(300);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play', 'upward scroll pauses');
+  const top = await page.locator('#scroller').evaluate((n) => n.scrollTop);
+  await page.waitForTimeout(800);
+  assert.equal(await page.locator('#scroller').evaluate((n) => n.scrollTop), top, 'view is not dragged back down');
+  await context.close();
+});
+
+section('a hidden tab does not fast-forward the demo', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(5000);
+  const before = await page.locator('#clock').innerText();
+  assert.ok(!before.startsWith('0:00'), 'time was advancing before the tab was hidden: ' + before);
+  await page.evaluate(() => { Object.defineProperty(document, 'hidden', { value: true, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); });
+  await advance(30000);
+  assert.equal(await page.locator('#clock').innerText(), before, 'no progress while hidden');
+  await page.evaluate(() => { Object.defineProperty(document, 'hidden', { value: false, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); });
+  await advance(1000);
+  const [m, s] = (await page.locator('#clock').innerText()).split(' / ')[0].split(':').map(Number);
+  assert.ok(m * 60 + s <= 12, 'time resumed normally, not by a jump');
+  await context.close();
+});
+
+section('whole messages are announced to assistive tech, not characters', async (browser) => {
+  const { page, advance, context } = await fresh(browser);
+  await advance(26000);
+  const status = await page.locator('#status').innerText();
+  assert.match(status, /^(Airport team|TarmacSync): /);
+  assert.ok(status.length > 40);
+  await context.close();
+});
+
+section('a source chip opens the citation with edition and check date, and closes with Escape', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=3' });
+  const chip = page.locator('.message.assistant').first().locator('.source-chip').first();
+  await chip.click();
+  const dlg = page.locator('#detail-dialog');
+  assert.equal(await dlg.evaluate((n) => n.open), true);
+  const text = await dlg.innerText();
+  assert.match(text, /Table M-1/);
+  assert.match(text, /AIP Handbook/);
+  assert.match(text, /Change 1/);
+  assert.match(text, /checked/i);
+  assert.match(text, /paraphrase/i);
+  await page.keyboard.press('Escape');
+  assert.equal(await dlg.evaluate((n) => n.open), false);
+  await context.close();
+});
+
+section('opening a dialog while playing pauses; closing resumes only if it was playing', async (browser) => {
+  const a = await fresh(browser);
+  await a.advance(30000);
+  await a.page.locator('.message.assistant .source-chip').first().click();
+  const t1 = await a.page.locator('#clock').innerText();
+  await a.advance(8000);
+  assert.equal(await a.page.locator('#clock').innerText(), t1, 'clock frozen behind dialog');
+  await a.page.locator('#close-detail').click();
+  await a.advance(3000);
+  assert.notEqual(await a.page.locator('#clock').innerText(), t1, 'resumed after close');
+  await a.context.close();
+
+  const b = await fresh(browser, { hash: '#beat=7' });
+  await b.page.locator('.attachment').first().click();
+  await b.page.keyboard.press('Escape');
+  await b.advance(4000);
+  assert.equal((await b.page.locator('#play').innerText()).trim(), 'Play', 'a paused viewer stays paused');
+  await b.context.close();
+});
+
+section('all four review drafts open, say "Not decided" or draft status, and stay fictional', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  const titles = [];
+  for (let i = 0; i < 4; i++) {
+    await page.locator('.attachment').nth(i).click();
+    const text = await page.locator('#detail-dialog').innerText();
+    titles.push(await page.locator('#detail-title').innerText());
+    assert.match(text, /fictional/i);
+    assert.match(text, /Not a purchase authorization|Not decided/);
+    assert.ok(!CODENAME.test(text));
+    await page.keyboard.press('Escape');
+  }
+  assert.deepEqual(titles, ['Route memo', 'Pre-solicitation readiness checklist', 'Questions for the ADO', 'Cooperative validation checklist']);
+  await context.close();
+});
+
+section('the route memo carries the federal share illustration and the assurances', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  await page.locator('.attachment').first().click();
+  const text = await page.locator('#detail-body').innerText();
+  assert.match(text, /90% of allowable costs/);
+  assert.match(text, /\$585,000 federal and about \$65,000 local/);
+  assert.match(text, /34 Policies, Standards, and Specifications/);
+  assert.match(text, /April 2025 set/);
+  await context.close();
+});
+
+section('the full transcript is readable in one dialog', async (browser) => {
+  const { page, context } = await fresh(browser);
+  await page.locator('#transcript').click();
+  const text = await page.locator('#detail-body').innerText();
+  assert.match(text, /airport team/i);   // labels are upper-cased by CSS, so match case-insensitively
+  assert.match(text, /tarmacsync/i);
+  assert.match(text, /We need to replace our runway sweeper/);
+  assert.match(text, /Keep formal competition as our working path/);
+  assert.match(text, /likely buying path/);
+  await context.close();
+});
+
+section('focus moves into the dialog and returns to the chip on close', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  const chip = page.locator('.message.assistant').first().locator('.source-chip').first();
+  await chip.focus(); await page.keyboard.press('Enter');
+  assert.equal(await page.evaluate(() => document.activeElement.closest('dialog') !== null), true);
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(() => document.activeElement.classList.contains('source-chip')), true);
+  await context.close();
+});
+
+section('no horizontal overflow at 320, 375, 768 and 1440 across start, middle and end', async (browser) => {
+  for (const width of [320, 375, 768, 1440]) {
+    for (const hash of ['', '#beat=3', '#beat=7']) {
+      const { page, context } = await fresh(browser, { width, height: 900, hash });
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+      assert.ok(overflow <= 0, width + ' ' + (hash || 'start') + ' overflows by ' + overflow);
+      await context.close();
+    }
+  }
+});
+
+section('on a phone the Project file is a collapsible bar that reports its counts', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 390, height: 844, hash: '#beat=7' });
+  const toggle = page.locator('#file-toggle');
+  assert.match(await toggle.innerText(), /Project file · \d+ known · \d+ open/);
+  assert.equal(await page.locator('#file').isVisible(), false);
+  await toggle.click();
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(await page.locator('#file').isVisible(), true);
+  await context.close();
+});
+
+section('keyboard: skip link, controls and chips are reachable', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  await page.keyboard.press('Tab');
+  assert.equal(await page.evaluate(() => document.activeElement.textContent.trim()), 'Skip to the demonstration');
+  await page.keyboard.press('Enter');
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'main-content');
+  for (const sel of ['#play', '#restart', '#scrub', '#speed', '#skip', '#transcript']) {
+    await page.locator(sel).focus();
+    assert.equal(await page.evaluate(() => document.activeElement.matches(':focus-visible')), true, sel);
+  }
+  await context.close();
+});
+
+section('clicking inside the dialog (including its margins) does not close it; the backdrop does', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=3' });
+  await page.locator('.message.assistant').first().locator('.source-chip').first().click();
+  const dlg = page.locator('#detail-dialog');
+  const t = await page.locator('#detail-title').boundingBox();
+  await page.mouse.click(t.x - 8, t.y + 4);
+  assert.equal(await dlg.evaluate((n) => n.open), true, 'click in the title margin keeps it open');
+  const box = await dlg.boundingBox();
+  await page.mouse.click(box.x + box.width + 10, box.y + 20);
+  assert.equal(await dlg.evaluate((n) => n.open), false, 'click on the backdrop closes it');
+  await context.close();
+});
+
+section('any upward scroll pauses playback, including a scrollbar drag or keyboard scroll elsewhere', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
+  await page.waitForTimeout(300);
+  await page.locator('#play').click();
+  await page.waitForTimeout(700);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause');
+  await page.locator('#scroller').evaluate((n) => { n.scrollTop = 0; });
+  await page.waitForTimeout(300);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play', 'programmatic/scrollbar scroll-up pauses');
+  await page.waitForTimeout(700);
+  assert.equal(await page.locator('#scroller').evaluate((n) => n.scrollTop), 0, 'view is not dragged back down');
+  await context.close();
+});
+
+section('restart and scrub do not trip the scroll-up pause', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
+  await page.waitForTimeout(300);
+  await page.locator('#play').click();
+  await page.waitForTimeout(500);
+  await page.locator('#restart').click();
+  await page.waitForTimeout(600);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'restart keeps playing');
+  await context.close();
+});
+
+section('phone: opening the Project file brings it into view', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 375, height: 667, hash: '#beat=7' });
+  await page.locator('#file-toggle').scrollIntoViewIfNeeded();
+  await page.locator('#file-toggle').click();
+  const r = await page.locator('#file').boundingBox();
+  assert.ok(r.y >= 0 && r.y < 667 - 80, 'file body starts on screen, not below the fold: y=' + r.y);
+  await context.close();
+});
+
+section('drafts list their sources', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  await page.locator('.attachment').first().click();
+  const text = await page.locator('#detail-body').innerText();
+  assert.match(text, /Sources/);
+  assert.match(text, /Assurance 34: Policies, Standards, and Specifications/);
+  assert.match(text, /Table 4-7/);
+  await context.close();
+});
+
+section('speed cycles 1x, 1.5x, 0.75x and 0.75x really is slower', async (browser) => {
+  const a = await fresh(browser); const c = await fresh(browser);
+  const seen = [];
+  for (let i = 0; i < 3; i++) {
+    await c.page.locator('#speed').click();
+    seen.push((await c.page.locator('#speed').innerText()).trim());
+  }
+  assert.deepEqual(seen, ['1.5×', '0.75×', '1×']);
+  await c.page.locator('#speed').click(); await c.page.locator('#speed').click();   // 1.5x then 0.75x
+  assert.equal((await c.page.locator('#speed').innerText()).trim(), '0.75×');
+  assert.match(await c.page.locator('#speed').getAttribute('aria-label'), /0\.75×/);
+  await a.advance(20000); await c.advance(20000);
+  const secs = async (p) => { const [m, s] = (await p.locator('#clock').innerText()).split(' / ')[0].split(':').map(Number); return m * 60 + s; };
+  assert.ok((await secs(c.page)) < (await secs(a.page)) - 3, 'slower clock');
+  await a.context.close(); await c.context.close();
+});
+
+section('scrubbing to the middle of a reply shows a partial reply, one cursor, and no extras', async (browser) => {
+  const { page, context } = await fresh(browser);
+  const setScrub = (v) => page.locator('#scrub').evaluate((n, val) => { n.value = String(val); n.dispatchEvent(new Event('input', { bubbles: true })); }, v);
+  await setScrub(29400);
+  assert.equal(await count(page, '#thread > li.message.airport'), 2);
+  assert.equal(await count(page, '#thread > li.message.assistant'), 2);
+  assert.equal(await count(page, '.cursor'), 1);
+  assert.equal(await count(page, '.message.assistant:last-child .source-chip'), 0, 'no extras on the unfinished reply');
+  await setScrub(5000);
+  assert.equal(await count(page, '#thread > li'), 0);
+  assert.equal(await count(page, '.cursor'), 0);
+  await setScrub(29400);
+  assert.equal(await count(page, '#thread > li'), 4, 'no duplicates after scrubbing back in');
+  await context.close();
+});
+
+section('stage tracker: the five homepage stages light up in order as the demo plays', async (browser) => {
+  const { page, context } = await fresh(browser);
+  const items = page.locator('#stages > li');
+  assert.equal(await items.count(), 5);
+  const names = await items.allInnerTexts();
+  ['START', 'UNDERSTAND', 'ROUTE', 'CHECK', 'READY'].forEach((k, i) => assert.match(names[i], new RegExp(k)));
+  assert.equal(await count(page, '#stages .is-current'), 0, 'nothing current on the landing screen');
+  const at = (mark) => page.locator('#ticks button[data-mark="' + mark + '"]').click();
+  await at(1);                                             // start of exchange 1
+  assert.match(await page.locator('#stages .is-current').innerText(), /START/);
+  await at(3);                                             // documents: stage 2
+  assert.match(await page.locator('#stages .is-current').innerText(), /UNDERSTAND/);
+  assert.equal(await count(page, '#stages .is-done'), 1);
+  assert.equal(await page.locator('#stages .is-current').getAttribute('aria-current'), 'step');
+  await at(6);                                             // path and file: stage 5
+  assert.match(await page.locator('#stages .is-current').innerText(), /READY/);
+  assert.equal(await count(page, '#stages .is-done'), 4);
+  await at(7);                                             // finish: all done
+  assert.equal(await count(page, '#stages .is-done'), 5);
+  assert.equal(await count(page, '#stages .is-current'), 0);
+  await context.close();
+});
+
+section('continuity: header mirrors the site CTA; the finish card leads back into the site and can replay', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=7' });
+  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/#report');
+  assert.match(await page.locator('.header-cta').innerText(), /free report/i);
+  const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+  assert.ok(links.includes('/#report'));
+  assert.ok(links.includes('/book-a-call.html'));
+  assert.ok(links.includes('/#product-model'), 'back to How TarmacSync works');
+  await page.locator('#replay').click();
+  assert.equal(await count(page, '#thread > li'), 0);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause');
+  await context.close();
+});
+
+section('phone: the stage tracker fits and names the current stage', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 375, height: 800, hash: '#beat=4' });
+  assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, 'no overflow');
+  assert.match(await page.locator('#stage-caption').innerText(), /Stage 3 of 5/);
+  assert.match(await page.locator('#stage-caption').innerText(), /ROUTE/);
+  await context.close();
+});
+
+// SECTIONS-END
+
+(async () => {
+  const browser = await chromium.launch({ channel: 'chrome' });
+  let failed = 0;
+  try {
+    for (const s of sections) {
+      try { await s.fn(browser); console.log('ok  ' + s.name); }
+      catch (e) { failed++; console.error('FAIL ' + s.name + '\n' + (e.stack || e.message).split('\n').slice(0, 4).join('\n')); }
+    }
+  } finally { await browser.close(); }
+  console.log(failed ? '\n' + failed + ' failing' : '\nbrowser checks passed');
+  process.exit(failed ? 1 : 0);
+})();

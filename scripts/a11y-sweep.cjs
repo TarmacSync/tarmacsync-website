@@ -34,6 +34,7 @@ const BASE = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\/$/,
 
 const ALL_PAGES = [
   'index.html',
+  'tour.html',
   'founding-airports.html',
   'pricing.html',
   'security.html',

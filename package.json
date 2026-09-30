@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "TarmacSync public marketing website (static)",
   "scripts": {
-    "a11y": "node scripts/a11y-sweep.cjs"
+    "a11y": "node scripts/a11y-sweep.cjs",
+    "test:tour": "node scripts/tour-content-check.cjs && node scripts/tour-check.cjs"
   },
   "devDependencies": {
     "playwright": "^1.60.0"
