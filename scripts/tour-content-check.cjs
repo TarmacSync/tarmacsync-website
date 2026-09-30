@@ -54,8 +54,9 @@ test('script has six exchanges with the required shape', () => {
     b.reply.paras.forEach((p) => assert.ok(p.text.length > 20, 'paragraph text ' + b.id));
     assert.ok(Array.isArray(b.file), 'file ops ' + b.id);
   });
-  assert.equal(script.candidates.length, 2);
-  assert.deepEqual(Object.keys(script.artifacts).sort(), ['ado', 'checklist', 'coop', 'memo']);
+  assert.equal(script.candidates, undefined, 'no cooperative candidates in the competitive-bid scenario');
+  assert.ok(script.tables && script.tables.sequence, 'sequence table exists');
+  assert.deepEqual(Object.keys(script.artifacts).sort(), ['ado', 'bideval', 'checklist', 'memo']);
 });
 
 test('every reply has at most three source chips and every id resolves', () => {
@@ -106,14 +107,47 @@ test('federal share arithmetic and citations are consistent', () => {
 test('demonstration is labeled fictional', () => {
   assert.match(script.banner, /fictional/i);
   assert.match(script.airport.name, /fictional/i);
-  script.candidates.forEach((c) => assert.equal(c.fictional, true));
   if (fs.existsSync(path.join(root, 'assets/tour/tour.css'))) assert.match(read('tour.html'), /fictional/i);
 });
 
-test('language rules: uses "likely buying path" and keeps candidates as candidates', () => {
+test('language rules: uses "likely buying path" and names sealed competitive bidding', () => {
   const text = strings(script.beats).join('\n');
   assert.match(text, /likely buying path/);
-  assert.match(text, /candidate/i);
+  assert.match(text, /sealed/i);
+});
+
+test('scenario is AIP + local match with competitive bidding: no cooperative content anywhere shipped', () => {
+  const coop = /cooperative|consortium|NPC-4471|MRC-2210|candidate agreement|piggyback/i;
+  assert.ok(!coop.test(strings(script).join('\n')), 'script');
+  ['tour.html', 'assets/tour/tour-ui.js', 'assets/tour/tour.css'].forEach((p) => assert.ok(!coop.test(read(p)), p));
+  const section = read('index.html').match(/<section[^>]*id="interactive-demo"[\s\S]*?<\/section>/)[0];
+  assert.ok(!coop.test(section), 'homepage demo section');
+});
+
+test('sealed bids are described from 2 CFR 200.320 and the Handbook, including what happens after bid opening', () => {
+  const u15 = script.citations.u15;
+  assert.match(u15.gist, /lowest responsive and responsible bidder/i);
+  assert.match(u15.gist, /reject/i);
+  assert.match(u15.edition, /200\.320\(b\)\(1\)\(ii\)/, 'current eCFR lettering recorded');
+  assert.match(script.citations.u8.gist, /only one bid/i);
+  assert.match(script.citations.u8.gist, /apparent low bidder/i);
+  assert.match(script.citations.u24.ref, /200\.326/);
+  const route = script.beats[3], bids = script.beats[4];
+  assert.equal(route.reply.table, 'sequence');
+  assert.ok(route.reply.sources.includes('u15'));
+  const bidText = bids.reply.paras.map((p) => (p.lead || '') + ' ' + p.text).join(' ');
+  assert.match(bidText, /only one bid/i);
+  assert.match(bidText, /writing before award/i);
+  assert.match(bidText, /cost analysis/i);
+  assert.match(bidText, /\$610,000/);
+  assert.ok(!/must (re-?bid|reject)|required to reject/i.test(bidText), 'no invented over-estimate rule');
+  const rows = script.tables.sequence.rows.map((r) => r[1]);
+  const order = ['Notice of intent', 'Advertise', 'Open bids', 'grant application', 'grant offer', 'Award'];
+  let last = -1;
+  order.forEach((k) => { const i = rows.findIndex((r) => r.includes(k)); assert.ok(i > last, k + ' in Table 5-4 order'); last = i; });
+  const be = strings(script.artifacts.bideval).join(' ');
+  assert.match(be, /responsive/); assert.match(be, /responsible/);
+  assert.match(be, /cost analysis/i); assert.match(be, /Document the reason/i);
 });
 
 const S = require('../assets/tour/tour-state.js');
@@ -231,8 +265,8 @@ test('citations stay faithful: Buy American ref covers the Appendix X sections i
   assert.match(script.citations.m1d.gist, /registry/i);
 });
 
-test('the Buy American statement in the fit reply names all three paths, not two', () => {
-  const text = script.beats[4].reply.paras.map((p) => p.text).join(' ');
+test('wherever Buy American paths are listed, all three are named, not two', () => {
+  const text = strings(script.artifacts.checklist).join(' ');
   assert.match(text, /certif/i);
   assert.match(text, /conformance list/i);
   assert.match(text, /waiver/i);
@@ -252,7 +286,7 @@ test('regulatory currency: cost-and-price rule carries the current eCFR number; 
   assert.match(t, /nonhub/i);
   assert.match(t, /2025/);
   assert.match(t, /small hubs?[^.]*\b90%|90%[^.]*small hubs?/i, 'states small hubs stay at 90%');
-  assert.match(script.citations.c318e.gist, /inter-entity/);
+  assert.match(script.citations.u15.edition, /current eCFR/);
 });
 
 test('homepage: the static illustrative example is gone and the demo is linked instead', () => {
@@ -352,7 +386,7 @@ test('sequencing copy is route-neutral: it is about incurring a cost, so it must
   });
   assert.match(second, /order or sign a contract|commit/i, 'names what actually incurs the cost');
   const ado = strings(script.artifacts.ado).join(' ');
-  assert.match(ado, /order or sign a contract/i, 'the ADO question covers any route, cooperative included');
+  assert.match(ado, /order or sign a contract/i, 'the ADO question is about incurring a cost, not a particular route');
 });
 
 test('grant sequence (Handbook Table 5-4, 5-6): bids feed the application; the application is a named gate', () => {
@@ -367,7 +401,8 @@ test('grant sequence (Handbook Table 5-4, 5-6): bids feed the application; the a
   const g = (k) => ops.filter((o) => o.key === k).pop().group;
   assert.equal(g('price'), 'application');
   assert.equal(g('match'), 'application');
-  ['coop', 'terms', 'spec'].forEach((k) => assert.equal(g(k), 'solicitation', k + ' is settled before a solicitation'));
+  ['provisions', 'basis', 'budget'].forEach((k) => assert.equal(g(k), 'solicitation', k + ' is settled before a solicitation'));
+  assert.equal(g('adonotice'), 'award');
   assert.match(strings(script.artifacts.ado).join(' '), /ACIP/);
   assert.match(strings(script.artifacts.ado).join(' '), /notice of intent/i);
   const all = [script.artifacts.memo, script.artifacts.checklist, script.artifacts.ado];
@@ -381,13 +416,29 @@ test('early commitment is framed as the airport\'s risk and reimbursability, not
   assert.match(script.beats[1].reply.paras.map((p) => p.text).join(' '), /reimbursed/i);
 });
 
-test('the independent estimate precedes cooperative quotes too; the cooperative file is not the sealed-bid file', () => {
-  const coop = strings(script.artifacts.coop).join(' ');
-  assert.match(coop, /before requesting a quote/i);
-  assert.match(coop, /cost analysis/i);
-  assert.match(strings(script.artifacts.checklist).join(' '), /cooperative quotes/i);
-  assert.match(strings(script.artifacts.checklist).join(' '), /Buy American provision and certificate in the solicitation/i);
+test('the independent estimate precedes bids; solicitation carries the provisions and Buy American certificate', () => {
+  const cl = strings(script.artifacts.checklist).join(' ');
+  assert.match(cl, /Independent \(engineer’s\) estimate, made before bids are received/i);
+  assert.match(cl, /Buy American provision and certificate in the solicitation/i);
+  assert.match(cl, /basis for award/i);
+  assert.match(cl, /federal contract provisions/i);
   assert.ok(!/assurances in the airport’s grant agreement/.test(strings(script).join('\n')), 'no grant agreement exists yet for this project');
+});
+
+test('review round: over-budget remedies, Table 5-4 as a list, current 200.327 numbering, bid validity', () => {
+  const bids = script.beats[4].reply.paras.map((p) => p.text).join(' ');
+  assert.match(bids, /reject all bids/i);
+  assert.match(bids, /alternates ordered by available funding/i);
+  assert.match(bids, /how much AIP funding is available/i);
+  const seq = script.tables.sequence;
+  assert.match(seq.note, /not a mandated sequence/i);
+  assert.match(seq.rows[0][2], /^If entitlement funds are used/);
+  assert.match(script.citations.t54.gist, /Among the common key steps/);
+  assert.match(script.citations.u24.label, /200\.327/);
+  strings(script).filter((s) => s.includes('200.326')).forEach((s) => assert.match(s, /reproduces this as/, 'stale 200.326: ' + s.slice(0, 70)));
+  assert.match(strings(script.artifacts.checklist).join(' '), /Bid validity period/);
+  assert.match(strings(script.artifacts.memo).join(' '), /37 Disadvantaged Business Enterprises/);
+  assert.ok(!/by any route|commit to any route|grant is programmed/i.test(strings(script).join('\n')), 'cooperative-era and "programmed" wording gone');
 });
 
 test('the tour page no longer points at the removed homepage anchor', () => {

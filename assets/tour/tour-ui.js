@@ -60,26 +60,26 @@
     if (m.complete && !extras.dataset.built) { buildExtras(extras, D.beats[m.beat].reply); extras.dataset.built = '1'; }
     if (!m.complete && extras.dataset.built) { extras.replaceChildren(); delete extras.dataset.built; }
   }
-  function candidateTable() {
+  function dataTable(id) {
+    const spec = D.tables[id];
     const wrap = el('div', 'table-wrap');
-    wrap.append(el('p', 'table-note', 'Fictional candidates for this demonstration. Candidates only; not determinations.'));
-    const t = el('table', 'candidates');
-    t.append(el('caption', 'sr-only', 'Fictional cooperative contract candidates'));
+    wrap.append(el('p', 'table-note', spec.note));
+    const t = el('table', 'data-table ' + id);
+    t.append(el('caption', 'sr-only', spec.caption));
     const head = el('thead'); const hr = el('tr');
-    ['Candidate (fictional)', 'Scope', 'Term ends', 'To validate'].forEach((h) => { const th = el('th', null, h); th.scope = 'col'; hr.append(th); });
+    spec.columns.forEach((h) => { const th = el('th', null, h); th.scope = 'col'; hr.append(th); });
     head.append(hr); t.append(head);
     const body = el('tbody');
-    D.candidates.forEach((c) => {
+    spec.rows.forEach((row) => {
       const tr = el('tr');
-      const first = el('td'); first.append(el('strong', null, c.contract), el('span', 'sub', c.consortium + ' · ' + c.vendor));
-      tr.append(first, el('td', null, c.scope), el('td', null, c.termEnds), el('td', null, c.validate));
+      row.forEach((cell, i) => tr.append(el('td', i === 1 ? 'strong-cell' : null, cell)));
       body.append(tr);
     });
     t.append(body); wrap.append(t);
     return wrap;
   }
   function buildExtras(node, reply) {
-    if (reply.table === 'candidates') node.append(candidateTable());
+    if (reply.table) node.append(dataTable(reply.table));
     if (reply.artifacts) {
       const wrap = el('div', 'artifacts');
       reply.artifacts.forEach((id) => {
