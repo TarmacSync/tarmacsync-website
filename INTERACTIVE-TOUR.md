@@ -2,16 +2,21 @@
 
 `/tour.html` is a scripted walkthrough of one fictional airport purchase. It is not live AI,
 not a second procurement engine, and it takes no input. Everything shown is illustrative: the
-airport, its documents, the cooperative consortia, contract numbers and vendors are invented
-and labeled fictional on the page.
+airport and its documents are invented and labeled fictional on the page. No vendor or contract
+is named.
 
 ## What a visitor sees
 
 A chat and a live Project file, autoplaying for about two minutes: a small-hub Part 139 airport
-replaces a snow-and-ice runway broom. TarmacSync asks the question that decides eligibility,
-reads four documents (flagging a $610,000 vs $650,000 difference and an out-of-date Form
-5100-141), shows two fictional cooperative candidates, names formal competition as the likely
-buying path, and produces four review drafts. Controls: pause, restart, scrubber with jump
+replaces a snow-and-ice runway broom with AIP and a local match, before applying for the grant.
+TarmacSync asks the question that decides eligibility, explains the grant timing, reads four
+documents (flagging a $610,000 vs $650,000 difference and an out-of-date Form 5100-141), lays out
+sealed competitive bidding and the Handbook's key steps (Table 5-4: advertise, open bids, grant
+application with actual bid amounts, grant acceptance, award), covers what happens if only one bid
+arrives or bids exceed the budget, and produces four review drafts.
+
+The scenario deliberately avoids a cooperative contract: whether one satisfies AIP depends on how
+the base contract was solicited, which a two-minute demo cannot settle honestly. Controls: pause, restart, scrubber with jump
 points, 0.75x/1x/1.5x speed, skip to end, full transcript.
 
 ## Continuity with the homepage
@@ -36,7 +41,7 @@ The demo is the second half of "How TarmacSync works", not a separate product.
 
 ## Files
 
-- `assets/tour/tour-script.js` copy, citations, documents, candidates, drafts. Edit copy here.
+- `assets/tour/tour-script.js` copy, citations, documents, the bid-sequence table, drafts. Edit copy here.
 - `assets/tour/tour-state.js` pure timeline and `stateAt(script, ms)`.
 - `assets/tour/tour-ui.js` rendering, player, dialogs, analytics events.
 - `assets/tour/tour.css`, `tour.html`.
@@ -50,7 +55,9 @@ The demo is the second half of "How TarmacSync works", not a separate product.
 - Paraphrase only. Cite 2 CFR 200 by section, not paragraph letter.
 - The Handbook edition on file shows a stale simplified acquisition threshold ($150,000); the
   current federal figure is $350,000. The copy flags the difference; do not remove that note.
-- Cooperative contracts stay candidates. No vendor selection, award or fund obligation.
+- No vendor selection, award or fund obligation. Do not state rules the sources don't contain
+  (for example, there is no Handbook rule for bids over the estimate; the copy states only what
+  2 CFR 200.320, Table U-8, Table 3-67 and §3-105 support).
 - Do not add real airport, consortium or vendor names. The content check has a denylist.
 - Mobile: keep every tap target at least 44px on phones, and keep `.scroller` `position:relative`.
   Without it the table's screen-reader-only caption escapes the scroll pane and leaves a long blank

@@ -75,13 +75,14 @@ section('final state: discrepancy flagged, open items grouped, drafts offered, f
   await context.close();
 });
 
-section('candidate table is labeled fictional and never says any contract fits', async (browser) => {
+section('the bid sequence table shows the Handbook steps in order and names its source', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
-  const table = page.locator('table.candidates');
+  const table = page.locator('table.sequence');
   assert.equal(await table.count(), 1);
   const text = await table.innerText();
-  assert.match(text, /NPC-4471/); assert.match(text, /MRC-2210/);
-  assert.match(await page.locator('.table-note').innerText(), /fictional/i);
+  const at = (k) => text.indexOf(k);
+  assert.ok(at('Advertise') > -1 && at('Advertise') < at('Open bids') && at('Open bids') < at('grant application') && at('grant application') < at('Award'), 'order');
+  assert.match(await page.locator('.table-note').innerText(), /Table 5-4/);
   await context.close();
 });
 
@@ -153,7 +154,7 @@ section('scrubbing backward mid-reply leaves no duplicates or stale extras', asy
   await page.locator('#ticks button[data-mark="2"]').click();
   assert.equal(await count(page, '#thread > li.message'), 2);
   assert.equal(await count(page, '.attachment'), 0);
-  assert.equal(await count(page, 'table.candidates'), 0);
+  assert.equal(await count(page, 'table.sequence'), 0);
   assert.equal(await page.locator('#finish').isVisible(), false);
   assert.equal((await page.locator('#play').innerText()).trim(), 'Play');
   const file = await page.locator('#file').innerText();
@@ -301,7 +302,7 @@ section('all four review drafts open, say "Not decided" or draft status, and sta
     assert.ok(!CODENAME.test(text));
     await page.keyboard.press('Escape');
   }
-  assert.deepEqual(titles, ['Route memo', 'Pre-solicitation readiness checklist', 'Questions for the ADO', 'Cooperative validation checklist']);
+  assert.deepEqual(titles, ['Route memo', 'Pre-solicitation readiness checklist', 'Questions for the ADO', 'Bid evaluation and grant application checklist']);
   await context.close();
 });
 
@@ -323,7 +324,7 @@ section('the full transcript is readable in one dialog', async (browser) => {
   assert.match(text, /airport team/i);   // labels are upper-cased by CSS, so match case-insensitively
   assert.match(text, /tarmacsync/i);
   assert.match(text, /We need to replace our runway sweeper/);
-  assert.match(text, /Keep formal competition as our working path/);
+  assert.match(text, /Go with sealed bids/);
   assert.match(text, /likely buying path/);
   await context.close();
 });

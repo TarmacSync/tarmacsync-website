@@ -42,7 +42,7 @@
     },
     t54: {
       label: 'Handbook · Table 5-4', source: HB, ref: 'Chapter 5, §5-4 Table 5-4 (key steps) and §5-19 Table 5-6 (application contents)',
-      gist: 'The common key steps run: notice of intent to use entitlement funds, advertisement for bids, opening of bids, submission of the grant application, acceptance of the grant offer, then award of the contract. It is FAA policy that the application incorporates actual bid or negotiated agreement amounts; an application built on estimates is possible but described as suboptimal. Early indications from the ADO are for planning only, and whether and when to start is the sponsor’s decision.',
+      gist: 'Among the common key steps the table lists are notice of intent to use entitlement funds, advertisement for bids, opening of bids, submission of the grant application, acceptance of the grant offer and award of the contract. The list also includes earlier steps such as environmental review documents, final specifications and a DBE plan. It is FAA policy that the application incorporates actual bid or negotiated agreement amounts; an application built on estimates is possible but described as suboptimal. Early indications from the ADO are for planning only, and whether and when to start is the sponsor’s decision.',
       edition: HB_ED, checked: '2026-09-30',
     },
     t360: {
@@ -61,18 +61,28 @@
       edition: HB_ED + '; section number updated to the current eCFR (200.324), confirmed 2026-09-30', checked: '2026-09-30',
     },
     u3: {
-      label: 'Handbook · Table U-3', source: HB, ref: 'Appendix U, Table U-3, items 2 and 7',
-      gist: 'Sponsors must have written protest procedures in place before starting a procurement funded with AIP. The Handbook’s examples of intergovernmental agreements are several small airports buying the same weather system, and a state aviation department running task orders for pavement maintenance.',
+      label: 'Handbook · Table U-3', source: HB, ref: 'Appendix U, Table U-3, item 7',
+      gist: 'Sponsors must have written protest procedures in place before starting a procurement funded with AIP. The procedures define how protests are handled and resolved, and information about a protest is disclosed to the ADO.',
       edition: HB_ED, checked: '2026-07-16',
     },
-    c318e: {
-      label: '2 CFR 200.318(e)', source: '2 CFR Part 200 as reproduced in the ' + HB, ref: 'Appendix U, U-10: General Procurement Standards, paragraph (e)',
-      gist: 'Recipients and subrecipients are encouraged to enter state and local intergovernmental agreements or inter-entity agreements for procurement. This is an encouragement; it does not by itself establish that a given cooperative contract meets AIP competition expectations.',
-      edition: HB_ED + '; paragraph (e) and its lettering confirmed against the current eCFR on 2026-09-30', checked: '2026-09-30',
+    u15: {
+      label: '2 CFR 200.320', source: '2 CFR Part 200 (current eCFR), as reproduced in the ' + HB, ref: 'Sealed bids (formal advertising); Handbook Appendix U, U-15',
+      gist: 'Bids are publicly solicited and a firm fixed price contract is awarded in writing to the lowest responsive and responsible bidder. The recipient must document and justify any bid it rejects. Sealed bidding works when there is a complete, adequate and realistic specification, two or more responsible bidders are willing and able to compete, and selection can be made principally on price. Bids are publicly opened at the time and place in the invitation.',
+      edition: HB_ED + '; current eCFR places these at 200.320(b)(1)(ii)(D) and (E), confirmed 2026-09-30 (the Handbook edition reproduces older lettering)', checked: '2026-09-30',
+    },
+    u8: {
+      label: 'Handbook · Table U-8', source: HB, ref: 'Appendix U, Table U-8 (clarifications of sealed bidding), items 2, 5 to 7',
+      gist: 'If the procurement is expected to exceed the simplified acquisition threshold, the sponsor must notify the ADO in writing before award when the award will be made without competition, only one bid is received, or the award will go to other than the apparent low bidder. The apparent low bidder is simply the lowest-priced bid, before any finding on responsiveness or responsibility. A responsible bidder can perform successfully, considering integrity, compliance with public policy, past performance and financial and technical resources. Bid documents must state how the successful bid will be determined, which may include bid alternates and availability of federal funding; with alternates, the solicitation must set the base bid and the order of alternates based on available funding.',
+      edition: HB_ED, checked: '2026-09-30',
+    },
+    u24: {
+      label: '2 CFR 200.327', source: '2 CFR Part 200 (current eCFR), as reproduced in the ' + HB, ref: 'Contract provisions and Appendix II. The Handbook edition reproduces this as 2 CFR 200.326 (Appendix U, U-24); the current eCFR numbers it 200.327, confirmed 2026-09-30',
+      gist: 'The sponsor’s contracts must contain the applicable provisions in Appendix II to Part 200, in addition to other provisions the federal agency requires. For AIP, that means the FAA’s required contract provisions go into the bid package.',
+      edition: HB_ED, checked: '2026-09-30',
     },
     t367: {
-      label: 'Handbook · Table 3-67', source: HB, ref: 'Chapter 3, §3-101, Table 3-67, row b',
-      gist: 'For equipment bought with adequate competition (two or more sealed bids), the cost-reasonableness file includes a price analysis above the simplified acquisition threshold, an engineer’s estimate, a signed sponsor statement that the cost is reasonable, and bid tabulations.',
+      label: 'Handbook · Table 3-67', source: HB, ref: 'Chapter 3, §3-101, Table 3-67, rows b and c',
+      gist: 'For equipment bought with adequate competition (two or more sealed bids), the cost-reasonableness file includes a price analysis above the simplified acquisition threshold, an engineer’s estimate, a signed sponsor statement that the cost is reasonable and that a price analysis was performed, and bid tabulations. Without adequate competition, such as a single bidder, the sponsor performs a cost analysis and submits the engineer’s estimate, a signed statement recommending the FAA accept it, and the bid tabulation.',
       edition: HB_ED, checked: '2026-07-16',
     },
     x1: {
@@ -109,17 +119,29 @@
     ga34: { label: 'Grant Assurance 34', source: GA, ref: 'Assurance 34: Policies, Standards, and Specifications', gist: 'Requires AIP projects to follow FAA policies, standards and specifications, including the current advisory circulars as of the project application date.', edition: GA_ED, checked: '2026-07-13' },
   };
 
-  const candidates = [
-    { id: 'npc', contract: 'NPC-4471', consortium: 'Northern Plains Cooperative Purchasing', vendor: 'Ridgeline Airfield Equipment', scope: 'Airfield brooms and sweeper-blowers', termEnds: 'Feb 2027', validate: 'Timing against the grant · original competition · Buy American path · specification match', fictional: true },
-    { id: 'mrc', contract: 'MRC-2210', consortium: 'Midland Regional Purchasing Alliance', vendor: 'Summit Runway Systems', scope: 'Multi-task snow equipment', termEnds: 'Feb 2028', validate: 'Configuration against the Snow and Ice Control Plan · price support · ADO view', fictional: true },
-  ];
+  // Rendered as a table under the "route" reply. Steps and order follow AIP Handbook Table 5-4.
+  const tables = {
+    sequence: {
+      caption: 'Common key steps from notice of intent to award',
+      note: 'Selected steps from AIP Handbook Table 5-4, in the order the Handbook lists them. The table also lists earlier steps such as environmental review documents, final specifications and a DBE plan. It is not a mandated sequence; confirm your schedule with your ADO.',
+      columns: ['Step', 'What happens', 'What it needs'],
+      rows: [
+        ['1', 'Notice of intent to use entitlement funds', 'If entitlement funds are used: by the deadline in the annual Federal Register notice'],
+        ['2', 'Advertise for bids', 'Specification, required federal contract provisions, Buy American certificate'],
+        ['3', 'Open bids', 'Public opening and bid tabulation; confirm the low bidder is responsive and responsible; bids held until the grant is accepted'],
+        ['4', 'Submit the grant application', 'Actual bid amount, cost-reasonableness file, local-share source'],
+        ['5', 'Accept the grant offer', 'The grant agreement sets the federal maximum'],
+        ['6', 'Award the contract', 'To the lowest responsive and responsible bidder'],
+      ],
+    },
+  };
 
   const draftNote = 'Review draft for a fictional airport. Not a purchase authorization.';
 
   const artifacts = {
     memo: {
       title: 'Route memo', sub: 'Runway broom replacement · Northfield Regional Airport (fictional) · Draft for procurement and grants review',
-      sources: ['t47', 's3105', 't360', 't54', 't332', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
+      sources: ['u15', 'u8', 't47', 's3105', 't360', 't54', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
       sections: [
         { h: 'What the airport told us', items: [
           'Replacing a 2009 runway broom with about 4,100 hours, for snow and ice control.',
@@ -129,21 +151,21 @@
         { h: 'What the documents show', items: [
           'Capital plan line: $610,000. This differs from the $650,000 allowance and needs to be reconciled.',
           'The Snow and Ice Control Plan lists runway broom equipment. Count and specification still need to be checked against the advisory circulars.',
-          'The FAA Form 5100-141 on file is dated March 2024. A current inventory will be needed.',
-          'Purchasing policy allows a cooperative purchase with the purchasing director’s written sign-off.'] },
+          'The FAA Form 5100-141 on file is dated March 2024. A current inventory will be needed.'] },
         { h: 'Likely buying path', items: [
-          'Formal competition, with a specification written to the Snow and Ice Control Plan and the current FAA advisory circulars.',
-          'Cooperative candidates NPC-4471 and MRC-2210 (both fictional) stay open as candidates that need validation.'] },
-        { h: 'What would change the path', items: [
-          'An ADO position that supports a cooperative purchase for this equipment.',
-          'A candidate whose original competition, specification and Buy American position hold up.',
-          'Only one bid received, which can bring ADO pre-award review options into play.'] },
+          'Sealed competitive bids (2 CFR 200.320), with a specification written to the Snow and Ice Control Plan and the current FAA advisory circulars.',
+          'Award in writing to the lowest responsive and responsible bidder.',
+          'Common key steps (Handbook Table 5-4): notice of intent to use entitlements, advertise, open bids, submit the grant application with actual bid amounts, accept the grant offer, award.'] },
+        { h: 'What would change the plan', items: [
+          'Only one bid received: a cost analysis instead of a price analysis, and written notice to the ADO before award.',
+          'Award to other than the apparent low bidder: written notice to the ADO before award.',
+          'Bids above the $610,000 capital plan line: fund the gap locally, reject all bids with a documented reason and re-bid, or use funding-ordered bid alternates set up in the solicitation. Settle this with the ADO before advertising.'] },
         { h: 'Funding', items: [
           'A small hub’s normal federal share is 90% of allowable costs, unless an exception applies.',
           'Illustration only: if the whole $650,000 were allowable, that would be up to $585,000 federal and about $65,000 local. The ADO decides allowable costs and the grant agreement sets the maximum.',
           'Local match and the funds to operate and maintain the unit need to be identified.',
-          'Timing: AIP generally reimburses only costs incurred after the grant is executed; entitlement funds are the main exception. Which funds pay decides whether the airport could commit before the grant and still be reimbursed, by any route.',
-          'The grant is programmed from the capital plan estimate; the application itself should carry actual bid or negotiated amounts.'] },
+          'Timing: AIP generally reimburses only costs incurred after the grant is executed; entitlement funds are the main exception. Which funds pay decides whether the airport could commit before the grant and still be reimbursed.',
+          'Planning figures come from the capital plan; the application itself should carry actual bid or negotiated amounts.'] },
         { h: 'Grant Assurances that may be implicated', items: [
           'Numbering follows the April 2025 set. Confirm against the assurances in the grant offer for this project.',
           '1 General Federal Requirements: brings in 2 CFR Part 200 and required contract provisions.',
@@ -152,7 +174,8 @@
           '19 Operation and Maintenance: safe, serviceable winter operations are the reason for the unit.',
           '30 Civil Rights: current FAA-required solicitation and contract language.',
           '33 Foreign Market Restrictions: check the origin of the equipment against current restrictions.',
-          '34 Policies, Standards, and Specifications: fix the FAA standards, including advisory circular editions, that apply at application.'] },
+          '34 Policies, Standards, and Specifications: fix the FAA standards, including advisory circular editions, that apply at application.',
+          '37 Disadvantaged Business Enterprises: confirm the sponsor’s DBE program and whether this contract carries a goal or a race-neutral approach.'] },
         { h: 'Not decided', items: [
           'No vendor is selected, no award is made and no funds are obligated. Everything here needs validation with the ADO, the grants administrator and airport counsel.',
           draftNote] },
@@ -160,7 +183,7 @@
     },
     checklist: {
       title: 'Pre-solicitation readiness checklist', sub: 'Evidence file for the runway broom replacement · Northfield Regional Airport (fictional)',
-      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 't328', 't367', 't360', 't54', 'x1', 's567', 'ga30', 'ga33'],
+      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 'u15', 'u24', 'u8', 't328', 't360', 't54', 'x1', 's567', 'ga30', 'ga33'],
       sections: [
         { h: 'Eligibility file', items: [
           'Current FAA Form 5100-141 inventory (on file: March 2024).',
@@ -169,11 +192,13 @@
           'Number of pieces limited to the minimum the advisory circulars recommend, unless the ADO accepts a traffic-volume justification for more.',
           'Nothing in the specification sized for areas that are not priority 1 areas.'] },
         { h: 'Competition and cost', items: [
-          'Independent estimate, made before any bids, proposals or cooperative quotes are received.',
-          'Cooperative route: ADO view and purchasing director’s sign-off obtained, or the route closed, before the solicitation is released.',
+          'Independent (engineer’s) estimate, made before bids are received.',
+          'Bid validity period long enough to cover the grant application and offer, and a statement that award is subject to the availability of federal funding.',
           'Written protest procedures in place before the solicitation starts.',
-          'Specification reviewed for requirements that could narrow the bidder pool, such as highway-vehicle standards.',
-          'Plan for the engineer’s estimate, bid tabulation, price analysis and signed sponsor statement.'] },
+          'Specification complete and realistic, and reviewed for requirements that could narrow the bidder pool, such as highway-vehicle standards.',
+          'Required federal contract provisions in the bid package (2 CFR 200.327).',
+          'If bid alternates are used, the basis for award stated in the solicitation.',
+          'How bids above the $610,000 capital plan line would be funded, settled before advertising.'] },
         { h: 'Buy American', items: [
           'Include the Buy American provision and certificate in the solicitation.',
           'Choose the path: certify 100% U.S. production, use a unit on the Nationwide conformance list, or request a waiver.',
@@ -193,43 +218,41 @@
     },
     ado: {
       title: 'Questions for the ADO', sub: 'Focused set for the runway broom replacement · Northfield Regional Airport (fictional)',
-      sources: ['m1d', 's312', 'c318e', 'x1', 't47', 't360', 't54'],
+      sources: ['m1d', 's312', 'u8', 'x1', 't47', 't360', 't54'],
       sections: [
         { h: 'Eligibility', items: [
           'Please confirm the current Form 5100-141 you want on file and any updates to the March 2024 version.',
           'Does the ADO agree that the count and type of pieces for this replacement follow the two advisory circulars and our Snow and Ice Control Plan, or is more detail needed?',
           'For the 2009 unit, what useful-life documentation do you want: age and hours, condition, or both?'] },
         { h: 'Procurement', items: [
-          'Would the ADO consider a cooperative purchase for this equipment? If so, what would we need to show about the original competition?',
-          'Are any candidate units on the Nationwide Buy American conformance list? If a waiver is needed, which type do you expect?'] },
+          'Do you want to review the specification or bid package before we advertise?',
+          'If only one bid is received, or we award to other than the apparent low bidder, what do you want in our written notice?',
+          'Are units in this equipment class on the Nationwide Buy American conformance list? If a waiver is needed, which type do you expect?'] },
         { h: 'Funding and timing', items: [
           'Is this project in our ACIP submission, and in which fiscal year? Which AIP funds, entitlement or discretionary, do you expect, and when is our notice of intent to use entitlements due?',
           'If entitlement funds are used and we place an order or sign a contract before the grant is executed, what would you need to see for those costs to remain reimbursable?',
           draftNote] },
       ],
     },
-    coop: {
-      title: 'Cooperative validation checklist', sub: 'Two fictional candidates · validate before any reliance',
-      sources: ['c318e', 'u3', 'u21', 't367', 't332', 'x1', 'm1d'],
+    bideval: {
+      title: 'Bid evaluation and grant application checklist', sub: 'After bid opening · Northfield Regional Airport (fictional)',
+      sources: ['u15', 'u8', 'sat', 't367', 't332', 't54', 's3105', 'x1', 'ga3'],
       sections: [
-        { h: 'NPC-4471 · Northern Plains Cooperative Purchasing · Ridgeline Airfield Equipment (fictional)', items: [
-          'Original solicitation and competition record obtained and reviewed.',
-          'Scope covers runway snow equipment matching our Snow and Ice Control Plan and the current advisory circulars.',
-          'Term ends February 2027: compare with the grant timeline and award timing.',
-          'Buy American path for the exact unit: conformance list, certification or waiver.',
-          'Independent estimate prepared before requesting a quote; a cooperative discount is not a price analysis.',
-          'Ask the ADO whether this order is treated as competitive, or needs a cost analysis and the quote as for a procurement without adequate competition.',
-          'Required federal contract provisions can be added.',
-          'ADO position obtained. Purchasing director’s written sign-off obtained.'] },
-        { h: 'MRC-2210 · Midland Regional Purchasing Alliance · Summit Runway Systems (fictional)', items: [
-          'Original solicitation and competition record obtained and reviewed.',
-          'Multi-task configuration matches the Snow and Ice Control Plan; note that a multi-task unit counts as two pieces.',
-          'Term ends February 2028: compare with the grant timeline and award timing.',
-          'Buy American path for the exact unit: conformance list, certification or waiver.',
-          'Independent estimate prepared before requesting a quote.',
-          'Ask the ADO whether this order is treated as competitive, or needs a cost analysis and the quote as for a procurement without adequate competition.',
-          'Required federal contract provisions can be added.',
-          'ADO position obtained. Purchasing director’s written sign-off obtained.',
+        { h: 'Evaluate the bids', items: [
+          'Bid tabulation for every bid received.',
+          'Confirm the low bid conforms to the material terms of the invitation for bids (responsive).',
+          'Confirm the low bidder can perform: integrity, past performance, financial and technical resources (responsible).',
+          'Buy American certificate submitted and consistent with the chosen path.',
+          'Document the reason for any bid that is rejected.'] },
+        { h: 'Cost reasonableness', items: [
+          'Two or more bids: price analysis, engineer’s estimate, a signed sponsor statement that the cost is reasonable and that a price analysis was performed, and the bid tabulation.',
+          'Only one bid: cost analysis against the engineer’s estimate, a signed statement recommending the FAA accept it, and the bid tabulation.'] },
+        { h: 'Notify the ADO before award', items: [
+          'Above the federal simplified acquisition threshold, notify the ADO in writing before award if only one bid was received, the award goes to other than the apparent low bidder, or there was no competition. This includes rejecting the lowest-priced bid as nonresponsive or its bidder as not responsible. The ADO may choose to review before award.'] },
+        { h: 'Grant application', items: [
+          'Actual bid amount, the cost-reasonableness file and the source of the local share.',
+          'If the low bid is above the $610,000 capital plan line: confirm with the ADO how much AIP funding is available, then fund the gap locally or reject all bids with a documented reason.',
+          'Planned sequence: submit the application, accept the grant offer, then award the contract (Handbook Table 5-4).',
           draftNote] },
       ],
     },
@@ -273,7 +296,7 @@
           { lead: 'That puts this in the snow removal equipment category, and nothing is decided yet.', text: 'At a Part 139 airport the Handbook treats snow removal equipment as potentially eligible, so the file now has to show why this unit is needed.' },
           { text: 'Three things will carry it. The unit being replaced has to have reached the end of its useful life, so its age and hours need documenting. The number and type of pieces are tested against the two FAA advisory circulars and your Snow and Ice Control Plan, and the ADO will want a current Form 5100-141 equipment inventory. And your $100,000 policy threshold applies alongside the federal procurement standards, not instead of them.' },
           { text: 'On funding, a small hub’s normal federal share is 90% of allowable costs, unless an exception applies, such as a public-land-state adjustment. If the whole $650,000 were allowable, that would be up to $585,000 federal and about $65,000 local. That’s arithmetic on an allowance, not a grant amount: the ADO decides which costs are allowable, and the grant agreement sets the maximum.' },
-          { text: 'One sequencing point before you commit to any route: AIP generally reimburses only costs incurred after the grant is executed. Costs paid from entitlement funds are the main exception, if every other AIP requirement is met. So which funds pay for this decides whether an order or contract signed before the grant could still be reimbursed, by any route. Committing early is at your own risk, so confirm the funding plan with your ADO first.' },
+          { text: 'One sequencing point before you commit to anything: AIP generally reimburses only costs incurred after the grant is executed. Costs paid from entitlement funds are the main exception, if every other AIP requirement is met. So which funds pay for this decides whether an order or contract signed before the grant could still be reimbursed. Committing early is at your own risk, so confirm the funding plan with your ADO first.' },
         ],
         sources: ['s312', 't47', 't360'],
       },
@@ -305,7 +328,7 @@
       reply: {
         paras: [
           { lead: 'I’ve read all four. Most of it lines up, but three things need your attention.', text: 'The capital plan carries this project at $610,000, while your allowance is $650,000. I’ve recorded both and left the difference for you to reconcile. The Snow and Ice Control Plan lists runway broom equipment, but the count and specification still need to be checked against the advisory circulars. And the inventory form is dated March 2024, so the ADO will want a current one.' },
-          { text: 'Your purchasing policy confirms formal competition above $100,000 and allows a cooperative purchase with your purchasing director’s written sign-off.' },
+          { text: 'Your purchasing policy confirms formal competition above $100,000, and the capital plan shows this as AIP with a local match.' },
           { text: 'On the file, I’ve sorted what’s open. Before any solicitation goes out you’ll need an independent estimate and written protest procedures. After bids are in, the bid tabulation, price analysis and your local-share source go into the grant application, because the FAA expects the application to carry actual bid amounts. A Buy American path is needed before award.' },
         ],
         sources: ['u21', 't54', 'x1'],
@@ -314,9 +337,9 @@
         { at: 0.12, op: 'known', key: 'cip', label: 'Capital plan line', value: '$610,000', tag: 'Capital plan', flag: 'Differs from the $650,000 allowance' },
         { at: 0.28, op: 'known', key: 'sicp', label: 'Snow and Ice Control Plan', value: 'Lists runway broom equipment · count to confirm', tag: 'Snow and Ice Control Plan' },
         { at: 0.42, op: 'known', key: 'form5100', label: 'FAA Form 5100-141', value: 'Dated March 2024', tag: 'Form 5100-141', flag: 'Needs a current version' },
-        { at: 0.55, op: 'known', key: 'policy', label: 'Local formal-competition threshold', value: 'Above $100,000 · cooperative purchase needs the purchasing director’s written sign-off', tag: 'Purchasing policy' },
+        { at: 0.55, op: 'known', key: 'policy', label: 'Local formal-competition threshold', value: 'Above $100,000', tag: 'Purchasing policy' },
         { at: 0.7, op: 'open', key: 'form', group: 'now', text: 'Current Form 5100-141 (on file: March 2024)' },
-        { at: 0.75, op: 'open', key: 'estimate', group: 'solicitation', text: 'Independent estimate, made before bids, proposals or a cooperative quote' },
+        { at: 0.75, op: 'open', key: 'estimate', group: 'solicitation', text: 'Independent estimate, made before bids are received' },
         { at: 0.8, op: 'open', key: 'protest', group: 'solicitation', text: 'Written protest procedures' },
         { at: 0.86, op: 'open', key: 'buyam', group: 'award', text: 'Buy American path: certification, conformance list or waiver' },
         { at: 0.9, op: 'open', key: 'price', group: 'application', text: 'Bid tabulation and cost or price analysis' },
@@ -325,53 +348,55 @@
       ],
     },
     {
-      id: 'cooperative', stage: 2, label: 'Cooperative option',
-      user: 'Could a cooperative contract save us running a solicitation? Show me what’s out there.',
+      id: 'route', stage: 2, label: 'Sealed bids',
+      user: 'How should we put this out to bid?',
       reply: {
         paras: [
-          { lead: 'Two candidate agreements have a runway equipment scope.', text: 'They’re candidates, not a path. I haven’t established that either one fits this purchase.' },
-          { text: 'Federal rules encourage intergovernmental agreements where they make sense for shared goods and services, but that encouragement doesn’t settle whether a particular cooperative contract meets AIP competition expectations. The Handbook’s own examples are a multi-airport equipment purchase and state-run task orders, not a catalog purchase like this one, so I’d raise it with your ADO before relying on it.' },
+          { lead: 'Sealed bids fit this purchase: a defined unit, a firm fixed price, and a value above your $100,000 threshold.', text: 'Under 2 CFR 200.320, bids are publicly solicited and the contract is awarded in writing to the lowest responsive and responsible bidder. That works when the specification is complete and realistic and you expect two or more bidders, so write it to your Snow and Ice Control Plan and FAA standards without narrowing the field. Requiring highway-vehicle standards, for example, can reduce the number of bidders.' },
+          { text: 'The bid package carries the required federal contract provisions, including the Buy American certificate. If you use bid alternates, the solicitation has to state how the award will be made. Here are the common key steps the Handbook lays out from here.' },
         ],
-        sources: ['c318e', 'u3'],
-        table: 'candidates',
+        sources: ['u15', 'u24', 'u8'],
+        table: 'sequence',
       },
       file: [
         { when: 'send', op: 'phase', value: 'Route · Find the path' },
-        { at: 1, op: 'open', key: 'coop', group: 'solicitation', text: 'Get the ADO’s view on the cooperative candidates before the solicitation is released' },
-        { at: 1, op: 'next', value: 'Decide whether to test the cooperative candidates alongside formal competition' },
+        { at: 0.5, op: 'known', key: 'method', label: 'Procurement method', value: 'Sealed competitive bids', tag: '2 CFR 200.320' },
+        { at: 0.8, op: 'open', key: 'provisions', group: 'solicitation', text: 'Required federal contract provisions and Buy American certificate in the bid package' },
+        { at: 0.85, op: 'open', key: 'basis', group: 'solicitation', text: 'Basis for award stated, if bid alternates are used' },
+        { at: 1, op: 'next', value: 'Finish the specification and the independent estimate before advertising' },
       ],
     },
     {
-      id: 'fit', stage: 3, label: 'Poor-fit risks',
-      user: 'What could make those a bad fit for us?',
+      id: 'bids', stage: 3, label: 'When bids come in',
+      user: 'What could go wrong once bids come in?',
       reply: {
         paras: [
-          { lead: 'Timing, configuration and price support matter more than the catalog match.', text: 'Start with how the base contract was competed, and whether that competition supports the federal expectations for your purchase. Then Buy American: a catalog listing doesn’t establish it, so the exact unit needs its own path: certification that it’s wholly U.S.-produced, a place on the FAA’s conformance list, or a waiver. The configuration also has to match your Snow and Ice Control Plan.' },
-          { text: 'Timing counts too. One candidate ends in February 2027 and the other in February 2028, and you haven’t applied for the grant yet. A cooperative discount also isn’t a price analysis: at this value you still need the independent estimate and a documented cost or price analysis.' },
-          { text: 'The ADO can choose to review before award in some cases, such as a brand-name specification above the federal simplified acquisition threshold. That threshold is currently $350,000. The Handbook edition I’m reading still shows $150,000, so I’m flagging the difference. Your own $100,000 policy is lower, so that’s the one that drives when you compete.' },
+          { lead: 'Three situations are worth planning for before you advertise.', text: 'If only one bid arrives, or you’d award to someone other than the apparent low bidder, and the award is above the federal simplified acquisition threshold, you notify the ADO in writing before award. That threshold is currently $350,000. The Handbook edition I’m reading still shows $150,000, so I’m flagging the difference; at this value you’re above either figure.' },
+          { text: 'A single bid also changes the paperwork: instead of a price analysis you document a cost analysis against your engineer’s estimate. And if you reject a bid, 2 CFR 200.320 requires you to document the reason.' },
+          { text: 'If bids come in above the capital plan’s $610,000, you have three options. Fund the gap locally: the application carries the actual bid, the ADO decides which costs are allowable and how much AIP funding is available, and the grant agreement sets the federal maximum. Reject all bids for a documented reason and re-advertise. Or, planned before you advertise, bid a base unit with alternates ordered by available funding, with the basis for award stated in the solicitation. Settle which you’d use with your ADO before advertising.' },
         ],
-        sources: ['x1', 't332', 'sat'],
+        sources: ['u8', 't367', 's3105'],
       },
       file: [
         { when: 'send', op: 'phase', value: 'Check · Validate the route' },
-        { at: 0.5, op: 'open', key: 'terms', group: 'solicitation', text: 'Candidate term dates (Feb 2027, Feb 2028) against grant timing' },
-        { at: 1, op: 'open', key: 'spec', group: 'solicitation', text: 'Candidate specifications against the Snow and Ice Control Plan' },
+        { at: 0.35, op: 'open', key: 'adonotice', group: 'award', text: 'Written notice to the ADO before award if only one bid, or not the apparent low bidder' },
+        { at: 1, op: 'open', key: 'budget', group: 'solicitation', text: 'How bids above $610,000 would be funded' },
       ],
     },
     {
       id: 'path', stage: 4, label: 'The path and the file',
-      user: 'Keep formal competition as our working path while we check the candidates. Give procurement and our grants team something they can use.',
+      user: 'Go with sealed bids. Give procurement and our grants team something they can use.',
       thinkLabel: 'Preparing the file',
       reply: {
         paras: [
-          { lead: 'Formal competition is the likely buying path, and the cooperative candidates stay open until your ADO weighs in, before any solicitation is released.', text: 'That fits your $100,000 policy threshold, and equipment bought with adequate competition has a well-defined cost-reasonableness file, which your grant application will carry. What would change the path: an ADO position that supports a cooperative purchase, a candidate whose competition, specification and Buy American position hold up, or only one bid coming in.' },
+          { lead: 'Sealed competitive bidding is the likely buying path.', text: 'It fits your $100,000 policy threshold, and with two or more bids the cost-reasonableness file is well defined: engineer’s estimate, bid tabulation, price analysis and a signed statement, which your grant application will carry. What would change the plan: only one bid, bids well above the budget, or an ADO view on funding that shifts the timing.' },
           { text: 'I’ve prepared four review drafts for your procurement and grants teams. They separate what you told me, what your documents show, and what’s still unresolved. They’re drafts for review, not a purchase authorization.' },
         ],
         sources: ['t367', 'ga13', 'ga3'],
-        artifacts: ['memo', 'checklist', 'ado', 'coop'],
+        artifacts: ['memo', 'checklist', 'ado', 'bideval'],
       },
       file: [
-        { when: 'send', op: 'known', key: 'path', label: 'Working path', value: 'Formal competition · cooperative candidates kept open for validation', tag: 'You said' },
+        { when: 'send', op: 'known', key: 'path', label: 'Working path', value: 'Sealed competitive bids · AIP with local match', tag: 'You said' },
         { when: 'send', op: 'phase', value: 'Ready · Build the record' },
         { at: 1, op: 'next', value: 'Update the Form 5100-141 inventory and prepare the independent estimate before any solicitation is released' },
       ],
@@ -379,8 +404,8 @@
   ];
 
   return {
-    banner: 'Illustrative demonstration · fictional airport, documents and contracts · scripted, not live AI',
+    banner: 'Illustrative demonstration · fictional airport and documents · scripted, not live AI',
     airport: { name: 'Northfield Regional Airport (fictional)' },
-    citations, candidates, artifacts, stages, beats,
+    citations, tables, artifacts, stages, beats,
   };
 });
