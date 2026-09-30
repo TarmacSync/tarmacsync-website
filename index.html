@@ -335,28 +335,13 @@
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
     .hero-status { max-width: 42rem; margin: 1.05rem auto 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
-    /* ── Product model ─────────────────────────────────────────────── */
-    .product-model { padding: 0 0 var(--section-sm); }
-    .product-model__intro { max-width: 42rem; margin: 0 auto 1.7rem; text-align: center; }
-    .product-model__intro .eyebrow { color: var(--orange-ink); }
-    .product-model__intro h2 { margin-top: .7rem; font-size: clamp(1.35rem, 2.5vw, 1.8rem); line-height: 1.25; letter-spacing: -.025em; font-weight: 600; }
-    .product-model__intro p { margin-top: .7rem; color: var(--graphite); }
-    .product-model-status { margin-top: 1rem; color: var(--muted); font-size: .82rem; }
+    /* ── Sample snapshot ─────────────────────────────────────────────── */
     .snapshot-detail { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 1rem; }
     .snapshot-detail summary { cursor: pointer; color: var(--orange-ink); font-size: .86rem; font-weight: 600; }
     .snapshot-detail-body { display: grid; gap: 1rem; margin-top: 1rem; }
     .snapshot-detail-body p { color: var(--muted); font-size: .86rem; line-height: 1.55; }
     .snapshot-detail-body strong { color: var(--graphite); }
     .snapshot-cta { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; color: var(--orange-ink); }
-    .product-model__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-    .product-model__step { background: var(--white); padding: 1.45rem 1.5rem 1.55rem; }
-    .product-model__number { color: var(--orange-ink); font: 600 .75rem/1 var(--mono); letter-spacing: .08em; }
-    .product-model__step h3 { margin-top: .85rem; }
-    .product-model__step p { margin-top: .45rem; color: var(--muted); font-size: .95rem; line-height: 1.5; }
-    @media (max-width: 680px) {
-      .product-model__steps { grid-template-columns: 1fr; }
-      .product-model__step { padding: 1.25rem 1.2rem; }
-    }
 
     /* ── TarmacSync vision film ────────────────────────────────────────
        A deliberate, single-purpose film surface. Custom controls preserve the
@@ -1128,33 +1113,101 @@
       </div>
     </section>
 
-    <!-- ══ PRODUCT MODEL ══════════════════════════════════════════ -->
-    <section class="product-model" id="product-model" aria-labelledby="product-model-title">
-      <div class="page">
-        <div class="product-model__intro">
-          <span class="eyebrow">How the product works</span>
-          <h2 id="product-model-title">From a purchase question to a clearer next step.</h2>
-          <p class="product-model-status">Illustrative workflow: current product scope and evaluation availability are confirmed separately.</p>
-        </div>
-        <div class="product-model__steps">
-          <article class="product-model__step">
-            <span class="product-model__number">01</span>
-            <h3>Describe the purchase</h3>
-            <p>Start with what you need, your funding, and what you already know. An unknown cost stays an open question.</p>
-          </article>
-          <article class="product-model__step">
-            <span class="product-model__number">02</span>
-            <h3>Review the working path</h3>
-            <p>See which buying options need review, the sources behind them, and the facts that could change the path.</p>
-          </article>
-          <article class="product-model__step">
-            <span class="product-model__number">03</span>
-            <h3>Confirm the next action</h3>
-            <p>Use the evidence and draft output to support the next human review, validation, or handoff.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- ══ WORKFLOW (How TarmacSync works) ═══════════════════════ -->
+  <section class="ts-workflow" id="product-model" aria-label="How TarmacSync works">
+    <style>
+      .ts-workflow{--ts-accent:#F56A00;--ts-text:#17191F;--ts-muted:#3E4149;--ts-line:#B9BDC7;--ts-bg:#FFFFFF;box-sizing:border-box;width:100%;max-width:1120px;margin:0 auto;padding:32px 20px;background:var(--ts-bg);color:var(--ts-text);font-family:Inter,Arial,Helvetica,sans-serif;text-align:center;line-height:1.5}
+      .ts-workflow *{box-sizing:border-box}
+      .ts-workflow h2{margin:0;font:600 24px/1.3 Inter,Arial,Helvetica,sans-serif;color:var(--ts-text)}
+      .ts-workflow .ts-subtitle{margin:8px 0 0;font-size:16px;color:var(--ts-muted)}
+      .ts-workflow .ts-divider{width:56px;height:1px;margin:0 auto 20px;background:var(--ts-line)}
+      .ts-workflow .ts-scroll{overflow-x:auto;padding:36px 4px 24px}
+      .ts-workflow .ts-stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));min-width:800px;margin:0;padding:0;list-style:none}
+      .ts-workflow .ts-stage{position:relative;margin:0;padding:0;list-style:none}
+      .ts-workflow .ts-stage:not(:last-child)::after{content:"";position:absolute;top:57px;left:calc(50% + 60px);width:calc(100% - 120px);height:2px;background:var(--ts-line)}
+      .ts-workflow .ts-stage:not(:last-child)::before{content:"";position:absolute;z-index:1;top:53px;right:calc(-50% + 61px);border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--ts-line)}
+      .ts-workflow .ts-button{appearance:none;display:flex;flex-direction:column;align-items:center;gap:0;width:100%;margin:0;padding:0 4px;border:0;border-radius:6px;background:none;color:var(--ts-text);font:inherit;text-align:center;cursor:pointer}
+      .ts-workflow .ts-circle{display:flex;align-items:center;justify-content:center;width:116px;height:116px;border:2px solid var(--ts-line);border-radius:50%;background:var(--ts-bg);transition:border-color .18s,color .18s}
+      .ts-workflow .ts-button[aria-pressed="true"] .ts-circle{border:4px solid var(--ts-accent);color:var(--ts-accent)}
+      .ts-workflow .ts-button:hover .ts-circle{border-color:var(--ts-accent)}
+      .ts-workflow .ts-button:focus-visible{outline:2px solid var(--ts-text);outline-offset:4px}
+      .ts-workflow .ts-icon{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+      .ts-workflow .ts-step{margin-top:20px;font-size:11px;font-weight:700;letter-spacing:1.4px;color:var(--ts-muted)}
+      .ts-workflow .ts-label{margin-top:5px;font-size:16px;font-weight:600}
+      .ts-workflow .ts-detail{border-top:1px solid var(--ts-line);padding-top:24px;min-height:120px}
+      .ts-workflow .ts-detail-title{margin:0;font-size:17px;font-weight:600;color:var(--ts-text)}
+      .ts-workflow .ts-detail-text{max-width:700px;margin:8px auto 0;font-size:16px;line-height:1.65;color:var(--ts-muted)}
+      @media(max-width:600px){.ts-workflow{padding:24px 12px}.ts-workflow h2{font-size:22px}.ts-workflow .ts-scroll{padding-top:28px}.ts-workflow .ts-stages{min-width:760px}.ts-workflow .ts-detail{min-height:168px}}
+      @media(prefers-reduced-motion:reduce){.ts-workflow .ts-circle{transition:none}}
+    </style>
+    <div class="ts-divider" aria-hidden="true"></div>
+    <h2>How TarmacSync works</h2>
+    <p class="ts-subtitle">One purchase. Five stages. One clear path forward.</p>
+    <div class="ts-scroll">
+      <ol class="ts-stages" aria-label="Select a workflow stage">
+        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="true">
+          <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h31v35H8zM15 16h17M15 24h17M15 32h11M31 4v8"/></svg></span>
+          <span class="ts-step">START</span><span class="ts-label">Describe the need</span>
+        </button></li>
+        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+          <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8"/><circle cx="7" cy="12" r="4"/><circle cx="41" cy="12" r="4"/><circle cx="7" cy="38" r="4"/><circle cx="41" cy="38" r="4"/><path d="M11 14l7 6M37 14l-7 6M11 36l7-6M37 36l-7-6"/></svg></span>
+          <span class="ts-step">UNDERSTAND</span><span class="ts-label">Apply context</span>
+        </button></li>
+        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+          <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v40M24 13h17l-5-5M41 13l-5 5M24 26H8l5-5M8 26l5 5M24 38h17l-5-5M41 38l-5 5"/></svg></span>
+          <span class="ts-step">ROUTE</span><span class="ts-label">Find the path</span>
+        </button></li>
+        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+          <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3l17 7v12c0 11-7 19-17 23C14 41 7 33 7 22V10zM15 24l6 6 13-15"/></svg></span>
+          <span class="ts-step">CHECK</span><span class="ts-label">Validate the route</span>
+        </button></li>
+        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+          <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 4h23l9 9v31H8zM31 4v10h9M15 24h17M15 31h17M15 38h10"/></svg></span>
+          <span class="ts-step">READY</span><span class="ts-label">Build the record</span>
+        </button></li>
+      </ol>
+    </div>
+    <div class="ts-detail" aria-live="polite" aria-atomic="true">
+      <p class="ts-detail-title">Tell TarmacSync what you need to buy.</p>
+      <p class="ts-detail-text">Start in plain English — for example: “We need an ARFF vehicle using AIP and local match.”</p>
+    </div>
+    <script>
+      (() => {
+        const root = document.currentScript.closest('.ts-workflow');
+        if (!root || root.dataset.ready === '1') return;
+        root.dataset.ready = '1';
+        const buttons = Array.from(root.querySelectorAll('.ts-button'));
+        const title = root.querySelector('.ts-detail-title');
+        const text = root.querySelector('.ts-detail-text');
+        const copy = [
+          ['Tell TarmacSync what you need to buy.', 'Start in plain English — for example: “We need an ARFF vehicle using AIP and local match.”'],
+          ['TarmacSync applies the airport’s context.', 'Local policy, funding, thresholds, existing agreements and available purchasing vehicles are brought into the same view.'],
+          ['TarmacSync identifies the likely buying path.', 'The system evaluates the purchase against direct purchase, quotes, formal competition, cooperative contracts, sole source and other available routes.'],
+          ['TarmacSync checks whether the route holds up.', 'Contract scope, funding compatibility, approvals, FAA/federal requirements and missing information are surfaced before the airport proceeds.'],
+          ['TarmacSync builds a review-ready record.', 'The airport gets the rationale, checklist, supporting evidence and decision trail needed to move the purchase forward.']
+        ];
+        function select(index) {
+          buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+          title.textContent = copy[index][0];
+          text.textContent = copy[index][1];
+        }
+        buttons.forEach((button, index) => {
+          button.addEventListener('click', () => select(index));
+          button.addEventListener('keydown', event => {
+            let next;
+            if (event.key === 'ArrowRight') next = (index + 1) % buttons.length;
+            else if (event.key === 'ArrowLeft') next = (index + buttons.length - 1) % buttons.length;
+            else if (event.key === 'Home') next = 0;
+            else if (event.key === 'End') next = buttons.length - 1;
+            else return;
+            event.preventDefault();
+            buttons[next].focus();
+            select(next);
+          });
+        });
+      })();
+    </script>
+  </section>
 
     <!-- ══ VISION FILM ════════════════════════════════════════════ -->
     <section class="vision-section" id="product" aria-labelledby="vision-title">
