@@ -52,6 +52,10 @@ The demo is the second half of "How TarmacSync works", not a separate product.
   current federal figure is $350,000. The copy flags the difference; do not remove that note.
 - Cooperative contracts stay candidates. No vendor selection, award or fund obligation.
 - Do not add real airport, consortium or vendor names. The content check has a denylist.
+- Mobile: keep every tap target at least 44px on phones, and keep `.scroller` `position:relative`.
+  Without it the table's screen-reader-only caption escapes the scroll pane and leaves a long blank
+  scroll after the finish (the browser test "no phantom scroll" guards this). Full-page screenshots
+  resize the viewport, which distorts `dvh` layouts, so measure `scrollHeight` instead of trusting one.
 
 ## Run the checks
 
