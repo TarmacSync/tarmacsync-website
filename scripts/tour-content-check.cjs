@@ -342,10 +342,20 @@ test('continuity: every demo entry point on the homepage uses the same name and 
   });
 });
 
+test('quiet chrome: no header label, footer tagline or disclosure footnote; the banner still says fictional and scripted', () => {
+  const t = read('tour.html');
+  assert.ok(!/header-label|2-minute demo/.test(t), 'no label in the header');
+  assert.ok(!/Human judgment/.test(t), 'no tagline in the footer');
+  assert.ok(!/class="disclosure"|Regulatory references paraphrase/.test(t), 'no footnote under the controls');
+  assert.match(t, /id="banner"[^>]*>[^<]*fictional airport and documents[^<]*scripted, not live AI/i, 'the banner keeps the disclosure');
+});
+
 test('continuity: the demo page mirrors the site header CTA and hands people back to the site', () => {
   const t = read('tour.html');
   const header = t.match(/<header class="tour-header"[\s\S]*?<\/header>/)[0];
   assert.match(header, /class="header-cta"[^>]*href="\/book-a-call\.html"[^>]*>Book a call</);
+  assert.match(header, /<a class="brand" href="\/" aria-label="TarmacSync home">/, 'the logo is the way back to the site');
+  assert.ok(!/Back to (tarmacsync\.com|site)|class="exit/.test(t), 'no "back to the site" button: the demo is already on the site');
   assert.ok(!/free report|data-report-cta|\/#report/.test(t.replace(/<noscript>[\s\S]*?<\/noscript>/, '')), 'no report offer left on the demo page');
   assert.match(t, /id="stages"/);
   assert.match(t, /href="\/#product-model"/, 'finish card links back to How TarmacSync works');
