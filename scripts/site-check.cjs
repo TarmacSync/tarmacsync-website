@@ -110,5 +110,55 @@ test('the demo is indexable and its booking page has a branded title', () => {
   assert.match(titleOf(read('book-a-call.html')), /Book a Fit Conversation \| TarmacSync/);
 });
 
+const chromePages = pages.filter((f) => !['404.html', 'tour.html', 'book-a-call.html'].includes(f));
+const between = (src, tag) => (src.match(new RegExp('<' + tag + '[\\s>][\\s\\S]*?</' + tag + '>')) || [''])[0];
+const hrefs = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+
+test('structure: header, footer and main tags are balanced on every page', () => {
+  const bad = [];
+  pages.forEach((f) => {
+    const s = read(f);
+    ['header', 'footer', 'main'].forEach((t) => {
+      const open = (s.match(new RegExp('<' + t + '[\\s>]', 'g')) || []).length;
+      const close = (s.match(new RegExp('</' + t + '>', 'g')) || []).length;
+      if (open !== close) bad.push(f + ' <' + t + '> opens ' + open + ', closes ' + close);
+    });
+  });
+  assert.deepEqual(bad, []);
+});
+
+test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs, on every shared-layout page', () => {
+  execFileSync('node', ['scripts/build-chrome.cjs', '--check'], { cwd: root, stdio: 'pipe' });
+  const nav = ['/#product', '/tour.html', '/pricing.html', '/resources.html', '/book-a-call.html', '/#report'];
+  const foot = ['/', '/privacy.html', '/terms.html', '/accessibility.html', '/security.html', '/procurement-support-packet.html', '/product-roadmap.html', '/book-a-call.html'];
+  chromePages.forEach((f) => {
+    const s = read(f);
+    const h = between(s, 'header'), ft = between(s, 'footer');
+    assert.deepEqual(hrefs(between(h, 'nav')), nav, f + ' nav links');
+    assert.ok(hrefs(ft).slice(0, foot.length).join() === foot.join(), f + ' footer links');
+    assert.ok(h.includes('data-site-header') && h.includes('data-site-menu'), f + ' header has the menu behaviour hooks');
+    assert.ok(!/mailto:/.test(h + ft), f + ' chrome leads to the booking page, not a mail link');
+  });
+  const current = (f) => (between(read(f), 'header').match(/aria-current="page"/g) || []).length;
+  assert.equal(current('pricing.html'), 1); assert.equal(current('resources.html'), 1); assert.equal(current('security.html'), 0);
+});
+
+test('chrome: pages using the shared layout load its stylesheet and script', () => {
+  chromePages.forEach((f) => {
+    const s = read(f);
+    assert.ok(s.includes('assets/site-shell.css'), f + ' loads site-shell.css');
+    assert.ok(s.includes('assets/site-shell.js'), f + ' loads site-shell.js');
+  });
+});
+
+test('naming: one name for the booking and the evaluation guide', () => {
+  const visible = (s) => [...s.matchAll(/<a\b[^>]*>([^<]*)<\/a>/g)].map((m) => m[1].trim());
+  const banned = [/^Evaluate TarmacSync$/, /^Book a fit conversation$/, /^Discuss /, /^Evaluation Guide$/, /^View the Evaluation Guide$/, /^TarmacSync Evaluation Guide$/, /Talk it through/i];
+  const hits = [];
+  pages.forEach((f) => visible(read(f)).forEach((t) => banned.forEach((b) => { if (b.test(t)) hits.push(f + ': "' + t + '"'); })));
+  assert.deepEqual(hits, []);
+  assert.ok(!/zohobookings/.test(read('procurement-support-packet.html')), 'the evaluation guide books through the on-site page');
+});
+
 if (failed) { console.error('\n' + failed + ' failing'); process.exit(1); }
 console.log('\nsite checks passed');
