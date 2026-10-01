@@ -344,7 +344,9 @@ test('continuity: every demo entry point on the homepage uses the same name and 
 
 test('continuity: the demo page mirrors the site header CTA and hands people back to the site', () => {
   const t = read('tour.html');
-  assert.match(t, /class="[^"]*header-cta[^"]*"[^>]*href="\/#report"|href="\/#report"[^>]*class="[^"]*header-cta/);
+  const header = t.match(/<header class="tour-header"[\s\S]*?<\/header>/)[0];
+  assert.match(header, /class="header-cta"[^>]*href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta="tour_header"[^>]*>Contact us</);
+  assert.ok(!/free report|data-report-cta|\/#report/.test(t.replace(/<noscript>[\s\S]*?<\/noscript>/, '')), 'no report offer left on the demo page');
   assert.match(t, /id="stages"/);
   assert.match(t, /href="\/#product-model"/, 'finish card links back to How TarmacSync works');
   assert.match(t, /id="replay"/);

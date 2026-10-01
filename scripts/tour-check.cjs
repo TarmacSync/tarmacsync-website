@@ -511,8 +511,10 @@ section('stage tracker: the five homepage stages light up in order as the demo p
 
 section('continuity: header mirrors the site CTA; the finish card leads back into the site and can replay', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
-  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/#report');
-  assert.match(await page.locator('.header-cta').innerText(), /free report/i);
+  assert.equal(await page.locator('.header-cta').getAttribute('href'), 'mailto:contact@tarmacsync.com');
+  assert.match(await page.locator('.header-cta').innerText(), /^contact us$/i);
+  assert.equal(await page.locator('.header-cta').getAttribute('data-contact-cta'), 'tour_header');
+  assert.ok(!/free report/i.test(await page.locator('header').innerText()), 'no report offer anywhere in the demo header');
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
   assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'Contact us');
   assert.ok(!links.includes('/book-a-call.html'), 'no appointment booking at the end of the demo');
