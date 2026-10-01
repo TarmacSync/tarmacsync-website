@@ -213,7 +213,9 @@ section('reduced motion shows the finished state, paused, with a play control', 
   await context.close();
 });
 
-section('scrolling up to reread pauses playback and is not yanked back down', async (browser) => {
+const clockSeconds = async (page) => { const [m, s] = (await page.locator('#clock').innerText()).split(' / ')[0].split(':').map(Number); return m * 60 + s; };
+
+section('scrolling up to reread never pauses the demo: it stops auto-scroll and offers Jump to latest', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
   await page.waitForTimeout(300);
   await page.locator('#play').click();
@@ -222,10 +224,41 @@ section('scrolling up to reread pauses playback and is not yanked back down', as
   await page.locator('#scroller').hover();
   await page.mouse.wheel(0, -400);
   await page.waitForTimeout(300);
-  assert.equal((await page.locator('#play').innerText()).trim(), 'Play', 'upward scroll pauses');
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'a wheel scroll must not pause');
+  const c1 = await clockSeconds(page);
   const top = await page.locator('#scroller').evaluate((n) => n.scrollTop);
-  await page.waitForTimeout(800);
-  assert.equal(await page.locator('#scroller').evaluate((n) => n.scrollTop), top, 'view is not dragged back down');
+  await page.waitForTimeout(1500);
+  assert.ok((await clockSeconds(page)) > c1, 'the demo kept playing while the viewer read');
+  assert.ok((await page.locator('#scroller').evaluate((n) => n.scrollTop)) <= top + 2, 'view is not dragged back down');
+  assert.equal(await page.locator('#jump-latest').isVisible(), true, 'a way back to the live end is offered');
+  await page.locator('#jump-latest').click();
+  await page.waitForTimeout(300);
+  assert.equal(await page.locator('#jump-latest').isVisible(), false);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'still playing');
+  await page.locator('#scroller').evaluate((n) => { n.scrollTop = 0; });   // scrollbar-style scroll
+  await page.waitForTimeout(300);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'a scrollbar drag must not pause either');
+  await context.close();
+});
+
+section('only Pause, the end, an open dialog or a hidden tab stop the demo: scrubbing and jumping keep its state', async (browser) => {
+  const { page, context } = await fresh(browser, { hash: '#beat=2', realClock: true });
+  await page.waitForTimeout(300);
+  await page.locator('#play').click();
+  await page.locator('#ticks button[data-mark="4"]').click();
+  await page.waitForTimeout(300);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'jumping while playing keeps playing');
+  const c1 = await clockSeconds(page);
+  await page.waitForTimeout(1500);
+  assert.ok((await clockSeconds(page)) > c1, 'and time keeps moving from the new point');
+  await page.locator('#scrub').focus();
+  await page.keyboard.press('ArrowRight');
+  await page.waitForTimeout(200);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause', 'scrubbing while playing keeps playing');
+  await page.locator('#play').click();                       // the viewer presses Pause
+  await page.locator('#ticks button[data-mark="2"]').click();
+  await page.waitForTimeout(300);
+  assert.equal((await page.locator('#play').innerText()).trim(), 'Play', 'jumping while paused stays paused');
   await context.close();
 });
 
@@ -387,21 +420,7 @@ section('clicking inside the dialog (including its margins) does not close it; t
   await context.close();
 });
 
-section('any upward scroll pauses playback, including a scrollbar drag or keyboard scroll elsewhere', async (browser) => {
-  const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
-  await page.waitForTimeout(300);
-  await page.locator('#play').click();
-  await page.waitForTimeout(700);
-  assert.equal((await page.locator('#play').innerText()).trim(), 'Pause');
-  await page.locator('#scroller').evaluate((n) => { n.scrollTop = 0; });
-  await page.waitForTimeout(300);
-  assert.equal((await page.locator('#play').innerText()).trim(), 'Play', 'programmatic/scrollbar scroll-up pauses');
-  await page.waitForTimeout(700);
-  assert.equal(await page.locator('#scroller').evaluate((n) => n.scrollTop), 0, 'view is not dragged back down');
-  await context.close();
-});
-
-section('restart and scrub do not trip the scroll-up pause', async (browser) => {
+section('restart keeps playing', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=5', realClock: true });
   await page.waitForTimeout(300);
   await page.locator('#play').click();
