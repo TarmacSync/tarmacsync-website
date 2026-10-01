@@ -542,13 +542,16 @@ section('no phantom scroll: after the finish the document ends at the footer, on
     const { gap, scrollable } = await page.evaluate(() => {
       const doc = document.documentElement;
       return {
-        gap: doc.scrollHeight - (document.querySelector('.tour-footer').getBoundingClientRect().bottom + scrollY),
+        gap: doc.scrollHeight - (document.querySelector('.site-footer').getBoundingClientRect().bottom + scrollY),
         scrollable: doc.scrollHeight - innerHeight,
       };
     });
     // A page shorter than the window has nothing to scroll, so slack below the footer is not blank scroll.
     assert.ok(scrollable <= 0 || gap <= 8, width + 'px wide: ' + Math.round(gap) + 'px of blank scroll below the footer');
-    assert.ok(width === 390 || Math.abs(gap) <= 8, width + 'px wide: the page should fill the window (footer ' + Math.round(gap) + 'px from the bottom)');
+    if (width !== 390) {
+      const footerTop = await page.evaluate(() => document.querySelector('.site-footer').getBoundingClientRect().top + scrollY);
+      assert.ok(footerTop >= 900 - 8, width + 'px wide: the demo should fill the first screen and the footer sit below it (footer starts at ' + Math.round(footerTop) + 'px of 900)');
+    }
     await context.close();
   }
 });
@@ -571,7 +574,7 @@ section('phone controls: touch-sized, no overlapping first mark, sensible order'
 section('phone: finish card links, Watch again and footer links are tappable', async (browser) => {
   const { page, context } = await fresh(browser, { width: 390, height: 844, hash: '#beat=7' });
   await page.evaluate(() => { const s = document.getElementById('scroller'); s.scrollTop = s.scrollHeight; });
-  for (const sel of ['#finish .button', '#finish a.subtle', '#replay', '.tour-footer a']) {
+  for (const sel of ['#finish .button', '#finish a.subtle', '#replay', '.site-footer a']) {
     for (const el of await page.locator(sel).all()) {
       const r = await el.boundingBox();
       assert.ok(r.height >= 44, sel + ' "' + (await el.innerText()).trim() + '" is only ' + Math.round(r.height) + 'px tall');
