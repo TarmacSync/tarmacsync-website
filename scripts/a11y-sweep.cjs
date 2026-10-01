@@ -38,7 +38,6 @@ const ALL_PAGES = [
   '404.html',
   'pricing.html',
   'security.html',
-  'airport-procurement-intelligence.html',
   'aip-procurement.html',
   'cooperative-contracts-airports.html',
   'airport-procurement-policy.html',
@@ -47,8 +46,6 @@ const ALL_PAGES = [
   'terms.html',
   'government-customer-addendum.html',
   'data-processing-addendum.html',
-  'procurement-support-packet.html',
-  'product-roadmap.html',
   'accessibility.html',
   'non-discrimination.html',
 ];
