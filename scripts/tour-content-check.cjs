@@ -120,8 +120,8 @@ test('scenario is AIP + local match with competitive bidding: no cooperative con
   const coop = /cooperative|consortium|NPC-4471|MRC-2210|candidate agreement|piggyback/i;
   assert.ok(!coop.test(strings(script).join('\n')), 'script');
   ['tour.html', 'assets/tour/tour-ui.js', 'assets/tour/tour.css'].forEach((p) => assert.ok(!coop.test(read(p)), p));
-  const section = read('index.html').match(/<section[^>]*id="interactive-demo"[\s\S]*?<\/section>/)[0];
-  assert.ok(!coop.test(section), 'homepage demo section');
+  const section = read('index.html').match(/<section[^>]*id="product-model"[\s\S]*?<\/section>/)[0];
+  assert.ok(!coop.test(section.replace(/<script>[\s\S]*?<\/script>/, '')), 'homepage how-it-works section');
 });
 
 test('sealed bids are described from 2 CFR 200.320 and the Handbook, including what happens after bid opening', () => {
@@ -334,7 +334,7 @@ test('continuity: stateAt exposes the stage, from none at the start to all five 
 
 test('continuity: every demo entry point on the homepage uses the same name and links to the demo', () => {
   const home = read('index.html');
-  ['hero', 'vision', 'section', 'workflow'].forEach((where) => {
+  ['hero', 'vision', 'section'].forEach((where) => {
     const m = home.match(new RegExp('<a[^>]*data-tour-cta="' + where + '"[^>]*>([\\s\\S]*?)</a>'));
     assert.ok(m, 'entry point ' + where + ' exists');
     assert.match(m[0], /href="\/tour\.html"/);
@@ -469,6 +469,42 @@ test('state and local law: a sourced note in the route reply, the file and the c
   assert.ok(open && open.group === 'solicitation', 'state and local requirements are an open item before the solicitation');
   assert.match(strings(script.artifacts.checklist).join(' '), /state public-bidding/i);
   assert.match(strings(script.artifacts.memo).join(' '), /state/i);
+});
+
+test('homepage story order: problem, how it works, vision, what you keep, between projects, founder, report, FAQ', () => {
+  const home = read('index.html');
+  const marks = ['aria-label="Hero"', 'aria-label="The problem"', 'id="product-model"', 'id="product"', 'id="trust"', 'aria-label="Between projects"', 'id="founder"', 'id="report"', 'id="faq"'];
+  const at = marks.map((m) => home.indexOf(m));
+  at.forEach((i, n) => assert.ok(i > 0, marks[n] + ' exists'));
+  assert.deepEqual([...at].sort((a, b) => a - b), at, 'sections are in story order');
+  assert.ok(!home.includes('id="interactive-demo"'), 'the separate demo section is folded into the five stages');
+});
+
+test('homepage stages: each of the five panels shows the demo’s real moment, in the HTML itself', () => {
+  const sec = read('index.html').match(/<section[^>]*id="product-model"[\s\S]*?<\/section>/)[0];
+  const tabs = [...sec.matchAll(/<button[^>]*role="tab"[^>]*>/g)].map((m) => m[0]);
+  assert.equal(tabs.length, 5, 'five stage tabs');
+  assert.equal(tabs.filter((t) => /aria-selected="true"/.test(t)).length, 1, 'one stage selected');
+  const panels = [...sec.matchAll(/<div[^>]*role="tabpanel"[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<!-- \/panel -->/g)];
+  assert.equal(panels.length, 5, 'five panels');
+  tabs.forEach((t, i) => assert.ok(t.includes('aria-controls="' + panels[i][1] + '"'), 'tab ' + i + ' controls its panel'));
+  const text = panels.map((p) => p[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '));
+  assert.match(text[0], /\$650,000/); assert.match(text[0], /What will the sweeper be used for\?/);
+  assert.match(text[1], /\$610,000/); assert.match(text[1], /Snow and Ice Control Plan/);
+  assert.match(text[2], /Sealed competitive bids/); assert.match(text[2], /\$100,000/);
+  assert.match(text[3], /ADO/); assert.match(text[3], /one bid/i);
+  ['Route memo', 'Pre-solicitation readiness checklist', 'Questions for the ADO', 'Bid evaluation and grant application checklist'].forEach((a) => assert.ok(text[4].includes(a), 'READY lists ' + a));
+  assert.match(sec, /<a[^>]*href="\/tour\.html"[^>]*data-tour-cta="section"/);
+});
+
+test('homepage hero: an airfield drawing introduces the purchase the page follows', () => {
+  const hero = read('index.html').match(/<section class="hero"[\s\S]*?<\/section>/)[0];
+  const fig = (hero.match(/<figure class="hero-airfield[^"]*"[\s\S]*?<\/figure>/) || [''])[0];
+  assert.ok(fig, 'airfield figure in the hero');
+  assert.match(fig, /<svg[^>]*role="img"[^>]*aria-label="[^"]*snow removal equipment[^"]*"/i);
+  assert.match(fig.replace(/<[^>]+>/g, ' '), /Runway sweeper replacement/);
+  assert.match(fig.replace(/<[^>]+>/g, ' '), /\$650K/);
+  assert.ok(!/<img[^>]*(stock|unsplash|pixabay)/i.test(fig), 'drawn, not stock');
 });
 
 test('homepage path example tells the same story as the demo', () => {

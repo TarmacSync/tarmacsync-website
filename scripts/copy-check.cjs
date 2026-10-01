@@ -61,7 +61,7 @@ REVIEWED.forEach((file) => {
 
 test('index.html: the how-it-works example is the demo’s purchase', () => {
   const t = visibleText('index.html');
-  const ex = (t.match(/for example: “([^”]+)”/) || [])[1] || '';
+  const ex = (t.match(/“([^”]*runway (?:sweeper|broom)[^”]*)”/) || [])[1] || '';
   assert.match(ex, /runway (sweeper|broom)/i, 'example: "' + ex + '"');
   assert.match(ex, /AIP/);
 });

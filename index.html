@@ -333,6 +333,39 @@
       margin-top: 1.9rem; flex-wrap: wrap;
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
+    .hero-airfield { max-width: 1120px; margin: clamp(2.5rem, 6vw, 4rem) auto 0; }
+    .hero-airfield svg { display: block; width: 100%; height: auto; }
+    .af-runway { fill: #F4F5F7; stroke: #9AA0AA; stroke-width: 1.5; }
+    .af-centerline { stroke: #9AA0AA; stroke-width: 1.5; stroke-dasharray: 18 14; fill: none; }
+    .af-threshold { stroke: #9AA0AA; stroke-width: 3; fill: none; }
+    .af-taxi { fill: #FAFAFB; stroke: #C9CDD4; stroke-width: 1.2; }
+    .af-taxi-line { stroke: #C9CDD4; stroke-width: 1; fill: none; }
+    .af-connector { stroke: #C9CDD4; stroke-width: 10; fill: none; }
+    .af-apron { fill: #FAFAFB; stroke: #C9CDD4; stroke-width: 1.2; stroke-dasharray: 5 5; }
+    .af-stand, .af-bridge { stroke: #C9CDD4; stroke-width: 1.2; fill: none; }
+    .af-building { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
+    .af-hangar { fill: #fff; stroke: #9AA0AA; stroke-width: 1.2; }
+    .af-label { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 1px; fill: var(--muted); }
+    .af-rwy { font-size: 13px; fill: #6E7179; }
+    .af-sre-building { fill: #FFF3E8; stroke: var(--orange); stroke-width: 2; }
+    .af-sre-link { stroke: var(--orange); stroke-width: 10; opacity: .35; fill: none; }
+    .af-sre-label { fill: var(--orange-ink); font-size: 10.5px; }
+    .af-dot { fill: var(--orange); }
+    .af-pulse { fill: none; stroke: var(--orange); stroke-width: 2; opacity: .45; transform-origin: 290px 98px; animation: af-pulse 2.4s ease-out infinite; }
+    @keyframes af-pulse { 0% { transform: scale(.6); opacity: .6; } 100% { transform: scale(1.6); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .af-pulse { animation: none; } }
+    .airfield-caption { margin-top: 1rem; font-size: .9rem; line-height: 1.6; color: var(--muted); text-align: center; }
+    .airfield-caption strong { color: var(--ink); font-weight: 600; }
+    .airfield-dot { display: inline-block; width: 10px; height: 10px; margin-right: .5rem; border-radius: 50%; background: var(--orange); vertical-align: .05em; }
+    .airfield-caption a { display: inline-flex; align-items: center; min-height: 44px; margin-left: .5rem; color: var(--orange-ink); font-weight: 600; text-decoration: none; }
+    .airfield-caption a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .af-frame { overflow: hidden; }
+    @media (max-width: 640px) {
+      .hero-airfield svg { width: 190%; max-width: none; margin-left: -4%; }
+      .af-label { font-size: 17px; }
+      .af-rwy { font-size: 17px; }
+      .af-sre-label { font-size: 15px; }
+    }
     .hero-status { max-width: 42rem; margin: 1.05rem auto 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
     /* ── Sample snapshot ─────────────────────────────────────────────── */
@@ -1112,6 +1145,92 @@
           <a class="btn btn-secondary btn-lg" href="/tour.html" data-tour-cta="hero">Watch the 2-minute demo</a>
         </div>
         <p class="hero-note">Veteran-founded · Built by an Accredited Airport Executive.</p>
+        <figure class="hero-airfield reveal">
+          <div class="af-frame"><svg viewBox="0 0 1120 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Plan view of a small-hub airport: runway, taxiway, apron, terminal, tower and ARFF station, with the snow removal equipment building highlighted.">
+            <g class="af-ground">
+              <rect x="40" y="226" width="1040" height="36" rx="2" class="af-runway"/>
+              <path d="M112 244H1002" class="af-centerline"/>
+              <path d="M48 232h16M48 238h16M48 250h16M48 256h16M1056 232h16M1056 238h16M1056 250h16M1056 256h16" class="af-threshold"/>
+              <text x="80" y="248" class="af-label af-rwy">09</text>
+              <text x="1022" y="248" class="af-label af-rwy">27</text>
+              <rect x="120" y="176" width="880" height="14" class="af-taxi"/>
+              <path d="M128 183H992" class="af-taxi-line"/>
+              <path d="M177 190v36M427 190v36M707 190v36M957 190v36" class="af-connector"/>
+              <rect x="360" y="98" width="420" height="78" class="af-apron"/>
+              <path d="M430 104v40M500 104v40M570 104v40M640 104v40M710 104v40" class="af-stand"/>
+              <rect x="380" y="34" width="380" height="58" rx="4" class="af-building"/>
+              <path d="M430 92v12M500 92v12M570 92v12M640 92v12M710 92v12" class="af-bridge"/>
+              <text x="570" y="68" text-anchor="middle" class="af-label">TERMINAL</text>
+              <circle cx="826" cy="54" r="12" class="af-building"/>
+              <text x="826" y="90" text-anchor="middle" class="af-label">TWR</text>
+              <rect x="860" y="112" width="112" height="48" rx="3" class="af-building"/>
+              <text x="916" y="141" text-anchor="middle" class="af-label">ARFF</text>
+              <path d="M916 160v16" class="af-connector"/>
+              <rect x="40" y="112" width="84" height="48" rx="3" class="af-hangar"/>
+              <text x="82" y="141" text-anchor="middle" class="af-label">GA</text>
+            </g>
+            <g class="af-sre">
+              <path d="M220 156v20" class="af-sre-link"/>
+              <rect x="150" y="98" width="140" height="58" rx="3" class="af-sre-building"/>
+              <text x="220" y="124" text-anchor="middle" class="af-label af-sre-label">SNOW REMOVAL</text>
+              <text x="220" y="140" text-anchor="middle" class="af-label af-sre-label">EQUIPMENT</text>
+              <circle cx="290" cy="98" r="12" class="af-pulse"/>
+              <circle cx="290" cy="98" r="6" class="af-dot"/>
+            </g>
+          </svg></div>
+          <figcaption class="airfield-caption"><span class="airfield-dot" aria-hidden="true"></span><span><strong>Runway sweeper replacement</strong> · $650K allowance · AIP + local match</span> <a href="#product-model">Follow it below <span aria-hidden="true">↓</span></a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══ PROBLEM ═══════════════════════════════════════════════ -->
+    <section class="section section-tint" aria-label="The problem">
+      <div class="narrow statement reveal">
+        <span class="eyebrow">The problem</span>
+        <h2 class="h2 statement-title">Stop rebuilding the answer for every project.</h2>
+        <p class="lede copy-stack"><span>The answer usually exists already. It is scattered across policies, project files, funding terms, contracts, and the experience of the people doing the work.</span> <span>TarmacSync brings it together before the buying process begins.</span></p>
+      </div>
+
+      <div class="page">
+        <div class="path-flow reveal" role="group" aria-label="Airport context becomes a working procurement path through TarmacSync">
+          <article class="path-card path-card-context">
+            <span class="path-step">01 Airport context</span>
+            <h3>What governs the purchase</h3>
+            <ul class="path-inputs">
+              <li>Local purchasing policy</li>
+              <li>ACIP/CIP, budget, and funding</li>
+              <li>State and federal requirements</li>
+              <li>AIP Handbook, Grant Assurances, FAA Orders</li>
+              <li>Existing contracts and grant terms</li>
+            </ul>
+          </article>
+
+          <div class="path-connector" aria-hidden="true">
+            <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <article class="path-card path-intelligence">
+            <span class="path-step">02 Intelligence</span>
+            <span class="path-brand">TarmacSync</span>
+            <span class="path-intelligence-kicker">Airport procurement intelligence</span>
+            <span class="path-intelligence-copy">Connects the relevant context. <strong>The likely path, and what could change it.</strong></span>
+          </article>
+
+          <div class="path-connector" aria-hidden="true">
+            <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <article class="path-card path-card-output">
+            <span class="path-step">03 Project path</span>
+            <h3>What the team acts on</h3>
+            <span class="path-example">Example: runway broom · $650K allowance · AIP + local match</span>
+            <div class="path-results">
+              <div class="path-result"><span>Likely route</span> <strong>Sealed competitive bids</strong></div>
+              <div class="path-result"><span>Open issue</span> <strong>Capital plan shows $610K, not $650K</strong></div>
+              <div class="path-result"><span>Next move</span> <strong>Independent estimate before advertising</strong></div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1139,79 +1258,161 @@
       .ts-workflow .ts-detail{border-top:1px solid var(--ts-line);padding-top:24px;min-height:120px}
       .ts-workflow .ts-detail-title{margin:0;font-size:17px;font-weight:600;color:var(--ts-text)}
       .ts-workflow .ts-detail-text{max-width:700px;margin:8px auto 0;font-size:16px;line-height:1.65;color:var(--ts-muted)}
-      @media(max-width:600px){.ts-workflow{padding:24px 12px}.ts-workflow h2{font-size:22px}.ts-workflow .ts-scroll{padding-top:28px}.ts-workflow .ts-stages{min-width:760px}.ts-workflow .ts-detail{min-height:168px}}
+      @media(max-width:600px){
+        .ts-workflow{padding:24px 16px}.ts-workflow h2{font-size:22px}
+        .ts-workflow .ts-scroll{overflow:visible;padding:24px 0 20px}
+        .ts-workflow .ts-stages{min-width:0}
+        .ts-workflow .ts-button{padding:0;min-height:44px}
+        .ts-workflow .ts-circle{width:52px;height:52px}
+        .ts-workflow .ts-button[aria-selected="true"] .ts-circle{border-width:3px}
+        .ts-workflow .ts-icon{width:24px;height:24px}
+        .ts-workflow .ts-step{margin-top:10px;font-size:9.5px;letter-spacing:.6px}
+        .ts-workflow .ts-label{display:none}
+        .ts-workflow .ts-stage:not(:last-child)::after{top:25px;left:calc(50% + 30px);width:calc(100% - 60px)}
+        .ts-workflow .ts-stage:not(:last-child)::before{top:21px;right:calc(-50% + 31px)}
+      }
       @media(prefers-reduced-motion:reduce){.ts-workflow .ts-circle{transition:none}}
       .ts-workflow .ts-demo-link{margin:24px 0 0;text-align:center;font-size:15px;font-weight:600}
       .ts-workflow .ts-demo-link>span{display:block;color:var(--ts-muted);font-weight:500}
       .ts-workflow .ts-demo-link a{display:inline-block;padding:12px 0;line-height:20px;white-space:nowrap;color:var(--ts-text);text-decoration:underline;text-decoration-color:var(--ts-accent);text-decoration-thickness:2px;text-underline-offset:5px}
       .ts-workflow .ts-demo-link a:hover{text-decoration-color:var(--ts-text)}
+      .ts-workflow .ts-button[aria-selected="true"] .ts-circle{border:4px solid var(--ts-accent);color:var(--ts-accent)}
+      .ts-workflow .ts-panels{border-top:1px solid var(--ts-line);padding-top:28px;text-align:left}
+      .ts-workflow .ts-panel{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;align-items:start}
+      .ts-workflow .ts-panel[hidden]{display:none}
+      .ts-workflow .ts-panel:focus-visible{outline:2px solid var(--ts-text);outline-offset:6px;border-radius:8px}
+      .ts-workflow .ts-panel-what .ts-detail-text{margin:8px 0 0;max-width:none}
+      .ts-workflow .ts-moment{border:1px solid #E5E5EB;border-radius:14px;background:#F9F9FB;padding:18px 20px}
+      .ts-workflow .ts-moment-head{display:block;margin-bottom:12px;font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.2px;text-transform:uppercase;color:var(--ts-accent)}
+      .ts-workflow .ts-moment dl{margin:0;display:grid;gap:12px}
+      .ts-workflow .ts-moment dl>div{display:grid;grid-template-columns:132px minmax(0,1fr);gap:12px}
+      .ts-workflow .ts-moment-label{font:600 11px/1.6 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--ts-muted);padding-top:2px}
+      .ts-workflow .ts-moment dd{margin:0;font-size:15px;line-height:1.6;color:var(--ts-text)}
+      .ts-workflow .ts-call-link{margin:0;font-size:14px}
+      .ts-workflow .ts-call-link a{display:inline-block;padding:12px 0;color:var(--ts-muted);text-decoration:underline;text-underline-offset:4px}
+      @media(max-width:760px){.ts-workflow .ts-panel{grid-template-columns:1fr;gap:16px}.ts-workflow .ts-moment dl>div{grid-template-columns:1fr;gap:2px}}
     </style>
     <div class="ts-divider" aria-hidden="true"></div>
     <h2>How TarmacSync works</h2>
     <p class="ts-subtitle">One purchase. Five stages. One clear path forward.</p>
     <div class="ts-scroll">
-      <ol class="ts-stages" aria-label="Select a workflow stage">
-        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="true">
+      <ol class="ts-stages" role="tablist" aria-label="The five stages, on one purchase">
+        <li class="ts-stage" role="presentation"><button class="ts-button" type="button" role="tab" id="ts-tab-0" aria-selected="true" aria-controls="ts-panel-0" tabindex="0">
           <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h31v35H8zM15 16h17M15 24h17M15 32h11M31 4v8"/></svg></span>
           <span class="ts-step">START</span><span class="ts-label">Describe the need</span>
         </button></li>
-        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+        <li class="ts-stage" role="presentation"><button class="ts-button" type="button" role="tab" id="ts-tab-1" aria-selected="false" aria-controls="ts-panel-1" tabindex="-1">
           <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8"/><circle cx="7" cy="12" r="4"/><circle cx="41" cy="12" r="4"/><circle cx="7" cy="38" r="4"/><circle cx="41" cy="38" r="4"/><path d="M11 14l7 6M37 14l-7 6M11 36l7-6M37 36l-7-6"/></svg></span>
           <span class="ts-step">UNDERSTAND</span><span class="ts-label">Apply context</span>
         </button></li>
-        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+        <li class="ts-stage" role="presentation"><button class="ts-button" type="button" role="tab" id="ts-tab-2" aria-selected="false" aria-controls="ts-panel-2" tabindex="-1">
           <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v40M24 13h17l-5-5M41 13l-5 5M24 26H8l5-5M8 26l5 5M24 38h17l-5-5M41 38l-5 5"/></svg></span>
           <span class="ts-step">ROUTE</span><span class="ts-label">Find the path</span>
         </button></li>
-        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+        <li class="ts-stage" role="presentation"><button class="ts-button" type="button" role="tab" id="ts-tab-3" aria-selected="false" aria-controls="ts-panel-3" tabindex="-1">
           <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3l17 7v12c0 11-7 19-17 23C14 41 7 33 7 22V10zM15 24l6 6 13-15"/></svg></span>
           <span class="ts-step">CHECK</span><span class="ts-label">Validate the route</span>
         </button></li>
-        <li class="ts-stage"><button class="ts-button" type="button" aria-pressed="false">
+        <li class="ts-stage" role="presentation"><button class="ts-button" type="button" role="tab" id="ts-tab-4" aria-selected="false" aria-controls="ts-panel-4" tabindex="-1">
           <span class="ts-circle"><svg class="ts-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 4h23l9 9v31H8zM31 4v10h9M15 24h17M15 31h17M15 38h10"/></svg></span>
           <span class="ts-step">READY</span><span class="ts-label">Build the record</span>
         </button></li>
       </ol>
     </div>
-    <div class="ts-detail" aria-live="polite" aria-atomic="true">
-      <p class="ts-detail-title">Tell TarmacSync what you need to buy.</p>
-      <p class="ts-detail-text">Start in plain English — for example: “We need to replace our runway sweeper, using AIP and local match.”</p>
+    <div class="ts-panels">
+      <div class="ts-panel" role="tabpanel" id="ts-panel-0" aria-labelledby="ts-tab-0" tabindex="0">
+        <div class="ts-panel-what">
+          <p class="ts-detail-title">Tell TarmacSync what you need to buy.</p>
+          <p class="ts-detail-text">Start in plain English. TarmacSync asks only for the facts that change the answer.</p>
+        </div>
+        <div class="ts-moment"><span class="ts-moment-head">From the demo · fictional airport</span>
+          <dl>
+            <div><dt class="ts-moment-label">The airport says</dt><dd>“We need to replace our runway sweeper. Planning allowance is $650,000. We’d like AIP to cover most of it, but we haven’t applied for the grant yet.”</dd></div>
+            <div><dt class="ts-moment-label">TarmacSync asks</dt><dd><strong>What will the sweeper be used for?</strong> The AIP Handbook treats snow and ice equipment differently from debris control.</dd></div>
+          </dl>
+        </div>
+      </div><!-- /panel -->
+      <div class="ts-panel" role="tabpanel" id="ts-panel-1" aria-labelledby="ts-tab-1" tabindex="0">
+        <div class="ts-panel-what">
+          <p class="ts-detail-title">TarmacSync applies the airport’s context.</p>
+          <p class="ts-detail-text">Policy, plans, funding and thresholds are read together, and anything that doesn’t line up is flagged for your team.</p>
+        </div>
+        <div class="ts-moment"><span class="ts-moment-head">From the demo · fictional airport</span>
+          <dl>
+            <div><dt class="ts-moment-label">It reads</dt><dd>Capital plan · purchasing policy · Snow and Ice Control Plan · equipment inventory</dd></div>
+            <div><dt class="ts-moment-label">It flags</dt><dd>The capital plan carries <strong>$610,000</strong>; the allowance is <strong>$650,000</strong>. The equipment inventory form is dated March 2024.</dd></div>
+          </dl>
+        </div>
+      </div><!-- /panel -->
+      <div class="ts-panel" role="tabpanel" id="ts-panel-2" aria-labelledby="ts-tab-2" tabindex="0">
+        <div class="ts-panel-what">
+          <p class="ts-detail-title">TarmacSync identifies the likely buying path.</p>
+          <p class="ts-detail-text">Each available route is weighed against the purchase, its value and its funding.</p>
+        </div>
+        <div class="ts-moment"><span class="ts-moment-head">From the demo · fictional airport</span>
+          <dl>
+            <div><dt class="ts-moment-label">Likely route</dt><dd><strong>Sealed competitive bids</strong></dd></div>
+            <div><dt class="ts-moment-label">Why</dt><dd>A defined unit, a firm fixed price, and a value above the airport’s $100,000 formal-competition threshold. Award goes to the lowest responsive and responsible bidder (2 CFR 200.320).</dd></div>
+          </dl>
+        </div>
+      </div><!-- /panel -->
+      <div class="ts-panel" role="tabpanel" id="ts-panel-3" aria-labelledby="ts-tab-3" tabindex="0">
+        <div class="ts-panel-what">
+          <p class="ts-detail-title">TarmacSync checks whether the route holds up.</p>
+          <p class="ts-detail-text">Funding, approvals, federal requirements and missing information are tested before the airport commits.</p>
+        </div>
+        <div class="ts-moment"><span class="ts-moment-head">From the demo · fictional airport</span>
+          <dl>
+            <div><dt class="ts-moment-label">Plans for</dt><dd>Only one bid, or an award to someone other than the apparent low bidder: written notice to the ADO before award.</dd></div>
+            <div><dt class="ts-moment-label">And</dt><dd>Bids above $610,000: how the difference would be funded.</dd></div>
+          </dl>
+        </div>
+      </div><!-- /panel -->
+      <div class="ts-panel" role="tabpanel" id="ts-panel-4" aria-labelledby="ts-tab-4" tabindex="0">
+        <div class="ts-panel-what">
+          <p class="ts-detail-title">TarmacSync builds a review-ready record.</p>
+          <p class="ts-detail-text">The rationale, checklists, sources and decision trail your team needs to move the purchase forward.</p>
+        </div>
+        <div class="ts-moment"><span class="ts-moment-head">From the demo · fictional airport</span>
+          <dl>
+            <div><dt class="ts-moment-label">Four review drafts</dt><dd>Route memo · Pre-solicitation readiness checklist · Questions for the ADO · Bid evaluation and grant application checklist</dd></div>
+            <div><dt class="ts-moment-label">Next move</dt><dd>Update the equipment inventory and prepare the independent estimate before any solicitation is released.</dd></div>
+          </dl>
+        </div>
+      </div><!-- /panel -->
     </div>
-    <p class="ts-demo-link"><span>See all five stages on one purchase.</span> <a href="/tour.html" data-tour-cta="workflow">Watch the 2-minute demo <span aria-hidden="true">→</span></a></p>
+    <p class="ts-demo-link"><span>Watch all five stages run on this purchase.</span> <a href="/tour.html" data-tour-cta="section">Watch the 2-minute demo <span aria-hidden="true">→</span></a></p>
+    <p class="ts-call-link"><a href="/book-a-call.html">Have a purchase in mind? Book a call</a></p>
     <script>
       (() => {
         const root = document.currentScript.closest('.ts-workflow');
         if (!root || root.dataset.ready === '1') return;
         root.dataset.ready = '1';
-        const buttons = Array.from(root.querySelectorAll('.ts-button'));
-        const title = root.querySelector('.ts-detail-title');
-        const text = root.querySelector('.ts-detail-text');
-        const copy = [
-          ['Tell TarmacSync what you need to buy.', 'Start in plain English — for example: “We need to replace our runway sweeper, using AIP and local match.”'],
-          ['TarmacSync applies the airport’s context.', 'Local policy, funding, thresholds, existing agreements and available purchasing vehicles are brought into the same view.'],
-          ['TarmacSync identifies the likely buying path.', 'The system evaluates the purchase against direct purchase, quotes, formal competition, cooperative contracts, sole source and other available routes.'],
-          ['TarmacSync checks whether the route holds up.', 'Contract scope, funding compatibility, approvals, FAA/federal requirements and missing information are surfaced before the airport proceeds.'],
-          ['TarmacSync builds a review-ready record.', 'The airport gets the rationale, checklist, supporting evidence and decision trail needed to move the purchase forward.']
-        ];
-        function select(index) {
-          buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
-          title.textContent = copy[index][0];
-          text.textContent = copy[index][1];
+        const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+        const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+        function select(index, focus) {
+          tabs.forEach((tab, i) => {
+            const on = i === index;
+            tab.setAttribute('aria-selected', String(on));
+            tab.tabIndex = on ? 0 : -1;
+            panels[i].hidden = !on;
+          });
+          if (focus) tabs[index].focus();
         }
-        buttons.forEach((button, index) => {
-          button.addEventListener('click', () => select(index));
-          button.addEventListener('keydown', event => {
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => select(index, false));
+          tab.addEventListener('keydown', event => {
             let next;
-            if (event.key === 'ArrowRight') next = (index + 1) % buttons.length;
-            else if (event.key === 'ArrowLeft') next = (index + buttons.length - 1) % buttons.length;
+            if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+            else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
             else if (event.key === 'Home') next = 0;
-            else if (event.key === 'End') next = buttons.length - 1;
+            else if (event.key === 'End') next = tabs.length - 1;
             else return;
             event.preventDefault();
-            buttons[next].focus();
-            select(next);
+            select(next, true);
           });
         });
+        select(0, false);
       })();
     </script>
   </section>
@@ -1268,115 +1469,11 @@
       </div>
     </section>
 
-    <!-- ══ INTERACTIVE DEMONSTRATION ════════════════════════════ -->
-    <section class="section snapshot-section" id="interactive-demo" aria-labelledby="demo-title">
-      <div class="page">
-        <div class="section-head center reveal">
-          <span class="eyebrow eyebrow-accent">Interactive demonstration</span>
-          <h2 class="h2" id="demo-title">One airport purchase, start to finish.</h2>
-          <p class="lede">Watch TarmacSync work through a fictional runway broom replacement: the question that decides eligibility, the documents it reads, and the review file it prepares.</p>
-        </div>
-
-        <article class="snapshot-card reveal" aria-label="Interactive demonstration of a fictional airport purchase">
-          <div class="snapshot-topline">
-            <span class="snapshot-example">Fictional airport</span>
-            <span class="snapshot-project">No account needed</span>
-          </div>
-          <div class="snapshot-body">
-            <div class="snapshot-grid">
-              <div class="snapshot-field"><span class="snapshot-label">The first question</span><div class="snapshot-value">What the equipment is for, because the purpose decides which eligibility test applies</div></div>
-              <div class="snapshot-field"><span class="snapshot-label">What it reads</span><div class="snapshot-value">A capital plan, purchasing policy, snow and ice control plan and equipment inventory</div></div>
-              <div class="snapshot-field"><span class="snapshot-label">What it flags</span><div class="snapshot-value">A budget mismatch and an out-of-date FAA form, left for your team to reconcile</div></div>
-              <div class="snapshot-field snapshot-field-path"><span class="snapshot-label">What it prepares</span><div class="snapshot-value">A route memo, readiness checklist, ADO questions and a bid evaluation checklist</div></div>
-            </div>
-            <p class="snapshot-cta"><a class="btn btn-primary btn-lg" href="/tour.html" data-tour-cta="section">Watch the 2-minute demo</a></p>
-            <p class="snapshot-cta"><a href="/book-a-call.html">Have a purchase in mind? Book a call</a></p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ══ PROBLEM ═══════════════════════════════════════════════ -->
-    <section class="section section-tint" aria-label="The problem">
-      <div class="narrow statement reveal">
-        <span class="eyebrow">The problem</span>
-        <h2 class="h2 statement-title">Stop rebuilding the answer for every project.</h2>
-        <p class="lede copy-stack"><span>The answer usually exists already. It is scattered across policies, project files, funding terms, contracts, and the experience of the people doing the work.</span> <span>TarmacSync brings it together before the buying process begins.</span></p>
-      </div>
-
-      <div class="page">
-        <div class="path-flow reveal" role="group" aria-label="Airport context becomes a working procurement path through TarmacSync">
-          <article class="path-card path-card-context">
-            <span class="path-step">01 Airport context</span>
-            <h3>What governs the purchase</h3>
-            <ul class="path-inputs">
-              <li>Local purchasing policy</li>
-              <li>ACIP/CIP, budget, and funding</li>
-              <li>State and federal requirements</li>
-              <li>AIP Handbook, Grant Assurances, FAA Orders</li>
-              <li>Existing contracts and grant terms</li>
-            </ul>
-          </article>
-
-          <div class="path-connector" aria-hidden="true">
-            <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-
-          <article class="path-card path-intelligence">
-            <span class="path-step">02 Intelligence</span>
-            <span class="path-brand">TarmacSync</span>
-            <span class="path-intelligence-kicker">Airport procurement intelligence</span>
-            <span class="path-intelligence-copy">Connects the relevant context. <strong>The likely path, and what could change it.</strong></span>
-          </article>
-
-          <div class="path-connector" aria-hidden="true">
-            <svg viewBox="0 0 34 24" fill="none"><path d="M1 12h31M24 4l8 8-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-
-          <article class="path-card path-card-output">
-            <span class="path-step">03 Project path</span>
-            <h3>What the team acts on</h3>
-            <span class="path-example">Example: runway broom · $650K allowance · AIP + local match</span>
-            <div class="path-results">
-              <div class="path-result"><span>Likely route</span> <strong>Sealed competitive bids</strong></div>
-              <div class="path-result"><span>Open issue</span> <strong>Capital plan shows $610K, not $650K</strong></div>
-              <div class="path-result"><span>Next move</span> <strong>Independent estimate before advertising</strong></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ INTELLIGENCE + TRUST ═════════════════════════════════ -->
-    <!-- ══ PROACTIVE ═════════════════════════════════════════════ -->
-    <section class="section section-proactive" aria-label="Between projects">
-      <div class="page">
-        <div class="section-head center reveal">
-          <span class="eyebrow eyebrow-accent">Between projects</span>
-          <h2 class="h2">Stay ahead of what changes the path.</h2>
-          <p class="lede">Keep reviewed capital-plan context and selected funding and regulatory updates connected to the project.</p>
-        </div>
-        <div class="cols reveal">
-          <div class="col card">
-            <h3 class="h3">Capital projects <span class="monitor-card-action">Kept in view</span></h3>
-            <p>TarmacSync keeps reviewed ACIP/CIP projects alongside funding and procurement activity, so the next project can begin with its existing context.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">New FAA awards <span class="monitor-card-action">Surfaced</span></h3>
-            <p>Selected FAA funding information relevant to your projects.</p>
-          </div>
-          <div class="col card">
-            <h3 class="h3">Regulatory intelligence <span class="monitor-card-action">Monitored</span></h3>
-            <p>Selected official guidance that could change the path.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- ══ WHAT YOU KEEP ═══════════════════════════════════════ -->
     <section class="section section-knows" id="trust">
       <div class="page">
         <div class="section-head center trust-head reveal">
-          <span class="eyebrow eyebrow-accent">How the answer is built</span>
+          <span class="eyebrow eyebrow-accent">What your airport keeps</span>
           <h2 class="h2">Know the path. Show the reasoning. Preserve the expertise.</h2>
           <p class="trust-lede">Turn scattered project information into a working path, and keep the knowledge behind it with the airport.</p>
         </div>
@@ -1407,6 +1504,31 @@
               <span class="trust-proof-label">What the airport keeps</span>
               <ul class="trust-proof-list"><li>Working path and alternatives considered</li><li>Project decisions and source history</li><li>Reusable lessons for future projects</li></ul>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ PROACTIVE ═════════════════════════════════════════════ -->
+    <section class="section section-proactive" aria-label="Between projects">
+      <div class="page">
+        <div class="section-head center reveal">
+          <span class="eyebrow eyebrow-accent">Between projects</span>
+          <h2 class="h2">Stay ahead of what changes the path.</h2>
+          <p class="lede">Keep reviewed capital-plan context and selected funding and regulatory updates connected to the project.</p>
+        </div>
+        <div class="cols reveal">
+          <div class="col card">
+            <h3 class="h3">Capital projects <span class="monitor-card-action">Kept in view</span></h3>
+            <p>TarmacSync keeps reviewed ACIP/CIP projects alongside funding and procurement activity, so the next project can begin with its existing context.</p>
+          </div>
+          <div class="col card">
+            <h3 class="h3">New FAA awards <span class="monitor-card-action">Surfaced</span></h3>
+            <p>Selected FAA funding information relevant to your projects.</p>
+          </div>
+          <div class="col card">
+            <h3 class="h3">Regulatory intelligence <span class="monitor-card-action">Monitored</span></h3>
+            <p>Selected official guidance that could change the path.</p>
           </div>
         </div>
       </div>

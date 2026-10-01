@@ -600,13 +600,27 @@ section('phone: the opened Project file does not repeat its own title', async (b
   await context.close();
 });
 
+section('homepage stages: clicking or arrowing to a stage shows its moment and only that one', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 1280, height: 900, path: '/index.html' });
+  const tabs = page.locator('#product-model [role="tab"]');
+  await tabs.nth(2).click();
+  const visible = async () => page.locator('#product-model [role="tabpanel"]').evaluateAll((ps) => ps.map((p) => !p.hidden));
+  assert.deepEqual(await visible(), [false, false, true, false, false]);
+  assert.equal(await tabs.nth(2).getAttribute('aria-selected'), 'true');
+  await page.keyboard.press('ArrowRight');
+  assert.deepEqual(await visible(), [false, false, false, true, false]);
+  assert.equal(await page.evaluate(() => document.activeElement.getAttribute('role')), 'tab');
+  await context.close();
+});
+
 section('homepage on a phone: demo link is tappable, labels are readable, the bridge keeps the demo name whole', async (browser) => {
   const { page, context } = await fresh(browser, { width: 390, height: 844, path: '/index.html' });
   const link = page.locator('.vision-snapshot-link');
   await link.scrollIntoViewIfNeeded();
   assert.ok((await link.boundingBox()).height >= 44, 'the link under the film is at least 44px tall');
-  const size = await page.locator('#interactive-demo .snapshot-label').first().evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
-  assert.ok(size >= 11, 'section labels are ' + size + 'px');
+  const size = await page.locator('#product-model .ts-moment-label').first().evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  assert.ok(size >= 11, 'stage labels are ' + size + 'px');
+  assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, 'no sideways scroll on the homepage');
   const bridge = page.locator('.ts-demo-link a');
   await bridge.scrollIntoViewIfNeeded();
   assert.match((await bridge.innerText()).trim(), /^Watch the 2-minute demo/);
