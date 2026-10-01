@@ -249,7 +249,8 @@
   const track = (name) => { if (typeof window.va === 'function') window.va('event', { name }); };
   const scroller = $('scroller');
   const SPEEDS = [1, 1.5, 0.75];
-  let t = 0, playing = true, speed = 1, last = 0, overlay = false, lastWrite = 0;
+  let t = 0, playing = true, speed = 1, last = 0, overlay = false, lastWrite = 0, following = true;
+  function updateJump() { $('jump-latest').hidden = following || !playing; }
   let markShown = -1, announcedIdx = -1, tracked = new Set(), completed = false;
 
   function playLabel(st) {
@@ -278,7 +279,8 @@
     $('play').textContent = playLabel(st);
     announce(st);
     syncHash(st);
-    if (follow) { scroller.scrollTop = scroller.scrollHeight; lastWrite = scroller.scrollTop; }
+    if (follow && following) { scroller.scrollTop = scroller.scrollHeight; lastWrite = scroller.scrollTop; }
+    updateJump();
     if (st.ended && !completed) { completed = true; track('tour_complete'); }
     if (!st.ended) completed = false;
     return st;
@@ -287,7 +289,8 @@
     t = Math.max(0, Math.min(tl.total, ms));
     if (!keepPlaying) playing = false;
     lastWrite = 0;   // the thread may shrink, which moves scrollTop without the viewer scrolling
-    draw(false, false);
+    following = true;
+    draw(false, true);
   }
   function setPlaying(v) {
     if (v && t >= tl.total) { t = 0; announcedIdx = -1; tracked = new Set(); lastWrite = 0; }
@@ -306,7 +309,7 @@
   }
 
   $('play').addEventListener('click', () => setPlaying(!playing || t >= tl.total));
-  $('restart').addEventListener('click', () => { announcedIdx = -1; tracked = new Set(); t = 0; playing = true; lastWrite = 0; track('tour_restart'); draw(false, false); });
+  $('restart').addEventListener('click', () => { announcedIdx = -1; tracked = new Set(); t = 0; playing = true; lastWrite = 0; following = true; track('tour_restart'); draw(false, false); });
   $('replay').addEventListener('click', () => $('restart').click());
   $('skip').addEventListener('click', () => seek(tl.total, false));
   $('speed').addEventListener('click', () => {
@@ -315,10 +318,12 @@
     $('speed').textContent = label;
     $('speed').setAttribute('aria-label', 'Playback speed ' + label);
   });
-  $('scrub').addEventListener('input', (e) => seek(Number(e.target.value), false));
+  // Scrubbing and jumping keep the player's state: playing keeps playing from the new point, and a
+  // viewer who pressed Pause stays paused.
+  $('scrub').addEventListener('input', (e) => seek(Number(e.target.value), true));
   $('ticks').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-mark]');
-    if (b) seek(tl.marks[Number(b.dataset.mark)].at, false);
+    if (b) seek(tl.marks[Number(b.dataset.mark)].at, true);
   });
   $('file-toggle').addEventListener('click', () => {
     const open = !$('file-wrap').classList.contains('open');
@@ -328,15 +333,22 @@
   });
   document.addEventListener('visibilitychange', () => { last = performance.now(); });
 
-  // Reading back: any upward scroll gesture pauses, and autoplay never drags the view down again.
-  scroller.addEventListener('wheel', (e) => { if (e.deltaY < 0 && playing) setPlaying(false); }, { passive: true });
+  // Reading back never stops the demo. Scrolling up only stops auto-scroll, so the view is not dragged
+  // down while someone reads, and a "Jump to latest" button brings them back to the live end. The
+  // demo itself stops only on Pause, at the end, behind an open dialog, or in a hidden tab.
+  const stopFollowing = () => { following = false; updateJump(); };
+  scroller.addEventListener('wheel', (e) => { if (e.deltaY < 0) stopFollowing(); }, { passive: true });
   let touchY = 0;
   scroller.addEventListener('touchstart', (e) => { touchY = e.touches[0].clientY; }, { passive: true });
-  scroller.addEventListener('touchmove', (e) => { if (e.touches[0].clientY > touchY + 8 && playing) setPlaying(false); }, { passive: true });
-  scroller.addEventListener('keydown', (e) => { if (['ArrowUp', 'PageUp', 'Home'].includes(e.key) && playing) setPlaying(false); });
-  // Catch-all: a scrollbar drag, or a keyboard scroll while focus is elsewhere, moves scrollTop above
-  // where the player last put it. Wheel, touch and key handlers above only see their own gestures.
-  scroller.addEventListener('scroll', () => { if (playing && scroller.scrollTop < lastWrite - 24) setPlaying(false); }, { passive: true });
+  scroller.addEventListener('touchmove', (e) => { if (e.touches[0].clientY > touchY + 8) stopFollowing(); }, { passive: true });
+  scroller.addEventListener('keydown', (e) => { if (['ArrowUp', 'PageUp', 'Home'].includes(e.key)) stopFollowing(); });
+  // Catch-all: a scrollbar drag moves scrollTop above where the player last put it. Reaching the
+  // bottom again by hand resumes following.
+  scroller.addEventListener('scroll', () => {
+    if (scroller.scrollTop < lastWrite - 24) stopFollowing();
+    else if (scroller.scrollHeight - scroller.clientHeight - scroller.scrollTop < 24 && !following) { following = true; updateJump(); }
+  }, { passive: true });
+  $('jump-latest').addEventListener('click', () => { following = true; scroller.scrollTop = scroller.scrollHeight; lastWrite = scroller.scrollTop; updateJump(); });
 
   // Overlays hook (dialogs) uses these.
   window.TourPlayer = {
