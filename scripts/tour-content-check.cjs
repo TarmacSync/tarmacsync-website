@@ -345,7 +345,7 @@ test('continuity: every demo entry point on the homepage uses the same name and 
 test('continuity: the demo page mirrors the site header CTA and hands people back to the site', () => {
   const t = read('tour.html');
   const header = t.match(/<header class="tour-header"[\s\S]*?<\/header>/)[0];
-  assert.match(header, /class="header-cta"[^>]*href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta="tour_header"[^>]*>Contact us</);
+  assert.match(header, /class="header-cta"[^>]*href="\/book-a-call\.html"[^>]*>Book a call</);
   assert.ok(!/free report|data-report-cta|\/#report/.test(t.replace(/<noscript>[\s\S]*?<\/noscript>/, '')), 'no report offer left on the demo page');
   assert.match(t, /id="stages"/);
   assert.match(t, /href="\/#product-model"/, 'finish card links back to How TarmacSync works');
@@ -470,15 +470,17 @@ test('homepage path example tells the same story as the demo', () => {
   assert.match(card, /\$610K/, 'the open issue is the demo\'s capital plan difference');
 });
 
-test('end of the demo: the call to action is Contact us, not booking an appointment or the report', () => {
+test('end of the demo: Book a call is the primary action, with a visible email fallback, and no report offer', () => {
   const t = read('tour.html');
   const finish = t.match(/<section class="finish"[\s\S]*?<\/section>/)[0];
-  assert.match(finish, /data-contact-cta="tour_complete"/);
-  assert.match(finish, /href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta|data-contact-cta="tour_complete"[^>]*href="mailto:contact@tarmacsync\.com"/);
-  assert.match(finish, />\s*Contact us/);
-  assert.ok(!/book-a-call|data-report-cta|\/#report/.test(finish), 'finish card has no booking or report link');
-  assert.ok(!t.includes('book-a-call'), 'no booking link anywhere on the demo page, including the no-JavaScript fallback');
-  assert.match(read('assets/funnel-analytics.js'), /data-contact-cta/, 'contact clicks are still measured');
+  assert.match(finish, /<a class="button" href="\/book-a-call\.html"[^>]*>Book a call/);
+  assert.match(finish, /Prefer email\?[\s\S]*contact@tarmacsync\.com/, 'the address is shown as text');
+  assert.match(finish, /href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta="tour_email"|data-contact-cta="tour_email"[^>]*href="mailto:contact@tarmacsync\.com"/);
+  assert.ok(!/data-report-cta|\/#report/.test(finish), 'finish card has no report link');
+  assert.match(t.match(/<noscript>[\s\S]*?<\/noscript>/)[0], /book-a-call/, 'the no-JavaScript fallback offers the same route');
+  const analytics = read('assets/funnel-analytics.js');
+  assert.match(analytics, /data-contact-cta/, 'email clicks are measured');
+  assert.match(analytics, /book-a-call\.html/, 'booking clicks are measured');
 });
 
 test('the tour page no longer points at the removed homepage anchor', () => {

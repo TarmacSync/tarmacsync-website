@@ -71,9 +71,12 @@ section('final state: discrepancy flagged, open items grouped, drafts offered, f
   assert.match(file, /Ready · Build the record/);
   assert.equal(await count(page, '.attachment'), 4);
   assert.equal(await page.locator('#finish').isVisible(), true);
-  const cta = page.locator('#finish [data-contact-cta="tour_complete"]');
-  assert.equal(await cta.getAttribute('href'), 'mailto:contact@tarmacsync.com', 'the end-of-demo call to action is Contact us');
-  assert.match(await cta.innerText(), /contact us/i);
+  const cta = page.locator('#finish a.button');
+  assert.equal(await cta.getAttribute('href'), '/book-a-call.html', 'the primary end-of-demo action is the booking page');
+  assert.match(await cta.innerText(), /book a call/i);
+  const email = page.locator('#finish [data-contact-cta="tour_email"]');
+  assert.equal(await email.getAttribute('href'), 'mailto:contact@tarmacsync.com');
+  assert.match(await page.locator('#finish').innerText(), /contact@tarmacsync\.com/, 'the address is visible text, not only a link');
   assert.equal(await count(page, '#finish [data-report-cta]'), 0, 'no report download offered as the next step');
   await context.close();
 });
@@ -511,13 +514,12 @@ section('stage tracker: the five homepage stages light up in order as the demo p
 
 section('continuity: header mirrors the site CTA; the finish card leads back into the site and can replay', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
-  assert.equal(await page.locator('.header-cta').getAttribute('href'), 'mailto:contact@tarmacsync.com');
-  assert.match(await page.locator('.header-cta').innerText(), /^contact us$/i);
-  assert.equal(await page.locator('.header-cta').getAttribute('data-contact-cta'), 'tour_header');
+  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/book-a-call.html');
+  assert.match(await page.locator('.header-cta').innerText(), /^book a call$/i);
   assert.ok(!/free report/i.test(await page.locator('header').innerText()), 'no report offer anywhere in the demo header');
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-  assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'Contact us');
-  assert.ok(!links.includes('/book-a-call.html'), 'no appointment booking at the end of the demo');
+  assert.ok(links.includes('/book-a-call.html'), 'Book a call');
+  assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'email fallback');
   assert.ok(!links.includes('/#report'), 'no report download at the end of the demo');
   assert.ok(links.includes('/#product-model'), 'back to How TarmacSync works');
   await page.locator('#replay').click();
