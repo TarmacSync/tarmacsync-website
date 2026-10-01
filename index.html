@@ -333,39 +333,6 @@
       margin-top: 1.9rem; flex-wrap: wrap;
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
-    .hero-airfield { max-width: 1120px; margin: clamp(2.5rem, 6vw, 4rem) auto 0; }
-    .hero-airfield svg { display: block; width: 100%; height: auto; }
-    .af-runway { fill: #F4F5F7; stroke: #9AA0AA; stroke-width: 1.5; }
-    .af-centerline { stroke: #9AA0AA; stroke-width: 1.5; stroke-dasharray: 18 14; fill: none; }
-    .af-threshold { stroke: #9AA0AA; stroke-width: 3; fill: none; }
-    .af-taxi { fill: #FAFAFB; stroke: #C9CDD4; stroke-width: 1.2; }
-    .af-taxi-line { stroke: #C9CDD4; stroke-width: 1; fill: none; }
-    .af-connector { stroke: #C9CDD4; stroke-width: 10; fill: none; }
-    .af-apron { fill: #FAFAFB; stroke: #C9CDD4; stroke-width: 1.2; stroke-dasharray: 5 5; }
-    .af-stand, .af-bridge { stroke: #C9CDD4; stroke-width: 1.2; fill: none; }
-    .af-building { fill: #fff; stroke: var(--ink); stroke-width: 1.5; }
-    .af-hangar { fill: #fff; stroke: #9AA0AA; stroke-width: 1.2; }
-    .af-label { font: 600 11px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 1px; fill: var(--muted); }
-    .af-rwy { font-size: 13px; fill: #6E7179; }
-    .af-sre-building { fill: #FFF3E8; stroke: var(--orange); stroke-width: 2; }
-    .af-sre-link { stroke: var(--orange); stroke-width: 10; opacity: .35; fill: none; }
-    .af-sre-label { fill: var(--orange-ink); font-size: 10.5px; }
-    .af-dot { fill: var(--orange); }
-    .af-pulse { fill: none; stroke: var(--orange); stroke-width: 2; opacity: .45; transform-origin: 290px 98px; animation: af-pulse 2.4s ease-out infinite; }
-    @keyframes af-pulse { 0% { transform: scale(.6); opacity: .6; } 100% { transform: scale(1.6); opacity: 0; } }
-    @media (prefers-reduced-motion: reduce) { .af-pulse { animation: none; } }
-    .airfield-caption { margin-top: 1rem; font-size: .9rem; line-height: 1.6; color: var(--muted); text-align: center; }
-    .airfield-caption strong { color: var(--ink); font-weight: 600; }
-    .airfield-dot { display: inline-block; width: 10px; height: 10px; margin-right: .5rem; border-radius: 50%; background: var(--orange); vertical-align: .05em; }
-    .airfield-caption a { display: inline-flex; align-items: center; min-height: 44px; margin-left: .5rem; color: var(--orange-ink); font-weight: 600; text-decoration: none; }
-    .airfield-caption a:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .af-frame { overflow: hidden; }
-    @media (max-width: 640px) {
-      .hero-airfield svg { width: 190%; max-width: none; margin-left: -4%; }
-      .af-label { font-size: 17px; }
-      .af-rwy { font-size: 17px; }
-      .af-sre-label { font-size: 15px; }
-    }
     .hero-status { max-width: 42rem; margin: 1.05rem auto 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 
     /* ── Sample snapshot ─────────────────────────────────────────────── */
@@ -1145,41 +1112,6 @@
           <a class="btn btn-secondary btn-lg" href="/tour.html" data-tour-cta="hero">Watch the 2-minute demo</a>
         </div>
         <p class="hero-note">Veteran-founded · Built by an Accredited Airport Executive.</p>
-        <figure class="hero-airfield reveal">
-          <div class="af-frame"><svg viewBox="0 0 1120 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Plan view of a small-hub airport: runway, taxiway, apron, terminal, tower and ARFF station, with the snow removal equipment building highlighted.">
-            <g class="af-ground">
-              <rect x="40" y="226" width="1040" height="36" rx="2" class="af-runway"/>
-              <path d="M112 244H1002" class="af-centerline"/>
-              <path d="M48 232h16M48 238h16M48 250h16M48 256h16M1056 232h16M1056 238h16M1056 250h16M1056 256h16" class="af-threshold"/>
-              <text x="80" y="248" class="af-label af-rwy">09</text>
-              <text x="1022" y="248" class="af-label af-rwy">27</text>
-              <rect x="120" y="176" width="880" height="14" class="af-taxi"/>
-              <path d="M128 183H992" class="af-taxi-line"/>
-              <path d="M177 190v36M427 190v36M707 190v36M957 190v36" class="af-connector"/>
-              <rect x="360" y="98" width="420" height="78" class="af-apron"/>
-              <path d="M430 104v40M500 104v40M570 104v40M640 104v40M710 104v40" class="af-stand"/>
-              <rect x="380" y="34" width="380" height="58" rx="4" class="af-building"/>
-              <path d="M430 92v12M500 92v12M570 92v12M640 92v12M710 92v12" class="af-bridge"/>
-              <text x="570" y="68" text-anchor="middle" class="af-label">TERMINAL</text>
-              <circle cx="826" cy="54" r="12" class="af-building"/>
-              <text x="826" y="90" text-anchor="middle" class="af-label">TWR</text>
-              <rect x="860" y="112" width="112" height="48" rx="3" class="af-building"/>
-              <text x="916" y="141" text-anchor="middle" class="af-label">ARFF</text>
-              <path d="M916 160v16" class="af-connector"/>
-              <rect x="40" y="112" width="84" height="48" rx="3" class="af-hangar"/>
-              <text x="82" y="141" text-anchor="middle" class="af-label">GA</text>
-            </g>
-            <g class="af-sre">
-              <path d="M220 156v20" class="af-sre-link"/>
-              <rect x="150" y="98" width="140" height="58" rx="3" class="af-sre-building"/>
-              <text x="220" y="124" text-anchor="middle" class="af-label af-sre-label">SNOW REMOVAL</text>
-              <text x="220" y="140" text-anchor="middle" class="af-label af-sre-label">EQUIPMENT</text>
-              <circle cx="290" cy="98" r="12" class="af-pulse"/>
-              <circle cx="290" cy="98" r="6" class="af-dot"/>
-            </g>
-          </svg></div>
-          <figcaption class="airfield-caption"><span class="airfield-dot" aria-hidden="true"></span><span><strong>Runway sweeper replacement</strong> · $650K allowance · AIP + local match</span> <a href="#product-model">Follow it below <span aria-hidden="true">↓</span></a></figcaption>
-        </figure>
       </div>
     </section>
 

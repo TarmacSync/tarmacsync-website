@@ -497,14 +497,9 @@ test('homepage stages: each of the five panels shows the demo’s real moment, i
   assert.match(sec, /<a[^>]*href="\/tour\.html"[^>]*data-tour-cta="section"/);
 });
 
-test('homepage hero: an airfield drawing introduces the purchase the page follows', () => {
+test('homepage hero: no decorative illustration (the owner rejected the airfield drawing)', () => {
   const hero = read('index.html').match(/<section class="hero"[\s\S]*?<\/section>/)[0];
-  const fig = (hero.match(/<figure class="hero-airfield[^"]*"[\s\S]*?<\/figure>/) || [''])[0];
-  assert.ok(fig, 'airfield figure in the hero');
-  assert.match(fig, /<svg[^>]*role="img"[^>]*aria-label="[^"]*snow removal equipment[^"]*"/i);
-  assert.match(fig.replace(/<[^>]+>/g, ' '), /Runway sweeper replacement/);
-  assert.match(fig.replace(/<[^>]+>/g, ' '), /\$650K/);
-  assert.ok(!/<img[^>]*(stock|unsplash|pixabay)/i.test(fig), 'drawn, not stock');
+  assert.ok(!/<figure|<svg[^>]*role="img"|hero-airfield/.test(hero), 'no illustration in the hero');
 });
 
 test('homepage path example tells the same story as the demo', () => {
