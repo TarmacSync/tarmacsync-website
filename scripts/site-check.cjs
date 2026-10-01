@@ -130,7 +130,7 @@ test('structure: header, footer and main tags are balanced on every page', () =>
 test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs, on every shared-layout page', () => {
   execFileSync('node', ['scripts/build-chrome.cjs', '--check'], { cwd: root, stdio: 'pipe' });
   const nav = ['/#product', '/tour.html', '/pricing.html', '/resources.html', '/book-a-call.html', '/#report'];
-  const foot = ['/', '/privacy.html', '/terms.html', '/accessibility.html', '/security.html', '/procurement-support-packet.html', '/product-roadmap.html', '/book-a-call.html'];
+  const foot = ['/', '/privacy.html', '/terms.html', '/accessibility.html', '/book-a-call.html'];
   chromePages.forEach((f) => {
     const s = read(f);
     const h = between(s, 'header'), ft = between(s, 'footer');
@@ -141,6 +141,28 @@ test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs,
   });
   const current = (f) => (between(read(f), 'header').match(/aria-current="page"/g) || []).length;
   assert.equal(current('pricing.html'), 1); assert.equal(current('resources.html'), 1); assert.equal(current('security.html'), 0);
+});
+
+test('footer: only the legal links and Contact; no pages whose content changes quickly', () => {
+  pages.forEach((f) => {
+    const ft = between(read(f), 'footer');
+    ['/product-roadmap.html', '/procurement-support-packet.html', '/security.html'].forEach((h) => assert.ok(!hrefs(ft).includes(h), f + ' footer links ' + h));
+  });
+});
+
+test('footer: the demo page shows the same footer as every other page', () => {
+  const canonical = (f) => between(read(f), 'footer').replace(/\s+/g, ' ');
+  assert.equal(canonical('tour.html'), canonical('pricing.html'));
+  assert.ok(read('tour.html').includes('assets/site-shell.css'), 'the demo loads the shared stylesheet');
+  assert.ok(!/tour-footer/.test(read('tour.html') + read('assets/tour/tour.css')), 'the old demo footer is gone');
+});
+
+test('footer: links and the social icon are touch-sized (44px) in the shared stylesheet', () => {
+  const css = read('assets/site-shell.css');
+  const rule = (sel) => (css.match(new RegExp(sel.replace(/[.[\]]/g, '\\$&') + '\\s*\\{([^}]*)\\}')) || [, ''])[1];
+  assert.match(rule('.site-footer__links a'), /min-height:\s*44px/);
+  assert.match(rule('.site-footer__social'), /width:\s*44px/);
+  assert.match(rule('.site-footer__social'), /height:\s*44px/);
 });
 
 test('chrome: pages using the shared layout load its stylesheet and script', () => {

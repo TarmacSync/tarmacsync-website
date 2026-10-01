@@ -173,7 +173,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem 2rem;
+  gap: 0 2rem;
 }
 
 .site-footer__logo {
@@ -189,6 +189,9 @@
 }
 
 .site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: #6E7179;
   font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: .85rem;
@@ -202,8 +205,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   color: #6E7179;
   transition: color .2s ease;
@@ -255,7 +258,7 @@
   .site-header__cta { display: none; }
   .site-footer { padding: 3.75rem 0 2.75rem; }
   .site-footer__inner { flex-direction: column; gap: 2rem; }
-  .site-footer__links { justify-content: center; gap: .8rem 1.5rem; }
+  .site-footer__links { justify-content: center; gap: 0 1.5rem; }
 }
 
 @media (max-width: 390px) {
