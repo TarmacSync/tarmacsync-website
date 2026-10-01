@@ -32,7 +32,7 @@
   function buildAssistant(m) {
     const li = el('li', 'message assistant');
     li.setAttribute('role', 'group'); li.setAttribute('aria-label', 'TarmacSync');
-    const mark = el('img', 'assistant-mark'); mark.src = 'assets/tarmacsync-icon.png'; mark.alt = ''; mark.width = 26; mark.height = 26;
+    const mark = el('img', 'assistant-mark'); mark.src = 'assets/tarmacsync-icon-sm.png'; mark.alt = ''; mark.width = 26; mark.height = 26;
     const body = el('div', 'message-body');
     const thinking = el('div', 'thinking');
     thinking.append(el('i'), el('i'), el('i'), el('span', null, ''));
