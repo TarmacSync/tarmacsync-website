@@ -52,7 +52,6 @@ const ALL_PAGES = [
   'pilot-program-brief.html',
   'accessibility.html',
   'non-discrimination.html',
-  'privacy-choices.html',
 ];
 
 const PAGES = (process.env.PAGES ? process.env.PAGES.split(',') : ALL_PAGES)
