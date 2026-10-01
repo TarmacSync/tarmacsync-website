@@ -468,6 +468,17 @@ test('homepage path example tells the same story as the demo', () => {
   assert.match(card, /\$610K/, 'the open issue is the demo\'s capital plan difference');
 });
 
+test('end of the demo: the call to action is Contact us, not booking an appointment or the report', () => {
+  const t = read('tour.html');
+  const finish = t.match(/<section class="finish"[\s\S]*?<\/section>/)[0];
+  assert.match(finish, /data-contact-cta="tour_complete"/);
+  assert.match(finish, /href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta|data-contact-cta="tour_complete"[^>]*href="mailto:contact@tarmacsync\.com"/);
+  assert.match(finish, />\s*Contact us/);
+  assert.ok(!/book-a-call|data-report-cta|\/#report/.test(finish), 'finish card has no booking or report link');
+  assert.ok(!t.includes('book-a-call'), 'no booking link anywhere on the demo page, including the no-JavaScript fallback');
+  assert.match(read('assets/funnel-analytics.js'), /data-contact-cta/, 'contact clicks are still measured');
+});
+
 test('the tour page no longer points at the removed homepage anchor', () => {
   assert.ok(!read('tour.html').includes('sample-snapshot'));
 });

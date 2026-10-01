@@ -19,6 +19,10 @@
       track('interactive_tour_click');
     }
 
+    if (target.matches('[data-contact-cta]')) {
+      track('contact_cta_click');
+    }
+
     if (target.matches('[data-support-packet-cta], a[href*="/procurement-support-packet.html"]')) {
       track('evaluation_guide_click');
     }
