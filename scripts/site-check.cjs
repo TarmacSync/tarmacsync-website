@@ -129,7 +129,7 @@ test('structure: header, footer and main tags are balanced on every page', () =>
 
 test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs, on every shared-layout page', () => {
   execFileSync('node', ['scripts/build-chrome.cjs', '--check'], { cwd: root, stdio: 'pipe' });
-  const nav = ['/#product', '/tour.html', '/pricing.html', '/resources.html', '/book-a-call.html', '/#report'];
+  const nav = ['/#product', '/tour.html', '/pricing.html', '/book-a-call.html', '/#report'];
   const foot = ['/', '/privacy.html', '/terms.html', '/accessibility.html', '/book-a-call.html'];
   chromePages.forEach((f) => {
     const s = read(f);
@@ -140,7 +140,7 @@ test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs,
     assert.ok(!/mailto:/.test(h + ft), f + ' chrome leads to the booking page, not a mail link');
   });
   const current = (f) => (between(read(f), 'header').match(/aria-current="page"/g) || []).length;
-  assert.equal(current('pricing.html'), 1); assert.equal(current('resources.html'), 1); assert.equal(current('security.html'), 0);
+  assert.equal(current('pricing.html'), 1); assert.equal(current('resources.html'), 0); assert.equal(current('security.html'), 0);
 });
 
 test('footer: only the legal links and Contact; no pages whose content changes quickly', () => {
