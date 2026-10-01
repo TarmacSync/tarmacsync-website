@@ -71,7 +71,10 @@ section('final state: discrepancy flagged, open items grouped, drafts offered, f
   assert.match(file, /Ready · Build the record/);
   assert.equal(await count(page, '.attachment'), 4);
   assert.equal(await page.locator('#finish').isVisible(), true);
-  assert.equal(await page.locator('[data-report-cta="tour_complete"]').getAttribute('href'), '/#report');
+  const cta = page.locator('#finish [data-contact-cta="tour_complete"]');
+  assert.equal(await cta.getAttribute('href'), 'mailto:contact@tarmacsync.com', 'the end-of-demo call to action is Contact us');
+  assert.match(await cta.innerText(), /contact us/i);
+  assert.equal(await count(page, '#finish [data-report-cta]'), 0, 'no report download offered as the next step');
   await context.close();
 });
 
@@ -511,8 +514,9 @@ section('continuity: header mirrors the site CTA; the finish card leads back int
   assert.equal(await page.locator('.header-cta').getAttribute('href'), '/#report');
   assert.match(await page.locator('.header-cta').innerText(), /free report/i);
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-  assert.ok(links.includes('/#report'));
-  assert.ok(links.includes('/book-a-call.html'));
+  assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'Contact us');
+  assert.ok(!links.includes('/book-a-call.html'), 'no appointment booking at the end of the demo');
+  assert.ok(!links.includes('/#report'), 'no report download at the end of the demo');
   assert.ok(links.includes('/#product-model'), 'back to How TarmacSync works');
   await page.locator('#replay').click();
   assert.equal(await count(page, '#thread > li'), 0);
