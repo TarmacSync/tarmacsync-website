@@ -539,8 +539,16 @@ section('phone: the stage tracker fits and names the current stage', async (brow
 section('no phantom scroll: after the finish the document ends at the footer, on desktop and phone', async (browser) => {
   for (const width of [1440, 390]) {
     const { page, context } = await fresh(browser, { width, height: width === 390 ? 844 : 900, hash: '#beat=7' });
-    const gap = await page.evaluate(() => document.documentElement.scrollHeight - (document.querySelector('.tour-footer').getBoundingClientRect().bottom + scrollY));
-    assert.ok(gap <= 8, width + 'px wide: ' + Math.round(gap) + 'px of blank scroll below the footer');
+    const { gap, scrollable } = await page.evaluate(() => {
+      const doc = document.documentElement;
+      return {
+        gap: doc.scrollHeight - (document.querySelector('.tour-footer').getBoundingClientRect().bottom + scrollY),
+        scrollable: doc.scrollHeight - innerHeight,
+      };
+    });
+    // A page shorter than the window has nothing to scroll, so slack below the footer is not blank scroll.
+    assert.ok(scrollable <= 0 || gap <= 8, width + 'px wide: ' + Math.round(gap) + 'px of blank scroll below the footer');
+    assert.ok(width === 390 || Math.abs(gap) <= 8, width + 'px wide: the page should fill the window (footer ' + Math.round(gap) + 'px from the bottom)');
     await context.close();
   }
 });
@@ -572,11 +580,12 @@ section('phone: finish card links, Watch again and footer links are tappable', a
   await context.close();
 });
 
-section('phone: header actions share one row even at 320px', async (browser) => {
+section('phone: logo, label and Book a call share one row even at 320px', async (browser) => {
   const { page, context } = await fresh(browser, { width: 320, height: 568 });
   const a = await page.locator('.header-cta').boundingBox();
-  const b = await page.locator('.exit').boundingBox();
-  assert.ok(Math.abs(a.y - b.y) < 6, 'CTA and back link are on different rows (' + Math.round(a.y) + ' vs ' + Math.round(b.y) + ')');
+  const b = await page.locator('.brand').boundingBox();
+  assert.ok(Math.abs((a.y + a.height / 2) - (b.y + b.height / 2)) < 12, 'CTA and logo are on different rows (' + Math.round(a.y) + ' vs ' + Math.round(b.y) + ')');
+  assert.ok(a.height >= 40, 'Book a call stays a comfortable touch target (' + Math.round(a.height) + 'px)');
   assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0);
   await context.close();
 });
