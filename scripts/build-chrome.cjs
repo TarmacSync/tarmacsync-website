@@ -15,7 +15,6 @@ const NAV = [
   ['/#product', 'Product', ''],
   ['/tour.html', 'Demo', ' data-tour-cta="nav"'],
   ['/pricing.html', 'Pricing', ''],
-  ['/resources.html', 'Resources', ''],
   ['/book-a-call.html', 'Contact', ''],
 ];
 
