@@ -23,10 +23,6 @@
       track('contact_cta_click');
     }
 
-    if (target.matches('[data-support-packet-cta], a[href*="/procurement-support-packet.html"]')) {
-      track('evaluation_guide_click');
-    }
-
     var href = target.getAttribute('href') || '';
     if (target.id === 'booking-link' || href.indexOf('/book-a-call.html') !== -1 || href.indexOf('zohobookings.eu') !== -1) {
       track('booking_intent_click');

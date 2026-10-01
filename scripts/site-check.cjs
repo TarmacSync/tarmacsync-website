@@ -179,7 +179,18 @@ test('naming: one name for the booking and the evaluation guide', () => {
   const hits = [];
   pages.forEach((f) => visible(read(f)).forEach((t) => banned.forEach((b) => { if (b.test(t)) hits.push(f + ': "' + t + '"'); })));
   assert.deepEqual(hits, []);
-  assert.ok(!/zohobookings/.test(read('procurement-support-packet.html')), 'the evaluation guide books through the on-site page');
+});
+
+test('retired pages: roadmap, evaluation guide and intelligence page are gone, redirected, and unlinked', () => {
+  const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing.html', 'airport-procurement-intelligence.html': '/' };
+  const redirects = JSON.parse(read('vercel.json')).redirects;
+  Object.entries(retired).forEach(([file, dest]) => {
+    assert.ok(!exists(file), file + ' still exists');
+    const r = redirects.find((x) => x.source === '/' + file);
+    assert.ok(r && r.destination === dest && r.statusCode === 301, file + ' redirects 301 to ' + dest);
+    pages.forEach((f) => assert.ok(!read(f).includes(file), f + ' still links ' + file));
+    assert.ok(!read('assets/funnel-analytics.js').includes(file), 'analytics still tracks ' + file);
+  });
 });
 
 if (failed) { console.error('\n' + failed + ' failing'); process.exit(1); }
