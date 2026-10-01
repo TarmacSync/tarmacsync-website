@@ -75,6 +75,11 @@
       gist: 'If the procurement is expected to exceed the simplified acquisition threshold, the sponsor must notify the ADO in writing before award when the award will be made without competition, only one bid is received, or the award will go to other than the apparent low bidder. The apparent low bidder is simply the lowest-priced bid, before any finding on responsiveness or responsibility. A responsible bidder can perform successfully, considering integrity, compliance with public policy, past performance and financial and technical resources. Bid documents must state how the successful bid will be determined, which may include bid alternates and availability of federal funding; with alternates, the solicitation must set the base bid and the order of alternates based on available funding.',
       edition: HB_ED, checked: '2026-09-30',
     },
+    u10a: {
+      label: '2 CFR 200.318(a)', source: '2 CFR Part 200 (current eCFR), as reproduced in the ' + HB, ref: 'General procurement standards, paragraph (a); Handbook Appendix U, U-10',
+      gist: 'The recipient must maintain and use documented procurement procedures that align with State, local and tribal laws and regulations and the federal standards. The Handbook edition adds that the procurements must conform to applicable Federal law. In practice the airport follows both its own state and local rules and the federal ones.',
+      edition: HB_ED + '; current eCFR wording confirmed 2026-10-01', checked: '2026-10-01',
+    },
     u24: {
       label: '2 CFR 200.327', source: '2 CFR Part 200 (current eCFR), as reproduced in the ' + HB, ref: 'Contract provisions and Appendix II. The Handbook edition reproduces this as 2 CFR 200.326 (Appendix U, U-24); the current eCFR numbers it 200.327, confirmed 2026-09-30',
       gist: 'The sponsor’s contracts must contain the applicable provisions in Appendix II to Part 200, in addition to other provisions the federal agency requires. For AIP, that means the FAA’s required contract provisions go into the bid package.',
@@ -141,13 +146,14 @@
   const artifacts = {
     memo: {
       title: 'Route memo', sub: 'Runway broom replacement · Northfield Regional Airport (fictional) · Draft for procurement and grants review',
-      sources: ['u15', 'u8', 't47', 's3105', 't360', 't54', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
+      sources: ['u15', 'u10a', 'u8', 't47', 's3105', 't360', 't54', 'ga1', 'ga3', 'ga13', 'ga19', 'ga30', 'ga33', 'ga34'],
       sections: [
         { h: 'What the airport told us', items: [
           'Replacing a 2009 runway broom with about 4,100 hours, for snow and ice control.',
           'Planning allowance of $650,000. This is an allowance, not an independent estimate or a vendor price.',
           'AIP funding is planned and the airport has not yet applied for the grant. Local match is not yet set.',
-          'Small hub, 14 CFR Part 139 airport. Local policy requires formal competition above $100,000.'] },
+          'Small hub, 14 CFR Part 139 airport. Local policy requires formal competition above $100,000.',
+          'State public-bidding law and local policy apply alongside the federal rules (2 CFR 200.318(a)); the state statute is not in this file and needs confirming.'] },
         { h: 'What the documents show', items: [
           'Capital plan line: $610,000. This differs from the $650,000 allowance and needs to be reconciled.',
           'The Snow and Ice Control Plan lists runway broom equipment. Count and specification still need to be checked against the advisory circulars.',
@@ -183,7 +189,7 @@
     },
     checklist: {
       title: 'Pre-solicitation readiness checklist', sub: 'Evidence file for the runway broom replacement · Northfield Regional Airport (fictional)',
-      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 'u15', 'u24', 'u8', 't328', 't360', 't54', 'x1', 's567', 'ga30', 'ga33'],
+      sources: ['m1d', 'c3', 's312', 'u21', 'u3', 'u15', 'u10a', 'u24', 'u8', 't328', 't360', 't54', 'x1', 's567', 'ga30', 'ga33'],
       sections: [
         { h: 'Eligibility file', items: [
           'Current FAA Form 5100-141 inventory (on file: March 2024).',
@@ -198,6 +204,7 @@
           'Specification complete and realistic, and reviewed for requirements that could narrow the bidder pool, such as highway-vehicle standards.',
           'Required federal contract provisions in the bid package (2 CFR 200.327).',
           'If bid alternates are used, the basis for award stated in the solicitation.',
+          'Your state public-bidding law and local policy reflected in the bid package (for example advertising, bid security and governing-body approval), confirmed with your procurement office or counsel.',
           'How bids above the $610,000 capital plan line would be funded, settled before advertising.'] },
         { h: 'Buy American', items: [
           'Include the Buy American provision and certificate in the solicitation.',
@@ -353,15 +360,17 @@
       reply: {
         paras: [
           { lead: 'Sealed bids fit this purchase: a defined unit, a firm fixed price, and a value above your $100,000 threshold.', text: 'Under 2 CFR 200.320, bids are publicly solicited and the contract is awarded in writing to the lowest responsive and responsible bidder. That works when the specification is complete and realistic and you expect two or more bidders, so write it to your Snow and Ice Control Plan and FAA standards without narrowing the field. Requiring highway-vehicle standards, for example, can reduce the number of bidders.' },
-          { text: 'The bid package carries the required federal contract provisions, including the Buy American certificate. If you use bid alternates, the solicitation has to state how the award will be made. Here are the common key steps the Handbook lays out from here.' },
+          { text: 'The bid package carries the required federal contract provisions, including the Buy American certificate. If you use bid alternates, the solicitation has to state how the award will be made.' },
+          { text: 'These federal rules sit alongside your own. Under 2 CFR 200.318(a) you use your documented procurement procedures, which follow your state’s public-bidding law and your local policy, so requirements such as advertising, bid security and governing-body approval come from those too. I don’t have your state’s statute in this file, so confirm those with your procurement office or counsel. Here are the common key steps the Handbook lays out from here.' },
         ],
-        sources: ['u15', 'u24', 'u8'],
+        sources: ['u15', 'u10a', 'u24'],
         table: 'sequence',
       },
       file: [
         { when: 'send', op: 'phase', value: 'Route · Find the path' },
         { at: 0.5, op: 'known', key: 'method', label: 'Procurement method', value: 'Sealed competitive bids', tag: '2 CFR 200.320' },
         { at: 0.8, op: 'open', key: 'provisions', group: 'solicitation', text: 'Required federal contract provisions and Buy American certificate in the bid package' },
+        { at: 0.75, op: 'open', key: 'statelaw', group: 'solicitation', text: 'State public-bidding and local requirements reflected in the bid package' },
         { at: 0.85, op: 'open', key: 'basis', group: 'solicitation', text: 'Basis for award stated, if bid alternates are used' },
         { at: 1, op: 'next', value: 'Finish the specification and the independent estimate before advertising' },
       ],

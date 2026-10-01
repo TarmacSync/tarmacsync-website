@@ -441,6 +441,33 @@ test('review round: over-budget remedies, Table 5-4 as a list, current 200.327 n
   assert.ok(!/by any route|commit to any route|grant is programmed/i.test(strings(script).join('\n')), 'cooperative-era and "programmed" wording gone');
 });
 
+test('state and local law: a sourced note in the route reply, the file and the checklist, with no invented state rule', () => {
+  const c = script.citations.u10a;
+  assert.ok(c, 'u10a citation exists');
+  assert.match(c.label, /200\.318\(a\)/);
+  assert.match(c.gist, /State, local/i);
+  assert.match(c.gist, /conform to applicable Federal law/i);
+  const route = script.beats[3];
+  assert.ok(route.reply.sources.includes('u10a'), 'route reply cites 200.318(a)');
+  const text = route.reply.paras.map((p) => p.text).join(' ');
+  assert.match(text, /state/i);
+  assert.match(text, /counsel/i);
+  assert.ok(!/\b\d+[- ]day|bid bond of|percent bid security/i.test(text), 'no specific state requirement invented');
+  const open = script.beats.flatMap((b) => b.file).find((o) => o.op === 'open' && o.key === 'statelaw');
+  assert.ok(open && open.group === 'solicitation', 'state and local requirements are an open item before the solicitation');
+  assert.match(strings(script.artifacts.checklist).join(' '), /state public-bidding/i);
+  assert.match(strings(script.artifacts.memo).join(' '), /state/i);
+});
+
+test('homepage path example tells the same story as the demo', () => {
+  const card = read('index.html').match(/<article class="path-card path-card-output">[\s\S]*?<\/article>/)[0];
+  assert.ok(!/cooperative|\$180K|operating funds/i.test(card), 'no leftover cooperative / $180K / operating-funds example');
+  assert.match(card, /\$650K/);
+  assert.match(card, /AIP \+ local match/);
+  assert.match(card, /Sealed competitive bids/);
+  assert.match(card, /\$610K/, 'the open issue is the demo\'s capital plan difference');
+});
+
 test('the tour page no longer points at the removed homepage anchor', () => {
   assert.ok(!read('tour.html').includes('sample-snapshot'));
 });
