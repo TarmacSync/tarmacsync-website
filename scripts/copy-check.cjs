@@ -38,6 +38,13 @@ const BANNED = [
   /Pricing effective August 2026/i,
   /We agree on availability, evaluation, and included support/i,
   /Procurement, grant, and legal decisions remain with the airport and its advisors/i,
+  // Owner review of /book-a-call.html (2026-10-02): each of these was marked filler.
+  /What we’ll cover/i,
+  /A useful conversation, even if/i,
+  /Choose a fit-conversation time/i,
+  /Scope and annual pricing confirmed/i,
+  /Pricing shown is for planning/i,
+  /No sensitive data/i,
   /\b(compliant|FAA-approved|guaranteed|final determination)\b/i,
 ];
 
@@ -83,6 +90,15 @@ test('pricing.html: states what every purchase delivers, from the demo, and says
   ['route memo', 'readiness checklist', 'ADO', 'bid evaluation checklist'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'value section names: ' + w));
   const n = (t.match(/automatic renewal/gi) || []).length;
   assert.equal(n, 1, '"automatic renewal" appears ' + n + ' times');
+});
+
+test('book-a-call.html: a short button label, no agenda list, no repeated call facts', () => {
+  const raw = fs.readFileSync(path.join(root, 'book-a-call.html'), 'utf8');
+  assert.match(raw, /id="booking-link"[^>]*>\s*Book a time\b/, 'the button reads "Book a time"');
+  assert.ok(!/class="agenda"|class="call-facts"|class="legal-note"/.test(raw), 'agenda, call-facts and legal-note blocks are gone');
+  const t = visibleText('book-a-call.html');
+  assert.equal((t.match(/30 minutes/gi) || []).length, 1, '"30 minutes" is said once');
+  assert.ok(!/\bOnline\b/.test(t), 'no "Online" chip');
 });
 
 test('index.html: the how-it-works example is the demo’s purchase', () => {
