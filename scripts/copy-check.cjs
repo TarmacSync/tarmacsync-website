@@ -16,13 +16,19 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const REVIEWED = ['index.html'];
+const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html'];
 
 const BANNED = [
   /check current text/i,
   /Scope and timing are agreed with each airport/i,
   /Coverage depends on configured sources/i,
   /subject to airport review before use/i,
+  /subject to (agreed scope|current product availability|project facts|confirmation)/i,
+  /where available/i,
+  /No customer savings result is claimed/i,
+  /Do not assume card payment/i,
+  /Changes remain subject to review/i,
+  /not a procurement, grant, legal, FAA, or compliance determination/i,
   /\b(compliant|FAA-approved|guaranteed|final determination)\b/i,
 ];
 
@@ -50,6 +56,10 @@ REVIEWED.forEach((file) => {
     assert.ok((text.match(/pre-launch/gi) || []).length <= 1, '"Pre-launch" appears ' + (text.match(/pre-launch/gi) || []).length + ' times');
     const req = text.match(/No (project details|project submission)[^.]*required/gi) || [];
     assert.ok(req.length <= 1, '"no project details required" appears ' + req.length + ' times: ' + req.join(' | '));
+  });
+  test(file + ': "no per-seat pricing" said at most twice', () => {
+    const n = (text.match(/per-seat/gi) || []).length;
+    assert.ok(n <= 2, '"per-seat" appears ' + n + ' times');
   });
   test(file + ': no sentence is repeated', () => {
     const seen = new Map();

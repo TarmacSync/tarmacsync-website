@@ -405,14 +405,14 @@
             <div>
               <span class="selected-plan__label">Selected plan</span>
               <span id="plan-name" class="selected-plan__name">Plan to discuss</span>
-              <span id="plan-type" class="selected-plan__type">We’ll confirm the right scope and annual pricing during the conversation</span>
+              <span id="plan-type" class="selected-plan__type">Scope and annual pricing confirmed on the call</span>
             </div>
-            <div id="plan-price" class="selected-plan__price"><strong>Scoped</strong><span>with your airport</span></div>
+            <div id="plan-price" class="selected-plan__price"><strong>Scoped</strong></div>
           </div>
 
           <p class="section-label">30 minutes with Omar</p>
           <h2 id="booking-title">Choose a time that works.</h2>
-          <p class="booking-card__copy">Bring your airport’s next purchase or project. In 30 minutes, we’ll discuss the workflow, explore where TarmacSync may help, and identify a sensible next step. TarmacSync is pre-launch, so this is a fit conversation, not a product order. No preparation required.</p>
+          <p class="booking-card__copy">Bring your airport’s next purchase or project. No preparation required.</p>
 
           <ul class="call-facts" aria-label="Call details">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 minutes</li>
@@ -426,7 +426,7 @@
           </a>
           <p class="reassurance">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
-            <span>The goal is to clarify a sensible next step. There is no obligation to proceed.</span>
+            <span>No obligation to proceed.</span>
           </p>
 
           <div class="mobile-booking">
@@ -434,7 +434,7 @@
             <div><strong>Continue on your phone</strong><p>Scan to open the same Zoho booking page.</p></div>
           </div>
 
-          <p class="legal-note">Displayed pricing is a planning reference. Scope, availability, evaluation status, and any future purchase terms are confirmed separately. This is not a procurement, grant, legal, FAA, or compliance determination. Please do not share SSI, CUI, classified, or protected security information.</p>
+          <p class="legal-note">Pricing shown is for planning; scope and terms are confirmed separately. Please do not share SSI, CUI, classified, or protected security information.</p>
         </div>
       </aside>
     </div>
@@ -485,8 +485,8 @@
       const plan = plans[requested];
       if (!plan) {
         document.getElementById("plan-name").textContent = "Plan to discuss";
-        document.getElementById("plan-type").textContent = "We’ll confirm the right scope and annual pricing during the conversation";
-        document.getElementById("plan-price").innerHTML = "<strong>Scoped</strong><span>with your airport</span>";
+        document.getElementById("plan-type").textContent = "Scope and annual pricing confirmed on the call";
+        document.getElementById("plan-price").innerHTML = "<strong>Scoped</strong>";
         document.getElementById("year").textContent = new Date().getFullYear();
         return;
       }
