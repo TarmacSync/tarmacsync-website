@@ -45,6 +45,11 @@ const BANNED = [
   /Scope and annual pricing confirmed/i,
   /Pricing shown is for planning/i,
   /No sensitive data/i,
+  /Pre-launch/i,
+  /Pre-launch · Preparing/i,
+  // Third pass: homepage + booking (2026-10-02).
+  /Read it before your next project handoff/i,
+  /Interactive demonstration/i,
   // Second owner pass (2026-10-02).
   /Pre-launch pricing/i,
   /We’ll confirm the fit with you/i,
@@ -108,6 +113,7 @@ test('pricing.html: states what every purchase delivers, from the demo, and says
 test('book-a-call.html: a short button label, no agenda list, no repeated call facts', () => {
   const raw = fs.readFileSync(path.join(root, 'book-a-call.html'), 'utf8');
   assert.match(raw, /id="booking-link"[^>]*>\s*Book a time\b/, 'the button reads "Book a time"');
+  assert.match(raw, /<strong>Or continue on your phone<\/strong>/, 'the QR block reads "Or continue on your phone"');
   assert.ok(!/class="agenda"|class="call-facts"|class="legal-note"/.test(raw), 'agenda, call-facts and legal-note blocks are gone');
   const t = visibleText('book-a-call.html');
   assert.ok(!/\bScoped\b/.test(t.replace(/Selected plan/gi, '')) || /id="selected-plan"[^>]*\bhidden\b/.test(raw), '"Scoped" is not shown without a plan');

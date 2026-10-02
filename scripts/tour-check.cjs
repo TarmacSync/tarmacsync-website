@@ -610,20 +610,26 @@ section('pricing: the profile sentence sits on one line on desktop and wraps cle
   }
 });
 
-section('homepage on a phone: demo link is tappable, labels are readable, the bridge keeps the demo name whole', async (browser) => {
-  const { page, context } = await fresh(browser, { width: 390, height: 844, path: '/index.html' });
-  const link = page.locator('.vision-snapshot-link');
-  await link.scrollIntoViewIfNeeded();
-  assert.ok((await link.boundingBox()).height >= 44, 'the link under the film is at least 44px tall');
-  const size = await page.locator('#interactive-demo .snapshot-label').first().evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
-  assert.ok(size >= 11, 'section labels are ' + size + 'px');
-  const bridge = page.locator('.ts-demo-link a');
-  await bridge.scrollIntoViewIfNeeded();
-  assert.match((await bridge.innerText()).trim(), /^Watch the 2-minute demo/);
-  const rects = await bridge.evaluate((a) => a.getClientRects().length);
-  assert.equal(rects, 1, 'the link text stays on one line instead of breaking inside "2-minute"');
-  assert.ok((await bridge.boundingBox()).height >= 44);
-  await context.close();
+section('homepage on a phone: the demo buttons are real, tappable buttons and the five stages all fit on screen', async (browser) => {
+  for (const width of [390, 320]) {
+    const { page, context } = await fresh(browser, { width, height: 844, path: '/index.html' });
+    for (const where of ['vision', 'workflow']) {
+      const btn = page.locator('[data-tour-cta="' + where + '"]');
+      await btn.scrollIntoViewIfNeeded();
+      assert.equal((await btn.innerText()).trim().replace(/\s*→$/, ''), 'Watch the demo', where + ' button label');
+      assert.ok((await btn.boundingBox()).height >= 44, width + 'px: ' + where + ' button is at least 44px tall');
+      assert.match(await btn.evaluate((a) => getComputedStyle(a).display), /flex|block/, where + ' looks like a button, not a text link');
+    }
+    const stages = page.locator('#product-model .ts-button');
+    assert.equal(await stages.count(), 5);
+    for (let i = 0; i < 5; i++) {
+      const box = await stages.nth(i).boundingBox();
+      assert.ok(box.x >= 0 && box.x + box.width <= width, width + 'px: stage ' + (i + 1) + ' is fully on screen (x ' + Math.round(box.x) + ', width ' + Math.round(box.width) + ')');
+      assert.ok(box.height >= 44, 'stage ' + (i + 1) + ' is a comfortable tap target');
+    }
+    assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
+    await context.close();
+  }
 });
 
 // SECTIONS-END
