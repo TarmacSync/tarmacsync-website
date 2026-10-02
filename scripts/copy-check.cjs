@@ -29,6 +29,15 @@ const BANNED = [
   /Do not assume card payment/i,
   /Changes remain subject to review/i,
   /not a procurement, grant, legal, FAA, or compliance determination/i,
+  // Owner review of /pricing.html (2026-10-02): each of these was marked unnecessary.
+  /How to evaluate the value/i,
+  /Compare the work, not just the subscription/i,
+  /Annual pricing, clearly stated/i,
+  /For your airport’s purchasing review/i,
+  /P-card rules/i,
+  /Pricing effective August 2026/i,
+  /We agree on availability, evaluation, and included support/i,
+  /Procurement, grant, and legal decisions remain with the airport and its advisors/i,
   /\b(compliant|FAA-approved|guaranteed|final determination)\b/i,
 ];
 
@@ -67,6 +76,13 @@ REVIEWED.forEach((file) => {
     sentences(text).forEach((s) => { if (seen.has(s)) dup.push(s); seen.set(s, true); });
     assert.deepEqual(dup, []);
   });
+});
+
+test('pricing.html: states what every purchase delivers, from the demo, and says "no automatic renewal" once', () => {
+  const t = visibleText('pricing.html');
+  ['route memo', 'readiness checklist', 'ADO', 'bid evaluation checklist'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'value section names: ' + w));
+  const n = (t.match(/automatic renewal/gi) || []).length;
+  assert.equal(n, 1, '"automatic renewal" appears ' + n + ' times');
 });
 
 test('index.html: the how-it-works example is the demo’s purchase', () => {

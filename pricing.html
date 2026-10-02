@@ -181,24 +181,6 @@
     .inc h3 { font-size: .96rem; margin-bottom: .25rem; letter-spacing: -.012em; }
     .inc p { font-size: .89rem; color: var(--muted); margin: 0; line-height: 1.55; }
 
-    /* purchasing support */
-    .purchase-ease {
-      margin: 5rem auto 0; padding: clamp(1.8rem, 4vw, 2.7rem);
-      border: 1px solid var(--line); border-radius: 18px; background: var(--cloud);
-    }
-    .purchase-ease .eyebrow {
-      display: block; margin-bottom: .8rem; color: var(--orange-ink);
-      font-family: var(--mono); font-size: .62rem; font-weight: 600;
-      letter-spacing: .11em; text-transform: uppercase;
-    }
-    .purchase-ease h2 { margin-bottom: .75rem; font-size: clamp(1.55rem,3vw,2rem); letter-spacing: -.03em; }
-    .purchase-ease > p { max-width: 650px; color: var(--muted); font-size: .95rem; line-height: 1.65; }
-    .purchase-ease .btn { margin-top: 1.45rem; }
-    .purchase-ease-footnote {
-      margin-top: 1.35rem; padding-top: 1rem; border-top: 1px solid var(--line);
-      color: var(--muted); font-size: .76rem; line-height: 1.55;
-    }
-
     /* faq - matches homepage disclosure pattern */
     .faq { border-top: 1px solid var(--line); }
     .faq details { border-bottom: 1px solid var(--line); }
@@ -215,12 +197,6 @@
     }
     .faq details[open] summary::after { content: "\2013"; }
     .faq-answer { padding: 0 2.5rem 1.5rem 0; font-size: .93rem; line-height: 1.65; color: var(--muted); }
-
-    .fine {
-      font-size: .78rem; color: var(--muted); line-height: 1.6;
-      margin-top: 1.1rem;
-    }
-    .fine-wrap { margin-top: 3.5rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
 
     footer { padding: 5rem 0 3.5rem; border-top: 1px solid var(--line); margin-top: 6rem; }
     .footer-top { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: flex-start; }
@@ -411,7 +387,6 @@
     .band-invite .btn:hover { background: var(--cloud); }
 
     .details { padding-top: clamp(4.7rem, 8vw, 6.5rem); }
-    .purchase-ease { margin-top: clamp(3.5rem, 7vw, 5rem); }
     .faq-heading { margin-top: clamp(3.8rem, 7vw, 5rem); }
     .faq details[open] { background: linear-gradient(90deg, rgba(245,106,0,.045), transparent 68%); }
     .faq details[open] .faq-answer { color: var(--graphite); }
@@ -469,7 +444,7 @@
     <section class="hero">
       <h1>Simple pricing, <br>per airport.</h1>
       <p>No per-seat pricing.</p>
-      <p class="planning-reference"><strong>Pre-launch pricing for budget planning.</strong> We agree on availability, evaluation, and included support before your airport commits.</p>
+      <p class="planning-reference"><strong>Pre-launch pricing for budget planning.</strong></p>
     </section>
 
     <div class="tier-heading">
@@ -547,36 +522,15 @@
     </div>
 
 
-    <section class="details narrow value-evaluation" aria-labelledby="value-evaluation-title">
-      <span class="eyebrow">How to evaluate the value</span>
-      <h2 id="value-evaluation-title">Compare the work, not just the subscription.</h2>
-      <p class="sub">Compare the effort your team spends today with the effort required using TarmacSync.</p>
-      <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>Setup effort</h3><p>Record the time required to configure airport policy, thresholds, roles, and permitted source material.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Research and preparation</h3><p>Compare time spent gathering the purchase facts, funding context, policy, contract options, and supporting evidence.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Verification and corrections</h3><p>Include reviewer time, source checking, corrections, unresolved questions, and the effort required when facts change.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Handoff quality</h3><p>Check whether the next reviewer receives a clearer working record, open questions, and a usable next action.</p></div></div>
-      </div>
-      <p class="fine">Time saved is not the same as cash saved. Any financial comparison should use your airport’s own loaded labor cost and volume.</p>
-    </section>
-
     <section class="details narrow">
-      <h2>Keep the purchase moving.</h2>
+      <h2>What every purchase gets you.</h2>
       <p class="sub">Included in every plan.</p>
       <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>Role-controlled access</h3><p>Your whole team, with permissions set by role.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Your policy, configured</h3><p>Local thresholds, approval levels, and purchasing authority used as airport-specific context.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Source-traceable paths</h3><p>Each path shows its supporting facts and names the human validation step.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Your data, exportable</h3><p>Organization-scoped project and evidence data can be exported by an authorized workspace owner.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>A path you can explain</h3><p>The likely buying path and the sources behind it, so the decision holds up in front of your board, your auditor, or the FAA.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Problems found before you advertise</h3><p>A budget mismatch, an out-of-date form, or a missing approval surfaces before the solicitation goes out, not after.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Review drafts for your team</h3><p>A route memo, readiness checklist, questions for the ADO, and a bid evaluation checklist, ready for procurement and grants staff.</p></div></div>
+        <div class="inc"><span class="tick"></span><div><h3>Your policy, your data</h3><p>Your thresholds and approval levels shape every path, and an authorized workspace owner can export your project and evidence data at any time.</p></div></div>
       </div>
-
-      <section class="purchase-ease" aria-labelledby="purchase-ease-title">
-        <span class="eyebrow">For your airport’s purchasing review</span>
-        <h2 id="purchase-ease-title">Annual pricing, clearly stated.</h2>
-        <p>One-year subscription. No automatic renewal.</p>
-        <a class="btn" href="/book-a-call.html">Book a call</a>
-        <p class="purchase-ease-footnote">Your airport's purchasing policy, delegated authority, P-card rules, and total contract commitment determine the appropriate purchasing and payment path.</p>
-      </section>
 
       <h2 class="faq-heading">Common questions</h2>
       <div class="faq">
@@ -586,7 +540,7 @@
         </details>
         <details>
           <summary>How is TarmacSync priced?</summary>
-          <div class="faq-answer">Plans are annual agreements priced per airport. Invoicing and payment timing are set out in the order form.</div>
+          <div class="faq-answer">Plans are annual agreements priced per airport, with no automatic renewal. Invoicing and payment timing are set out in the order form.</div>
         </details>
         <details>
           <summary>Which tier is my airport?</summary>
@@ -616,10 +570,6 @@
           <summary>What happens to our data if we cancel?</summary>
           <div class="faq-answer">Your airport can export all projects, decisions, and evidence files at any time, during or after a subscription. An authorized workspace owner can request a full organization export.</div>
         </details>
-      </div>
-
-      <div class="fine-wrap">
-        <p class="fine copy-stack"><span>Cooperative contract matches are candidate pathways that require validation before award.</span><span>Procurement, grant, and legal decisions remain with the airport and its advisors.</span><span>Pricing effective August 2026 and subject to change.</span></p>
       </div>
     </section>
   </main>
