@@ -110,7 +110,8 @@ test('the demo is indexable and its booking page has a branded title', () => {
   assert.match(titleOf(read('book-a-call.html')), /Book a Fit Conversation \| TarmacSync/);
 });
 
-const chromePages = pages.filter((f) => !['404.html', 'tour.html', 'book-a-call.html'].includes(f));
+// Every page except the demo (a full-screen app view) carries the full header and footer.
+const chromePages = pages.filter((f) => f !== 'tour.html');
 const between = (src, tag) => (src.match(new RegExp('<' + tag + '[\\s>][\\s\\S]*?</' + tag + '>')) || [''])[0];
 const hrefs = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
@@ -154,6 +155,7 @@ test('footer: the demo and booking pages show the same footer as every other pag
   const canonical = (f) => between(read(f), 'footer').replace(/\s+/g, ' ');
   assert.equal(canonical('tour.html'), canonical('pricing.html'));
   assert.equal(canonical('book-a-call.html'), canonical('pricing.html'), 'booking footer matches');
+  assert.equal(canonical('404.html'), canonical('pricing.html'), '404 footer matches');
   assert.ok(read('book-a-call.html').includes('assets/site-shell.css'), 'the booking page loads the shared stylesheet');
   assert.ok(!/getElementById\("year"\)/.test(read('book-a-call.html')), 'no script writes to the removed footer year');
   assert.ok(read('tour.html').includes('assets/site-shell.css'), 'the demo loads the shared stylesheet');
