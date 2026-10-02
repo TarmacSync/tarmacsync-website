@@ -150,9 +150,12 @@ test('footer: only the legal links and Contact; no pages whose content changes q
   });
 });
 
-test('footer: the demo page shows the same footer as every other page', () => {
+test('footer: the demo and booking pages show the same footer as every other page', () => {
   const canonical = (f) => between(read(f), 'footer').replace(/\s+/g, ' ');
   assert.equal(canonical('tour.html'), canonical('pricing.html'));
+  assert.equal(canonical('book-a-call.html'), canonical('pricing.html'), 'booking footer matches');
+  assert.ok(read('book-a-call.html').includes('assets/site-shell.css'), 'the booking page loads the shared stylesheet');
+  assert.ok(!/getElementById\("year"\)/.test(read('book-a-call.html')), 'no script writes to the removed footer year');
   assert.ok(read('tour.html').includes('assets/site-shell.css'), 'the demo loads the shared stylesheet');
   assert.ok(!/tour-footer/.test(read('tour.html') + read('assets/tour/tour.css')), 'the old demo footer is gone');
 });

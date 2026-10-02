@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 // The site header and footer are defined here once and rendered into every page that uses the
-// shared layout. The booking page and the 404 are focused layouts and are left alone; the demo
-// keeps its own app header but takes the shared footer. Run `node scripts/build-chrome.cjs` after
+// shared layout. The 404 is a focused layout and is left alone; the demo and the booking page
+// keep their own focused headers but take the shared footer. Run `node scripts/build-chrome.cjs` after
 // editing a template; `--check` fails if any page has drifted. Paths are absolute so the markup
 // is identical wherever it is rendered.
 const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const EXCLUDED = new Set(['404.html', 'book-a-call.html']);
-const FOOTER_ONLY = new Set(['tour.html']);
+const EXCLUDED = new Set(['404.html']);
+const FOOTER_ONLY = new Set(['tour.html', 'book-a-call.html']);
 
 const NAV = [
   ['/#product', 'Product', ''],

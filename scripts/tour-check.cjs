@@ -600,6 +600,16 @@ section('phone: the opened Project file does not repeat its own title', async (b
   await context.close();
 });
 
+section('pricing: the profile sentence sits on one line on desktop and wraps cleanly on a phone', async (browser) => {
+  for (const [width, oneLine] of [[1440, true], [1280, true], [390, false]]) {
+    const { page, context } = await fresh(browser, { width, height: 900, path: '/pricing.html' });
+    const lines = await page.locator('.tier-heading h2').evaluate((h) => Math.round(h.getBoundingClientRect().height / parseFloat(getComputedStyle(h).lineHeight)));
+    if (oneLine) assert.equal(lines, 1, width + 'px wide: the sentence takes ' + lines + ' lines');
+    assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
+    await context.close();
+  }
+});
+
 section('homepage on a phone: demo link is tappable, labels are readable, the bridge keeps the demo name whole', async (browser) => {
   const { page, context } = await fresh(browser, { width: 390, height: 844, path: '/index.html' });
   const link = page.locator('.vision-snapshot-link');

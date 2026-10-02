@@ -45,6 +45,19 @@ const BANNED = [
   /Scope and annual pricing confirmed/i,
   /Pricing shown is for planning/i,
   /No sensitive data/i,
+  // Second owner pass (2026-10-02).
+  /Pre-launch pricing/i,
+  /We’ll confirm the fit with you/i,
+  /No obligation to proceed/i,
+  /No preparation required/i,
+  /Bring your airport’s next purchase or project/i,
+  // Plan-card bullets rewritten as benefits; the terse feature labels must not return.
+  /Federal funding and grant context/i,
+  /Decision-summary exports for airport review/i,
+  /Approval workflow and activity tracking/i,
+  /Support for complex, multi-source funding/i,
+  /Guided setup with your airport’s local policy and thresholds/i,
+  /Core procurement path review and cooperative candidate review/i,
   /\b(compliant|FAA-approved|guaranteed|final determination)\b/i,
 ];
 
@@ -97,6 +110,9 @@ test('book-a-call.html: a short button label, no agenda list, no repeated call f
   assert.match(raw, /id="booking-link"[^>]*>\s*Book a time\b/, 'the button reads "Book a time"');
   assert.ok(!/class="agenda"|class="call-facts"|class="legal-note"/.test(raw), 'agenda, call-facts and legal-note blocks are gone');
   const t = visibleText('book-a-call.html');
+  assert.ok(!/\bScoped\b/.test(t.replace(/Selected plan/gi, '')) || /id="selected-plan"[^>]*\bhidden\b/.test(raw), '"Scoped" is not shown without a plan');
+  assert.match(raw, /id="selected-plan"[^>]*\bhidden\b/, 'the selected-plan box is hidden until a plan is chosen');
+  assert.match(raw, /\.selected-plan\[hidden\]\s*\{\s*display:\s*none/, 'CSS lets [hidden] win over the box’s own display');
   assert.equal((t.match(/30 minutes/gi) || []).length, 1, '"30 minutes" is said once');
   assert.ok(!/\bOnline\b/.test(t), 'no "Online" chip');
 });

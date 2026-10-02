@@ -17,6 +17,7 @@
   <link rel="canonical" href="https://www.tarmacsync.com/book-a-call.html">
   <link rel="icon" href="assets/tarmacsync-favicon-v2.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/site-shell.css">
   <style>
     :root {
       --ink: #17191f;
@@ -68,12 +69,12 @@
     }
     .skip-link:focus { transform: translateY(0); }
 
-    .site-header {
+    .booking-header {
       background: rgba(255, 255, 255, .94);
       border-bottom: 1px solid rgba(228, 230, 234, .9);
       backdrop-filter: blur(14px);
     }
-    .site-header__inner {
+    .booking-header__inner {
       width: var(--page);
       min-height: 78px;
       margin: 0 auto;
@@ -178,6 +179,8 @@
     }
     .booking-card__accent { height: 5px; background: var(--orange); }
     .booking-card__body { padding: clamp(28px, 4vw, 42px); }
+    .selected-plan[hidden] { display: none; }
+    .site-footer__logo { mix-blend-mode: multiply; }
     .selected-plan {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -205,12 +208,11 @@
     .selected-plan__price span { color: var(--muted); font-size: .75rem; }
 
     .booking-card h2 {
-      margin: 0;
+      margin: 0 0 26px;
       font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       line-height: 1.08;
       letter-spacing: -.045em;
     }
-    .booking-card__copy { margin: 14px 0 26px; color: var(--muted); font-size: .95rem; }
     .cta {
       width: 100%;
       min-height: 54px;
@@ -229,17 +231,6 @@
     }
     .cta:hover { transform: translateY(-2px); background: #282b33; box-shadow: 0 11px 28px rgba(23,25,31,.18); }
     .cta svg { width: 17px; }
-    .reassurance {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: .76rem;
-      line-height: 1.5;
-    }
-    .reassurance svg { flex: 0 0 auto; width: 15px; margin-top: 2px; color: var(--green); }
-
     .mobile-booking {
       display: grid;
       grid-template-columns: 76px 1fr;
@@ -253,22 +244,6 @@
     .mobile-booking strong { display: block; font-size: .82rem; }
     .mobile-booking p { margin: 4px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
 
-    .site-footer { background: var(--white); border-top: 1px solid var(--line); }
-    .site-footer__inner {
-      width: var(--page);
-      min-height: 78px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      color: var(--muted);
-      font-size: .77rem;
-    }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 12px 22px; }
-    .footer-links a { text-decoration: none; }
-    .footer-links a:hover { color: var(--ink); }
-
     @media (max-width: 900px) {
       main::after { width: 78vw; opacity: .54; }
       .booking-shell { grid-template-columns: 1fr; gap: 42px; }
@@ -278,7 +253,7 @@
     }
     @media (max-width: 600px) {
       :root { --page: min(100% - 2rem, 1180px); }
-      .site-header__inner { min-height: 68px; }
+      .booking-header__inner { min-height: 68px; }
       .brand img { width: 158px; }
       .back-link span { display: none; }
       main::before, main::after { height: 400px; }
@@ -290,8 +265,6 @@
       .selected-plan__price { text-align: left; display: flex; align-items: baseline; gap: 6px; }
       .mobile-booking { grid-template-columns: 64px 1fr; }
       .mobile-booking img { width: 64px; height: 64px; }
-      .site-footer__inner { padding: 22px 0; display: block; }
-      .footer-links { margin-top: 10px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
@@ -301,8 +274,8 @@
 <body>
   <a class="skip-link" href="#booking">Skip to booking</a>
 
-  <header class="site-header">
-    <div class="site-header__inner">
+  <header class="booking-header">
+    <div class="booking-header__inner">
       <a class="brand" href="/" aria-label="TarmacSync home">
         <img src="assets/tarmacsync-logo-sm.png" alt="TarmacSync" width="190" height="46">
       </a>
@@ -324,27 +297,22 @@
       <aside id="booking" class="booking-card" aria-labelledby="booking-title">
         <div class="booking-card__accent"></div>
         <div class="booking-card__body">
-          <div id="selected-plan" class="selected-plan" aria-live="polite">
+          <div id="selected-plan" class="selected-plan" aria-live="polite" hidden>
             <div>
               <span class="selected-plan__label">Selected plan</span>
-              <span id="plan-name" class="selected-plan__name">Plan to discuss</span>
+              <span id="plan-name" class="selected-plan__name"></span>
               <span id="plan-type" class="selected-plan__type"></span>
             </div>
-            <div id="plan-price" class="selected-plan__price"><strong>Scoped</strong></div>
+            <div id="plan-price" class="selected-plan__price"></div>
           </div>
 
           <p class="section-label">30 minutes with Omar</p>
           <h2 id="booking-title">Choose a time that works.</h2>
-          <p class="booking-card__copy">Bring your airport’s next purchase or project. No preparation required.</p>
 
           <a id="booking-link" class="cta" href="https://zoho134.zohobookings.eu/263728000000044047" rel="noopener">
             Book a time
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
           </a>
-          <p class="reassurance">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
-            <span>No obligation to proceed.</span>
-          </p>
 
           <div class="mobile-booking">
             <img src="assets/zoho-booking-qr.png" alt="QR code for the TarmacSync booking page" width="76" height="76">
@@ -356,13 +324,9 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <span>© <span id="year"></span> TarmacSync · Veteran-founded</span>
-      <nav class="footer-links" aria-label="Legal">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/accessibility.html">Accessibility</a>
-        <a href="mailto:contact@tarmacsync.com">Contact</a>
-      </nav>
+      <a href="/" aria-label="TarmacSync home"><img class="site-footer__logo site-footer__logo--icon" src="/assets/tarmacsync-icon-sm.png" alt="TarmacSync" width="56" height="56" loading="lazy"></a>
+      <div class="site-footer__links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/accessibility.html">Accessibility</a><a href="/book-a-call.html">Contact</a></div>
+      <a class="site-footer__social" href="https://www.linkedin.com/company/tarmacsync/" aria-label="TarmacSync on LinkedIn (opens in a new tab)" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
     </div>
   </footer>
 
@@ -397,16 +361,11 @@
 
       const requested = new URLSearchParams(window.location.search).get("tier");
       const plan = plans[requested];
-      if (!plan) {
-        document.getElementById("plan-name").textContent = "Plan to discuss";
-        document.getElementById("plan-price").innerHTML = "<strong>Scoped</strong>";
-        document.getElementById("year").textContent = new Date().getFullYear();
-        return;
-      }
+      if (!plan) return;
       document.getElementById("plan-name").textContent = plan.name;
       document.getElementById("plan-type").textContent = plan.type;
       document.getElementById("plan-price").innerHTML = "<strong>" + plan.price + "</strong><span>" + plan.suffix + "</span>";
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("selected-plan").hidden = false;
     })();
   </script>
   <script defer src="assets/funnel-analytics.js"></script>
