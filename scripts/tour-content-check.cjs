@@ -342,6 +342,10 @@ test('continuity: every demo entry point on the homepage uses the same name and 
   assert.ok(!/id="interactive-demo"|Interactive demonstration|data-tour-cta="section"/.test(home), 'the redundant "interactive demonstration" section is gone');
 });
 
+test('the demo does not claim bids are "held until the grant is accepted" (no Handbook source; accuracy review 2026-10-03)', () => {
+  assert.ok(!/held until|hold bids|bids held/i.test(read('assets/tour/tour-script.js')));
+});
+
 test('demo buttons say "Watch the demo" everywhere; "2-minute" appears nowhere on the site', () => {
   fs.readdirSync(root).filter((f) => f.endsWith('.html')).forEach((f) => assert.ok(!/2-minute/.test(read(f)), f + ' still says "2-minute"'));
 });
