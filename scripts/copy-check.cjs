@@ -16,7 +16,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'security.html'];
+const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'security.html', 'terms.html'];
 
 const BANNED = [
   /check current text/i,
