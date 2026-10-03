@@ -133,7 +133,7 @@
       rows: [
         ['1', 'Notice of intent to use entitlement funds', 'If entitlement funds are used: by the deadline in the annual Federal Register notice'],
         ['2', 'Advertise for bids', 'Specification, required federal contract provisions, Buy American certificate'],
-        ['3', 'Open bids', 'Public opening and bid tabulation; confirm the low bidder is responsive and responsible; bids held until the grant is accepted'],
+        ['3', 'Open bids', 'Public opening and bid tabulation; confirm the low bidder is responsive and responsible'],
         ['4', 'Submit the grant application', 'Actual bid amount, cost-reasonableness file, local-share source'],
         ['5', 'Accept the grant offer', 'The grant agreement sets the federal maximum'],
         ['6', 'Award the contract', 'To the lowest responsive and responsible bidder'],

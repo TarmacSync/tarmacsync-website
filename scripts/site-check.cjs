@@ -58,7 +58,7 @@ test('404: a branded page exists, is noindex, and leads somewhere useful', () =>
   const s = read('404.html');
   assert.match(s, /<meta\s+name="robots"\s+content="noindex/i);
   assert.match(s, /<h1[^>]*>[^<]*(not found|find that page)/i);
-  ['href="/"', 'href="/tour.html"', 'href="/pricing.html"', 'href="/book-a-call.html"'].forEach((h) => assert.ok(s.includes(h), '404 links ' + h));
+  ['href="/"', 'href="/tour"', 'href="/pricing"', 'href="/book-a-call"'].forEach((h) => assert.ok(s.includes(h), '404 links ' + h));
   assert.ok(!read('sitemap.xml').includes('404'), 'not in the sitemap');
 });
 
@@ -71,11 +71,11 @@ test('sitemap: matches the generator, lists every indexable page, never a noinde
   execFileSync('node', ['scripts/build-sitemap.cjs', '--check'], { cwd: root, stdio: 'pipe' });
   const locs = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   indexable.forEach((f) => {
-    const url = 'https://www.tarmacsync.com/' + (f === 'index.html' ? '' : f);
+    const url = 'https://www.tarmacsync.com/' + (f === 'index.html' ? '' : f.replace(/\.html$/, ''));
     assert.ok(locs.includes(url), f + ' is in the sitemap');
   });
   pages.filter((f) => !indexable.includes(f)).forEach((f) => assert.ok(!locs.some((l) => l.endsWith('/' + f)), f + ' is noindex but listed'));
-  assert.ok(locs.includes('https://www.tarmacsync.com/tour.html'), 'the demo is indexable and listed');
+  assert.ok(locs.includes('https://www.tarmacsync.com/tour'), 'the demo is indexable and listed');
   assert.ok(!exists('privacy-choices.html'), 'the redirect stub file is gone; vercel.json redirects it');
   assert.ok(read('vercel.json').includes('/privacy-choices.html'), 'the redirect remains');
 });
@@ -100,7 +100,7 @@ test('share cards: every indexable page has a complete Open Graph and Twitter se
     const s = read(f);
     keys.forEach((k) => assert.ok(meta(s, k), f + ' is missing ' + k));
     assert.equal(meta(s, 'og:description'), meta(s, 'description'), f + ' og:description matches the page description');
-    const url = 'https://www.tarmacsync.com/' + (f === 'index.html' ? '' : f);
+    const url = 'https://www.tarmacsync.com/' + (f === 'index.html' ? '' : f.replace(/\.html$/, ''));
     assert.equal(meta(s, 'og:url'), url, f + ' og:url');
   });
 });
@@ -130,8 +130,8 @@ test('structure: header, footer and main tags are balanced on every page', () =>
 
 test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs, on every shared-layout page', () => {
   execFileSync('node', ['scripts/build-chrome.cjs', '--check'], { cwd: root, stdio: 'pipe' });
-  const nav = ['/#product', '/tour.html', '/pricing.html', '/book-a-call.html', '/#report'];
-  const foot = ['/', '/privacy.html', '/terms.html', '/accessibility.html', '/book-a-call.html'];
+  const nav = ['/#product', '/tour', '/pricing', '/book-a-call', '/#report'];
+  const foot = ['/', '/privacy', '/terms', '/accessibility', '/book-a-call'];
   chromePages.forEach((f) => {
     const s = read(f);
     const h = between(s, 'header'), ft = between(s, 'footer');
@@ -147,7 +147,7 @@ test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs,
 test('footer: only the legal links and Contact; no pages whose content changes quickly', () => {
   pages.forEach((f) => {
     const ft = between(read(f), 'footer');
-    ['/product-roadmap.html', '/procurement-support-packet.html', '/security.html'].forEach((h) => assert.ok(!hrefs(ft).includes(h), f + ' footer links ' + h));
+    ['/product-roadmap', '/procurement-support-packet', '/security'].forEach((h) => assert.ok(!hrefs(ft).includes(h), f + ' footer links ' + h));
   });
 });
 
@@ -187,7 +187,7 @@ test('naming: one name for the booking and the evaluation guide', () => {
 });
 
 test('retired pages: roadmap, evaluation guide and intelligence page are gone, redirected, and unlinked', () => {
-  const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing.html', 'airport-procurement-intelligence.html': '/' };
+  const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing', 'airport-procurement-intelligence.html': '/', 'aip-procurement.html': '/' };
   const redirects = JSON.parse(read('vercel.json')).redirects;
   Object.entries(retired).forEach(([file, dest]) => {
     assert.ok(!exists(file), file + ' still exists');
@@ -195,6 +195,30 @@ test('retired pages: roadmap, evaluation guide and intelligence page are gone, r
     assert.ok(r && r.destination === dest && r.statusCode === 301, file + ' redirects 301 to ' + dest);
     pages.forEach((f) => assert.ok(!read(f).includes(file), f + ' still links ' + file));
     assert.ok(!read('assets/funnel-analytics.js').includes(file), 'analytics still tracks ' + file);
+  });
+});
+
+test('clean URLs: the site serves and announces /pricing, never /pricing.html', () => {
+  const v = JSON.parse(read('vercel.json'));
+  assert.equal(v.cleanUrls, true, 'vercel.json turns on cleanUrls (it also redirects /x.html to /x)');
+  const names = pages.map((f) => f.replace(/\.html$/, ''));
+  const stray = [];
+  [...pages, 'sitemap.xml', 'assets/funnel-analytics.js', 'assets/tour/tour-script.js'].forEach((f) => {
+    const s = read(f);
+    names.forEach((n) => {
+      if (new RegExp('/' + n + '\\.html(?![\\w-])').test(s)) stray.push(f + ' still announces /' + n + '.html');
+    });
+  });
+  assert.deepEqual(stray, []);
+  (v.redirects || []).forEach((r) => assert.ok(!/\.html/.test(r.destination), 'redirect destination ' + r.destination + ' is clean'));
+  const sources = (v.redirects || []).map((r) => r.source);
+  ['founding-airports', 'pilot-program-brief', 'privacy-choices', 'product-roadmap', 'procurement-support-packet', 'airport-procurement-intelligence', 'aip-procurement'].forEach((n) => {
+    assert.ok(sources.includes('/' + n + '.html') && sources.includes('/' + n), n + ' redirects from both the old .html and the clean path');
+  });
+  indexable.forEach((f) => {
+    const s = read(f);
+    const url = 'https://www.tarmacsync.com/' + (f === 'index.html' ? '' : f.replace(/\.html$/, ''));
+    assert.equal((s.match(/<link\s+rel="canonical"\s+href="([^"]+)"/) || [])[1], url, f + ' canonical');
   });
 });
 

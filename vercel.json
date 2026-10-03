@@ -1,35 +1,20 @@
 {
+  "cleanUrls": true,
   "redirects": [
-    {
-      "source": "/founding-airports.html",
-      "destination": "/",
-      "statusCode": 301
-    },
-    {
-      "source": "/pilot-program-brief.html",
-      "destination": "/",
-      "statusCode": 301
-    },
-    {
-      "source": "/privacy-choices.html",
-      "destination": "/privacy.html#your-choices",
-      "statusCode": 301
-    },
-    {
-      "source": "/product-roadmap.html",
-      "destination": "/",
-      "statusCode": 301
-    },
-    {
-      "source": "/procurement-support-packet.html",
-      "destination": "/pricing.html",
-      "statusCode": 301
-    },
-    {
-      "source": "/airport-procurement-intelligence.html",
-      "destination": "/",
-      "statusCode": 301
-    },
+    { "source": "/founding-airports.html", "destination": "/", "statusCode": 301 },
+    { "source": "/founding-airports", "destination": "/", "statusCode": 301 },
+    { "source": "/pilot-program-brief.html", "destination": "/", "statusCode": 301 },
+    { "source": "/pilot-program-brief", "destination": "/", "statusCode": 301 },
+    { "source": "/privacy-choices.html", "destination": "/privacy#your-choices", "statusCode": 301 },
+    { "source": "/privacy-choices", "destination": "/privacy#your-choices", "statusCode": 301 },
+    { "source": "/product-roadmap.html", "destination": "/", "statusCode": 301 },
+    { "source": "/product-roadmap", "destination": "/", "statusCode": 301 },
+    { "source": "/procurement-support-packet.html", "destination": "/pricing", "statusCode": 301 },
+    { "source": "/procurement-support-packet", "destination": "/pricing", "statusCode": 301 },
+    { "source": "/airport-procurement-intelligence.html", "destination": "/", "statusCode": 301 },
+    { "source": "/airport-procurement-intelligence", "destination": "/", "statusCode": 301 },
+    { "source": "/aip-procurement.html", "destination": "/", "statusCode": 301 },
+    { "source": "/aip-procurement", "destination": "/", "statusCode": 301 },
     {
       "source": "/(.*)",
       "has": [
