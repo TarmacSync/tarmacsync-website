@@ -16,7 +16,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html'];
+const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'security.html'];
 
 const BANNED = [
   /check current text/i,
@@ -38,6 +38,11 @@ const BANNED = [
   /Pricing effective August 2026/i,
   /We agree on availability, evaluation, and included support/i,
   /Procurement, grant, and legal decisions remain with the airport and its advisors/i,
+  // Owner review of /security (2026-10-04): hedging boilerplate removed; no new claims added.
+  /No internet-based service can eliminate/i,
+  /must be confirmed for the relevant product version/i,
+  /and other applicable materials/i,
+  /A note on risk/i,
   // Owner review of /book-a-call.html (2026-10-02): each of these was marked filler.
   /What we’ll cover/i,
   /A useful conversation, even if/i,
