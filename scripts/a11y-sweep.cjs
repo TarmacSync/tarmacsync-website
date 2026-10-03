@@ -38,7 +38,6 @@ const ALL_PAGES = [
   '404.html',
   'pricing.html',
   'security.html',
-  'aip-procurement.html',
   'cooperative-contracts-airports.html',
   'airport-procurement-policy.html',
   'resources.html',

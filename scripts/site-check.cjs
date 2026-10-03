@@ -187,7 +187,7 @@ test('naming: one name for the booking and the evaluation guide', () => {
 });
 
 test('retired pages: roadmap, evaluation guide and intelligence page are gone, redirected, and unlinked', () => {
-  const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing', 'airport-procurement-intelligence.html': '/' };
+  const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing', 'airport-procurement-intelligence.html': '/', 'aip-procurement.html': '/' };
   const redirects = JSON.parse(read('vercel.json')).redirects;
   Object.entries(retired).forEach(([file, dest]) => {
     assert.ok(!exists(file), file + ' still exists');
@@ -212,7 +212,7 @@ test('clean URLs: the site serves and announces /pricing, never /pricing.html', 
   assert.deepEqual(stray, []);
   (v.redirects || []).forEach((r) => assert.ok(!/\.html/.test(r.destination), 'redirect destination ' + r.destination + ' is clean'));
   const sources = (v.redirects || []).map((r) => r.source);
-  ['founding-airports', 'pilot-program-brief', 'privacy-choices', 'product-roadmap', 'procurement-support-packet', 'airport-procurement-intelligence'].forEach((n) => {
+  ['founding-airports', 'pilot-program-brief', 'privacy-choices', 'product-roadmap', 'procurement-support-packet', 'airport-procurement-intelligence', 'aip-procurement'].forEach((n) => {
     assert.ok(sources.includes('/' + n + '.html') && sources.includes('/' + n), n + ' redirects from both the old .html and the clean path');
   });
   indexable.forEach((f) => {

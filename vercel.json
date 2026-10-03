@@ -13,6 +13,8 @@
     { "source": "/procurement-support-packet", "destination": "/pricing", "statusCode": 301 },
     { "source": "/airport-procurement-intelligence.html", "destination": "/", "statusCode": 301 },
     { "source": "/airport-procurement-intelligence", "destination": "/", "statusCode": 301 },
+    { "source": "/aip-procurement.html", "destination": "/", "statusCode": 301 },
+    { "source": "/aip-procurement", "destination": "/", "statusCode": 301 },
     {
       "source": "/(.*)",
       "has": [
