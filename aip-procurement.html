@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AIP Procurement Requirements | TarmacSync</title>
-  <meta name="description" content="Understand AIP procurement requirements for U.S. airports. TarmacSync connects AIP funding to 2 CFR Part 200, Buy American, Grant Assurances, and competitive procurement rules.">
-  <meta property="og:title" content="AIP Procurement Requirements | TarmacSync">
-  <meta property="og:description" content="Understand AIP procurement requirements for U.S. airports. TarmacSync connects AIP funding to 2 CFR Part 200, Buy American, Grant Assurances, and competitive procurement rules.">
-  <meta property="og:type" content="website">
+  <title>AIP Procurement: Steps, Bids, and Grant Timing | TarmacSync</title>
+  <meta name="description" content="How AIP-funded purchases work: the key steps from notice of intent to award, sealed bids under 2 CFR 200.320, and when project costs become eligible.">
+  <meta property="og:title" content="AIP Procurement: Steps, Bids, and Grant Timing | TarmacSync">
+  <meta property="og:description" content="How AIP-funded purchases work: the key steps from notice of intent to award, sealed bids under 2 CFR 200.320, and when project costs become eligible.">
+  <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.tarmacsync.com/aip-procurement">
   <meta property="og:image" content="https://www.tarmacsync.com/assets/og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AIP Procurement Requirements | TarmacSync">
-  <meta name="twitter:description" content="Understand AIP procurement requirements for U.S. airports. TarmacSync connects AIP funding to 2 CFR Part 200, Buy American, Grant Assurances, and competitive procurement rules.">
+  <meta name="twitter:title" content="AIP Procurement: Steps, Bids, and Grant Timing | TarmacSync">
+  <meta name="twitter:description" content="How AIP-funded purchases work: the key steps from notice of intent to award, sealed bids under 2 CFR 200.320, and when project costs become eligible.">
   <meta name="twitter:image" content="https://www.tarmacsync.com/assets/og-preview.png">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.tarmacsync.com/aip-procurement">
@@ -22,7 +22,7 @@
   <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
   <link href="assets/fonts.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/site-shell.css">
-  <style>
+    <style>
     :root {
       --bg: #fff; --ink: #0a0a0d; --muted: #4a4a52; --orange: #b94e08;
       --line: #e5e5eb; --soft: #f9f9fb;
@@ -34,24 +34,134 @@
     .skip-link { position: absolute; left: -9999px; top: 0; background: var(--ink); color: #fff; padding: .7rem 1.1rem; z-index: 200; border-radius: 0 0 8px 0; font-size: .9rem; font-weight: 600; }
     .skip-link:focus { left: 0; }
     .container { width: min(800px, calc(100% - 2.5rem)); margin: 0 auto; }
+    main { padding-top: 3rem; padding-bottom: 2rem; }
     h1 { font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.15; letter-spacing: -.035em; margin-bottom: 1rem; }
-    h2 { font-size: 1.35rem; margin: 2.5rem 0 1rem; }
-    p { color: var(--muted); font-size: 1rem; line-height: 1.65; margin-bottom: 1rem; }
-    ul { margin: 0 0 1.5rem 1.25rem; color: var(--muted); line-height: 1.7; }
+    h2 { font-size: 1.45rem; line-height: 1.25; letter-spacing: -.02em; margin: 3rem 0 1rem; scroll-margin-top: 5rem; }
+    h3 { font-size: 1.05rem; margin: 1.75rem 0 .5rem; }
+    p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+    .lede { font-size: 1.15rem; color: #2f2f36; }
+    .byline { font-size: .85rem; color: var(--muted); margin-bottom: 1.75rem; }
+    ul, ol { margin: 0 0 1.5rem 1.25rem; color: var(--muted); line-height: 1.7; }
     li { margin-bottom: .5rem; }
-    .btn { display: inline-flex; align-items: center; justify-content: center;  padding: .5rem 1.05rem; border-radius: 980px; border: 1px solid transparent; font-family: var(--sans); font-size: .82rem; font-weight: 500; letter-spacing: -.008em; text-decoration: none; background: var(--ink); color: #fff; }
+    strong { color: var(--ink); }
+    a { color: var(--orange); text-underline-offset: 3px; }
+    .toc { border: 1px solid var(--line); background: var(--soft); border-radius: 12px; padding: 1.1rem 1.4rem .6rem; margin-bottom: 1rem; }
+    .toc-title { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+    .toc ol { margin: 0 0 .5rem 1.1rem; }
+    .toc a { color: var(--ink); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .table-wrap { overflow-x: auto; margin: 1.25rem 0 1rem; border: 1px solid var(--line); border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 560px; }
+    caption { text-align: left; padding: .9rem 1rem; font-weight: 600; color: var(--ink); border-bottom: 1px solid var(--line); }
+    th, td { text-align: left; vertical-align: top; padding: .75rem 1rem; border-bottom: 1px solid var(--line); color: var(--muted); }
+    th { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: var(--soft); }
+    td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .note { font-size: .88rem; }
+    .callout { border-left: 3px solid var(--orange); background: var(--soft); padding: .9rem 1.1rem; border-radius: 0 10px 10px 0; margin: 1.25rem 0; }
+    .callout p { margin: 0; color: #2f2f36; }
+    .cta-block { margin-top: 3rem; padding: 1.75rem; border: 1px solid var(--line); border-radius: 16px; background: var(--soft); }
+    .cta-block h2 { margin-top: 0; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .5rem 1.4rem; border-radius: 980px; border: 1px solid transparent; font-family: var(--sans); font-size: .95rem; font-weight: 500; text-decoration: none; background: var(--ink); color: #fff; }
     .btn:hover { background: #2d2d35; }
-
-
-
-
-    .inline-link { color: var(--orange); }
-      main { padding-top: 3rem; }
+    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
   </style>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "AIP procurement: the key steps, sealed bids, and grant timing",
+      "description": "How AIP-funded purchases work: the key steps from notice of intent to award, sealed bids under 2 CFR 200.320, and when project costs become eligible.",
+      "datePublished": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "inLanguage": "en-US",
+      "author": {
+        "@type": "Organization",
+        "name": "TarmacSync",
+        "url": "https://www.tarmacsync.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TarmacSync",
+        "url": "https://www.tarmacsync.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.tarmacsync.com/assets/tarmacsync-logo-sm.png"
+        }
+      },
+      "mainEntityOfPage": "https://www.tarmacsync.com/aip-procurement"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "TarmacSync",
+          "item": "https://www.tarmacsync.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AIP procurement",
+          "item": "https://www.tarmacsync.com/aip-procurement"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can we advertise for bids before the grant is executed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Advertising and opening bids come before the grant application in the Handbook’s common steps, and the contract is awarded after the grant offer is accepted. Project costs incurred before the grant is executed are generally not eligible, with an exception for entitlement funds and a few other cases set by statute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the ADO have to sign off on our award?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The award is the sponsor’s decision. Above the simplified acquisition threshold, you must notify the ADO in writing before award if the award is made without competition, only one bid is received, or the award goes to other than the apparent low bidder. The ADO also has the option to conduct a pre-award review in situations like these."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if every bid comes in over the estimate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Handbook does not prescribe a single answer. If you open bids before applying, it directs the ADO to issue the grant based on the actual bid amounts, not the programmed amount, so raise the gap with your ADO early. After the grant is executed, the agreement caps the federal share except as the amendment rules allow. The sponsor must have the non-federal funds for its share (Grant Assurance 3). You can also reject all bids with a documented reason and re-advertise. To prepare for this before you advertise, write the solicitation with a base bid and alternates ordered by available funding, as Table U-8 describes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the limit $350,000 or my airport’s own number?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The federal simplified acquisition threshold is $350,000. A recipient may adopt a lower threshold in its own policy, and when it does, the airport’s lower figure governs its own procedures. Ask your ADO which figure it applies to the written-notice rule."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do our state and local procurement rules still apply?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. 2 CFR 200.318(a) requires documented procurement procedures that align with state, local and tribal law and with the federal standards. In practice an airport follows both."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -73,23 +183,151 @@
     </div>
   </header>
   <main class="container" id="main-content" tabindex="-1">
-    <h1>AIP Procurement Requirements</h1>
-    <p>Airport Improvement Program (AIP) grants may involve procurement requirements. 2 CFR Part 200 (Uniform Guidance) establishes federal procurement standards. FAA AIP Handbook and related FAA guidance may provide additional airport-specific context; confirm the active edition, status, and applicability against current FAA sources. Grant Assurances impose obligations on airport sponsors, subject to the applicable program and current official text.</p>
-    <p>TarmacSync may help airport teams organize candidate procurement considerations and source links involving AIP, 2 CFR Part 200, domestic-preference requirements, DBE, Davis-Bacon, and Grant Assurances. Applicability depends on the funding, project, contract, airport policy, and current official guidance. The output is not a legal, grant, FAA, or procurement determination; airport staff, counsel, grant administrators, and applicable authorities must validate the path.</p>
+    <h1>AIP procurement: the key steps, sealed bids, and grant timing</h1>
+    <p class="lede">How an airport sponsor buys with Airport Improvement Program (AIP) funds, in the order it usually happens, and the rules that decide each step. Written from the FAA’s AIP Handbook (Order 5100.38D, Change 1) and 2 CFR Part 200.</p>
+    <p class="byline">By TarmacSync · Last reviewed October 3, 2026</p>
 
-    <h2>Procurement considerations that may apply to AIP-funded work</h2>
-    <ul>
-      <li><strong>Competition.</strong> Full and open competition is the default. The method (sealed bids, competitive proposals, or noncompetitive) depends on the purchase type and amount. 2 CFR § 200.320 outlines the methods of procurement.</li>
-      <li><strong>Buy American.</strong> AIP-funded projects are subject to domestic preference requirements for steel, iron, and manufactured goods. The Build America, Buy America Act (BABA) imposes separate domestic-content requirements for federally funded infrastructure projects. See FAA's Buy American preferences for current AIP-specific guidance.</li>
-      <li><strong>DBE.</strong> Many airport sponsors maintain an FAA-approved DBE program. The specific DBE requirements that apply to a given AIP-funded procurement depend on the project scope, contract value, and the airport's DBE goal methodology.</li>
-      <li><strong>Davis-Bacon.</strong> Prevailing wage requirements under the Davis-Bacon Act may apply when an AIP-funded project includes construction, alteration, or repair work. Applicability depends on project scope and contract amount. Reference: 2 CFR Part 200 Appendix II and FAA guidance.</li>
-      <li><strong>Grant Assurances.</strong> Airport sponsors accepting AIP grants agree to the current set of Grant Assurances. Compliance obligations span procurement, operations, civil rights, and reporting. Refer to the official Grant Assurances document for the current count and text.</li>
-    </ul>
+    <nav class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#short-version">The short version</a></li>
+        <li><a href="#key-steps">The key steps</a></li>
+        <li><a href="#grant-timing">Grant timing: when costs become eligible</a></li>
+        <li><a href="#sealed-bids">Sealed bids under 2 CFR 200.320</a></li>
+        <li><a href="#thresholds">Thresholds</a></li>
+        <li><a href="#cost-reasonableness">Cost reasonableness</a></li>
+        <li><a href="#bid-package">What goes in the bid package</a></li>
+        <li><a href="#faq">Common questions</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+    </nav>
 
-    <p>For official guidance, refer to the <a href="https://www.faa.gov/airports/aip/" class="inline-link">FAA AIP website</a> and the <a href="https://www.faa.gov/airports/aip/aip_handbook/" class="inline-link">AIP Handbook</a>. TarmacSync does not replace FAA or ADO review.</p>
+    <section id="short-version">
+      <h2>The short version</h2>
+      <ul>
+        <li><strong>Timing decides eligibility.</strong> Project costs must be incurred after the grant is executed unless the law allows otherwise. Entitlement funds, and a few other cases set by statute, are exceptions.</li>
+        <li><strong>Bids usually come before the application.</strong> The FAA expects the application to carry the actual bid amount, so sponsors usually advertise and open bids first.</li>
+        <li><strong>Above the simplified acquisition threshold, tell the ADO.</strong> Written notice before award is required in three situations, covered below.</li>
+        <li><strong>Local rules apply too.</strong> Your own state and local procurement procedures sit alongside the federal standards.</li>
+        <li><strong>Build the file as you go.</strong> The independent estimate, bid tabulation, price analysis and signed cost statement are what the ADO uses to judge cost reasonableness.</li>
+      </ul>
+    </section>
 
-    <p>Related TarmacSync guidance: <a href="/airport-procurement-policy" class="inline-link">airport procurement policy</a>, <a href="/cooperative-contracts-airports" class="inline-link">cooperative contracts for airports</a>, and the <a href="/resources" class="inline-link">airport procurement resources</a>.</p>
-    <a class="btn" href="/#report">Get the free report</a>
+    <section id="key-steps">
+      <h2>The key steps</h2>
+      <p>AIP-funded purchases follow a common order. Table 5-4 of the Handbook lists the key steps, and these are the ones that shape a purchase.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Common key steps from notice of intent to award</caption>
+          <thead><tr><th scope="col">Step</th><th scope="col">What happens</th><th scope="col">What it needs</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Notice of intent to use entitlement funds</td><td>If entitlement funds are used: by the deadline in the annual Federal Register notice</td></tr>
+            <tr><td>2</td><td>Advertise for bids</td><td>Specification, required federal contract provisions, Buy American certificate</td></tr>
+            <tr><td>3</td><td>Open bids</td><td>Public opening and bid tabulation; confirm the low bidder is responsive and responsible</td></tr>
+            <tr><td>4</td><td>Submit the grant application</td><td>Actual bid amount, cost-reasonableness file, local-share source</td></tr>
+            <tr><td>5</td><td>Accept the grant offer</td><td>The grant agreement sets the federal maximum</td></tr>
+            <tr><td>6</td><td>Award the contract</td><td>To the lowest responsive and responsible bidder</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">A selection from Table 5-4, in the order the Handbook lists them. The Handbook also lists earlier steps such as environmental review documents, final specifications and a DBE plan. It is not a mandated sequence, so confirm your schedule with your ADO.</p>
+    </section>
+
+    <section id="grant-timing">
+      <h2>Grant timing: when costs become eligible</h2>
+      <p>Under 49 USC 47110(b)(2), project costs must be incurred after the grant is executed unless the law specifically allows otherwise. That rule is why the order of the steps matters.</p>
+      <p>Entitlement funds have an exception. Costs paid with passenger, cargo or nonprimary entitlement funds may be reimbursed even if incurred before the grant is executed, as long as all other applicable AIP requirements have been met. For discretionary and state apportionment funds, the exceptions are narrow and set by statute.</p>
+      <p>In practice, sponsors advertise and open bids first, then apply. The Handbook states FAA policy that the application incorporates the actual bid or negotiated amount, and describes an application built on estimates as suboptimal. In the Handbook’s common sequence, the contract is awarded after the grant offer is accepted.</p>
+      <p>Early indications from your ADO are for planning only. Whether and when to start is the sponsor’s decision.</p>
+      <h3>The federal share and the ceiling</h3>
+      <p>The grant agreement sets the maximum federal cost, and total allowable federal costs cannot exceed it except as the amendment rules allow. The normal federal share for a small hub is 90% of allowable project costs. The FAA Reauthorization Act of 2024 added a temporary 95% share for nonhub and nonprimary airports in fiscal years 2025 and 2026; small hubs stay at 90%.</p>
+    </section>
+
+    <section id="sealed-bids">
+      <h2>Sealed bids under 2 CFR 200.320</h2>
+      <p>Sealed bidding, called formal advertising in the Handbook edition, is the standard method for larger purchases. Bids are publicly solicited and publicly opened at the time and place in the invitation, and a firm fixed price contract is awarded in writing to the lowest responsive and responsible bidder. It works when three things are true:</p>
+      <ul>
+        <li>There is a complete, adequate and realistic specification.</li>
+        <li>Two or more responsible bidders are willing and able to compete.</li>
+        <li>The purchase suits a firm fixed price contract, and selection can be made principally on price.</li>
+      </ul>
+      <h3>Notify the ADO before award</h3>
+      <p>If the purchase is expected to exceed the simplified acquisition threshold, you must notify the ADO in writing before award in three situations: the award will be made without competition, only one bid is received, or the award will go to other than the apparent low bidder. The ADO also has the option to conduct a pre-award review in situations like these, or, above that threshold, when a brand-name product is specified.</p>
+      <h3>Responsive, responsible, and apparent low</h3>
+      <p>The apparent low bidder is simply the lowest-priced bid, before any finding on whether it is responsive or responsible. A responsible bidder can perform successfully, considering integrity, compliance with public policy, past performance, and financial and technical resources. If you reject a bid, you must document and justify the reason.</p>
+      <h3>Say how the winner will be chosen</h3>
+      <p>Bid documents must state how the successful bid will be determined. That can include bid alternates and the availability of federal funding. With alternates, the solicitation must set the base bid and the order of the alternates based on available funding.</p>
+      <h3>Keep the specification open</h3>
+      <p>Requirements that narrow the field can reduce the number of bidders, which undermines the method itself. The Handbook’s example is specifying snow removal equipment built to highway-vehicle standards.</p>
+    </section>
+
+    <section id="thresholds">
+      <h2>Thresholds</h2>
+      <p>Two federal thresholds set how much of the process applies to a purchase.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Federal procurement thresholds</caption>
+          <thead><tr><th scope="col">Threshold</th><th scope="col">Amount</th><th scope="col">Where it matters here</th></tr></thead>
+          <tbody>
+            <tr><td>Micro-purchase</td><td>$15,000</td><td>The federal micro-purchase threshold. A recipient may self-certify a higher one, up to $50,000, under 2 CFR 200.320(a)(1)</td></tr>
+            <tr><td>Simplified acquisition</td><td>$350,000</td><td>Between the micro-purchase threshold and this one, small-purchase procedures are allowed. Above it: sealed bids or proposals, a cost or price analysis, and written notice to the ADO before award in the three situations above</td></tr>
+            <tr><td>Your own policy</td><td>Set by you</td><td>A recipient may adopt a lower threshold in its own policy</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><p>The current Handbook (Order 5100.38D, Change 1) still shows $150,000 for the simplified acquisition threshold, citing the older 2 CFR 200.88. The current federal figure is $350,000.</p></div>
+    </section>
+
+    <section id="cost-reasonableness">
+      <h2>Cost reasonableness</h2>
+      <p>Under 2 CFR 200.324, you make an independent estimate before receiving bids, and above the simplified acquisition threshold you perform a cost or price analysis. For equipment purchases, Table 3-67 of the Handbook lists what the file contains:</p>
+      <ul>
+        <li><strong>Two or more sealed bids:</strong> a price analysis (above the simplified acquisition threshold), the engineer’s estimate, a signed sponsor statement that the cost is reasonable and, where one was required, that a price analysis was performed, and the bid tabulation.</li>
+        <li><strong>A single bidder:</strong> a cost analysis, the engineer’s estimate, a signed statement recommending the FAA accept it, and the bid tabulation.</li>
+      </ul>
+    </section>
+
+    <section id="bid-package">
+      <h2>What goes in the bid package</h2>
+      <ul>
+        <li><strong>The FAA’s required contract provisions.</strong> 2 CFR 200.327 and Appendix II to Part 200 require the applicable provisions in the sponsor’s contracts. For AIP, that means the FAA’s required provisions go into the bid package. The Handbook edition reproduces this section as 200.326.</li>
+        <li><strong>A Buy American certificate.</strong> 49 USC 50101 sets the rule. Per Handbook Table X-1, the sponsor either certifies that all products are wholly produced in the United States from 100% U.S. materials, certifies that the equipment is on the Nationwide Buy American conformance list, or requests a waiver.</li>
+        <li><strong>Written protest procedures.</strong> By FAA policy they must be in place before an AIP-funded procurement starts, and the ADO gets a copy of any protest and its resolution.</li>
+        <li><strong>Your local procedures.</strong> 2 CFR 200.318(a) requires documented procedures that align with state, local and tribal law as well as the federal standards.</li>
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2>Common questions</h2>
+      <h3>Can we advertise for bids before the grant is executed?</h3>
+      <p>Yes. Advertising and opening bids come before the grant application in the Handbook’s common steps, and the contract is awarded after the grant offer is accepted. Project costs incurred before the grant is executed are generally not eligible, with an exception for entitlement funds and a few other cases set by statute.</p>
+      <h3>Does the ADO have to sign off on our award?</h3>
+      <p>No. The award is the sponsor’s decision. Above the simplified acquisition threshold, you must notify the ADO in writing before award if the award is made without competition, only one bid is received, or the award goes to other than the apparent low bidder. The ADO also has the option to conduct a pre-award review in situations like these.</p>
+      <h3>What if every bid comes in over the estimate?</h3>
+      <p>The Handbook does not prescribe a single answer. If you open bids before applying, it directs the ADO to issue the grant based on the actual bid amounts, not the programmed amount, so raise the gap with your ADO early. After the grant is executed, the agreement caps the federal share except as the amendment rules allow. The sponsor must have the non-federal funds for its share (Grant Assurance 3). You can also reject all bids with a documented reason and re-advertise. To prepare for this before you advertise, write the solicitation with a base bid and alternates ordered by available funding, as Table U-8 describes.</p>
+      <h3>Is the limit $350,000 or my airport’s own number?</h3>
+      <p>The federal simplified acquisition threshold is $350,000. A recipient may adopt a lower threshold in its own policy, and when it does, the airport’s lower figure governs its own procedures. Ask your ADO which figure it applies to the written-notice rule.</p>
+      <h3>Do our state and local procurement rules still apply?</h3>
+      <p>Yes. 2 CFR 200.318(a) requires documented procurement procedures that align with state, local and tribal law and with the federal standards. In practice an airport follows both.</p>
+    </section>
+
+    <section id="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://www.faa.gov/airports/aip/aip_handbook/">AIP Handbook, FAA Order 5100.38D, Change 1</a></li>
+        <li><a href="https://www.ecfr.gov/current/title-2/section-200.320">2 CFR 200.320</a> (methods of procurement), <a href="https://www.ecfr.gov/current/title-2/section-200.324">200.324</a> (cost and price), <a href="https://www.ecfr.gov/current/title-2/section-200.327">200.327</a> (contract provisions), <a href="https://www.ecfr.gov/current/title-2/section-200.318">200.318</a> (general standards)</li>
+        <li><a href="https://www.law.cornell.edu/uscode/text/49/47110">49 USC 47110</a> (grants) and <a href="https://www.law.cornell.edu/uscode/text/49/47109">49 USC 47109</a> (federal share)</li>
+        <li><a href="https://www.faa.gov/airports/aip/grant_assurances/">FAA Grant Assurances for airport sponsors</a></li>
+        <li><a href="https://www.faa.gov/airports/aip/">FAA Airport Improvement Program</a></li>
+      </ul>
+      <p class="note">Written from Order 5100.38D, Change 1, the edition in effect at the last review. Check the FAA’s AIP Handbook page for newer editions.</p>
+    </section>
+
+    <section class="cta-block" aria-labelledby="cta-title">
+      <h2 id="cta-title">See it applied to one purchase.</h2>
+      <p>The demo walks through a fictional runway broom replacement with AIP and local match, from the first question to a review-ready file.</p>
+      <a class="btn" href="/tour" data-tour-cta="guide">Watch the demo</a>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="site-footer__inner">

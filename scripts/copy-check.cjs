@@ -16,7 +16,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html'];
+const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'aip-procurement.html'];
 
 const BANNED = [
   /check current text/i,
@@ -121,6 +121,42 @@ test('book-a-call.html: a short button label, no agenda list, no repeated call f
   assert.match(raw, /\.selected-plan\[hidden\]\s*\{\s*display:\s*none/, 'CSS lets [hidden] win over the box’s own display');
   assert.equal((t.match(/30 minutes/gi) || []).length, 1, '"30 minutes" is said once');
   assert.ok(!/\bOnline\b/.test(t), 'no "Online" chip');
+});
+
+test('aip-procurement.html: a sourced guide, with its structured data matching what is on the page', () => {
+  const raw = fs.readFileSync(path.join(root, 'aip-procurement.html'), 'utf8');
+  const text = visibleText('aip-procurement.html');
+  assert.match(raw, /<title>AIP Procurement: Steps, Bids, and Grant Timing \| TarmacSync<\/title>/);
+  assert.match(raw, /<h1[^>]*>AIP procurement: the key steps, sealed bids, and grant timing<\/h1>/);
+  assert.ok(text.split(' ').length >= 1300, 'a real guide, not a landing blurb (' + text.split(' ').length + ' words)');
+  // Facts that must be present, each traced to a source reviewed for the demo.
+  ['\\$350,000', '\\$15,000', '49 USC 47110', '2 CFR 200\\.320', 'Table 5-4', 'notify the ADO in writing', 'apparent low bidder', 'engineer’s estimate', 'Buy American', 'Last reviewed'].forEach((p) => assert.match(text, new RegExp(p), 'missing: ' + p));
+  const rows = (raw.match(/<tr>/g) || []).length;
+  assert.ok(rows >= 8, 'the key-steps table and the thresholds table are present (' + rows + ' rows)');
+  assert.ok(/ecfr\.gov/.test(raw) && /faa\.gov\/airports\/aip/.test(raw), 'official sources are linked');
+  assert.ok(!/cooperative|Sourcewell|Pathfinder/i.test(text), 'no cooperative-contract or internal-name content in this guide');
+  // Structured data: valid, and the FAQ markup is exactly the visible FAQ.
+  const ld = [...raw.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  const types = ld.flatMap((o) => (o['@graph'] || [o]).map((i) => i['@type']));
+  ['Article', 'BreadcrumbList', 'FAQPage'].forEach((ty) => assert.ok(types.includes(ty), 'JSON-LD includes ' + ty));
+  const faq = ld.flatMap((o) => o['@graph'] || [o]).find((i) => i['@type'] === 'FAQPage');
+  const ldQs = faq.mainEntity.map((q) => q.name);
+  const faqSec = (raw.match(/<section[^>]*id="faq"[\s\S]*?<\/section>/) || [''])[0];
+  const pageQs = [...faqSec.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim());
+  assert.deepEqual(ldQs, pageQs, 'FAQ structured data lists exactly the visible questions');
+  faq.mainEntity.forEach((q, i) => {
+    const visible = (faqSec.split(/<h3[^>]*>/)[i + 1] || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+    assert.ok(visible.includes(q.acceptedAnswer.text.slice(0, 40)), 'answer ' + (i + 1) + ' on the page starts the same as the structured data');
+  });
+  assert.match(raw, /<a[^>]*class="btn[^"]*"[^>]*href="\/tour"[^>]*>Watch the demo<\/a>/, 'the guide ends by pointing at the demo');
+  // Corrections from the independent accuracy review (2026-10-03): each wrong or overstated claim stays out.
+  assert.ok(!/hold (them|bids)|bids held|held until/i.test(text), 'the Handbook says nothing about holding bids until the grant is accepted');
+  assert.ok(!/any gap is the sponsor/i.test(text), 'the over-estimate answer must not say the grant already caps the federal share when bids are opened first');
+  assert.ok(!/Does the ADO have to sign off[\s\S]{0,60}Not in every case/i.test(text), 'the ADO is notified or may review; it does not sign off the award');
+  assert.ok(!/some printed editions/i.test(text), 'the current Handbook itself still shows $150,000');
+  assert.match(text, /not the programmed amount/, 'the Handbook directs the grant to be based on the actual bid amounts');
+  assert.match(text, /self-certify/, 'the micro-purchase row mentions self-certification');
+  assert.match(text, /newer editions/, 'the page tells readers to check for newer Handbook editions');
 });
 
 test('index.html: the how-it-works example is the demo’s purchase', () => {
