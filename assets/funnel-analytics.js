@@ -24,7 +24,7 @@
     }
 
     var href = target.getAttribute('href') || '';
-    if (target.id === 'booking-link' || href.indexOf('/book-a-call.html') !== -1 || href.indexOf('zohobookings.eu') !== -1) {
+    if (target.id === 'booking-link' || href.indexOf('/book-a-call') !== -1 || href.indexOf('zohobookings.eu') !== -1) {
       track('booking_intent_click');
     }
   });

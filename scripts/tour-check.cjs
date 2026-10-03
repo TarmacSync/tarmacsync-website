@@ -72,7 +72,7 @@ section('final state: discrepancy flagged, open items grouped, drafts offered, f
   assert.equal(await count(page, '.attachment'), 4);
   assert.equal(await page.locator('#finish').isVisible(), true);
   const cta = page.locator('#finish a.button');
-  assert.equal(await cta.getAttribute('href'), '/book-a-call.html', 'the primary end-of-demo action is the booking page');
+  assert.equal(await cta.getAttribute('href'), '/book-a-call', 'the primary end-of-demo action is the booking page');
   assert.match(await cta.innerText(), /book a call/i);
   const email = page.locator('#finish [data-contact-cta="tour_email"]');
   assert.equal(await email.getAttribute('href'), 'mailto:contact@tarmacsync.com');
@@ -514,11 +514,11 @@ section('stage tracker: the five homepage stages light up in order as the demo p
 
 section('continuity: header mirrors the site CTA; the finish card leads back into the site and can replay', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
-  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/book-a-call.html');
+  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/book-a-call');
   assert.match(await page.locator('.header-cta').innerText(), /^book a call$/i);
   assert.ok(!/free report/i.test(await page.locator('header').innerText()), 'no report offer anywhere in the demo header');
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-  assert.ok(links.includes('/book-a-call.html'), 'Book a call');
+  assert.ok(links.includes('/book-a-call'), 'Book a call');
   assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'email fallback');
   assert.ok(!links.includes('/#report'), 'no report download at the end of the demo');
   assert.ok(links.includes('/#product-model'), 'back to How TarmacSync works');

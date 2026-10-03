@@ -25,7 +25,7 @@ const today = new Date().toISOString().slice(0, 10);
 const dirty = new Set(git(['status', '--porcelain']).split('\n').map((l) => l.slice(3).trim()));
 const lastmod = (f) => (dirty.has(f) ? today : git(['log', '-1', '--format=%cs', '--', f]) || today);
 
-const url = (f) => ORIGIN + '/' + (f === 'index.html' ? '' : f);
+const url = (f) => ORIGIN + '/' + (f === 'index.html' ? '' : f.replace(/\.html$/, ''));
 const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   pages.map((f) => '  <url>\n    <loc>' + url(f) + '</loc>\n    <lastmod>' + lastmod(f) + '</lastmod>\n  </url>').join('\n') + '\n</urlset>\n';
 

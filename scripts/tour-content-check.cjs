@@ -292,8 +292,8 @@ test('homepage: the static illustrative example is gone and the demo is linked i
   assert.ok(!home.includes('sample-snapshot'), 'no anchor to the removed example');
   assert.ok(!/Illustrative, manually prepared example/.test(home), 'old example copy removed');
   assert.ok(!/\$180,000/.test(home), 'old $180,000 example removed');
-  assert.match(home, /href="\/tour\.html"[^>]*data-tour-cta="hero"/);
-  assert.match(home, /href="\/tour\.html"[^>]*data-tour-cta="workflow"/);
+  assert.match(home, /href="\/tour"[^>]*data-tour-cta="hero"/);
+  assert.match(home, /href="\/tour"[^>]*data-tour-cta="workflow"/);
   assert.match(home, /fictional/i);
   assert.ok(!CODENAME.test(home), 'codename not on the homepage');
 });
@@ -335,7 +335,7 @@ test('continuity: every demo entry point on the homepage uses the same name and 
   ['hero', 'vision', 'workflow'].forEach((where) => {
     const m = home.match(new RegExp('<a[^>]*data-tour-cta="' + where + '"[^>]*>([\\s\\S]*?)</a>'));
     assert.ok(m, 'entry point ' + where + ' exists');
-    assert.match(m[0], /href="\/tour\.html"/);
+    assert.match(m[0], /href="\/tour"/);
     assert.match(m[0], /class="[^"]*\bbtn\b/, where + ' is a real button');
     assert.equal(m[1].replace(/<[^>]+>/g, '').replace(/\s*→$/, '').trim(), 'Watch the demo', where + ' label');
   });
@@ -379,7 +379,7 @@ test('quiet chrome: no header label, footer tagline or disclosure footnote; the 
 test('continuity: the demo page mirrors the site header CTA and hands people back to the site', () => {
   const t = read('tour.html');
   const header = t.match(/<header class="tour-header"[\s\S]*?<\/header>/)[0];
-  assert.match(header, /class="header-cta"[^>]*href="\/book-a-call\.html"[^>]*>Book a call</);
+  assert.match(header, /class="header-cta"[^>]*href="\/book-a-call"[^>]*>Book a call</);
   assert.match(header, /<a class="brand" href="\/" aria-label="TarmacSync home">/, 'the logo is the way back to the site');
   assert.ok(!/Back to (tarmacsync\.com|site)|class="exit/.test(t), 'no "back to the site" button: the demo is already on the site');
   assert.ok(!/free report|data-report-cta|\/#report/.test(t.replace(/<noscript>[\s\S]*?<\/noscript>/, '')), 'no report offer left on the demo page');
@@ -509,14 +509,14 @@ test('homepage path example tells the same story as the demo', () => {
 test('end of the demo: Book a call is the primary action, with a visible email fallback, and no report offer', () => {
   const t = read('tour.html');
   const finish = t.match(/<section class="finish"[\s\S]*?<\/section>/)[0];
-  assert.match(finish, /<a class="button" href="\/book-a-call\.html"[^>]*>Book a call/);
+  assert.match(finish, /<a class="button" href="\/book-a-call"[^>]*>Book a call/);
   assert.match(finish, /Prefer email\?[\s\S]*contact@tarmacsync\.com/, 'the address is shown as text');
   assert.match(finish, /href="mailto:contact@tarmacsync\.com"[^>]*data-contact-cta="tour_email"|data-contact-cta="tour_email"[^>]*href="mailto:contact@tarmacsync\.com"/);
   assert.ok(!/data-report-cta|\/#report/.test(finish), 'finish card has no report link');
   assert.match(t.match(/<noscript>[\s\S]*?<\/noscript>/)[0], /book-a-call/, 'the no-JavaScript fallback offers the same route');
   const analytics = read('assets/funnel-analytics.js');
   assert.match(analytics, /data-contact-cta/, 'email clicks are measured');
-  assert.match(analytics, /book-a-call\.html/, 'booking clicks are measured');
+  assert.match(analytics, /\/book-a-call/, 'booking clicks are measured');
 });
 
 test('the tour page no longer points at the removed homepage anchor', () => {
