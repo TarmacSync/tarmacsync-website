@@ -599,6 +599,8 @@ section('phone: the full header takes one row at 320px, its menu works, and noth
 
 section('desktop: with the full header the demo still fits the first screen and the footer sits below it', async (browser) => {
   const { page, context } = await fresh(browser, { width: 1440, height: 900 });
+  const gap = await page.evaluate(() => document.querySelector('#stages').getBoundingClientRect().top - document.querySelector('#banner').getBoundingClientRect().bottom);
+  assert.ok(gap >= 36, 'space between the header area and the demo (' + Math.round(gap) + 'px)');
   const r = await page.evaluate(() => ({ controls: document.querySelector('.controls').getBoundingClientRect().bottom, footer: document.querySelector('.site-footer').getBoundingClientRect().top + scrollY }));
   assert.ok(r.controls <= 900, 'the playback controls are on the first screen (bottom ' + Math.round(r.controls) + 'px)');
   assert.ok(r.footer >= 892, 'the footer starts below the first screen (' + Math.round(r.footer) + 'px)');
