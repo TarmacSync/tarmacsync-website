@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 // The site header and footer are defined here once and rendered into every page that uses the
-// shared layout. The booking page and the 404 are focused layouts and are left alone; the demo
-// keeps its own app header but takes the shared footer. Run `node scripts/build-chrome.cjs` after
-// editing a template; `--check` fails if any page has drifted. Paths are absolute so the markup
-// is identical wherever it is rendered.
+// shared layout: every page, including the booking page and the 404. Only the demo keeps its own
+// full-screen app header, and takes the shared footer. A page with no footer gets one inserted
+// after its <main>. Run `node scripts/build-chrome.cjs` after editing a template; `--check` fails
+// if any page has drifted. Paths are absolute so the markup is identical wherever it is rendered.
 const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const EXCLUDED = new Set(['404.html', 'book-a-call.html']);
+const EXCLUDED = new Set();
 const FOOTER_ONLY = new Set(['tour.html']);
 
 const NAV = [
@@ -56,7 +56,9 @@ pages.forEach((f) => {
   const p = path.join(root, f);
   const src = fs.readFileSync(p, 'utf8');
   let out = FOOTER_ONLY.has(f) ? src : src.replace(/<header[\s>][\s\S]*?<\/header>/, () => header(f));
-  out = out.replace(/<footer[\s>][\s\S]*?<\/footer>/, () => footer());
+  out = /<footer[\s>]/.test(out)
+    ? out.replace(/<footer[\s>][\s\S]*?<\/footer>/, () => footer())
+    : out.replace('</main>', () => '</main>\n  ' + footer());
   if (out !== src) drift.push(f);
   if (!process.argv.includes('--check') && out !== src) fs.writeFileSync(p, out);
 });

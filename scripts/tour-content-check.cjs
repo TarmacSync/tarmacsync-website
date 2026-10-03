@@ -120,8 +120,6 @@ test('scenario is AIP + local match with competitive bidding: no cooperative con
   const coop = /cooperative|consortium|NPC-4471|MRC-2210|candidate agreement|piggyback/i;
   assert.ok(!coop.test(strings(script).join('\n')), 'script');
   ['tour.html', 'assets/tour/tour-ui.js', 'assets/tour/tour.css'].forEach((p) => assert.ok(!coop.test(read(p)), p));
-  const section = read('index.html').match(/<section[^>]*id="interactive-demo"[\s\S]*?<\/section>/)[0];
-  assert.ok(!coop.test(section), 'homepage demo section');
 });
 
 test('sealed bids are described from 2 CFR 200.320 and the Handbook, including what happens after bid opening', () => {
@@ -295,7 +293,7 @@ test('homepage: the static illustrative example is gone and the demo is linked i
   assert.ok(!/Illustrative, manually prepared example/.test(home), 'old example copy removed');
   assert.ok(!/\$180,000/.test(home), 'old $180,000 example removed');
   assert.match(home, /href="\/tour\.html"[^>]*data-tour-cta="hero"/);
-  assert.match(home, /href="\/tour\.html"[^>]*data-tour-cta="section"/);
+  assert.match(home, /href="\/tour\.html"[^>]*data-tour-cta="workflow"/);
   assert.match(home, /fictional/i);
   assert.ok(!CODENAME.test(home), 'codename not on the homepage');
 });
@@ -334,12 +332,40 @@ test('continuity: stateAt exposes the stage, from none at the start to all five 
 
 test('continuity: every demo entry point on the homepage uses the same name and links to the demo', () => {
   const home = read('index.html');
-  ['hero', 'vision', 'section', 'workflow'].forEach((where) => {
+  ['hero', 'vision', 'workflow'].forEach((where) => {
     const m = home.match(new RegExp('<a[^>]*data-tour-cta="' + where + '"[^>]*>([\\s\\S]*?)</a>'));
     assert.ok(m, 'entry point ' + where + ' exists');
     assert.match(m[0], /href="\/tour\.html"/);
-    assert.match(m[1].replace(/<[^>]+>/g, ''), /2-minute demo/, where + ' says "2-minute demo"');
+    assert.match(m[0], /class="[^"]*\bbtn\b/, where + ' is a real button');
+    assert.equal(m[1].replace(/<[^>]+>/g, '').replace(/\s*→$/, '').trim(), 'Watch the demo', where + ' label');
   });
+  assert.ok(!/id="interactive-demo"|Interactive demonstration|data-tour-cta="section"/.test(home), 'the redundant "interactive demonstration" section is gone');
+});
+
+test('demo buttons say "Watch the demo" everywhere; "2-minute" appears nowhere on the site', () => {
+  fs.readdirSync(root).filter((f) => f.endsWith('.html')).forEach((f) => assert.ok(!/2-minute/.test(read(f)), f + ' still says "2-minute"'));
+});
+
+test('homepage report section: titled with the report, one simple form heading, no filler', () => {
+  const home = read('index.html');
+  const sec = home.match(/<section[^>]*id="report"[\s\S]*?<\/section>/)[0];
+  assert.match(sec, /<h2 class="partner-title">Get the Report: The Airport Infrastructure Delivery Gap<\/h2>/);
+  assert.ok(!/<h3 class="form-card-title">[^<]*Delivery Gap/.test(sec), 'the form heading is simple, not a second copy of the title');
+  assert.match(sec, /<h3 class="form-card-title">Where should we send it\?<\/h3>/);
+  assert.ok(!/Read it before your next project handoff/.test(sec), 'no closing filler');
+  assert.ok(sec.indexOf('Inside the report') < sec.indexOf('partner-benefits'), '"Inside the report" sits above the three points');
+  assert.ok(!/Pre-launch/.test(home), 'no pre-launch strap on the homepage');
+});
+
+test('demo page uses the site’s palette, on a white background', () => {
+  const css = read('assets/tour/tour.css');
+  const rootBlock = css.match(/:root\{([^}]*)\}/)[1];
+  const tok = (k) => (rootBlock.match(new RegExp('--' + k + ':(#[0-9a-f]{3,6})', 'i')) || [])[1] || '';
+  assert.equal(tok('bg').toLowerCase(), '#fff', 'page background is white, like the rest of the site');
+  assert.equal(tok('ink').toLowerCase(), '#17191f', 'text colour matches the site');
+  assert.equal(tok('line').toLowerCase(), '#e4e6ea', 'borders match the site');
+  assert.equal(tok('brand').toLowerCase(), '#17191f', 'primary buttons are the site’s dark buttons');
+  assert.ok(!/#f7f5f1|#6a5a48|#5b4d3f|#8a6f4d|#2f2922|#e5e1d9|#faf8f4|#6b5f51/i.test(css), 'no leftover earth-tone colours');
 });
 
 test('quiet chrome: no header label, footer tagline or disclosure footnote; the banner still says fictional and scripted', () => {
