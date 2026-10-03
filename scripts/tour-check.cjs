@@ -600,6 +600,43 @@ section('phone: the opened Project file does not repeat its own title', async (b
   await context.close();
 });
 
+section('homepage product section: the toggle swaps the scenario and the layout holds on desktop and phones', async (browser) => {
+  {
+    const { page, context } = await fresh(browser, { width: 1280, height: 900, path: '/index.html' });
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A path that fits your purchase');
+    await page.locator('#product [data-view="example"]').click();
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'Sealed competitive bids');
+    assert.match(await page.locator('#ts-purchase').innerText(), /\$650,000/);
+    assert.equal(await page.locator('#product [data-view="example"]').getAttribute('aria-pressed'), 'true');
+    await page.locator('#product [data-view="overview"]').click();
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A path that fits your purchase');
+    await context.close();
+  }
+  for (const width of [390, 320]) {
+    const { page, context } = await fresh(browser, { width, height: 844, path: '/index.html' });
+    await page.locator('#product').scrollIntoViewIfNeeded();
+    assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
+    for (const v of ['overview', 'example']) {
+      const box = await page.locator('#product [data-view="' + v + '"]').boundingBox();
+      assert.ok(box.height >= 44 && box.x >= 0 && box.x + box.width <= width, width + 'px: the ' + v + ' toggle is a full-size tap target on screen');
+    }
+    await context.close();
+  }
+});
+
+section('homepage closing line: one sentence on one line, with space before its button', async (browser) => {
+  for (const width of [1440, 1280]) {
+    const { page, context } = await fresh(browser, { width, height: 900, path: '/index.html' });
+    const r = await page.evaluate(() => {
+      const h = document.querySelector('[aria-label="Call to action"] h2'), b = document.querySelector('[aria-label="Call to action"] .btn');
+      return { lines: Math.round(h.getBoundingClientRect().height / parseFloat(getComputedStyle(h).lineHeight)), gap: b.getBoundingClientRect().top - h.getBoundingClientRect().bottom };
+    });
+    assert.equal(r.lines, 1, width + 'px: the closing sentence takes ' + r.lines + ' lines');
+    assert.ok(r.gap >= 20, width + 'px: only ' + Math.round(r.gap) + 'px between the sentence and the button');
+    await context.close();
+  }
+});
+
 section('pricing: the profile sentence sits on one line on desktop and wraps cleanly on a phone', async (browser) => {
   for (const [width, oneLine] of [[1440, true], [1280, true], [390, false]]) {
     const { page, context } = await fresh(browser, { width, height: 900, path: '/pricing.html' });

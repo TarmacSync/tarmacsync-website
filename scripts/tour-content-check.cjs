@@ -501,13 +501,33 @@ test('state and local law: a sourced note in the route reply, the file and the c
   assert.match(strings(script.artifacts.memo).join(' '), /state/i);
 });
 
-test('homepage path example tells the same story as the demo', () => {
-  const card = read('index.html').match(/<article class="path-card path-card-output">[\s\S]*?<\/article>/)[0];
-  assert.ok(!/cooperative|\$180K|operating funds/i.test(card), 'no leftover cooperative / $180K / operating-funds example');
-  assert.match(card, /\$650K/);
-  assert.match(card, /AIP \+ local match/);
-  assert.match(card, /Sealed competitive bids/);
-  assert.match(card, /\$610K/, 'the open issue is the demo\'s capital plan difference');
+test('homepage product section: context → TarmacSync → path, with the demo’s own scenario in its example', () => {
+  const home = read('index.html');
+  const a = home.indexOf('id="product"'), b = home.indexOf('id="product-model"');
+  assert.ok(a > 0 && b > a, 'section #product exists and comes before the five stages');
+  const sec = home.slice(a, b);
+  assert.match(sec, /<h2[^>]*>A clearer path to your next purchase\.<\/h2>/);
+  assert.match(sec, /data-view="overview"[^>]*>How it works</, 'the overview tab');
+  assert.match(sec, /data-view="example"[^>]*>Sweeper example</, 'the example tab');
+  ['Your airport’s context', 'The intelligence layer', 'A path you can act on', 'Your team reviews and decides.'].forEach((t) => assert.ok(sec.includes(t), 'section says: ' + t));
+  assert.ok(!/Pathfinder|Sourcewell|033126|ASH North America|cooperative route|Unvalidated|Product concept|independently verified/i.test(sec), 'no internal name, contract number, off-story route or disclaimer footnote');
+  const ex = (sec.match(/const example\s*=\s*\{[\s\S]*?\};/) || [''])[0];
+  assert.ok(ex, 'the example state is defined');
+  ['\\$650,000', 'AIP', '\\$100,000', 'Sealed competitive bids', '\\$610,000', 'Independent estimate'].forEach((p) => assert.match(ex, new RegExp(p), 'the example mentions ' + p));
+  assert.ok(!/cooperative/i.test(ex), 'the example is the demo’s sealed-bid story, not a cooperative one');
+});
+
+test('homepage flow: hero, product, how it works, what you keep, film, founder, FAQ, report, then the closing line', () => {
+  const home = read('index.html');
+  const marks = ['aria-label="Hero"', 'id="product"', 'id="product-model"', 'id="trust"', 'id="vision"', 'id="founder"', 'id="faq"', 'id="report"', 'aria-label="Call to action"'];
+  const at = marks.map((m) => home.indexOf(m));
+  at.forEach((i, n) => assert.ok(i > 0, marks[n] + ' exists'));
+  assert.deepEqual([...at].sort((a, b) => a - b), at, 'sections are in the agreed order');
+  assert.equal((home.match(/id="product"/g) || []).length, 1, '#product is the product section only (the film is #vision)');
+  assert.ok(!/aria-label="Between projects"/.test(home), 'no standalone "Between projects" section');
+  const trust = home.match(/<section[^>]*id="trust"[\s\S]*?<\/section>/)[0];
+  assert.ok(/<details/.test(trust) && /Between projects/.test(trust), 'its content sits in a disclosure under the pillars');
+  assert.ok(!/aria-label="The problem"|path-card/.test(home), 'the old problem section and its cards are gone');
 });
 
 test('end of the demo: Book a call is the primary action, with a visible email fallback, and no report offer', () => {
