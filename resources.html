@@ -41,12 +41,6 @@
     .resource-link { display: block; margin-bottom: .35rem; color: var(--orange); text-decoration: none; font-weight: 600; }
     .resource-link:hover { text-decoration: underline; }
     .resource-desc { color: var(--muted); font-size: .9rem; margin-bottom: 1rem; }
-    .resource-cards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin: 1.5rem 0 3rem; list-style: none; }
-    .resource-card { display: flex; flex-direction: column; min-height: 180px; padding: 1.25rem; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-    .resource-card-status { width: fit-content; margin-bottom: 1.2rem; padding: .25rem .5rem; border-radius: 999px; background: #fff3e9; color: var(--orange); font-family: var(--mono); font-size: .56rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-    .resource-card h3 { font-size: 1rem; line-height: 1.4; letter-spacing: -.015em; }
-    .resource-card p { margin: auto 0 0; padding-top: 1rem; font-size: .8rem; line-height: 1.5; }
-    @media (max-width: 760px) { .resource-cards { grid-template-columns: 1fr; } .resource-card { min-height: 0; } }
     .btn { display: inline-flex; align-items: center; justify-content: center;  padding: .5rem 1.05rem; border-radius: 980px; border: 1px solid transparent; font-family: var(--sans); font-size: .82rem; font-weight: 500; letter-spacing: -.008em; text-decoration: none; background: var(--ink); color: #fff; margin-top: 2rem; }
     .btn:hover { background: #2d2d35; }
 
@@ -92,40 +86,21 @@
     <div class="legal-page-main">
       <div class="legal-page-header">
         <h1>Airport Procurement Resources</h1>
-        <p class="intro">A curated reference for U.S. airport procurement teams. Official-source links point to FAA, government, and industry resources; upcoming TarmacSync worksheets are clearly labeled. For regulatory questions, always confirm with your ADO, counsel, or the applicable official source.</p>
+        <p class="intro">A curated reference for U.S. airport procurement teams. Official-source links point to FAA, government, and industry resources.</p>
       </div>
-
-    <h2>TarmacSync Worksheets</h2>
-    <ul class="resource-cards" aria-label="TarmacSync procurement worksheets">
-      <li class="resource-card">
-        <span class="resource-card-status">Coming soon</span>
-        <h3>Airport Procurement Path Checklist</h3>
-        <p>A concise starting point for the facts and approvals that can shape an airport purchase.</p>
-      </li>
-      <li class="resource-card">
-        <span class="resource-card-status">Coming soon</span>
-        <h3>Cooperative Contract Validation Checklist</h3>
-        <p>A structured review of scope, authority, funding fit, contract status, and price support.</p>
-      </li>
-      <li class="resource-card">
-        <span class="resource-card-status">Coming soon</span>
-        <h3>Purchasing Policy and Delegated Authority Intake Worksheet</h3>
-        <p>A practical worksheet for recording local thresholds, delegated authority, and required reviews.</p>
-      </li>
-    </ul>
 
     <h2>FAA Guidance</h2>
     <a class="resource-link" href="https://www.faa.gov/airports/aip/">FAA Airport Improvement Program (AIP)</a>
     <p class="resource-desc">Official AIP homepage with program overview, eligibility, and guidance.</p>
 
     <a class="resource-link" href="https://www.faa.gov/airports/resources/publications/orders/">FAA AIP Handbook and related guidance</a>
-    <p class="resource-desc">FAA guidance for AIP grant administration, including procurement and contract provisions. Confirm the active edition, status, and applicability against current FAA sources before relying on it.</p>
+    <p class="resource-desc">FAA guidance for AIP grant administration, including procurement and contract provisions.</p>
 
     <a class="resource-link" href="https://www.faa.gov/airports/resources/advisory_circulars/">FAA Advisory Circulars</a>
     <p class="resource-desc">Advisory Circulars on airport design, construction, equipment, and operations - including procurement-relevant guidance.</p>
 
     <a class="resource-link" href="https://www.faa.gov/airports/aip/grant_assurances/">Grant Assurances</a>
-    <p class="resource-desc">The obligations airport sponsors accept when receiving AIP grants, including procurement, operations, civil rights, and reporting. The current published set and applicability should be confirmed against FAA sources.</p>
+    <p class="resource-desc">The obligations airport sponsors accept when receiving AIP grants, including procurement, operations, civil rights, and reporting.</p>
 
     <h2>Federal Procurement Rules</h2>
     <a class="resource-link" href="https://www.ecfr.gov/current/title-2/subtitle-A/chapter-II/part-200">2 CFR Part 200 (Uniform Guidance)</a>
