@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 // The site header and footer are defined here once and rendered into every page that uses the
-// shared layout: every page, including the booking page and the 404. Only the demo keeps its own
-// full-screen app header, and takes the shared footer. A page with no footer gets one inserted
-// after its <main>. Run `node scripts/build-chrome.cjs` after editing a template; `--check` fails
+// shared layout: every page, including the booking page, the 404 and the demo. A page with no footer
+// gets one inserted after its <main>. Run `node scripts/build-chrome.cjs` after editing a template; `--check` fails
 // if any page has drifted. Paths are absolute so the markup is identical wherever it is rendered.
 const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const EXCLUDED = new Set();
-const FOOTER_ONLY = new Set(['tour.html']);
+const FOOTER_ONLY = new Set();
 
 const NAV = [
   ['/#product', 'Product', ''],

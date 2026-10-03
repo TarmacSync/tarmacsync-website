@@ -110,8 +110,8 @@ test('the demo is indexable and its booking page has a branded title', () => {
   assert.match(titleOf(read('book-a-call.html')), /Book a Fit Conversation \| TarmacSync/);
 });
 
-// Every page except the demo (a full-screen app view) carries the full header and footer.
-const chromePages = pages.filter((f) => f !== 'tour.html');
+// Every page, including the demo, carries the full header and footer.
+const chromePages = pages;
 const between = (src, tag) => (src.match(new RegExp('<' + tag + '[\\s>][\\s\\S]*?</' + tag + '>')) || [''])[0];
 const hrefs = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
 
@@ -160,6 +160,12 @@ test('footer: the demo and booking pages show the same footer as every other pag
   assert.ok(!/getElementById\("year"\)/.test(read('book-a-call.html')), 'no script writes to the removed footer year');
   assert.ok(read('tour.html').includes('assets/site-shell.css'), 'the demo loads the shared stylesheet');
   assert.ok(!/tour-footer/.test(read('tour.html') + read('assets/tour/tour.css')), 'the old demo footer is gone');
+});
+
+test('header: the mobile menu button is a 44px touch target on every page', () => {
+  const css = read('assets/site-shell.css');
+  const rule = (css.match(/\.site-menu\s*\{([^}]*)\}/) || [, ''])[1];
+  assert.match(rule, /width:\s*44px/); assert.match(rule, /height:\s*44px/);
 });
 
 test('footer: links and the social icon are touch-sized (44px) in the shared stylesheet', () => {
