@@ -512,11 +512,11 @@ section('stage tracker: the five homepage stages light up in order as the demo p
   await context.close();
 });
 
-section('continuity: header mirrors the site CTA; the finish card leads back into the site and can replay', async (browser) => {
+section('continuity: the demo wears the full site header; the finish card leads back into the site and can replay', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
-  assert.equal(await page.locator('.header-cta').getAttribute('href'), '/book-a-call');
-  assert.match(await page.locator('.header-cta').innerText(), /^book a call$/i);
-  assert.ok(!/free report/i.test(await page.locator('header').innerText()), 'no report offer anywhere in the demo header');
+  assert.equal(await page.locator('header.site-header').count(), 1, 'the shared site header');
+  assert.deepEqual(await page.locator('#site-nav > a').evaluateAll((as) => as.slice(0, 4).map((a) => a.getAttribute('href'))), ['/#product', '/tour', '/pricing', '/book-a-call']);
+  assert.equal(await page.locator('#site-nav a[aria-current="page"]').innerText(), 'Demo');
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
   assert.ok(links.includes('/book-a-call'), 'Book a call');
   assert.ok(links.includes('mailto:contact@tarmacsync.com'), 'email fallback');
@@ -583,13 +583,25 @@ section('phone: finish card links, Watch again and footer links are tappable', a
   await context.close();
 });
 
-section('phone: logo, label and Book a call share one row even at 320px', async (browser) => {
+section('phone: the full header takes one row at 320px, its menu works, and nothing scrolls sideways', async (browser) => {
   const { page, context } = await fresh(browser, { width: 320, height: 568 });
-  const a = await page.locator('.header-cta').boundingBox();
-  const b = await page.locator('.brand').boundingBox();
-  assert.ok(Math.abs((a.y + a.height / 2) - (b.y + b.height / 2)) < 12, 'CTA and logo are on different rows (' + Math.round(a.y) + ' vs ' + Math.round(b.y) + ')');
-  assert.ok(a.height >= 40, 'Book a call stays a comfortable touch target (' + Math.round(a.height) + 'px)');
+  const h = await page.locator('header.site-header').boundingBox();
+  assert.ok(h.height <= 72, 'the header stays one row (' + Math.round(h.height) + 'px)');
+  const menu = page.locator('[data-site-menu]');
+  assert.ok((await menu.boundingBox()).height >= 44, 'the menu button is a full-size tap target');
+  await menu.click();
+  assert.equal(await menu.getAttribute('aria-expanded'), 'true', 'the menu opens');
+  await page.keyboard.press('Escape');
+  assert.equal(await menu.getAttribute('aria-expanded'), 'false', 'Escape closes it');
   assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0);
+  await context.close();
+});
+
+section('desktop: with the full header the demo still fits the first screen and the footer sits below it', async (browser) => {
+  const { page, context } = await fresh(browser, { width: 1440, height: 900 });
+  const r = await page.evaluate(() => ({ controls: document.querySelector('.controls').getBoundingClientRect().bottom, footer: document.querySelector('.site-footer').getBoundingClientRect().top + scrollY }));
+  assert.ok(r.controls <= 900, 'the playback controls are on the first screen (bottom ' + Math.round(r.controls) + 'px)');
+  assert.ok(r.footer >= 892, 'the footer starts below the first screen (' + Math.round(r.footer) + 'px)');
   await context.close();
 });
 

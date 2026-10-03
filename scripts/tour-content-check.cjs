@@ -380,13 +380,16 @@ test('quiet chrome: no header label, footer tagline or disclosure footnote; the 
   assert.match(t, /id="banner"[^>]*>[^<]*fictional airport and documents[^<]*scripted, not live AI/i, 'the banner keeps the disclosure');
 });
 
-test('continuity: the demo page mirrors the site header CTA and hands people back to the site', () => {
+test('continuity: the demo page wears the full site header and hands people back to the site', () => {
   const t = read('tour.html');
-  const header = t.match(/<header class="tour-header"[\s\S]*?<\/header>/)[0];
-  assert.match(header, /class="header-cta"[^>]*href="\/book-a-call"[^>]*>Book a call</);
-  assert.match(header, /<a class="brand" href="\/" aria-label="TarmacSync home">/, 'the logo is the way back to the site');
+  const header = t.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
+  assert.match(header, /data-site-header/, 'the shared header, with its menu behaviour');
+  assert.match(header, /<a href="\/tour"[^>]*aria-current="page"[^>]*>Demo<\/a>/, 'the Demo link is marked as the current page');
+  assert.ok(!/class="tour-header"|class="header-cta"|class="brand"/.test(t), 'the demo’s own header is gone');
+  assert.ok(t.includes('assets/site-shell.js'), 'the shared script runs the mobile menu');
   assert.ok(!/Back to (tarmacsync\.com|site)|class="exit/.test(t), 'no "back to the site" button: the demo is already on the site');
-  assert.ok(!/free report|data-report-cta|\/#report/.test(t.replace(/<noscript>[\s\S]*?<\/noscript>/, '')), 'no report offer left on the demo page');
+  const body = t.replace(/<header[\s\S]*?<\/header>/, '').replace(/<noscript>[\s\S]*?<\/noscript>/, '');
+  assert.ok(!/free report|data-report-cta|\/#report/.test(body), 'no report offer in the demo itself (the site header carries the site-wide one)');
   assert.match(t, /id="stages"/);
   assert.match(t, /href="\/#product-model"/, 'finish card links back to How TarmacSync works');
   assert.match(t, /id="replay"/);
