@@ -16,7 +16,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'security.html', 'terms.html'];
+const REVIEWED = ['index.html', 'pricing.html', 'book-a-call.html', 'security.html', 'terms.html', 'resources.html', 'airport-procurement-policy.html', 'cooperative-contracts-airports.html', 'accessibility.html'];
 
 const BANNED = [
   /check current text/i,
@@ -38,6 +38,15 @@ const BANNED = [
   /Pricing effective August 2026/i,
   /We agree on availability, evaluation, and included support/i,
   /Procurement, grant, and legal decisions remain with the airport and its advisors/i,
+  // Remaining pages (2026-10-04): unshipped promises, repeated confirm-with-the-source lines and disclaimer paragraphs.
+  /upcoming TarmacSync worksheets/i,
+  /Coming soon/i,
+  /always confirm with your ADO, counsel/i,
+  /Confirm the active edition, status, and applicability/i,
+  /should be confirmed against FAA sources/i,
+  /does not replace your procurement policy or staff/i,
+  /without reservation/i,
+  /Open captions embedded in the vision film/,
   // Owner review of /security (2026-10-04): hedging boilerplate removed; no new claims added.
   /No internet-based service can eliminate/i,
   /must be confirmed for the relevant product version/i,
