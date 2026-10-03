@@ -333,6 +333,18 @@
       margin-top: 1.9rem; flex-wrap: wrap;
     }
     .hero-note { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); }
+    .hero-frame { display: block; max-width: 1040px; margin: clamp(2.5rem, 6vw, 4rem) auto 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--white); box-shadow: 0 40px 90px -50px rgba(23,25,31,.45); color: inherit; text-decoration: none; text-align: left; transition: transform .25s ease, box-shadow .25s ease; }
+    .hero-frame:hover { transform: translateY(-3px); box-shadow: 0 48px 100px -50px rgba(23,25,31,.55); }
+    .hero-frame:focus-visible { outline: 3px solid var(--orange-ink); outline-offset: 4px; }
+    .hero-frame__bar { display: flex; align-items: center; gap: .75rem; padding: .7rem 1rem; background: var(--cloud); border-bottom: 1px solid var(--line); }
+    .hero-frame__dots { display: inline-flex; gap: 6px; }
+    .hero-frame__dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--silver); }
+    .hero-frame__title { font: 500 .72rem/1.4 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .04em; color: var(--muted); }
+    .hero-frame__shot { position: relative; }
+    .hero-frame__shot::before { content: ""; position: absolute; top: 0; left: 0; width: 56.6%; height: 13%; background: linear-gradient(#fff 30%, rgba(255,255,255,0)); pointer-events: none; }
+    .hero-frame img { display: block; width: 100%; height: auto; }
+    @media (max-width: 640px) { .hero-frame__title { font-size: .62rem; } }
+    @media (prefers-reduced-motion: reduce) { .hero-frame { transition: none; } .hero-frame:hover { transform: none; } }
 
     /* ── TarmacSync vision film ────────────────────────────────────────
        A deliberate, single-purpose film surface. Custom controls preserve the
@@ -1033,6 +1045,10 @@
           <a class="btn btn-secondary btn-lg" href="/tour" data-tour-cta="hero">Watch the demo</a>
         </div>
         <p class="hero-note">Veteran-founded · Built by an Accredited Airport Executive.</p>
+        <a class="hero-frame reveal" href="/tour" data-tour-cta="hero-frame" aria-label="Watch the demo: a fictional airport purchase, worked through">
+          <div class="hero-frame__bar"><span class="hero-frame__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="hero-frame__title">Runway sweeper replacement · fictional airport</span></div>
+          <div class="hero-frame__shot"><img src="assets/hero-demo-frame.webp" width="2640" height="1642" alt="TarmacSync reading four airport documents and flagging that the capital plan carries $610,000 while the allowance is $650,000, beside the project file it is building."></div>
+        </a>
       </div>
     </section>
 
