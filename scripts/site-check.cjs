@@ -115,6 +115,10 @@ test('share cards: every page shares the new 1200x630 image, with alt text, and 
     assert.equal(meta(s, 'og:image'), img, f + ' og:image');
     assert.equal(meta(s, 'twitter:image'), img, f + ' twitter:image');
     assert.ok((meta(s, 'og:image:alt') || '').length > 20, f + ' og:image:alt describes the image');
+    // A legacy alt pair survived on three pages after #36 and contradicted the new one.
+    const alts = [...s.matchAll(/<meta (?:property|name)="(og|twitter):image:alt" content="([^"]*)"/g)];
+    assert.equal(alts.filter((m) => m[1] === 'og').length, 1, f + ' has exactly one og:image:alt');
+    assert.ok(alts.length <= 2 && new Set(alts.map((m) => m[2])).size === 1, f + ' image alt tags all say the same thing: ' + alts.map((m) => m[2]).join(' | '));
   });
   const png = fs.readFileSync(path.join(root, 'assets/og-share.png'));
   assert.equal(png.readUInt32BE(16) + 'x' + png.readUInt32BE(20), '1200x630', 'the image is 1200x630');
