@@ -326,8 +326,7 @@ test('continuity: stateAt exposes the stage, from none at the start to all five 
   assert.equal(S.stateAt(script, tl.marks[3].at).stage, 1, 'documents beat is stage 2, Understand');
 });
 
-// The 2026-10-05 homepage redesign (925e1eb) chose its own demo labels ("Explore the demo",
-// "See it in action") and removed the film and workflow buttons. What still holds: every homepage
+// The 2026-10-05 homepage redesign (925e1eb) removed the film and workflow buttons. Every homepage
 // demo entry point goes to /tour, is measured, and the hero one is a real button.
 test('continuity: every demo entry point on the homepage links to the demo and is measured', () => {
   const home = read('index.html');
@@ -335,6 +334,16 @@ test('continuity: every demo entry point on the homepage links to the demo and i
   assert.ok(links.length >= 3, 'the hero, the product preview and the hero frame link to the demo');
   links.filter((a) => !/site-nav|data-tour-cta="nav"/.test(a)).forEach((a) => assert.match(a, /data-tour-cta="[a-z-]+"/, 'measured: ' + a));
   assert.match(home, /<a[^>]*class="[^"]*\bbtn\b[^"]*"[^>]*href="\/tour"[^>]*data-tour-cta="hero"/, 'the hero entry point is a real button');
+  // Owner (2026-10-05): unify the labels. Every text link to the demo, on every page, says
+  // "Watch the demo"; the header's "Demo" and the hero image frame are not calls to action.
+  fs.readdirSync(root).filter((f) => f.endsWith('.html')).forEach((f) => {
+    (read(f).match(/<a[^>]*href="\/tour"[^>]*>[\s\S]*?<\/a>/g) || [])
+      .filter((a) => !/data-tour-cta="(nav|hero-frame)"|site-nav/.test(a))
+      .forEach((a) => {
+        const label = a.replace(/<span class="[^"]*sub[^"]*">[\s\S]*?<\/span>/g, '').replace(/<[^>]+>/g, '').replace(/→/g, '').replace(/\s+/g, ' ').trim();
+        assert.ok(label.startsWith('Watch the demo'), f + ': demo link reads "' + label + '"');
+      });
+  });
   assert.ok(!/id="interactive-demo"|Interactive demonstration|data-tour-cta="section"/.test(home), 'the redundant "interactive demonstration" section is gone');
 });
 

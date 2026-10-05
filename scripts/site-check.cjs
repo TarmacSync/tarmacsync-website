@@ -228,5 +228,44 @@ test('clean URLs: the site serves and announces /pricing, never /pricing.html', 
   });
 });
 
+// SEO pass (2026-10-05). Owner: no new visible pages or text, so everything here is markup only.
+test('seo: pricing structured data states the visible prices and the visible FAQ, word for word', () => {
+  const s = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const blocks = (s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g) || []).map((b) => JSON.parse(b.replace(/<\/?script[^>]*>/g, '')));
+  const graph = blocks.flatMap((b) => b['@graph'] || [b]);
+  const offers = graph.flatMap((g) => g.offers || []);
+  const visiblePrices = [...s.matchAll(/<div class="tier-price">\$([\d,]+)<\/div>/g)].map((m) => m[1].replace(/,/g, ''));
+  assert.equal(visiblePrices.length, 3, 'three visible prices');
+  assert.deepEqual(offers.map((o) => String(o.price)).sort(), [...visiblePrices].sort(), 'structured prices match the plan cards');
+  offers.forEach((o) => assert.equal(o.priceCurrency, 'USD'));
+  const faq = graph.find((g) => g['@type'] === 'FAQPage');
+  assert.ok(faq, 'the pricing FAQ is marked up');
+  const visibleQs = [...s.matchAll(/<summary>([^<]+)<\/summary>/g)].map((m) => m[1]);
+  assert.deepEqual(faq.mainEntity.map((q) => q.name), visibleQs, 'marked-up questions are exactly the visible ones');
+  const strip = (h) => h.replace(/<br\s*\/?>/g, ' ').replace(/<[^>]+>/g, '').replace(/&#39;|’/g, "'").replace(/\s+/g, ' ').trim();
+  const visibleAs = [...s.matchAll(/<div class="faq-answer">([\s\S]*?)<\/div>/g)].map((m) => strip(m[1]));
+  faq.mainEntity.forEach((q, i) => assert.equal(strip(q.acceptedAnswer.text), visibleAs[i], 'answer ' + (i + 1) + ' matches the page'));
+});
+
+test('seo: the homepage hero image loads first and has a phone-sized version', () => {
+  const s = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const img = s.match(/<img src="assets\/hero-demo-frame\.webp"[^>]*>/)[0];
+  assert.match(img, /fetchpriority="high"/, 'the largest image above the fold is fetched first');
+  assert.ok(!/loading="lazy"/.test(img), 'never lazy-loaded');
+  const set = (img.match(/srcset="([^"]+)"/) || [, ''])[1];
+  assert.match(set, /hero-demo-frame-1320\.webp 1320w/, 'a 1320px version for phones');
+  assert.ok(fs.existsSync(path.join(root, 'assets/hero-demo-frame-1320.webp')), 'the smaller file exists');
+  assert.match(img, /sizes="[^"]+"/, 'sizes tells the browser which to pick');
+});
+
+test('seo: meta descriptions fit in a search result (160 characters or fewer)', () => {
+  pages.filter((f) => f !== '404.html').forEach((f) => {
+    const d = (fs.readFileSync(path.join(root, f), 'utf8').match(/<meta name="description" content="([^"]*)"/) || [, ''])[1];
+    assert.ok(d.length > 50 && d.length <= 160, f + ' description is ' + d.length + ' characters');
+  });
+  const p = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  assert.ok(!/availability confirmed before purchase/.test(p), 'pricing description drops the removed noise');
+});
+
 if (failed) { console.error('\n' + failed + ' failing'); process.exit(1); }
 console.log('\nsite checks passed');
