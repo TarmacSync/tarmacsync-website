@@ -126,8 +126,6 @@
       content: ""; position: absolute; left: 0; top: .55rem;
       width: 5px; height: 5px; border-radius: 50%; background: var(--orange);
     }
-    .tier li.inherit { color: var(--ink); font-weight: 600; padding-left: 0; }
-    .tier li.inherit::before { display: none; }
     .tier-cta { width: 100%; transition: background .22s, color .22s, box-shadow .22s; }
     .tier-cta:hover { box-shadow: 0 2px 12px rgba(23,25,31,.08); }
     .tier .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -343,8 +341,19 @@
       background: var(--cloud);
     }
     .capability-overview.details { padding-top: clamp(2rem, 4vw, 3.4rem); }
-    .capability-overview .grid2 { gap: 2rem 2.5rem; }
     .capability-overview .sub { max-width: 660px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .feature-group { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem 1.5rem 1.5rem; }
+    .feature-num { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; color: var(--orange-ink); margin-bottom: .7rem; }
+    .feature-group h3 { font-size: 1.06rem; letter-spacing: -.018em; margin-bottom: .25rem; }
+    .feature-group > p { font-size: .9rem; color: var(--muted); margin: 0 0 .9rem; }
+    .feature-group ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .feature-group li { position: relative; padding: .6rem 0 .6rem 1.15rem; border-bottom: 1px solid var(--line); font-size: .88rem; line-height: 1.5; color: var(--ink); }
+    .feature-group li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .feature-group li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: 6px; height: 6px; border-radius: 50%; background: var(--orange-ink); }
+    .feature-group li:last-child::before { top: 1.05rem; }
+    @media (min-width: 761px) { .feature-group > p { min-height: 2.8em; } }
+    @media (max-width: 760px) { .feature-grid { grid-template-columns: 1fr; } }
 
     .band-invite {
       position: relative;
@@ -448,9 +457,8 @@
         <div class="tier-price">$2,400</div>
         <div class="tier-per">per year</div>
         <ul>
-          <li>Know the likely buying path before you advertise</li>
-          <li>Your purchasing policy and thresholds built in from day one</li>
-          <li>Cooperative contract candidates screened against your purchase</li>
+          <li>Every capability listed below</li>
+          <li>Usage sized to your airport's purchasing volume</li>
         </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=field">Book a call about Field</a>
         </div>
@@ -464,10 +472,8 @@
         <div class="tier-price">$8,400</div>
         <div class="tier-per">per year</div>
         <ul>
-          <li class="inherit">Everything in Field, plus</li>
-          <li>See how AIP and other federal funding change the path</li>
-          <li>Decision summaries your board and finance team can review</li>
-          <li>Approvals and activity tracked, so every decision has a trail</li>
+          <li>Every capability listed below</li>
+          <li>Usage sized to your airport's purchasing volume</li>
         </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=regional">Book a call about Regional</a>
         </div>
@@ -481,9 +487,8 @@
         <div class="tier-price">$12,000</div>
         <div class="tier-per">per year</div>
         <ul>
-          <li class="inherit">Everything in Regional, plus</li>
-          <li>Work through layered funding on one purchase: AIP, PFC, state, and local</li>
-          <li>Support for PFC-specific project questions</li>
+          <li>Every capability listed below</li>
+          <li>Usage sized to your airport's purchasing volume</li>
         </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=metro">Book a call about Metro</a>
         </div>
@@ -491,14 +496,70 @@
     </section>
 
     <section class="details narrow capability-overview" aria-labelledby="capability-overview-title">
-      <span class="eyebrow">What TarmacSync brings to the airport</span>
-      <h2 id="capability-overview-title">The intelligence behind the path.</h2>
-      <p class="sub">TarmacSync connects the purchase, funding context, candidate contract pathways, and source-backed conditions an airport team needs to review before the process starts.</p>
-      <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>Know the likely buying path</h3><p>Describe what the airport needs to buy in plain English and see the likely path, funding context, open conditions, and next action.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Find candidate contract options</h3><p>Search cooperative-contract data across multiple consortiums against purchase scope, funding context, and airport policy. Matches are candidates to validate before use.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Stay current on key FAA sources</h3><p>Configured source checks cover selected FAA Advisory Circulars, FAA Orders, the AIP Handbook, Grant Assurances, 2 CFR, and related federal procurement sources.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Carry the evidence into the decision</h3><p>Keep source-linked evidence, missing facts, approval activity, decision summaries, and exportable evidence packets together for authorized airport review.</p></div></div>
+      <span class="eyebrow">Included in every plan</span>
+      <h2 id="capability-overview-title">From the first question to the closeout file.</h2>
+      <p class="sub">Grounded in the AIP Handbook, Grant Assurances, 2 CFR, and selected FAA Advisory Circulars.</p>
+      <div class="feature-grid">
+        <article class="feature-group">
+          <span class="feature-num">01</span>
+          <h3>Decide the path</h3>
+          <p>See the likely buying path before you advertise.</p>
+          <ul>
+            <li>Your thresholds, delegated authority, and purchasing policy applied to every purchase</li>
+            <li>Funding worked through across AIP, PFC, state, and local</li>
+            <li>Budget mismatches and missing approvals flagged before the solicitation goes out</li>
+          </ul>
+        </article>
+        <article class="feature-group">
+          <span class="feature-num">02</span>
+          <h3>Find contract options</h3>
+          <p>Cooperative contracts, screened against your purchase.</p>
+          <ul>
+            <li>Candidates from multiple consortiums, matched to scope, funding, and policy</li>
+            <li>Vendors screened against SAM.gov exclusions</li>
+            <li>Alerts when an existing contract nears expiry</li>
+          </ul>
+        </article>
+        <article class="feature-group">
+          <span class="feature-num">03</span>
+          <h3>Draft the file</h3>
+          <p>Review drafts for your procurement and grants staff.</p>
+          <ul>
+            <li>Scope of work, ITB/RFP shell, and justification memos</li>
+            <li>Route memo, readiness checklist, questions for the ADO, and a bid evaluation checklist</li>
+            <li>Procurement file checklist, with Word export</li>
+          </ul>
+        </article>
+        <article class="feature-group">
+          <span class="feature-num">04</span>
+          <h3>Review what comes back</h3>
+          <p>Check a bid package against your requirements.</p>
+          <ul>
+            <li>Completeness, scope fit, and required contract provisions</li>
+            <li>Price analysis and funding requirements</li>
+            <li>Changes across amendments</li>
+          </ul>
+        </article>
+        <article class="feature-group">
+          <span class="feature-num">05</span>
+          <h3>Plan ahead</h3>
+          <p>Your capital plan, matched to what is available.</p>
+          <ul>
+            <li>ACIP data sheet imported and matched to planned purchases</li>
+            <li>Planned projects matched to grant programs, with alerts</li>
+            <li>PFC and terminal-program application drafts</li>
+          </ul>
+        </article>
+        <article class="feature-group">
+          <span class="feature-num">06</span>
+          <h3>Keep the record</h3>
+          <p>One file from first question to closeout.</p>
+          <ul>
+            <li>Approvals, comments, and versions with an activity trail</li>
+            <li>Source-linked evidence packets, exportable at any time</li>
+            <li>A leadership view of the pipeline across projects</li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -512,15 +573,6 @@
 
 
     <section class="details narrow">
-      <h2>What every purchase gets you.</h2>
-      <p class="sub">Included in every plan.</p>
-      <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>A path you can explain</h3><p>The likely buying path and the sources behind it, so the decision holds up in front of your board, your auditor, or the FAA.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Problems found before you advertise</h3><p>A budget mismatch, an out-of-date form, or a missing approval surfaces before the solicitation goes out, not after.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Review drafts for your team</h3><p>A route memo, readiness checklist, questions for the ADO, and a bid evaluation checklist, ready for procurement and grants staff.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Your policy, your data</h3><p>Your thresholds and approval levels shape every path, and an authorized workspace owner can export your project and evidence data at any time.</p></div></div>
-      </div>
-
       <h2 class="faq-heading">Common questions</h2>
       <div class="faq">
         <details>

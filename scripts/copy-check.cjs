@@ -124,6 +124,30 @@ test('pricing.html: states what every purchase delivers, from the demo, and says
   assert.equal(n, 1, '"automatic renewal" appears ' + n + ' times');
 });
 
+test('pricing.html: six capability groups along the buying journey, each with a benefit line and three named specifics', () => {
+  const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const groups = raw.match(/<article class="feature-group">[\s\S]*?<\/article>/g) || [];
+  assert.equal(groups.length, 6, 'six feature groups, found ' + groups.length);
+  groups.forEach((g, i) => {
+    assert.match(g, /<span class="feature-num">0\d<\/span>/, 'group ' + (i + 1) + ' is numbered like the plans');
+    assert.match(g, /<h3>[^<]+<\/h3>\s*<p>[^<]+<\/p>/, 'group ' + (i + 1) + ' has a title and one benefit line');
+    assert.equal((g.match(/<li>/g) || []).length, 3, 'group ' + (i + 1) + ' lists exactly three specifics');
+  });
+  const t = visibleText('pricing.html');
+  ['SAM.gov', 'ITB/RFP', 'ACIP', 'PFC', 'amendments', 'Word', 'leadership view', 'delegated authority'].forEach((w) => assert.ok(t.includes(w), 'names a real capability: ' + w));
+  assert.ok(!/What every purchase gets you/.test(t), 'the thin four-card section is folded into the groups');
+  assert.ok(!/\b(compliant|approved|guaranteed)\b/i.test(t), 'no forbidden vocabulary');
+});
+
+test('pricing.html: every plan has the same capabilities; only the airport profile, usage and price differ', () => {
+  const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const lists = (raw.match(/<div class="tier" data-tier="[a-z]+">[\s\S]*?<ul>([\s\S]*?)<\/ul>/g) || []).map((c) => c.match(/<ul>([\s\S]*?)<\/ul>/)[1].replace(/\s+/g, ' ').trim());
+  assert.equal(lists.length, 3, 'three plan cards');
+  assert.equal(new Set(lists).size, 1, 'the three plan cards list the same things');
+  assert.ok(!/Everything in (Field|Regional)/.test(raw), 'no "Everything in X, plus" ladder');
+  assert.match(lists[0], /usage/i, 'the cards say usage is what scales');
+});
+
 test('book-a-call.html: a short button label, no agenda list, no repeated call facts', () => {
   const raw = fs.readFileSync(path.join(root, 'book-a-call.html'), 'utf8');
   assert.match(raw, /id="booking-link"[^>]*>\s*Book a time\b/, 'the button reads "Book a time"');
