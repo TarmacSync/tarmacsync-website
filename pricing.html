@@ -342,18 +342,17 @@
     }
     .capability-overview.details { padding-top: clamp(2rem, 4vw, 3.4rem); }
     .capability-overview .sub { max-width: 660px; }
-    .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
-    .feature-group { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem 1.5rem 1.5rem; }
-    .feature-num { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; color: var(--orange-ink); margin-bottom: .7rem; }
-    .feature-group h3 { font-size: 1.06rem; letter-spacing: -.018em; margin-bottom: .25rem; }
-    .feature-group > p { font-size: .9rem; color: var(--muted); margin: 0 0 .9rem; }
-    .feature-group ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-    .feature-group li { position: relative; padding: .6rem 0 .6rem 1.15rem; border-bottom: 1px solid var(--line); font-size: .88rem; line-height: 1.5; color: var(--ink); }
-    .feature-group li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .feature-group li::before { content: ""; position: absolute; left: 0; top: 1.05rem; width: 6px; height: 6px; border-radius: 50%; background: var(--orange-ink); }
-    .feature-group li:last-child::before { top: 1.05rem; }
-    @media (min-width: 761px) { .feature-group > p { min-height: 2.8em; } }
-    @media (max-width: 760px) { .feature-grid { grid-template-columns: 1fr; } }
+    .stat-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2rem 0 2.2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { padding: 1.4rem 1.2rem 1.4rem 0; }
+    .stat + .stat { padding-left: 1.2rem; border-left: 1px solid var(--line); }
+    .stat-num { display: block; font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 650; letter-spacing: -.035em; line-height: 1.05; color: var(--ink); margin-bottom: .45rem; }
+    .stat-label { display: block; font-size: .84rem; line-height: 1.45; color: var(--muted); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .feature { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.35rem; }
+    .feature h3 { font-size: 1rem; letter-spacing: -.016em; margin-bottom: .3rem; }
+    .feature p { font-size: .88rem; line-height: 1.5; color: var(--muted); margin: 0; }
+    @media (max-width: 900px) { .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat:nth-child(3) { padding-left: 0; border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid var(--line); } .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
 
     .band-invite {
       position: relative;
@@ -497,68 +496,49 @@
 
     <section class="details narrow capability-overview" aria-labelledby="capability-overview-title">
       <span class="eyebrow">Included in every plan</span>
-      <h2 id="capability-overview-title">From the first question to the closeout file.</h2>
-      <p class="sub">Grounded in the AIP Handbook, Grant Assurances, 2 CFR, and selected FAA Advisory Circulars.</p>
+      <h2 id="capability-overview-title">Everything your team needs before the solicitation goes out.</h2>
+      <div class="stat-strip">
+        <div class="stat"><span class="stat-num">7,000+</span><span class="stat-label">cooperative contracts across four consortiums, checked weekly</span></div>
+        <div class="stat"><span class="stat-num">1,000+</span><span class="stat-label">official federal and FAA sources, links checked daily</span></div>
+        <div class="stat"><span class="stat-num">Weekly</span><span class="stat-label">FAA Advisory Circular revision checks</span></div>
+        <div class="stat"><span class="stat-num">Daily</span><span class="stat-label">SAM.gov exclusion list refresh</span></div>
+      </div>
       <div class="feature-grid">
-        <article class="feature-group">
-          <span class="feature-num">01</span>
-          <h3>Decide the path</h3>
-          <p>See the likely buying path before you advertise.</p>
-          <ul>
-            <li>Your thresholds, delegated authority, and purchasing policy applied to every purchase</li>
-            <li>Funding worked through across AIP, PFC, state, and local</li>
-            <li>Budget mismatches and missing approvals flagged before the solicitation goes out</li>
-          </ul>
+        <article class="feature">
+          <h3>Likely buying path</h3>
+          <p>Describe the purchase in plain English and see the likely path before you advertise.</p>
         </article>
-        <article class="feature-group">
-          <span class="feature-num">02</span>
-          <h3>Find contract options</h3>
-          <p>Cooperative contracts, screened against your purchase.</p>
-          <ul>
-            <li>Candidates from multiple consortiums, matched to scope, funding, and policy</li>
-            <li>Vendors screened against SAM.gov exclusions</li>
-            <li>Alerts when an existing contract nears expiry</li>
-          </ul>
+        <article class="feature">
+          <h3>Best-matched contracts</h3>
+          <p>Cooperative contracts ranked by how closely their scope fits your purchase.</p>
         </article>
-        <article class="feature-group">
-          <span class="feature-num">03</span>
-          <h3>Draft the file</h3>
-          <p>Review drafts for your procurement and grants staff.</p>
-          <ul>
-            <li>Scope of work, ITB/RFP shell, and justification memos</li>
-            <li>Route memo, readiness checklist, questions for the ADO, and a bid evaluation checklist</li>
-            <li>Procurement file checklist, with Word export</li>
-          </ul>
+        <article class="feature">
+          <h3>Vendor screening</h3>
+          <p>Check a vendor against SAM.gov exclusions before you buy.</p>
         </article>
-        <article class="feature-group">
-          <span class="feature-num">04</span>
-          <h3>Review what comes back</h3>
-          <p>Check a bid package against your requirements.</p>
-          <ul>
-            <li>Completeness, scope fit, and required contract provisions</li>
-            <li>Price analysis and funding requirements</li>
-            <li>Changes across amendments</li>
-          </ul>
+        <article class="feature">
+          <h3>Vendor emails, drafted</h3>
+          <p>Questions and quote requests to vendors, ready for you to review and send.</p>
         </article>
-        <article class="feature-group">
-          <span class="feature-num">05</span>
-          <h3>Plan ahead</h3>
-          <p>Your capital plan, matched to what is available.</p>
-          <ul>
-            <li>ACIP data sheet imported and matched to planned purchases</li>
-            <li>Planned projects matched to grant programs, with alerts</li>
-            <li>PFC and terminal-program application drafts</li>
-          </ul>
+        <article class="feature">
+          <h3>Your policy, built in</h3>
+          <p>Your thresholds and delegated authority applied to every purchase.</p>
         </article>
-        <article class="feature-group">
-          <span class="feature-num">06</span>
-          <h3>Keep the record</h3>
-          <p>One file from first question to closeout.</p>
-          <ul>
-            <li>Approvals, comments, and versions with an activity trail</li>
-            <li>Source-linked evidence packets, exportable at any time</li>
-            <li>A leadership view of the pipeline across projects</li>
-          </ul>
+        <article class="feature">
+          <h3>Funding worked through</h3>
+          <p>AIP, PFC, state, and local money on one purchase, and how each changes the path.</p>
+        </article>
+        <article class="feature">
+          <h3>Documents, drafted</h3>
+          <p>Scope of work, ITB/RFP shell, and justification memos, ready for your review.</p>
+        </article>
+        <article class="feature">
+          <h3>Bid package review</h3>
+          <p>Completeness, scope fit, price, and required contract provisions checked before award.</p>
+        </article>
+        <article class="feature">
+          <h3>An audit-ready record</h3>
+          <p>Every decision, approval, and source kept together and exportable at any time.</p>
         </article>
       </div>
     </section>

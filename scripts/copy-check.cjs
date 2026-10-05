@@ -117,25 +117,32 @@ REVIEWED.forEach((file) => {
   });
 });
 
-test('pricing.html: states what every purchase delivers, from the demo, and says "no automatic renewal" once', () => {
+test('pricing.html: says "no automatic renewal" once', () => {
   const t = visibleText('pricing.html');
-  ['route memo', 'readiness checklist', 'ADO', 'bid evaluation checklist'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'value section names: ' + w));
   const n = (t.match(/automatic renewal/gi) || []).length;
   assert.equal(n, 1, '"automatic renewal" appears ' + n + ' times');
 });
 
-test('pricing.html: six capability groups along the buying journey, each with a benefit line and three named specifics', () => {
+// Owner review (2026-10-05): the features read like a spec, not marketing. Headline numbers first,
+// then one line per feature. Every number and cadence below is checked against the product repo:
+// contract catalogs in data/*/*-airport-contracts.json, schedules in the product's vercel.json crons.
+test('pricing.html: headline numbers, then one-line features, with no spec lists', () => {
   const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
-  const groups = raw.match(/<article class="feature-group">[\s\S]*?<\/article>/g) || [];
-  assert.equal(groups.length, 6, 'six feature groups, found ' + groups.length);
-  groups.forEach((g, i) => {
-    assert.match(g, /<span class="feature-num">0\d<\/span>/, 'group ' + (i + 1) + ' is numbered like the plans');
-    assert.match(g, /<h3>[^<]+<\/h3>\s*<p>[^<]+<\/p>/, 'group ' + (i + 1) + ' has a title and one benefit line');
-    assert.equal((g.match(/<li>/g) || []).length, 3, 'group ' + (i + 1) + ' lists exactly three specifics');
+  const stats = raw.match(/<div class="stat"><span class="stat-num">[^<]+<\/span><span class="stat-label">[^<]+<\/span><\/div>/g) || [];
+  assert.equal(stats.length, 4, 'four headline numbers, found ' + stats.length);
+  const strip = stats.join(' ');
+  ['7,000+', '1,000+', 'SAM.gov', 'Advisory Circular'].forEach((w) => assert.ok(strip.includes(w), 'headline names: ' + w));
+  assert.ok(!/\blive\b/i.test(strip), 'catalogs are checked weekly, not live');
+  const cards = raw.match(/<article class="feature">[\s\S]*?<\/article>/g) || [];
+  assert.equal(cards.length, 9, 'nine feature cards, found ' + cards.length);
+  cards.forEach((c, i) => {
+    assert.match(c, /^<article class="feature">\s*<h3>[^<]+<\/h3>\s*<p>[^<]+<\/p>\s*<\/article>$/, 'card ' + (i + 1) + ' is a title and one line');
+    assert.ok(c.replace(/<[^>]+>/g, '').trim().split(/\s+/).length <= 22, 'card ' + (i + 1) + ' stays short');
   });
   const t = visibleText('pricing.html');
-  ['SAM.gov', 'ITB/RFP', 'ACIP', 'PFC', 'amendments', 'Word', 'leadership view', 'delegated authority'].forEach((w) => assert.ok(t.includes(w), 'names a real capability: ' + w));
-  assert.ok(!/What every purchase gets you/.test(t), 'the thin four-card section is folded into the groups');
+  ['vendor emails', 'best-matched', 'bid package'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'feature named: ' + w));
+  assert.ok(!/Word export|procurement file checklist/i.test(t), 'the file-checklist line is gone (owner: not useful)');
+  assert.ok(!/class="feature-group"|class="feature-num"/.test(raw), 'the spec-style groups are gone');
   assert.ok(!/\b(compliant|approved|guaranteed)\b/i.test(t), 'no forbidden vocabulary');
 });
 
