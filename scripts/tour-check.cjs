@@ -515,7 +515,7 @@ section('stage tracker: the five homepage stages light up in order as the demo p
 section('continuity: the demo wears the full site header; the finish card leads back into the site and can replay', async (browser) => {
   const { page, context } = await fresh(browser, { hash: '#beat=7' });
   assert.equal(await page.locator('header.site-header').count(), 1, 'the shared site header');
-  assert.deepEqual(await page.locator('#site-nav > a').evaluateAll((as) => as.slice(0, 4).map((a) => a.getAttribute('href'))), ['/#product', '/tour', '/pricing', '/book-a-call']);
+  assert.deepEqual(await page.locator('#site-nav > a').evaluateAll((as) => as.slice(0, 3).map((a) => a.getAttribute('href'))), ['/tour', '/pricing', '/book-a-call']);
   assert.equal(await page.locator('#site-nav a[aria-current="page"]').innerText(), 'Demo');
   const links = await page.locator('#finish a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
   assert.ok(links.includes('/book-a-call'), 'Book a call');
