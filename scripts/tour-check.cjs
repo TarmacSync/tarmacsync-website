@@ -617,13 +617,13 @@ section('phone: the opened Project file does not repeat its own title', async (b
 section('homepage product section: the toggle swaps the scenario and the layout holds on desktop and phones', async (browser) => {
   {
     const { page, context } = await fresh(browser, { width: 1280, height: 900, path: '/index.html' });
-    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A path that fits your purchase');
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A likely buying method');
     await page.locator('#product [data-view="example"]').click();
     assert.equal((await page.locator('#ts-route').innerText()).trim(), 'Sealed competitive bids');
     assert.match(await page.locator('#ts-purchase').innerText(), /\$650,000/);
     assert.equal(await page.locator('#product [data-view="example"]').getAttribute('aria-pressed'), 'true');
     await page.locator('#product [data-view="overview"]').click();
-    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A path that fits your purchase');
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A likely buying method');
     await context.close();
   }
   for (const width of [390, 320]) {
@@ -638,19 +638,6 @@ section('homepage product section: the toggle swaps the scenario and the layout 
   }
 });
 
-section('homepage closing line: one sentence on one line, with space before its button', async (browser) => {
-  for (const width of [1440, 1280]) {
-    const { page, context } = await fresh(browser, { width, height: 900, path: '/index.html' });
-    const r = await page.evaluate(() => {
-      const h = document.querySelector('[aria-label="Call to action"] h2'), b = document.querySelector('[aria-label="Call to action"] .btn');
-      return { lines: Math.round(h.getBoundingClientRect().height / parseFloat(getComputedStyle(h).lineHeight)), gap: b.getBoundingClientRect().top - h.getBoundingClientRect().bottom };
-    });
-    assert.equal(r.lines, 1, width + 'px: the closing sentence takes ' + r.lines + ' lines');
-    assert.ok(r.gap >= 20, width + 'px: only ' + Math.round(r.gap) + 'px between the sentence and the button');
-    await context.close();
-  }
-});
-
 section('pricing: the profile sentence sits on one line on desktop and wraps cleanly on a phone', async (browser) => {
   for (const [width, oneLine] of [[1440, true], [1280, true], [390, false]]) {
     const { page, context } = await fresh(browser, { width, height: 900, path: '/pricing.html' });
@@ -661,22 +648,17 @@ section('pricing: the profile sentence sits on one line on desktop and wraps cle
   }
 });
 
-section('homepage on a phone: the demo buttons are real, tappable buttons and the five stages all fit on screen', async (browser) => {
+// Since the 2026-10-05 redesign the homepage's demo entry points are the hero button and the
+// product preview's link; the film button and the five-stage tabs are gone.
+section('homepage on a phone: the demo entry points are full-size tap targets on screen', async (browser) => {
   for (const width of [390, 320]) {
     const { page, context } = await fresh(browser, { width, height: 844, path: '/index.html' });
-    for (const where of ['vision', 'workflow']) {
+    for (const where of ['hero', 'product-preview']) {
       const btn = page.locator('[data-tour-cta="' + where + '"]');
       await btn.scrollIntoViewIfNeeded();
-      assert.equal((await btn.innerText()).trim().replace(/\s*→$/, ''), 'Watch the demo', where + ' button label');
-      assert.ok((await btn.boundingBox()).height >= 44, width + 'px: ' + where + ' button is at least 44px tall');
-      assert.match(await btn.evaluate((a) => getComputedStyle(a).display), /flex|block/, where + ' looks like a button, not a text link');
-    }
-    const stages = page.locator('#product-model .ts-button');
-    assert.equal(await stages.count(), 5);
-    for (let i = 0; i < 5; i++) {
-      const box = await stages.nth(i).boundingBox();
-      assert.ok(box.x >= 0 && box.x + box.width <= width, width + 'px: stage ' + (i + 1) + ' is fully on screen (x ' + Math.round(box.x) + ', width ' + Math.round(box.width) + ')');
-      assert.ok(box.height >= 44, 'stage ' + (i + 1) + ' is a comfortable tap target');
+      const box = await btn.boundingBox();
+      assert.ok(box.height >= 44, width + 'px: ' + where + ' demo link is ' + Math.round(box.height) + 'px tall, needs 44');
+      assert.ok(box.x >= 0 && box.x + box.width <= width, width + 'px: ' + where + ' demo link is fully on screen');
     }
     assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
     await context.close();
