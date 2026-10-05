@@ -105,6 +105,23 @@ test('share cards: every indexable page has a complete Open Graph and Twitter se
   });
 });
 
+// Owner (2026-10-05): the old share image showed the internal codename, an off-story $485,000
+// cooperative route, and text running under the card. The new one has a new filename so social
+// platforms, which cache by URL, fetch it fresh.
+test('share cards: every page shares the new 1200x630 image, with alt text, and the old one is gone', () => {
+  const img = 'https://www.tarmacsync.com/assets/og-share.png';
+  indexable.forEach((f) => {
+    const s = read(f);
+    assert.equal(meta(s, 'og:image'), img, f + ' og:image');
+    assert.equal(meta(s, 'twitter:image'), img, f + ' twitter:image');
+    assert.ok((meta(s, 'og:image:alt') || '').length > 20, f + ' og:image:alt describes the image');
+  });
+  const png = fs.readFileSync(path.join(root, 'assets/og-share.png'));
+  assert.equal(png.readUInt32BE(16) + 'x' + png.readUInt32BE(20), '1200x630', 'the image is 1200x630');
+  assert.ok(png.length < 600 * 1024, 'under 600 KB');
+  pages.forEach((f) => assert.ok(!read(f).includes('og-preview.png'), f + ' still points at the old image'));
+});
+
 test('the demo is indexable and its booking page has a branded title', () => {
   assert.ok(isIndexable(read('tour.html')), 'tour.html is not noindex');
   assert.match(titleOf(read('book-a-call.html')), /Book a Fit Conversation \| TarmacSync/);
