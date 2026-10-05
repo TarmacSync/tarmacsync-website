@@ -331,7 +331,12 @@ test('continuity: stateAt exposes the stage, from none at the start to all five 
 test('continuity: every demo entry point on the homepage links to the demo and is measured', () => {
   const home = read('index.html');
   const links = home.match(/<a[^>]*href="\/tour"[^>]*>/g) || [];
-  assert.ok(links.length >= 3, 'the hero, the product preview and the hero frame link to the demo');
+  // Named, not counted: a count that includes the nav link let a missing entry point pass.
+  ['hero', 'product-preview', 'hero-frame'].forEach((where) => {
+    const a = (home.match(new RegExp('<a[^>]*data-tour-cta="' + where + '"[^>]*>')) || [])[0];
+    assert.ok(a, 'the ' + where + ' demo entry point exists');
+    assert.match(a, /href="\/tour"/, 'the ' + where + ' entry point links to the demo');
+  });
   links.filter((a) => !/site-nav|data-tour-cta="nav"/.test(a)).forEach((a) => assert.match(a, /data-tour-cta="[a-z-]+"/, 'measured: ' + a));
   assert.match(home, /<a[^>]*class="[^"]*\bbtn\b[^"]*"[^>]*href="\/tour"[^>]*data-tour-cta="hero"/, 'the hero entry point is a real button');
   // Owner (2026-10-05): unify the labels. Every text link to the demo, on every page, says
