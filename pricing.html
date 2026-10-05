@@ -91,6 +91,10 @@
     .hero { padding: 5.5rem 0 3.5rem; text-align: center; }
     .hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.04em; margin-bottom: 1.1rem; }
     .hero p { font-size: 1.12rem; color: var(--muted); max-width: 34rem; margin: 0 auto; line-height: 1.6; }
+    .pricing-close { text-align: center; padding: 5.5rem 0 1rem; }
+    .pricing-close h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -.03em; margin-bottom: .6rem; }
+    .pricing-close p { color: var(--muted); font-size: 1rem; margin: 0 auto 1.6rem; max-width: 34rem; }
+    .pricing-close__actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
     .hero p.cohort-line {
       font-family: var(--mono); font-size: clamp(.76rem, .9vw, .84rem); font-weight: 600;
       line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
@@ -117,15 +121,6 @@
     .tier-thresh { font-size: .78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1.7rem; min-height: 2.1rem; }
     .tier-price { font-size: 2.9rem; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
     .tier-per { font-size: .84rem; color: var(--muted); margin: .5rem 0 2rem; }
-    .tier ul { list-style: none; flex: 1; margin: 0 0 2rem; }
-    .tier li {
-      font-size: .88rem; color: var(--muted); line-height: 1.5;
-      padding-left: 1.35rem; position: relative; margin-bottom: .75rem;
-    }
-    .tier li::before {
-      content: ""; position: absolute; left: 0; top: .55rem;
-      width: 5px; height: 5px; border-radius: 50%; background: var(--orange);
-    }
     .tier-cta { width: 100%; transition: background .22s, color .22s, box-shadow .22s; }
     .tier-cta:hover { box-shadow: 0 2px 12px rgba(23,25,31,.08); }
     .tier .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -321,8 +316,6 @@
     }
     .tier-price { font-size: clamp(2.45rem, 4vw, 3.25rem); }
     .tier-per { margin: .42rem 0 1.55rem; }
-    .tier ul { margin-bottom: 1.6rem; }
-    .tier li { margin-bottom: .68rem; }
     .tier .tier-cta {
       min-height: 47px;
       margin-top: auto;
@@ -441,6 +434,7 @@
 
     <section class="hero">
       <h1>Simple pricing, <br>per airport.</h1>
+      <p class="hero-sub">One annual subscription for your airport. Unlimited users and every feature, in every plan.</p>
     </section>
 
     <div class="tier-heading">
@@ -455,10 +449,6 @@
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-price">$2,400</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li>Every capability listed below</li>
-          <li>Usage sized to your airport's purchasing volume</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=field">Book a call about Field</a>
         </div>
       </div>
@@ -470,10 +460,6 @@
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-price">$8,400</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li>Every capability listed below</li>
-          <li>Usage sized to your airport's purchasing volume</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=regional">Book a call about Regional</a>
         </div>
       </div>
@@ -485,10 +471,6 @@
         <div class="tier-who">Small hub</div>
         <div class="tier-price">$12,000</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li>Every capability listed below</li>
-          <li>Usage sized to your airport's purchasing volume</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=metro">Book a call about Metro</a>
         </div>
       </div>
@@ -545,8 +527,8 @@
 
     <div class="band band-invite">
       <div>
-        <h2>Program - medium hub, large hub, or major capital program?</h2>
-        <p class="copy-stack"><span><strong>From $45,000/year.</strong></span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span></p>
+        <h2>Medium hub, large hub, or a major capital program?</h2>
+        <p class="copy-stack"><span><strong>From $45,000/year.</strong></span><span>Scoped with you around your program's packages and funding.</span></p>
       </div>
       <a class="btn" href="/book-a-call?tier=program">Book a call about a program</a>
     </div>
@@ -556,41 +538,42 @@
       <h2 class="faq-heading">Common questions</h2>
       <div class="faq">
         <details>
-          <summary>Do you charge per user?</summary>
-          <div class="faq-answer">No. Pricing is per airport.</div>
+          <summary>Which plan fits my airport?</summary>
+          <div class="faq-answer">Start with your airport profile: Field for general aviation and reliever airports, Regional for nonhub primary airports, and Metro for small hubs. Medium and large hubs or major capital programs are scoped individually.<br><br>FAA hub categories depend on a share of national enplanements, not fixed passenger ranges. See the <a href="https://www.faa.gov/airports/planning_capacity/categories">FAA airport category definitions</a>.</div>
         </details>
         <details>
           <summary>How is TarmacSync priced?</summary>
           <div class="faq-answer">Plans are annual agreements priced per airport, with no automatic renewal. Invoicing and payment timing are set out in the order form.</div>
         </details>
         <details>
-          <summary>Which tier is my airport?</summary>
-          <div class="faq-answer">Start with your airport profile: Field for general aviation and reliever airports, Regional for nonhub primary airports, and Metro for small hubs. Medium and large hubs or major capital programs are scoped individually.<br><br>FAA hub categories depend on a share of national enplanements, not fixed passenger ranges. See the <a href="https://www.faa.gov/airports/planning_capacity/categories">FAA airport category definitions</a>.</div>
+          <summary>How does a product evaluation work?</summary>
+          <div class="faq-answer">A time-boxed evaluation around a real, non-sensitive airport project. Scope, users, success measures, data boundaries, and any fees are agreed in writing before access begins.</div>
         </details>
         <details>
           <summary>What budget typically pays for TarmacSync?</summary>
           <div class="faq-answer">Operating funds are one option. Your airport decides the budget classification and payment path.</div>
         </details>
         <details>
-          <summary>How does a product evaluation work?</summary>
-          <div class="faq-answer">A time-boxed evaluation around a real, non-sensitive airport project. Scope, users, success measures, data boundaries, and any fees are agreed in writing before access begins.</div>
+          <summary>How can we pay?</summary>
+          <div class="faq-answer">By purchase order or check, arranged during contracting. Card payment is confirmed case by case. We provide a W-9 during vendor setup.</div>
         </details>
         <details>
-          <summary>Can I pay by credit card?</summary>
-          <div class="faq-answer">Payment method is confirmed during contracting. Card payment may not be available.</div>
-        </details>
-        <details>
-          <summary>Can we pay by purchase order or check?</summary>
-          <div class="faq-answer">Purchase order or check payment can be arranged during contracting.</div>
-        </details>
-        <details>
-          <summary>Do you provide a W-9?</summary>
-          <div class="faq-answer">Yes, during vendor setup.</div>
+          <summary>Is our data kept separate from other airports?</summary>
+          <div class="faq-answer">Yes. Each airport's data is isolated from every other airport's. The <a href="/security">Security</a> page and the <a href="/data-processing-addendum">Data Processing Addendum</a> describe how.</div>
         </details>
         <details>
           <summary>What happens to our data if we cancel?</summary>
           <div class="faq-answer">Your airport can export all projects, decisions, and evidence files at any time, during or after a subscription. An authorized workspace owner can request a full organization export.</div>
         </details>
+      </div>
+    </section>
+
+    <section class="pricing-close" aria-labelledby="pricing-close-title">
+      <h2 id="pricing-close-title">See it on one of your purchases.</h2>
+      <p>Bring a purchase you are planning, or watch one airport purchase from start to finish.</p>
+      <div class="pricing-close__actions">
+        <a class="btn" href="/book-a-call">Book a call</a>
+        <a class="btn btn-secondary" href="/tour" data-tour-cta="pricing">Watch the demo</a>
       </div>
     </section>
   </main>
