@@ -11,7 +11,6 @@ const EXCLUDED = new Set();
 const FOOTER_ONLY = new Set();
 
 const NAV = [
-  ['/#product', 'Product', ''],
   ['/tour', 'Demo', ' data-tour-cta="nav"'],
   ['/pricing', 'Pricing', ''],
   ['/book-a-call', 'Contact', ''],

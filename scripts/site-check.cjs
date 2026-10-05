@@ -130,7 +130,7 @@ test('structure: header, footer and main tags are balanced on every page', () =>
 
 test('chrome: one header and one footer, rendered from scripts/build-chrome.cjs, on every shared-layout page', () => {
   execFileSync('node', ['scripts/build-chrome.cjs', '--check'], { cwd: root, stdio: 'pipe' });
-  const nav = ['/#product', '/tour', '/pricing', '/book-a-call', '/#report'];
+  const nav = ['/tour', '/pricing', '/book-a-call', '/#report'];
   const foot = ['/', '/privacy', '/terms', '/accessibility', '/book-a-call'];
   chromePages.forEach((f) => {
     const s = read(f);
