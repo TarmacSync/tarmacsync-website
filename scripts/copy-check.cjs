@@ -117,11 +117,58 @@ REVIEWED.forEach((file) => {
   });
 });
 
-test('pricing.html: states what every purchase delivers, from the demo, and says "no automatic renewal" once', () => {
+test('pricing.html: says "no automatic renewal" once', () => {
   const t = visibleText('pricing.html');
-  ['route memo', 'readiness checklist', 'ADO', 'bid evaluation checklist'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'value section names: ' + w));
   const n = (t.match(/automatic renewal/gi) || []).length;
   assert.equal(n, 1, '"automatic renewal" appears ' + n + ' times');
+});
+
+// Owner review (2026-10-05): the features read like a spec, not marketing. Headline numbers first,
+// then one line per feature. Every number and cadence below is checked against the product repo:
+// contract catalogs in data/*/*-airport-contracts.json, schedules in the product's vercel.json crons.
+test('pricing.html: headline numbers, then one-line features, with no spec lists', () => {
+  const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const stats = raw.match(/<div class="stat"><span class="stat-num">[^<]+<\/span><span class="stat-label">[^<]+<\/span><\/div>/g) || [];
+  assert.equal(stats.length, 4, 'four headline numbers, found ' + stats.length);
+  const strip = stats.join(' ');
+  ['7,000+', '1,000+', 'SAM.gov', 'Advisory Circular'].forEach((w) => assert.ok(strip.includes(w), 'headline names: ' + w));
+  assert.ok(!/\blive\b/i.test(strip), 'catalogs are checked weekly, not live');
+  const cards = raw.match(/<article class="feature">[\s\S]*?<\/article>/g) || [];
+  assert.equal(cards.length, 9, 'nine feature cards, found ' + cards.length);
+  cards.forEach((c, i) => {
+    assert.match(c, /^<article class="feature">\s*<h3>[^<]+<\/h3>\s*<p>[^<]+<\/p>\s*<\/article>$/, 'card ' + (i + 1) + ' is a title and one line');
+    assert.ok(c.replace(/<[^>]+>/g, '').trim().split(/\s+/).length <= 22, 'card ' + (i + 1) + ' stays short');
+  });
+  const t = visibleText('pricing.html');
+  ['vendor emails', 'best-matched', 'bid package'].forEach((w) => assert.ok(new RegExp(w, 'i').test(t), 'feature named: ' + w));
+  assert.ok(!/Word export|procurement file checklist/i.test(t), 'the file-checklist line is gone (owner: not useful)');
+  assert.ok(!/class="feature-group"|class="feature-num"/.test(raw), 'the spec-style groups are gone');
+  assert.ok(!/\b(compliant|approved|guaranteed)\b/i.test(t), 'no forbidden vocabulary');
+});
+
+// Owner review (2026-10-05): every plan is the same product, so the cards show only the airport
+// profile, the price and the call; the hero says once what every plan includes.
+test('pricing.html: plan cards carry no feature list; the hero states what every plan includes', () => {
+  const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const cards = raw.match(/<div class="tier" data-tier="[a-z]+">[\s\S]*?<\/a>\s*<\/div>/g) || [];
+  assert.equal(cards.length, 3, 'three plan cards');
+  cards.forEach((c) => assert.ok(!/<ul>/.test(c), 'no list inside a plan card'));
+  assert.ok(!/Every capability listed below|Usage sized to/i.test(raw), 'the two owner-rejected lines are gone');
+  assert.ok(!/Everything in (Field|Regional)/.test(raw), 'no "Everything in X, plus" ladder');
+  const hero = raw.match(/<section class="hero">[\s\S]*?<\/section>/)[0];
+  assert.match(hero, /<p class="hero-sub">[^<]*unlimited users[^<]*<\/p>/i, 'the hero says unlimited users, once, in one line');
+});
+
+// Marketing pass (2026-10-05): written for the airport manager who will buy.
+test('pricing.html: one payment answer, a data-separation answer, and a closing call to action', () => {
+  const raw = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
+  const qs = (raw.match(/<summary>([^<]+)<\/summary>/g) || []).map((s) => s.replace(/<\/?summary>/g, ''));
+  assert.equal(qs.filter((q) => /\b(pay|credit card|W-9|purchase order)\b/i.test(q)).length, 1, 'payment is one question: ' + qs.join(' | '));
+  assert.ok(!/may not be available/i.test(raw), 'no negative card line');
+  assert.ok(qs.some((q) => /data/i.test(q) && /separate|other airports/i.test(q)), 'a manager can see their data is kept separate');
+  assert.match(raw, /href="\/security"/, 'the data answer links to the Security page');
+  assert.match(raw, /<section class="pricing-close"[\s\S]*href="\/book-a-call"[\s\S]*href="\/tour"/, 'the page ends with Book a call and Watch the demo');
+  assert.ok(!/delivery-method decisions, and dependencies across packages/.test(raw), 'the program band is short');
 });
 
 test('book-a-call.html: a short button label, no agenda list, no repeated call facts', () => {

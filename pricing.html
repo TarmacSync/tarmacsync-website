@@ -91,6 +91,10 @@
     .hero { padding: 5.5rem 0 3.5rem; text-align: center; }
     .hero h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.04em; margin-bottom: 1.1rem; }
     .hero p { font-size: 1.12rem; color: var(--muted); max-width: 34rem; margin: 0 auto; line-height: 1.6; }
+    .pricing-close { text-align: center; padding: 5.5rem 0 1rem; }
+    .pricing-close h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -.03em; margin-bottom: .6rem; }
+    .pricing-close p { color: var(--muted); font-size: 1rem; margin: 0 auto 1.6rem; max-width: 34rem; }
+    .pricing-close__actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
     .hero p.cohort-line {
       font-family: var(--mono); font-size: clamp(.76rem, .9vw, .84rem); font-weight: 600;
       line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; color: var(--orange-ink);
@@ -117,17 +121,6 @@
     .tier-thresh { font-size: .78rem; color: var(--muted); line-height: 1.4; margin-bottom: 1.7rem; min-height: 2.1rem; }
     .tier-price { font-size: 2.9rem; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
     .tier-per { font-size: .84rem; color: var(--muted); margin: .5rem 0 2rem; }
-    .tier ul { list-style: none; flex: 1; margin: 0 0 2rem; }
-    .tier li {
-      font-size: .88rem; color: var(--muted); line-height: 1.5;
-      padding-left: 1.35rem; position: relative; margin-bottom: .75rem;
-    }
-    .tier li::before {
-      content: ""; position: absolute; left: 0; top: .55rem;
-      width: 5px; height: 5px; border-radius: 50%; background: var(--orange);
-    }
-    .tier li.inherit { color: var(--ink); font-weight: 600; padding-left: 0; }
-    .tier li.inherit::before { display: none; }
     .tier-cta { width: 100%; transition: background .22s, color .22s, box-shadow .22s; }
     .tier-cta:hover { box-shadow: 0 2px 12px rgba(23,25,31,.08); }
     .tier .tier-cta { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -323,8 +316,6 @@
     }
     .tier-price { font-size: clamp(2.45rem, 4vw, 3.25rem); }
     .tier-per { margin: .42rem 0 1.55rem; }
-    .tier ul { margin-bottom: 1.6rem; }
-    .tier li { margin-bottom: .68rem; }
     .tier .tier-cta {
       min-height: 47px;
       margin-top: auto;
@@ -343,8 +334,18 @@
       background: var(--cloud);
     }
     .capability-overview.details { padding-top: clamp(2rem, 4vw, 3.4rem); }
-    .capability-overview .grid2 { gap: 2rem 2.5rem; }
     .capability-overview .sub { max-width: 660px; }
+    .stat-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2rem 0 2.2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { padding: 1.4rem 1.2rem 1.4rem 0; }
+    .stat + .stat { padding-left: 1.2rem; border-left: 1px solid var(--line); }
+    .stat-num { display: block; font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 650; letter-spacing: -.035em; line-height: 1.05; color: var(--ink); margin-bottom: .45rem; }
+    .stat-label { display: block; font-size: .84rem; line-height: 1.45; color: var(--muted); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .feature { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.35rem; }
+    .feature h3 { font-size: 1rem; letter-spacing: -.016em; margin-bottom: .3rem; }
+    .feature p { font-size: .88rem; line-height: 1.5; color: var(--muted); margin: 0; }
+    @media (max-width: 900px) { .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat:nth-child(3) { padding-left: 0; border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid var(--line); } .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
 
     .band-invite {
       position: relative;
@@ -433,6 +434,7 @@
 
     <section class="hero">
       <h1>Simple pricing, <br>per airport.</h1>
+      <p class="hero-sub">One annual subscription for your airport. Unlimited users and every feature, in every plan.</p>
     </section>
 
     <div class="tier-heading">
@@ -447,11 +449,6 @@
         <div class="tier-who">General aviation &amp; reliever</div>
         <div class="tier-price">$2,400</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li>Know the likely buying path before you advertise</li>
-          <li>Your purchasing policy and thresholds built in from day one</li>
-          <li>Cooperative contract candidates screened against your purchase</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=field">Book a call about Field</a>
         </div>
       </div>
@@ -463,12 +460,6 @@
         <div class="tier-who">Nonhub primary</div>
         <div class="tier-price">$8,400</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li class="inherit">Everything in Field, plus</li>
-          <li>See how AIP and other federal funding change the path</li>
-          <li>Decision summaries your board and finance team can review</li>
-          <li>Approvals and activity tracked, so every decision has a trail</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=regional">Book a call about Regional</a>
         </div>
       </div>
@@ -480,85 +471,109 @@
         <div class="tier-who">Small hub</div>
         <div class="tier-price">$12,000</div>
         <div class="tier-per">per year</div>
-        <ul>
-          <li class="inherit">Everything in Regional, plus</li>
-          <li>Work through layered funding on one purchase: AIP, PFC, state, and local</li>
-          <li>Support for PFC-specific project questions</li>
-        </ul>
         <a class="btn tier-cta" href="/book-a-call?tier=metro">Book a call about Metro</a>
         </div>
       </div>
     </section>
 
     <section class="details narrow capability-overview" aria-labelledby="capability-overview-title">
-      <span class="eyebrow">What TarmacSync brings to the airport</span>
-      <h2 id="capability-overview-title">The intelligence behind the path.</h2>
-      <p class="sub">TarmacSync connects the purchase, funding context, candidate contract pathways, and source-backed conditions an airport team needs to review before the process starts.</p>
-      <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>Know the likely buying path</h3><p>Describe what the airport needs to buy in plain English and see the likely path, funding context, open conditions, and next action.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Find candidate contract options</h3><p>Search cooperative-contract data across multiple consortiums against purchase scope, funding context, and airport policy. Matches are candidates to validate before use.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Stay current on key FAA sources</h3><p>Configured source checks cover selected FAA Advisory Circulars, FAA Orders, the AIP Handbook, Grant Assurances, 2 CFR, and related federal procurement sources.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Carry the evidence into the decision</h3><p>Keep source-linked evidence, missing facts, approval activity, decision summaries, and exportable evidence packets together for authorized airport review.</p></div></div>
+      <span class="eyebrow">Included in every plan</span>
+      <h2 id="capability-overview-title">Everything your team needs before the solicitation goes out.</h2>
+      <div class="stat-strip">
+        <div class="stat"><span class="stat-num">7,000+</span><span class="stat-label">cooperative contracts across four consortiums, checked weekly</span></div>
+        <div class="stat"><span class="stat-num">1,000+</span><span class="stat-label">official federal and FAA sources, links checked daily</span></div>
+        <div class="stat"><span class="stat-num">Weekly</span><span class="stat-label">FAA Advisory Circular revision checks</span></div>
+        <div class="stat"><span class="stat-num">Daily</span><span class="stat-label">SAM.gov exclusion list refresh</span></div>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>Likely buying path</h3>
+          <p>Describe the purchase in plain English and see the likely path before you advertise.</p>
+        </article>
+        <article class="feature">
+          <h3>Best-matched contracts</h3>
+          <p>Cooperative contracts ranked by how closely their scope fits your purchase.</p>
+        </article>
+        <article class="feature">
+          <h3>Vendor screening</h3>
+          <p>Check a vendor against SAM.gov exclusions before you buy.</p>
+        </article>
+        <article class="feature">
+          <h3>Vendor emails, drafted</h3>
+          <p>Questions and quote requests to vendors, ready for you to review and send.</p>
+        </article>
+        <article class="feature">
+          <h3>Your policy, built in</h3>
+          <p>Your thresholds and delegated authority applied to every purchase.</p>
+        </article>
+        <article class="feature">
+          <h3>Funding worked through</h3>
+          <p>AIP, PFC, state, and local money on one purchase, and how each changes the path.</p>
+        </article>
+        <article class="feature">
+          <h3>Documents, drafted</h3>
+          <p>Scope of work, ITB/RFP shell, and justification memos, ready for your review.</p>
+        </article>
+        <article class="feature">
+          <h3>Bid package review</h3>
+          <p>Completeness, scope fit, price, and required contract provisions checked before award.</p>
+        </article>
+        <article class="feature">
+          <h3>An audit-ready record</h3>
+          <p>Every decision, approval, and source kept together and exportable at any time.</p>
+        </article>
       </div>
     </section>
 
     <div class="band band-invite">
       <div>
-        <h2>Program - medium hub, large hub, or major capital program?</h2>
-        <p class="copy-stack"><span><strong>From $45,000/year.</strong></span><span>Terminal, airfield, and multi-package programs carry layered funding, delivery-method decisions, and dependencies across packages, so we scope those with you.</span></p>
+        <h2>Medium hub, large hub, or a major capital program?</h2>
+        <p class="copy-stack"><span><strong>From $45,000/year.</strong></span><span>Scoped with you around your program's packages and funding.</span></p>
       </div>
       <a class="btn" href="/book-a-call?tier=program">Book a call about a program</a>
     </div>
 
 
     <section class="details narrow">
-      <h2>What every purchase gets you.</h2>
-      <p class="sub">Included in every plan.</p>
-      <div class="grid2">
-        <div class="inc"><span class="tick"></span><div><h3>A path you can explain</h3><p>The likely buying path and the sources behind it, so the decision holds up in front of your board, your auditor, or the FAA.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Problems found before you advertise</h3><p>A budget mismatch, an out-of-date form, or a missing approval surfaces before the solicitation goes out, not after.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Review drafts for your team</h3><p>A route memo, readiness checklist, questions for the ADO, and a bid evaluation checklist, ready for procurement and grants staff.</p></div></div>
-        <div class="inc"><span class="tick"></span><div><h3>Your policy, your data</h3><p>Your thresholds and approval levels shape every path, and an authorized workspace owner can export your project and evidence data at any time.</p></div></div>
-      </div>
-
       <h2 class="faq-heading">Common questions</h2>
       <div class="faq">
         <details>
-          <summary>Do you charge per user?</summary>
-          <div class="faq-answer">No. Pricing is per airport.</div>
+          <summary>Which plan fits my airport?</summary>
+          <div class="faq-answer">Start with your airport profile: Field for general aviation and reliever airports, Regional for nonhub primary airports, and Metro for small hubs. Medium and large hubs or major capital programs are scoped individually.<br><br>FAA hub categories depend on a share of national enplanements, not fixed passenger ranges. See the <a href="https://www.faa.gov/airports/planning_capacity/categories">FAA airport category definitions</a>.</div>
         </details>
         <details>
           <summary>How is TarmacSync priced?</summary>
           <div class="faq-answer">Plans are annual agreements priced per airport, with no automatic renewal. Invoicing and payment timing are set out in the order form.</div>
         </details>
         <details>
-          <summary>Which tier is my airport?</summary>
-          <div class="faq-answer">Start with your airport profile: Field for general aviation and reliever airports, Regional for nonhub primary airports, and Metro for small hubs. Medium and large hubs or major capital programs are scoped individually.<br><br>FAA hub categories depend on a share of national enplanements, not fixed passenger ranges. See the <a href="https://www.faa.gov/airports/planning_capacity/categories">FAA airport category definitions</a>.</div>
+          <summary>How does a product evaluation work?</summary>
+          <div class="faq-answer">A time-boxed evaluation around a real, non-sensitive airport project. Scope, users, success measures, data boundaries, and any fees are agreed in writing before access begins.</div>
         </details>
         <details>
           <summary>What budget typically pays for TarmacSync?</summary>
           <div class="faq-answer">Operating funds are one option. Your airport decides the budget classification and payment path.</div>
         </details>
         <details>
-          <summary>How does a product evaluation work?</summary>
-          <div class="faq-answer">A time-boxed evaluation around a real, non-sensitive airport project. Scope, users, success measures, data boundaries, and any fees are agreed in writing before access begins.</div>
+          <summary>How can we pay?</summary>
+          <div class="faq-answer">By purchase order or check, arranged during contracting. Card payment is confirmed case by case. We provide a W-9 during vendor setup.</div>
         </details>
         <details>
-          <summary>Can I pay by credit card?</summary>
-          <div class="faq-answer">Payment method is confirmed during contracting. Card payment may not be available.</div>
-        </details>
-        <details>
-          <summary>Can we pay by purchase order or check?</summary>
-          <div class="faq-answer">Purchase order or check payment can be arranged during contracting.</div>
-        </details>
-        <details>
-          <summary>Do you provide a W-9?</summary>
-          <div class="faq-answer">Yes, during vendor setup.</div>
+          <summary>Is our data kept separate from other airports?</summary>
+          <div class="faq-answer">Yes. Each airport's data is isolated from every other airport's. The <a href="/security">Security</a> page and the <a href="/data-processing-addendum">Data Processing Addendum</a> describe how.</div>
         </details>
         <details>
           <summary>What happens to our data if we cancel?</summary>
           <div class="faq-answer">Your airport can export all projects, decisions, and evidence files at any time, during or after a subscription. An authorized workspace owner can request a full organization export.</div>
         </details>
+      </div>
+    </section>
+
+    <section class="pricing-close" aria-labelledby="pricing-close-title">
+      <h2 id="pricing-close-title">See it on one of your purchases.</h2>
+      <p>Bring a purchase you are planning, or watch one airport purchase from start to finish.</p>
+      <div class="pricing-close__actions">
+        <a class="btn" href="/book-a-call">Book a call</a>
+        <a class="btn btn-secondary" href="/tour" data-tour-cta="pricing">Watch the demo</a>
       </div>
     </section>
   </main>
