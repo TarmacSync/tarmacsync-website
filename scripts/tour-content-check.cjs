@@ -293,20 +293,16 @@ test('homepage: the static illustrative example is gone and the demo is linked i
   assert.ok(!/Illustrative, manually prepared example/.test(home), 'old example copy removed');
   assert.ok(!/\$180,000/.test(home), 'old $180,000 example removed');
   assert.match(home, /href="\/tour"[^>]*data-tour-cta="hero"/);
-  assert.match(home, /href="\/tour"[^>]*data-tour-cta="workflow"/);
+  assert.match(home, /href="\/tour"[^>]*data-tour-cta="product-preview"/);
   assert.match(home, /fictional/i);
   assert.ok(!CODENAME.test(home), 'codename not on the homepage');
 });
 
-test('continuity: the demo uses the homepage\'s five stages, in the same order and words', () => {
-  const home = read('index.html');
+// The homepage stopped showing the five stages in the 2026-10-05 redesign; its continuity with the
+// demo is now the shared sweeper scenario (see the product-section test). The demo's own five-stage
+// structure still holds.
+test('continuity: the demo moves through its five stages in order and shows every one', () => {
   assert.equal(script.stages.length, 5);
-  script.stages.forEach((s) => {
-    assert.ok(home.includes(s.label), 'homepage workflow says "' + s.label + '"');
-    assert.ok(home.includes(s.key), 'homepage workflow says ' + s.key);
-  });
-  const order = script.stages.map((s) => home.indexOf(s.key));
-  assert.deepEqual([...order].sort((a, b) => a - b), order, 'same order as the homepage');
   let prev = -1;
   script.beats.forEach((b) => {
     assert.ok(Number.isInteger(b.stage) && b.stage >= prev && b.stage <= 4, 'stage is non-decreasing: ' + b.id);
@@ -330,15 +326,15 @@ test('continuity: stateAt exposes the stage, from none at the start to all five 
   assert.equal(S.stateAt(script, tl.marks[3].at).stage, 1, 'documents beat is stage 2, Understand');
 });
 
-test('continuity: every demo entry point on the homepage uses the same name and links to the demo', () => {
+// The 2026-10-05 homepage redesign (925e1eb) chose its own demo labels ("Explore the demo",
+// "See it in action") and removed the film and workflow buttons. What still holds: every homepage
+// demo entry point goes to /tour, is measured, and the hero one is a real button.
+test('continuity: every demo entry point on the homepage links to the demo and is measured', () => {
   const home = read('index.html');
-  ['hero', 'vision', 'workflow'].forEach((where) => {
-    const m = home.match(new RegExp('<a[^>]*data-tour-cta="' + where + '"[^>]*>([\\s\\S]*?)</a>'));
-    assert.ok(m, 'entry point ' + where + ' exists');
-    assert.match(m[0], /href="\/tour"/);
-    assert.match(m[0], /class="[^"]*\bbtn\b/, where + ' is a real button');
-    assert.equal(m[1].replace(/<[^>]+>/g, '').replace(/\s*→$/, '').trim(), 'Watch the demo', where + ' label');
-  });
+  const links = home.match(/<a[^>]*href="\/tour"[^>]*>/g) || [];
+  assert.ok(links.length >= 3, 'the hero, the product preview and the hero frame link to the demo');
+  links.filter((a) => !/site-nav|data-tour-cta="nav"/.test(a)).forEach((a) => assert.match(a, /data-tour-cta="[a-z-]+"/, 'measured: ' + a));
+  assert.match(home, /<a[^>]*class="[^"]*\bbtn\b[^"]*"[^>]*href="\/tour"[^>]*data-tour-cta="hero"/, 'the hero entry point is a real button');
   assert.ok(!/id="interactive-demo"|Interactive demonstration|data-tour-cta="section"/.test(home), 'the redundant "interactive demonstration" section is gone');
 });
 
@@ -353,11 +349,11 @@ test('demo buttons say "Watch the demo" everywhere; "2-minute" appears nowhere o
 test('homepage report section: titled with the report, one simple form heading, no filler', () => {
   const home = read('index.html');
   const sec = home.match(/<section[^>]*id="report"[\s\S]*?<\/section>/)[0];
-  assert.match(sec, /<h2 class="partner-title">Get the Report: The Airport Infrastructure Delivery Gap<\/h2>/);
+  // Since the 2026-10-05 redesign the heading is a line of its own and the report is named beneath it.
+  assert.match(sec, /<h2 class="partner-title">[^<]+<\/h2>\s*<p class="partner-report-title">The Airport Infrastructure Delivery Gap<\/p>/, 'the report is named right under the heading');
   assert.ok(!/<h3 class="form-card-title">[^<]*Delivery Gap/.test(sec), 'the form heading is simple, not a second copy of the title');
   assert.match(sec, /<h3 class="form-card-title">Where should we send it\?<\/h3>/);
   assert.ok(!/Read it before your next project handoff/.test(sec), 'no closing filler');
-  assert.ok(sec.indexOf('Inside the report') < sec.indexOf('partner-benefits'), '"Inside the report" sits above the three points');
   assert.ok(!/Pre-launch/.test(home), 'no pre-launch strap on the homepage');
 });
 
@@ -506,13 +502,13 @@ test('state and local law: a sourced note in the route reply, the file and the c
 
 test('homepage product section: context → TarmacSync → path, with the demo’s own scenario in its example', () => {
   const home = read('index.html');
-  const a = home.indexOf('id="product"'), b = home.indexOf('id="product-model"');
-  assert.ok(a > 0 && b > a, 'section #product exists and comes before the five stages');
-  const sec = home.slice(a, b);
-  assert.match(sec, /<h2[^>]*>A clearer path to your next purchase\.<\/h2>/);
+  const a = home.indexOf('id="product"');
+  assert.ok(a > 0, 'section #product exists');
+  const sec = home.slice(a, home.indexOf('</section>', home.indexOf('const example', a)));
+  assert.match(sec, /<h2[^>]*>How the pieces become a buying path\.<\/h2>/);
   assert.match(sec, /data-view="overview"[^>]*>How it works</, 'the overview tab');
   assert.match(sec, /data-view="example"[^>]*>Sweeper example</, 'the example tab');
-  ['Your airport’s context', 'The intelligence layer', 'A path you can act on', 'Your team reviews and decides.'].forEach((t) => assert.ok(sec.includes(t), 'section says: ' + t));
+  ['Your airport’s context', 'The intelligence layer', 'What your team receives', 'Your team reviews and decides.'].forEach((t) => assert.ok(sec.includes(t), 'section says: ' + t));
   assert.ok(!/Pathfinder|Sourcewell|033126|ASH North America|cooperative route|Unvalidated|Product concept|independently verified/i.test(sec), 'no internal name, contract number, off-story route or disclaimer footnote');
   const ex = (sec.match(/const example\s*=\s*\{[\s\S]*?\};/) || [''])[0];
   assert.ok(ex, 'the example state is defined');
@@ -520,9 +516,12 @@ test('homepage product section: context → TarmacSync → path, with the demo�
   assert.ok(!/cooperative/i.test(ex), 'the example is the demo’s sealed-bid story, not a cooperative one');
 });
 
-test('homepage flow: hero, product, how it works, what you keep, film, founder, FAQ, report, then the closing line', () => {
+// Order as of the 2026-10-05 redesign: the five-stage tabs and the closing line are gone, and
+// #product-model survives only as an anchor inside #product so old links still land.
+test('homepage flow: hero, product, what you keep, film, founder, FAQ, then the report', () => {
   const home = read('index.html');
-  const marks = ['aria-label="Hero"', 'id="product"', 'id="product-model"', 'id="trust"', 'id="vision"', 'id="founder"', 'id="faq"', 'id="report"', 'aria-label="Call to action"'];
+  assert.match(home, /id="product-model" class="anchor-target"/, '#product-model is kept as an anchor');
+  const marks = ['aria-label="Hero"', 'id="product"', 'id="trust"', 'id="vision"', 'id="founder"', 'id="faq"', 'id="report"'];
   const at = marks.map((m) => home.indexOf(m));
   at.forEach((i, n) => assert.ok(i > 0, marks[n] + ' exists'));
   assert.deepEqual([...at].sort((a, b) => a - b), at, 'sections are in the agreed order');
