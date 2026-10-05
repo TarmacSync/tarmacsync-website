@@ -137,11 +137,16 @@ test('book-a-call.html: a short button label, no agenda list, no repeated call f
   assert.ok(!/\bOnline\b/.test(t), 'no "Online" chip');
 });
 
-test('index.html: the how-it-works example is the demo’s purchase', () => {
-  const t = visibleText('index.html');
-  const ex = (t.match(/for example: “([^”]+)”/) || [])[1] || '';
-  assert.match(ex, /runway (sweeper|broom)/i, 'example: "' + ex + '"');
-  assert.match(ex, /AIP/);
+test('index.html: the product preview and diagram retain the illustrative demo purchase', () => {
+  const raw = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  assert.match(raw, /class="hero-frame__title">Illustrative demo · runway sweeper replacement/);
+  assert.match(raw, /purchase: 'Runway sweeper replacement/);
+  assert.match(raw, /requirements: 'AIP planned, local match/);
+  assert.match(raw, /id="product-model"/, 'saved demo back-links still resolve');
+  assert.match(raw, /class="product-preview__link" href="\/tour"/);
+  assert.equal((raw.match(/<details class="trust-proof">/g) || []).length, 3);
+  assert.ok(!raw.includes('class="ts-workflow"'), 'no duplicate homepage workflow');
+  assert.ok(!raw.includes('data-report-cta="closing"'), 'no duplicate closing report CTA');
 });
 
 if (failed) { console.error('\n' + failed + ' failing'); process.exit(1); }
