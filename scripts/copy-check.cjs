@@ -187,8 +187,8 @@ test('book-a-call.html: a short button label, no agenda list, no repeated call f
 test('index.html: the product preview and diagram retain the illustrative demo purchase', () => {
   const raw = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(raw, /class="hero-frame__title">Illustrative demo · runway sweeper replacement/);
-  assert.match(raw, /id="ts-need">Replace our runway sweeper/);
-  assert.match(raw, /id="ts-requirements">AIP planned, local match/);
+  assert.match(raw, /purchase: 'Runway sweeper replacement/);
+  assert.match(raw, /requirements: 'AIP planned, local match/);
   assert.match(raw, /id="product-model"/, 'saved demo back-links still resolve');
   assert.match(raw, /class="product-preview__link" href="\/tour"/);
   assert.equal((raw.match(/<details class="trust-proof">/g) || []).length, 3);

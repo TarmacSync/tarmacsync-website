@@ -8,8 +8,7 @@
     "test:site": "node scripts/site-check.cjs",
     "sitemap": "node scripts/build-sitemap.cjs",
     "test:tour": "node scripts/tour-content-check.cjs && node scripts/tour-check.cjs",
-    "test:copy": "node scripts/copy-check.cjs",
-    "test:product": "node scripts/homepage-product-check.cjs"
+    "test:copy": "node scripts/copy-check.cjs"
   },
   "devDependencies": {
     "playwright": "^1.60.0"
