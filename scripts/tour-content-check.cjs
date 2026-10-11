@@ -514,20 +514,24 @@ test('state and local law: a sourced note in the route reply, the file and the c
   assert.match(strings(script.artifacts.memo).join(' '), /state/i);
 });
 
-test('homepage product section: context → TarmacSync → path, with the demo’s own scenario in its example', () => {
+test('homepage product visualization: the snapshot, five stages, and retained knowledge share the demo story', () => {
   const home = read('index.html');
-  const a = home.indexOf('id="product"');
-  assert.ok(a > 0, 'section #product exists');
-  const sec = home.slice(a, home.indexOf('</section>', home.indexOf('const example', a)));
-  assert.match(sec, /<h2[^>]*>How the pieces become a buying path\.<\/h2>/);
-  assert.match(sec, /data-view="overview"[^>]*>How it works</, 'the overview tab');
-  assert.match(sec, /data-view="example"[^>]*>Sweeper example</, 'the example tab');
-  ['Your airport’s context', 'The intelligence layer', 'What your team receives', 'Your team reviews and decides.'].forEach((t) => assert.ok(sec.includes(t), 'section says: ' + t));
-  assert.ok(!/Pathfinder|Sourcewell|033126|ASH North America|cooperative route|Unvalidated|Product concept|independently verified/i.test(sec), 'no internal name, contract number, off-story route or disclaimer footnote');
-  const ex = (sec.match(/const example\s*=\s*\{[\s\S]*?\};/) || [''])[0];
-  assert.ok(ex, 'the example state is defined');
-  ['\\$650,000', 'AIP', '\\$100,000', 'Sealed competitive bids', '\\$610,000', 'Independent estimate'].forEach((p) => assert.match(ex, new RegExp(p), 'the example mentions ' + p));
-  assert.ok(!/cooperative/i.test(ex), 'the example is the demo’s sealed-bid story, not a cooperative one');
+  const sec = home.match(/<section[^>]*id="product"[\s\S]*?<\/section>/)[0];
+  assert.match(sec, /Procurement Path Snapshot/);
+  ['Candidate route', 'Supporting evidence', 'Open questions', 'Recommended next action'].forEach((t) => assert.ok(sec.includes(t), t));
+  ['\\$650,000', '\\$610,000', '\\$100,000', 'Sealed competitive bids', 'independent estimate'].forEach((p) => assert.match(sec, new RegExp(p, 'i')));
+  assert.ok(!/\$180,000|defensible|workflow-steps/.test(home), 'the substitute four-step diagram and conflicting example are removed');
+  assert.equal((sec.match(/role="tab" /g) || []).length, 5);
+  script.stages.forEach((stage, i) => {
+    assert.match(sec, new RegExp('id="purchase-panel-' + i + '"'));
+    assert.ok(sec.includes('<h4>' + stage.label + '</h4>'), stage.label + ' matches the tour');
+  });
+  for (const m of sec.matchAll(/data-source="([^"]+)"/g)) assert.ok(script.citations[m[1]], 'source ' + m[1] + ' exists');
+  for (const m of sec.matchAll(/data-draft="([^"]+)"/g)) assert.ok(script.artifacts[m[1]], 'draft ' + m[1] + ' exists');
+  assert.match(home, /class="knowledge-cycle"/);
+  assert.match(home, /Project history feeds the next buying decision/);
+  assert.match(read('assets/homepage-product.js'), /script\.artifacts/);
+  assert.match(read('assets/homepage-product.css'), /prefers-reduced-motion/);
 });
 
 // Order as of the 2026-10-05 redesign: the five-stage tabs and the closing line are gone, and

@@ -614,26 +614,38 @@ section('phone: the opened Project file does not repeat its own title', async (b
   await context.close();
 });
 
-section('homepage product section: the toggle swaps the scenario and the layout holds on desktop and phones', async (browser) => {
-  {
-    const { page, context } = await fresh(browser, { width: 1280, height: 900, path: '/index.html' });
-    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A likely buying method');
-    await page.locator('#product [data-view="example"]').click();
+section('homepage: snapshot toggles, stage navigation, evidence and drafts work across viewports', async (browser) => {
+  for (const width of [1440, 1024, 768, 390, 320]) {
+    const { page, errors, context } = await fresh(browser, { width, height: 900, path: '/index.html', reducedMotion: true });
     assert.equal((await page.locator('#ts-route').innerText()).trim(), 'Sealed competitive bids');
-    assert.match(await page.locator('#ts-purchase').innerText(), /\$650,000/);
-    assert.equal(await page.locator('#product [data-view="example"]').getAttribute('aria-pressed'), 'true');
     await page.locator('#product [data-view="overview"]').click();
-    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A likely buying method');
-    await context.close();
-  }
-  for (const width of [390, 320]) {
-    const { page, context } = await fresh(browser, { width, height: 844, path: '/index.html' });
-    await page.locator('#product').scrollIntoViewIfNeeded();
-    assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
+    assert.equal((await page.locator('#ts-route').innerText()).trim(), 'A candidate buying method');
+    await page.locator('#product [data-view="example"]').click();
+    assert.match(await page.locator('#ts-purchase').innerText(), /\$650,000/);
     for (const v of ['overview', 'example']) {
       const box = await page.locator('#product [data-view="' + v + '"]').boundingBox();
-      assert.ok(box.height >= 44 && box.x >= 0 && box.x + box.width <= width, width + 'px: the ' + v + ' toggle is a full-size tap target on screen');
+      assert.ok(box.height >= 44 && box.x >= 0 && box.x + box.width <= width, width + 'px toggle');
     }
+    await page.locator('#purchase-tab-0').click();
+    await page.locator('#purchase-tab-0').press('End');
+    assert.equal(await page.locator('#purchase-panel-4').isVisible(), true);
+    assert.equal(await page.locator('#purchase-tab-4').getAttribute('aria-selected'), 'true');
+    await page.locator('[data-draft="memo"]').click();
+    assert.equal(await page.locator('#product-evidence-dialog').isVisible(), true);
+    assert.match(await page.locator('#product-dialog-content').innerText(), /\$610,000/);
+    await page.locator('#product-evidence-dialog button').press('Escape');
+    assert.equal(await page.locator('#product-evidence-dialog').isVisible(), false);
+    await page.locator('[data-stage-back]').click();
+    assert.equal(await page.locator('#purchase-panel-3').isVisible(), true);
+    await page.locator('[data-stage-next]').click();
+    assert.equal(await page.locator('#purchase-panel-4').isVisible(), true);
+    await page.locator('[data-stage-replay]').click();
+    assert.equal(await page.locator('#purchase-panel-0').isVisible(), true);
+    await page.locator('#ts-evidence-links [data-source="u15"]').click();
+    assert.match(await page.locator('#product-dialog-title').innerText(), /200\.320/);
+    await page.locator('#product-evidence-dialog button').click();
+    assert.ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, width + 'px: no sideways scroll');
+    assert.deepEqual(errors, []);
     await context.close();
   }
 });
