@@ -62,7 +62,7 @@ module.exports = async function reportDownload(request, response) {
   const consentText = clean(payload.consentText, 500);
   const consentVersion = clean(payload.consentVersion, 80);
   const source = clean(payload.source, 120);
-  if (!isEmail(email) || !airportOrganization) return sendJson(response, 400, { ok: false, error: "Please provide a valid work email and airport or organization." });
+  if (!isEmail(email)) return sendJson(response, 400, { ok: false, error: "Please provide a valid work email." });
 
   const testEmail = clean(process.env.REPORT_TEST_EMAIL || "Omar@tarmacSync.com", 254).toLowerCase();
   const publicDeliveryEnabled = process.env.REPORT_PUBLIC_DELIVERY_ENABLED === "true";

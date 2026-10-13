@@ -702,47 +702,31 @@
 
     /* ── Report offer ──────────────────────────────────────────── */
     .partner-stage {
-      position: relative; isolation: isolate; overflow: hidden;
-      display: grid; background: #17191f; border: 1px solid rgba(255,255,255,.08);
-      border-radius: 30px; box-shadow: 0 34px 80px -46px rgba(23,25,31,.65);
+      display: grid; gap: 2rem; padding: clamp(1.2rem, 3vw, 2rem);
+      background: #f5f6f8; border: 1px solid #e2e4e8; border-radius: 24px;
     }
-    .partner-stage::before {
-      content: ""; position: absolute; z-index: -1; inset: 0;
-      background:
-        radial-gradient(circle at 8% 8%, rgba(245,106,0,.18), transparent 32%),
-        linear-gradient(120deg, transparent 48%, rgba(255,255,255,.035) 48.1%, transparent 48.4%),
-        linear-gradient(150deg, transparent 68%, rgba(255,255,255,.025) 68.1%, transparent 68.4%);
-      pointer-events: none;
+    @media (min-width: 760px) {
+      .partner-stage { grid-template-columns: 1.12fr 1fr; align-items: start; }
     }
-    @media (min-width: 960px) {
-      .partner-stage { grid-template-columns: 1.04fr .96fr; align-items: stretch; }
-    }
-    .partner-story {
-      position: relative; display: flex; flex-direction: column;
-      padding: clamp(2.2rem, 5vw, 4.6rem);
-    }
-    .partner-story .eyebrow { color: #ff9a50; }
+    .partner-story { padding: .9rem .25rem; }
+    .partner-story .eyebrow { color: #ae5100; }
     .partner-title {
-      max-width: 15ch; margin-top: 1rem; color: var(--white);
-      font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1.08;
-      letter-spacing: -.055em; font-weight: 600;
+      margin-top: 1.4rem; color: #17191f;
+      font-size: clamp(1.65rem, 2.8vw, 2rem); line-height: 1.2;
+      letter-spacing: -.035em; font-weight: 600;
     }
-    .partner-report-title { margin-top: 1.25rem; color: var(--white); font-size: 1.15rem; line-height: 1.5; }
     .partner-lede {
-      max-width: 55ch; margin-top: 1.5rem; color: rgba(255,255,255,.72);
-      font-size: clamp(1rem, 1.5vw, 1.12rem); line-height: 1.68;
+      max-width: 55ch; margin-top: 1rem; color: #595d66;
+      font-size: 1rem; line-height: 1.65;
     }
-    .partner-lede strong { color: var(--white); font-weight: 600; }
-    .partner-benefits { display: grid; margin-top: clamp(2rem, 4vw, 3rem); }
+    .partner-benefits { display: grid; margin-top: 1.5rem; }
     .partner-benefit {
-      display: grid; grid-template-columns: 2.35rem 1fr; gap: 1rem;
-      padding: 1.15rem 0; border-top: 1px solid rgba(255,255,255,.13);
+      display: grid; grid-template-columns: .5rem 1fr; gap: .65rem;
+      padding: .8rem 0; border-bottom: 1px solid #e2e4e8;
     }
-    .partner-benefit-num {
-      padding-top: .15rem; color: #ff9a50; font-family: var(--mono);
-      font-size: .66rem; font-weight: 600; letter-spacing: .08em;
-    }
-    .partner-benefit strong { display: block; color: var(--white); font-size: .96rem; font-weight: 600; }
+    .partner-benefit:last-child { border-bottom: 0; }
+    .partner-benefit-num { color: #ae5100; }
+    .partner-benefit strong { display: block; color: #3e4149; font-size: .94rem; font-weight: 400; }
     .partner-collaboration {
       margin-top: auto; padding-top: 1.5rem;
       border-top: 1px solid rgba(255,255,255,.13);
@@ -778,11 +762,17 @@
       box-shadow: 0 1px 2px rgba(23,25,31,.03), 0 16px 40px -16px rgba(23,25,31,.12);
     }
     .partner-stage .form-card {
-      position: relative; align-self: center;
-      width: auto; margin: clamp(.75rem, 1.5vw, 1.1rem);
-      border: 0; border-radius: 22px; padding: clamp(1.7rem, 3.5vw, 2.8rem);
-      box-shadow: 0 24px 58px rgba(0,0,0,.2);
+      width: 100%; margin: 0; border: 1px solid #e5e2df; border-radius: 16px;
+      padding: clamp(1.3rem, 2.5vw, 1.7rem); box-shadow: 0 5px 18px rgba(23,25,31,.025);
     }
+    .partner-stage .form-card-title { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+    .partner-stage .form-card-intro { margin: .5rem 0 1.2rem; font-size: .85rem; }
+    .partner-stage .optional { color: #595d66; }
+    .partner-stage .consent-row { margin: .3rem 0; font-weight: 400; }
+    .partner-stage .form-status:empty { display: none; }
+    .partner-stage .form-actions { margin: 0; }
+    .partner-stage .form-actions .btn { min-height: 44px; padding: .85rem 1.2rem; font-size: .9rem; }
+    .partner-stage .form-trust { display: block; padding: 0; border: 0; background: transparent; font-size: .75rem; }
     .form-card > .eyebrow { display: block; }
     .form-card-title {
       margin-top: .75rem; margin-bottom: 1.4rem; color: var(--ink); font-size: clamp(1.65rem, 2.5vw, 2.15rem);
@@ -825,17 +815,10 @@
     .form-trust svg { flex: 0 0 auto; width: 15px; height: 15px; margin-top: .08rem; color: var(--orange-ink); }
     .form-trust strong { color: var(--graphite); font-weight: 600; }
     .form-trust a { color: var(--graphite); }
-    @media (max-width: 959px) {
-      .partner-stage .form-card { margin-top: 0; }
-      .partner-title { max-width: 13ch; }
-    }
     @media (max-width: 560px) {
-      .partner-stage { border-radius: 22px; }
-      .partner-story { padding: 2rem 1.35rem 1.5rem; }
-      .partner-stage .form-card { margin: 0 .55rem .55rem; padding: 1.6rem 1.2rem; border-radius: 18px; }
-      .partner-title { font-size: clamp(2.2rem, 12vw, 3.15rem); }
-      .partner-benefit { gap: .65rem; grid-template-columns: 1.75rem 1fr; }
-      .partner-collaboration-items { display: grid; gap: .55rem; }
+      .partner-stage { gap: 1.3rem; padding: 1.2rem; }
+      .partner-story { padding: .25rem; }
+      .partner-title { font-size: 1.65rem; }
     }
     .success-panel { text-align: center; padding: 1.5rem 0; }
     .success-check {
@@ -1266,30 +1249,29 @@
       <div class="page">
         <div class="partner-stage reveal">
           <div class="partner-story">
-            <span class="eyebrow">A TarmacSync industry report</span>
-            <h2 class="partner-title">Keep the context. Move the project forward.</h2>
-            <p class="partner-report-title">The Airport Infrastructure Delivery Gap</p>
-            <p class="partner-lede">A source-linked guide to where airport projects lose context—and what to carry into the next handoff.</p>
+            <span class="eyebrow">Industry report · Free PDF</span>
+            <h2 class="partner-title">The Airport Infrastructure Delivery Gap</h2>
+            <p class="partner-lede">Where airport projects lose context—and how teams can carry decisions forward.</p>
             <div class="partner-benefits" role="list" aria-label="What the report covers">
-              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">01</span><div><strong>Where airport-project momentum gets lost.</strong></div></div>
-              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">02</span><div><strong>Why files can preserve documents without preserving the decision.</strong></div></div>
-              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num">03</span><div><strong>What airport teams can look for before the next handoff.</strong></div></div>
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num" aria-hidden="true">·</span><div><strong>Where project momentum breaks down</strong></div></div>
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num" aria-hidden="true">·</span><div><strong>What documents alone leave out</strong></div></div>
+              <div class="partner-benefit" role="listitem"><span class="partner-benefit-num" aria-hidden="true">·</span><div><strong>What to preserve at the next handoff</strong></div></div>
             </div>
           </div>
           <div class="form-card" id="application">
             <div id="form-content">
-              <span class="eyebrow eyebrow-accent">Free industry report for airport teams</span>
-              <h3 class="form-card-title">Where should we send it?</h3>
+              <h3 class="form-card-title">Get a copy</h3>
+              <p class="form-card-intro">We’ll send the report to your inbox.</p>
               <form id="report-form" novalidate>
                 <div class="spam-trap" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-                <div class="field-row"><div class="field"><label for="full-name">Name <span class="optional">Optional</span></label><input id="full-name" name="firstName" type="text" autocomplete="name"></div><div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div></div>
-                <div class="field"><label for="organization">Airport or organization</label><input id="organization" name="airportOrganization" type="text" autocomplete="organization" required></div>
-                <label class="consent-row"><input id="follow-up-consent" name="follow_up_consent" type="checkbox" value="yes"><span><strong>Optional: send me four weekly emails from TarmacSync about airport procurement decision continuity.</strong><br><span class="optional">Report delivery is not a subscription. Airport alerts are separate. You can unsubscribe from follow-ups at any time.</span></span></label>
+                <div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" required></div>
+                <div class="field"><label for="organization">Airport or organization <span class="optional">(optional)</span></label><input id="organization" name="airportOrganization" type="text" autocomplete="organization"></div>
+                <label class="consent-row"><input id="follow-up-consent" name="follow_up_consent" type="checkbox" value="yes"><span>Also send me four weekly emails about keeping airport procurement decisions connected. Unsubscribe anytime.</span></label>
                 <input type="hidden" name="utm_source" id="utm_source" value=""><input type="hidden" name="utm_medium" id="utm_medium" value=""><input type="hidden" name="utm_campaign" id="utm_campaign" value="">
                 <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-                <div class="form-actions"><button class="btn btn-accent btn-lg" type="submit">Email me the report</button><span class="form-note">Free to read. No project details, account, or meeting required.</span></div>
+                <div class="form-actions"><button class="btn btn-accent btn-lg" type="submit">Email me the report</button></div>
               </form>
-              <div class="form-trust"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5.5 8.5V6.8a4.5 4.5 0 0 1 9 0v1.7m-10 0h11v8h-11v-8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your details are used to deliver this report and, only if you opt in, send the follow-up emails described above. See our <a href="/privacy">Privacy Policy</a>.</span></div>
+              <p class="form-trust">We’ll use your details to deliver the report. Follow-up emails are sent only if you opt in. <a href="/privacy">Privacy policy</a></p>
             </div>
             <div class="success-panel" id="contact-success" style="display:none"><div class="success-check">&#10003;</div><h3 class="h3 success-heading">Your report is on its way.</h3><p class="small success-intro">We’ve submitted The Airport Infrastructure Delivery Gap for delivery to the work email you provided.</p><p class="success-next-label">Next</p><ul class="success-steps"><li><span>1.</span> Read The Airport Infrastructure Delivery Gap.</li><li><span>2.</span> If you opted in, look for the short weekly follow-up emails.</li></ul><p class="small success-privacy">We do not sell personal information. <a href="/privacy">Read our Privacy Policy.</a></p></div>
           </div>
@@ -1508,8 +1490,8 @@
         const payload=Object.fromEntries(new FormData(form).entries());
         payload.followUpConsent=payload.follow_up_consent==='yes';
         payload.source='airport-infrastructure-delivery-gap';
-        payload.consentText='Optional: send me four weekly emails from TarmacSync about airport procurement decision continuity.';
-        payload.consentVersion='report-follow-up-v3';
+        payload.consentText='Also send me four weekly emails about keeping airport procurement decisions connected. Unsubscribe anytime.';
+        payload.consentVersion='report-follow-up-v4';
         form.setAttribute('aria-busy','true');button.disabled=true;button.textContent='Sending the report…';status.className='form-status';status.textContent='';
         try{
           const r=await fetch('/api/report-download',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},credentials:'omit',body:JSON.stringify(payload)});
