@@ -22,6 +22,19 @@ const meta = (src, key) => {
 const titleOf = (src) => (src.match(/<title>([^<]*)<\/title>/) || [])[1];
 const isIndexable = (src) => !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(src);
 const indexable = pages.filter((f) => f !== '404.html' && isIndexable(read(f)));
+// Cloudflare Pages: `_redirects` is committed; `dist/` (with the generated `_headers`) is what deploys.
+const redirects = () => read('_redirects').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'))
+  .map((l) => { const [source, destination, code] = l.split(/\s+/); return { source, destination, statusCode: Number(code) }; });
+let builtDir = null;
+const built = () => {
+  if (!builtDir) {
+    builtDir = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'site-dist-'));
+    execFileSync('node', ['scripts/build-pages.cjs', builtDir], { cwd: root, stdio: 'pipe' });
+  }
+  return builtDir;
+};
+const headerRules = () => fs.readFileSync(path.join(built(), '_headers'), 'utf8').split(/\n(?=\S)/)
+  .map((block) => { const [source, ...lines] = block.split('\n').map((l) => l.trim()).filter(Boolean); return { source, lines }; });
 
 test('images: small display sizes never load oversized files', () => {
   const offenders = [];
@@ -43,14 +56,17 @@ test('images: small display sizes never load oversized files', () => {
 });
 
 test('caching: images and fonts are cached for a day or more; scripts and styles stay revalidated', () => {
-  const v = JSON.parse(read('vercel.json'));
-  const rules = (v.headers || []).filter((h) => h.source !== '/(.*)');
-  const cache = (h) => (h.headers.find((x) => x.key.toLowerCase() === 'cache-control') || {}).value || '';
-  const long = rules.filter((h) => /max-age=(\d+)/.test(cache(h)) && Number(cache(h).match(/max-age=(\d+)/)[1]) >= 86400);
+  const rules = headerRules();
+  const all = rules.find((r) => r.source === '/*');
+  assert.ok(all, 'a site-wide header block exists');
+  ['X-Content-Type-Options: nosniff', 'Referrer-Policy: strict-origin-when-cross-origin', 'Permissions-Policy: camera=(), microphone=(), geolocation=()']
+    .forEach((h) => assert.ok(all.lines.includes(h), 'every page sends ' + h));
+  const cache = (r) => (r.lines.find((l) => /^cache-control:/i.test(l)) || '');
+  const long = rules.filter((r) => /max-age=(\d+)/.test(cache(r)) && Number(cache(r).match(/max-age=(\d+)/)[1]) >= 86400);
   assert.ok(long.length >= 1, 'a long cache rule for images and fonts exists');
-  const joined = long.map((h) => h.source).join(' ');
-  assert.match(joined, /png/); assert.match(joined, /woff2/);
-  assert.ok(!/\bjs\b|\bcss\b/.test(joined), 'no long cache on js/css, which share filenames with their HTML');
+  const joined = long.map((r) => r.source).join(' ');
+  assert.match(joined, /\.png\b/); assert.match(joined, /woff2|\/assets\/fonts\//);
+  assert.ok(!/\.(js|css)\b|\/\*$/m.test(long.map((r) => r.source).join('\n')), 'no long cache on js/css, which share filenames with their HTML');
 });
 
 test('404: a branded page exists, is noindex, and leads somewhere useful', () => {
@@ -63,8 +79,18 @@ test('404: a branded page exists, is noindex, and leads somewhere useful', () =>
 });
 
 test('deploy exclusions: internal docs, markdown and scripts are not served', () => {
-  const lines = read('.vercelignore').split('\n').map((l) => l.trim()).filter(Boolean);
-  ['docs/', 'scripts/', '*.md'].forEach((l) => assert.ok(lines.includes(l), '.vercelignore has ' + l));
+  const out = built();
+  const served = [];
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) walk(p); else served.push(path.relative(out, p));
+  });
+  walk(out);
+  assert.ok(served.includes('index.html') && served.includes('_redirects') && served.includes('_headers'), 'the build has the site and its rules');
+  const leaked = served.filter((f) => /^(docs|scripts|api|functions|node_modules)\//.test(f) || /\.md$/.test(f) || /^(package(-lock)?\.json|vercel\.json)$/.test(f) || f.startsWith('.'));
+  assert.deepEqual(leaked, [], 'internal docs, markdown, scripts and config are not served');
+  const tooBig = served.filter((f) => fs.statSync(path.join(out, f)).size > 25 * 1024 * 1024);
+  assert.deepEqual(tooBig, [], 'no file is over the Cloudflare Pages 25 MiB asset limit');
 });
 
 test('sitemap: matches the generator, lists every indexable page, never a noindex page', () => {
@@ -76,8 +102,8 @@ test('sitemap: matches the generator, lists every indexable page, never a noinde
   });
   pages.filter((f) => !indexable.includes(f)).forEach((f) => assert.ok(!locs.some((l) => l.endsWith('/' + f)), f + ' is noindex but listed'));
   assert.ok(locs.includes('https://www.tarmacsync.com/tour'), 'the demo is indexable and listed');
-  assert.ok(!exists('privacy-choices.html'), 'the redirect stub file is gone; vercel.json redirects it');
-  assert.ok(read('vercel.json').includes('/privacy-choices.html'), 'the redirect remains');
+  assert.ok(!exists('privacy-choices.html'), 'the redirect stub file is gone; _redirects redirects it');
+  assert.ok(redirects().some((r) => r.source === '/privacy-choices.html'), 'the redirect remains');
 });
 
 test('titles: one format, within length, unique, and mirrored in the share cards', () => {
@@ -215,10 +241,10 @@ test('naming: one name for the booking and the evaluation guide', () => {
 
 test('retired pages: roadmap, evaluation guide and intelligence page are gone, redirected, and unlinked', () => {
   const retired = { 'product-roadmap.html': '/', 'procurement-support-packet.html': '/pricing', 'airport-procurement-intelligence.html': '/', 'aip-procurement.html': '/' };
-  const redirects = JSON.parse(read('vercel.json')).redirects;
+  const rules = redirects();
   Object.entries(retired).forEach(([file, dest]) => {
     assert.ok(!exists(file), file + ' still exists');
-    const r = redirects.find((x) => x.source === '/' + file);
+    const r = rules.find((x) => x.source === '/' + file);
     assert.ok(r && r.destination === dest && r.statusCode === 301, file + ' redirects 301 to ' + dest);
     pages.forEach((f) => assert.ok(!read(f).includes(file), f + ' still links ' + file));
     assert.ok(!read('assets/funnel-analytics.js').includes(file), 'analytics still tracks ' + file);
@@ -226,8 +252,8 @@ test('retired pages: roadmap, evaluation guide and intelligence page are gone, r
 });
 
 test('clean URLs: the site serves and announces /pricing, never /pricing.html', () => {
-  const v = JSON.parse(read('vercel.json'));
-  assert.equal(v.cleanUrls, true, 'vercel.json turns on cleanUrls (it also redirects /x.html to /x)');
+  // Cloudflare Pages serves /pricing from pricing.html and redirects /pricing.html to /pricing by default.
+  assert.ok(!exists('vercel.json'), 'no vercel.json: the site deploys to Cloudflare Pages');
   const names = pages.map((f) => f.replace(/\.html$/, ''));
   const stray = [];
   [...pages, 'sitemap.xml', 'assets/funnel-analytics.js', 'assets/tour/tour-script.js'].forEach((f) => {
@@ -237,8 +263,8 @@ test('clean URLs: the site serves and announces /pricing, never /pricing.html', 
     });
   });
   assert.deepEqual(stray, []);
-  (v.redirects || []).forEach((r) => assert.ok(!/\.html/.test(r.destination), 'redirect destination ' + r.destination + ' is clean'));
-  const sources = (v.redirects || []).map((r) => r.source);
+  redirects().forEach((r) => assert.ok(!/\.html/.test(r.destination), 'redirect destination ' + r.destination + ' is clean'));
+  const sources = redirects().map((r) => r.source);
   ['founding-airports', 'pilot-program-brief', 'privacy-choices', 'product-roadmap', 'procurement-support-packet', 'airport-procurement-intelligence', 'aip-procurement'].forEach((n) => {
     assert.ok(sources.includes('/' + n + '.html') && sources.includes('/' + n), n + ' redirects from both the old .html and the clean path');
   });
@@ -286,6 +312,21 @@ test('seo: meta descriptions fit in a search result (160 characters or fewer)', 
   });
   const p = fs.readFileSync(path.join(root, 'pricing.html'), 'utf8');
   assert.ok(!/availability confirmed before purchase/.test(p), 'pricing description drops the removed noise');
+});
+
+test('analytics: no page loads the Vercel script, and the privacy notice names what does run', () => {
+  const stale = pages.filter((f) => read(f).includes('/_vercel/'));
+  assert.deepEqual(stale, [], 'pages still load /_vercel/insights');
+  const p = read('privacy.html');
+  assert.ok(!/Vercel Web Analytics/.test(p), 'privacy no longer names Vercel Web Analytics');
+  assert.match(p, /Cloudflare Web Analytics/, 'privacy names Cloudflare Web Analytics');
+});
+
+test('report form: the Pages Function exists, and the Vercel function it replaces is gone', () => {
+  assert.ok(exists('functions/api/report-download.js'), 'functions/api/report-download.js exists');
+  assert.ok(exists('functions/api/waitlist.js'), 'the retired waitlist route still answers 410');
+  assert.ok(!exists('api'), 'the api/ directory is gone');
+  assert.ok(read('index.html').includes("fetch('/api/report-download'"), 'the homepage still posts to /api/report-download');
 });
 
 if (failed) { console.error('\n' + failed + ' failing'); process.exit(1); }

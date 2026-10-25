@@ -1,0 +1,17 @@
+# Cloudflare Pages redirects. Pages already serves /x from x.html and redirects /x.html to /x.
+# The tarmacsync.com -> www.tarmacsync.com redirect is a zone Redirect Rule, not a line here:
+# _redirects cannot match on host.
+/founding-airports.html / 301
+/founding-airports / 301
+/pilot-program-brief.html / 301
+/pilot-program-brief / 301
+/privacy-choices.html /privacy#your-choices 301
+/privacy-choices /privacy#your-choices 301
+/product-roadmap.html / 301
+/product-roadmap / 301
+/procurement-support-packet.html /pricing 301
+/procurement-support-packet /pricing 301
+/airport-procurement-intelligence.html / 301
+/airport-procurement-intelligence / 301
+/aip-procurement.html / 301
+/aip-procurement / 301

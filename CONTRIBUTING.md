@@ -32,7 +32,7 @@ Those belong in the main TarmacSync application repository.
 
 1. Create a branch.
 2. Make the smallest change that solves the problem.
-3. Test locally with `vercel dev` when the API route is involved.
+3. Test locally with `npm run build && npx wrangler pages dev dist` when the function is involved, and run `npm run test:functions`.
 4. Review the pages manually in a browser.
 5. Verify form submission behavior if the waitlist flow changed.
 6. Open a PR with screenshots when the UI changed.

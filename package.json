@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "description": "TarmacSync public marketing website (static)",
   "scripts": {
+    "build": "node scripts/build-pages.cjs",
+    "test:functions": "node scripts/functions-check.mjs",
     "a11y": "node scripts/a11y-sweep.cjs",
     "test:site": "node scripts/site-check.cjs",
     "sitemap": "node scripts/build-sitemap.cjs",

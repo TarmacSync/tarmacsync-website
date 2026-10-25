@@ -1,26 +1,37 @@
 # Deployment
 
-This repository is deployed as a static site with one Vercel serverless function.
+This repository is deployed as a static site with one Cloudflare Pages Function, on Cloudflare
+Pages (free plan). It moved from Vercel in October 2026.
 
 ## Platform assumptions
 
-- Hosting: Vercel
-- Primary domain: `www.tarmacsync.com`
-- API route: `api/report-download.js`
+- Hosting: Cloudflare Pages, project `tarmacsync-website`
+- Primary domain: `www.tarmacsync.com`; `tarmacsync.com` redirects to it with a zone Redirect Rule
+  (Pages `_redirects` cannot match on host)
+- Function: `functions/api/report-download.js`, served at `/api/report-download`
 - Email delivery: Brevo
+- Analytics: Cloudflare Web Analytics, enabled on the Pages project (no script tag in the pages)
+
+## What is deployed
+
+`npm run build` copies an allowlist of public files (every `.html`, `assets/`, `robots.txt`,
+`sitemap.xml`, `_redirects`) into `dist/` and writes `dist/_headers`. Docs, markdown, scripts and
+config are never uploaded. Functions deploy from `functions/`.
+
+Cloudflare Pages serves `/pricing` from `pricing.html` and redirects `/pricing.html` to `/pricing`
+by default. No single file may exceed 25 MiB.
 
 ## Required environment variables
 
-Set these in Vercel for Preview and Production:
+Set these on the Pages project (Settings → Variables and Secrets), Production, as **secrets**:
 
 - `BREVO_API_KEY`
 - `BREVO_REPORT_LIST_ID`
 - `BREVO_REPORT_TEMPLATE_ID`
 - `BREVO_SENDER_EMAIL`
+- `BREVO_WEEKLY_LIST_ID` (optional; enables the weekly list)
 - `REPORT_TEST_EMAIL`
 - `REPORT_PUBLIC_DELIVERY_ENABLED` (must remain `false` until Omar approves launch)
-
-Legacy Resend/Zoho variables may remain for rollback reference but are not used by the homepage report flow.
 
 Expected behavior:
 
@@ -31,30 +42,32 @@ Expected behavior:
 
 ## Pre-deploy checklist
 
-1. Review `index.html`, `privacy.html`, and `terms.html`.
-2. Confirm the canonical domain is still `https://www.tarmacsync.com/`.
-3. Confirm `og:image` and favicon paths exist.
-4. Confirm `robots.txt` and `sitemap.xml` still match the live domain.
-5. If legal copy changed, update the effective date in the page body.
-6. If report flow changed, verify `api/report-download.js` still validates:
-   - method
-   - origin
-   - payload shape
-   - honeypot field
-   - required env vars
-   - allowlisted test recipient
-   - duplicate suppression
+1. Run `npm run test:site`, `npm run test:functions`, `npm run test:tour` and `npm run test:copy`.
+2. Review `index.html`, `privacy.html`, and `terms.html`.
+3. Confirm the canonical domain is still `https://www.tarmacsync.com/`.
+4. Confirm `og:image` and favicon paths exist.
+5. Confirm `robots.txt` and `sitemap.xml` still match the live domain.
+6. If legal copy changed, update the effective date in the page body.
+7. If the report flow changed, confirm `functions/api/report-download.js` still validates method,
+   origin, payload shape, honeypot field, required env vars, allowlisted test recipient, and
+   duplicate suppression. `scripts/functions-check.mjs` covers most of these.
 
 ## Deploy flow
 
-Typical Vercel flow:
+**Merging to `main` publishes the site.** `.github/workflows/deploy.yml` runs the Node checks,
+builds `dist/`, and uploads it to Cloudflare Pages. Pull requests from this repo get a preview URL
+on `*.tarmacsync-website.pages.dev`. It needs two repository secrets: `CLOUDFLARE_API_TOKEN`
+(Account · Cloudflare Pages · Edit) and `CLOUDFLARE_ACCOUNT_ID`.
+
+To publish by hand (for example, if Actions is down):
 
 ```bash
-vercel
-vercel --prod
+npx wrangler login                 # once per machine
+npm run build
+npx wrangler pages deploy dist --project-name tarmacsync-website --branch main
 ```
 
-If the project is already linked, Preview deploys should happen automatically through Git integration.
+`--branch main` publishes to production; any other branch name gives a preview URL.
 
 ## Post-deploy verification
 
@@ -63,6 +76,7 @@ Check these items in the live deployment:
 1. Home page loads correctly on desktop and mobile.
 2. Privacy and terms pages load directly.
 3. Favicon and OG preview image resolve.
+4. `https://tarmacsync.com/pricing` redirects to `https://www.tarmacsync.com/pricing`.
 5. Report submission succeeds only with the allowlisted test email.
 6. A repeated report request is suppressed.
 7. `robots.txt` is reachable.
@@ -81,8 +95,7 @@ After important public-page changes:
 
 If a deployment breaks the public site or report flow:
 
-1. Roll back to the previous known-good Vercel deployment.
+1. In the Pages project's Deployments list, roll back to the previous known-good deployment.
 2. Verify the report endpoint with the allowlisted test submission.
 3. Check whether the issue was content-only, asset-path-related, or env-related.
 4. Redeploy only after reproducing and fixing the issue locally.
-

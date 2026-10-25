@@ -270,9 +270,10 @@ test('wherever Buy American paths are listed, all three are named, not two', () 
   assert.match(text, /waiver/i);
 });
 
-test('internal docs are not deployed: .vercelignore excludes docs/', () => {
-  assert.ok(fs.existsSync(path.join(root, '.vercelignore')), '.vercelignore exists');
-  assert.match(read('.vercelignore'), /^docs\/?$/m);
+test('internal docs are not deployed: the Pages build copies an allowlist that excludes docs/', () => {
+  const build = read('scripts/build-pages.cjs');
+  assert.match(build, /ALLOW/, 'the build copies an explicit allowlist');
+  assert.ok(!/['"]docs\/?['"]/.test(build), 'docs/ is not on it');
 });
 
 test('regulatory currency: cost-and-price rule carries the current eCFR number; small-hub share notes the FY2025-26 nonhub 95%', () => {

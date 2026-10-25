@@ -12,38 +12,30 @@ This repository is intentionally small. It contains the public landing page, leg
 - `assets/` - logos, favicon, social preview image, founder image
 - `robots.txt` - crawler directives
 - `sitemap.xml` - sitemap for search engines
-- `api/report-download.js` - guarded Vercel serverless function for report requests and Brevo delivery
+- `functions/api/report-download.js` - guarded Cloudflare Pages Function for report requests and Brevo delivery
+- `_redirects` - retired-page redirects; `scripts/build-pages.cjs` builds `dist/` and its `_headers`
 
 ## Stack
 
 - Static HTML/CSS/vanilla JavaScript
-- Vercel for hosting and serverless functions
+- Cloudflare Pages for hosting and the function
 - Brevo for report delivery and future consented nurture
 
 No framework, bundler, or package manager is required for this site in its current form.
 
 ## Local development
 
-Because this repo uses a Vercel-style `api/` route, the simplest way to run it locally is with the Vercel dev server.
-
-Prerequisites:
-
-- Node.js 18+ recommended
-- Vercel CLI installed or runnable through `npx`
-
-Run locally:
+Run the built site and the function together with Wrangler:
 
 ```bash
-vercel dev
+npm run build
+npx wrangler pages dev dist
 ```
 
-Then open:
+Then open the URL it prints (default `http://127.0.0.1:8788`). Put local values for the report
+variables in `.dev.vars` (ignored by git) if you need the form to reach Brevo.
 
-```text
-http://127.0.0.1:3000
-```
-
-If you only need to inspect the static pages, you can also serve the folder with any static server, but the waitlist form will not work unless the API route is running in a Vercel-compatible environment.
+If you only need to inspect the static pages, any static server works; the report form will not.
 
 ## Environment variables
 
@@ -79,11 +71,11 @@ Behavior:
 
 ## Deployment
 
-This repo is intended for Vercel deployment.
+This repo deploys to Cloudflare Pages; see `DEPLOYMENT.md`.
 
 Minimum production checklist:
 
-1. Set the report/Brevo environment variables in Vercel.
+1. Set the report/Brevo environment variables as secrets on the Pages project.
 2. Confirm the production domain is `https://www.tarmacsync.com`.
 3. Verify `robots.txt` and `sitemap.xml` match the live canonical domain.
 4. Submit the sitemap in Google Search Console after deployment.

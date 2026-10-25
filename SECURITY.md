@@ -8,8 +8,8 @@ It does not contain the authenticated TarmacSync application. Security expectati
 
 ## Sensitive areas
 
-- `api/waitlist.js`
-- Vercel environment variables
+- `functions/api/report-download.js`
+- Cloudflare Pages environment variables and secrets
 - Brand/domain metadata that affects phishing or impersonation risk
 
 ## Current protections
@@ -26,7 +26,7 @@ The waitlist endpoint currently includes:
 ## Operational rules
 
 - Never commit API keys or email credentials.
-- Keep `RESEND_API_KEY`, `WAITLIST_FROM_EMAIL`, and `WAITLIST_TO_EMAIL` in Vercel environment variables only.
+- Keep `BREVO_API_KEY` and the other report variables in Cloudflare Pages secrets only.
 - Do not widen CORS behavior without a clear reason.
 - Do not add third-party scripts casually; every external script expands the trust boundary.
 - Treat legal and metadata changes as production-sensitive because they affect public trust.
