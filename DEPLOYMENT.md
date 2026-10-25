@@ -54,14 +54,20 @@ Expected behavior:
 
 ## Deploy flow
 
+**Merging to `main` publishes the site.** `.github/workflows/deploy.yml` runs the Node checks,
+builds `dist/`, and uploads it to Cloudflare Pages. Pull requests from this repo get a preview URL
+on `*.tarmacsync-website.pages.dev`. It needs two repository secrets: `CLOUDFLARE_API_TOKEN`
+(Account · Cloudflare Pages · Edit) and `CLOUDFLARE_ACCOUNT_ID`.
+
+To publish by hand (for example, if Actions is down):
+
 ```bash
 npx wrangler login                 # once per machine
 npm run build
 npx wrangler pages deploy dist --project-name tarmacsync-website --branch main
 ```
 
-`--branch main` publishes to production; any other branch name gives a preview URL on
-`*.tarmacsync-website.pages.dev`.
+`--branch main` publishes to production; any other branch name gives a preview URL.
 
 ## Post-deploy verification
 
